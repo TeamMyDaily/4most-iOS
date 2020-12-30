@@ -27,59 +27,14 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ContentCVC" id="4hk-Ny-t2W" customClass="ContentCVC" customModule="Mydaily_iOS" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="KeywordPopUpContentCVC" id="4hk-Ny-t2W" customClass="ContentCVC" customModule="Mydaily_iOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="30" width="278" height="294"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" id="YPY-IN-cdE">
                                             <rect key="frame" x="0.0" y="0.0" width="278" height="294"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gw-XA-Mh0">
-                                                    <rect key="frame" x="0.0" y="0.0" width="278" height="139"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="5Gw-XA-Mh0" secondAttribute="height" multiplier="2:1" id="MEa-Tv-9bi"/>
-                                                    </constraints>
-                                                    <attributedString key="attributedText">
-                                                        <fragment content="Label">
-                                                            <attributes>
-                                                                <font key="NSFont" metaFont="system" size="18"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSc-Ha-F1A">
-                                                    <rect key="frame" x="0.0" y="147" width="278" height="139"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="bSc-Ha-F1A" secondAttribute="height" multiplier="2:1" id="015-ri-rZx"/>
-                                                    </constraints>
-                                                    <attributedString key="attributedText">
-                                                        <fragment content="Label">
-                                                            <attributes>
-                                                                <color key="NSColor" red="0.43529411764705883" green="0.43529411764705883" blue="0.43529411764705883" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <font key="NSFont" metaFont="cellTitle"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="3" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                    <color key="highlightedColor" red="0.43529411764705883" green="0.43529411764705883" blue="0.43529411764705883" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="5Gw-XA-Mh0" firstAttribute="top" secondItem="YPY-IN-cdE" secondAttribute="top" id="EV8-Xv-1SX"/>
-                                                <constraint firstAttribute="trailing" secondItem="5Gw-XA-Mh0" secondAttribute="trailing" id="Oit-Ec-S2i"/>
-                                                <constraint firstItem="5Gw-XA-Mh0" firstAttribute="leading" secondItem="YPY-IN-cdE" secondAttribute="leading" id="XU4-Uh-xa0"/>
-                                                <constraint firstAttribute="trailing" secondItem="bSc-Ha-F1A" secondAttribute="trailing" id="dK6-UB-K5g"/>
-                                                <constraint firstItem="bSc-Ha-F1A" firstAttribute="top" secondItem="5Gw-XA-Mh0" secondAttribute="bottom" constant="8" symbolic="YES" id="tfY-AK-lcb"/>
-                                                <constraint firstItem="bSc-Ha-F1A" firstAttribute="leading" secondItem="YPY-IN-cdE" secondAttribute="leading" id="yso-Om-I6N"/>
-                                            </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="278" height="294"/>
-                                        <connections>
-                                            <outlet property="answerLabel" destination="bSc-Ha-F1A" id="Z0g-WJ-iST"/>
-                                            <outlet property="questionLabel" destination="5Gw-XA-Mh0" id="u8N-Sm-sja"/>
-                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>

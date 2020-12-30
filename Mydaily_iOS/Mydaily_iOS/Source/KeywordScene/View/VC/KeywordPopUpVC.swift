@@ -22,9 +22,17 @@ class KeywordPopUpVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setDelegate()
+    }
+    
+    
+    func setDelegate(){
         contentCollectionView.dataSource = self
         contentCollectionView.delegate = self
+        contentCollectionView.register(UINib(nibName: "ContentCVC", bundle: .main), forCellWithReuseIdentifier: ContentCVC.identifier)
     }
+    
+    
 }
 
 extension KeywordPopUpVC: UICollectionViewDataSource{

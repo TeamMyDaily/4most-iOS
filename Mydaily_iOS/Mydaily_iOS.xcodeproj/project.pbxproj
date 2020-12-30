@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3CC86426259CAFCB0043421A /* Keyword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CC86425259CAFCB0043421A /* Keyword.storyboard */; };
-		3CC86429259CAFDE0043421A /* ContentCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC86428259CAFDE0043421A /* ContentCVC.swift */; };
 		3CC8642C259CAFEE0043421A /* KeywordPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC8642B259CAFEE0043421A /* KeywordPopUpVC.swift */; };
+		3CC86433259CCCB00043421A /* ContentCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC86431259CCCB00043421A /* ContentCVC.swift */; };
+		3CC86434259CCCB00043421A /* ContentCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CC86432259CCCB00043421A /* ContentCVC.xib */; };
 		AE76C03E259B1A6D007B3901 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE76C03D259B1A6D007B3901 /* AppDelegate.swift */; };
 		AE76C040259B1A6D007B3901 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE76C03F259B1A6D007B3901 /* SceneDelegate.swift */; };
 		AE76C047259B1A6E007B3901 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE76C046259B1A6E007B3901 /* Assets.xcassets */; };
@@ -26,8 +27,9 @@
 
 /* Begin PBXFileReference section */
 		3CC86425259CAFCB0043421A /* Keyword.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Keyword.storyboard; sourceTree = "<group>"; };
-		3CC86428259CAFDE0043421A /* ContentCVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCVC.swift; sourceTree = "<group>"; };
 		3CC8642B259CAFEE0043421A /* KeywordPopUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeywordPopUpVC.swift; sourceTree = "<group>"; };
+		3CC86431259CCCB00043421A /* ContentCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCVC.swift; sourceTree = "<group>"; };
+		3CC86432259CCCB00043421A /* ContentCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentCVC.xib; sourceTree = "<group>"; };
 		AE76C03A259B1A6D007B3901 /* Mydaily_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mydaily_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE76C03D259B1A6D007B3901 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE76C03F259B1A6D007B3901 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,7 +69,8 @@
 		3CC86423259CAF8F0043421A /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				3CC86428259CAFDE0043421A /* ContentCVC.swift */,
+				3CC86431259CCCB00043421A /* ContentCVC.swift */,
+				3CC86432259CCCB00043421A /* ContentCVC.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				AEFB2202259C66F400A3228C /* Evaluation.storyboard in Resources */,
 				AEFB2205259C66FC00A3228C /* Mypage.storyboard in Resources */,
 				AEFB21F2259C46C500A3228C /* Tabbar.storyboard in Resources */,
+				3CC86434259CCCB00043421A /* ContentCVC.xib in Resources */,
 				3CC86426259CAFCB0043421A /* Keyword.storyboard in Resources */,
 				AE76C04A259B1A6E007B3901 /* LaunchScreen.storyboard in Resources */,
 				AE76C047259B1A6E007B3901 /* Assets.xcassets in Resources */,
@@ -306,11 +310,11 @@
 			files = (
 				AE76C03E259B1A6D007B3901 /* AppDelegate.swift in Sources */,
 				3CC8642C259CAFEE0043421A /* KeywordPopUpVC.swift in Sources */,
-				3CC86429259CAFDE0043421A /* ContentCVC.swift in Sources */,
 				AEFB2210259C6C6A00A3228C /* DailyVC.swift in Sources */,
 				AEFB21F9259C5CB900A3228C /* TabbarController.swift in Sources */,
 				AEFB2216259C6E6700A3228C /* MypageVC.swift in Sources */,
 				AEFB2213259C6E2D00A3228C /* EvaluationVC.swift in Sources */,
+				3CC86433259CCCB00043421A /* ContentCVC.swift in Sources */,
 				AE76C040259B1A6D007B3901 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
