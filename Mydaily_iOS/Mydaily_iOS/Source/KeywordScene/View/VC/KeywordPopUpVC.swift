@@ -33,7 +33,7 @@ extension KeywordPopUpVC: UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentCell.identifier, for: indexPath) as? ContentCell else{
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentCVC.identifier, for: indexPath) as? ContentCVC else{
             return UICollectionViewCell()
         }
         

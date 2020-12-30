@@ -7,8 +7,8 @@
 
 import UIKit
 
-class ContentCell: UICollectionViewCell {
-    static let identifier = "ContentCell"
+class ContentCVC: UICollectionViewCell {
+    static let identifier = "ContentCVC"
     @IBOutlet var questionLabel: UILabel!
     @IBOutlet var answerLabel: UILabel!
     
