@@ -13,7 +13,6 @@
 		AE76C045259B1A6D007B3901 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE76C043259B1A6D007B3901 /* Main.storyboard */; };
 		AE76C047259B1A6E007B3901 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE76C046259B1A6E007B3901 /* Assets.xcassets */; };
 		AE76C04A259B1A6E007B3901 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE76C048259B1A6E007B3901 /* LaunchScreen.storyboard */; };
-		ED2C2571259C417500ECEFA4 /* EvaluationStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED2C2570259C417500ECEFA4 /* EvaluationStoryboard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +24,6 @@
 		AE76C046259B1A6E007B3901 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE76C049259B1A6E007B3901 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE76C04B259B1A6E007B3901 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ED2C2570259C417500ECEFA4 /* EvaluationStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EvaluationStoryboard.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,59 +77,10 @@
 		AE76C053259B1A89007B3901 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				ED2C2569259B217100ECEFA4 /* EvaluationScene */,
 				AE76C043259B1A6D007B3901 /* Main.storyboard */,
 				AE76C041259B1A6D007B3901 /* ViewController.swift */,
 			);
 			path = Source;
-			sourceTree = "<group>";
-		};
-		ED2C2569259B217100ECEFA4 /* EvaluationScene */ = {
-			isa = PBXGroup;
-			children = (
-				ED2C2570259C417500ECEFA4 /* EvaluationStoryboard.storyboard */,
-				ED2C2573259C41DD00ECEFA4 /* View */,
-				ED2C256D259B21E900ECEFA4 /* Network */,
-			);
-			path = EvaluationScene;
-			sourceTree = "<group>";
-		};
-		ED2C256A259B21AE00ECEFA4 /* VC */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = VC;
-			sourceTree = "<group>";
-		};
-		ED2C256C259B21CE00ECEFA4 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		ED2C256D259B21E900ECEFA4 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				ED2C256C259B21CE00ECEFA4 /* Model */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		ED2C2573259C41DD00ECEFA4 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				ED2C2574259C41F000ECEFA4 /* Cell */,
-				ED2C256A259B21AE00ECEFA4 /* VC */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		ED2C2574259C41F000ECEFA4 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,7 +143,6 @@
 				AE76C04A259B1A6E007B3901 /* LaunchScreen.storyboard in Resources */,
 				AE76C047259B1A6E007B3901 /* Assets.xcassets in Resources */,
 				AE76C045259B1A6D007B3901 /* Main.storyboard in Resources */,
-				ED2C2571259C417500ECEFA4 /* EvaluationStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
