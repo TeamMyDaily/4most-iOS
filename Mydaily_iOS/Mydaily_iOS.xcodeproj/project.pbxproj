@@ -19,6 +19,7 @@
 		AEFB2210259C6C6A00A3228C /* DailyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFB220F259C6C6900A3228C /* DailyVC.swift */; };
 		AEFB2213259C6E2D00A3228C /* EvaluationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFB2212259C6E2D00A3228C /* EvaluationVC.swift */; };
 		AEFB2216259C6E6700A3228C /* MypageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFB2215259C6E6700A3228C /* MypageVC.swift */; };
+		AEFB221D259C918C00A3228C /* EditKeywordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFB221C259C918C00A3228C /* EditKeywordVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		AEFB220F259C6C6900A3228C /* DailyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyVC.swift; sourceTree = "<group>"; };
 		AEFB2212259C6E2D00A3228C /* EvaluationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationVC.swift; sourceTree = "<group>"; };
 		AEFB2215259C6E6700A3228C /* MypageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageVC.swift; sourceTree = "<group>"; };
+		AEFB221C259C918C00A3228C /* EditKeywordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditKeywordVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				AEFB2215259C6E6700A3228C /* MypageVC.swift */,
+				AEFB221C259C918C00A3228C /* EditKeywordVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			files = (
 				AE76C03E259B1A6D007B3901 /* AppDelegate.swift in Sources */,
 				AEFB2210259C6C6A00A3228C /* DailyVC.swift in Sources */,
+				AEFB221D259C918C00A3228C /* EditKeywordVC.swift in Sources */,
 				AEFB21F9259C5CB900A3228C /* TabbarController.swift in Sources */,
 				AEFB2216259C6E6700A3228C /* MypageVC.swift in Sources */,
 				AEFB2213259C6E2D00A3228C /* EvaluationVC.swift in Sources */,
