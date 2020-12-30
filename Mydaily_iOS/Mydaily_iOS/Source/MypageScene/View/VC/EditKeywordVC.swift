@@ -40,18 +40,24 @@ extension EditKeywordVC: UITextFieldDelegate{
             noticeLabel.text = "잠깐! 공백은 입력할 수 없어요!"
             return false
         }
-        
         let currentText = textField.text ?? ""
         guard let stringRange = Range(range, in: currentText) else { return false }
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
-        if updatedText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count <= 6{
-            addButton.isEnabled = true
-            return true
+        if !updatedText.isEmpty {
+            if updatedText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count <= 6{
+                addButton.isEnabled = true
+                self.addButton.isEnabled = true
+                return true
+            }
+            else{
+                noticeLabel.text = "최대 5글자의 단어만 입력 가능해요!"
+                addButton.isEnabled = false
+                return false
+            }
         }
         else{
-            noticeLabel.text = "최대 5글자의 단어만 입력 가능해요!"
             addButton.isEnabled = false
-            return false
+            return true
         }
     }
     
