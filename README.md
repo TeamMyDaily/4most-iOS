@@ -64,7 +64,7 @@
 <br/>
 
 ## 🍎 Dailys Team Rule
-#### git
+### git
 🔀 **git branch**
 * master : 제품으로 출시될 수 있는 브랜치
 * develop : 다음 출시 버전을 개발하는 브랜치
@@ -78,8 +78,9 @@
 * [Chore] : 간단한 수정
 * [Docs] : 문서 및 리드미 작성
 * [Merge] : 머지
+<br/>
 
-#### project foldering
+### project foldering
 * Resourse : asset, info.plist, AppDelegate 관리
 * Source : Scene(flow 별로 폴더링) -> Storyboard, VC, Network(API), Model 등 관리
   ```
