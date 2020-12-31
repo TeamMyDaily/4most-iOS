@@ -48,6 +48,13 @@ extension EditKeywordVC: UITextFieldDelegate{
             noticeLabel.text = "잠깐! 공백은 입력할 수 없어요!"
             return false
         }
+        if textField.isFirstResponder {
+            let validString = CharacterSet(charactersIn: "!@#$%^&*()_+{}[]|\"<>,.~`/:;?-=\\¥'£•¢")
+            if string.rangeOfCharacter(from: validString) != nil {
+                noticeLabel.text = "잠깐! 특수문자는 입력할 수 없어요!"
+                return false
+            }
+        }
         let currentText = textField.text ?? ""
         guard let stringRange = Range(range, in: currentText) else { return false }
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
