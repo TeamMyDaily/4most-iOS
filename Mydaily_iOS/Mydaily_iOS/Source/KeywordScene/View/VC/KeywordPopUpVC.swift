@@ -8,7 +8,8 @@
 import UIKit
 
 class KeywordPopUpVC: UIViewController {
-
+    static let identifier = "KeywordPopUpVC"
+    
     @IBOutlet var contentPageContol: UIPageControl!
     @IBOutlet var contentCollectionView: UICollectionView!
     @IBOutlet var skipButton: UIButton!
@@ -30,6 +31,11 @@ class KeywordPopUpVC: UIViewController {
         contentCollectionView.dataSource = self
         contentCollectionView.delegate = self
         contentCollectionView.register(UINib(nibName: "ContentCVC", bundle: .main), forCellWithReuseIdentifier: ContentCVC.identifier)
+    }
+    
+    
+    @IBAction func backToKeywordSetting(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     
