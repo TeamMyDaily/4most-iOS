@@ -13,6 +13,8 @@ class EditKeywordVC: UIViewController {
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var noticeLabel: UILabel!
     
+    var keywordArray:[String] = ["진정성","용기","대충"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,6 +31,12 @@ class EditKeywordVC: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
+    @IBAction func addButton(_ sender: Any) {
+        if keywordArray.contains(keywordTextField.text ?? "") {
+            addButton.isEnabled = false
+            noticeLabel.text = "'\(keywordTextField.text ?? "")'은 이미 생성된 단어에요!"
+        }
+    }
     
 }
 
