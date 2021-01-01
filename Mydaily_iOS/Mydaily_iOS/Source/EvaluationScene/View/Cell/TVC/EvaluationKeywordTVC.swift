@@ -17,6 +17,8 @@ class EvaluationKeywordTVC: UITableViewCell {
     @IBOutlet weak var goalLabel: UILabel!
     @IBOutlet weak var addKeywordImage: UIImageView!
     
+    var timer: Timer?
+    
     let mainColor: UIColor = UIColor.init(red: 236/255, green: 104/255, blue: 74/255, alpha: 1)
     
     override func awakeFromNib() {
@@ -29,22 +31,14 @@ class EvaluationKeywordTVC: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
-    @IBAction func moveSlider(_ sender: Any) {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        numberFormatter.maximumFractionDigits = 1
-        let valueNumber: Float = rateSlider.value
-        let formatterNumber = numberFormatter.string(from: NSNumber(value: valueNumber))
-        rateLabel.text = "\(formatterNumber ?? " ")"
-    }
 }
 
 extension EvaluationKeywordTVC {
-    func setDataToLabel(keyword: String, goal: String, index: Int) {
+    func setDataToLabel(keyword: String, goal: String, index: Int, rate: Double) {
         if keyword != "" {
             keywordLabel.text = keyword
             goalLabel.text = goal
+            rateLabel.text = "\(rate)"
         } else if keyword == "" && index < 3 {
             keywordLabel.isHidden = true
             rateLabel.isHidden = true
@@ -58,6 +52,14 @@ extension EvaluationKeywordTVC {
             rateSlider.isHidden = true
             addKeywordImage.isHidden = false
         }
+        
+        UIView.animate(withDuration: 2, animations:  {() in
+            self.rateSlider.setValue(0, animated: true)
+                }, completion:{(Bool)  in
+                    UIView.animate(withDuration: 2, animations: {() in
+                        self.rateSlider.setValue(Float(rate), animated: true)
+            })
+        })
     }
     
     private func setKeywordView() {
@@ -78,7 +80,6 @@ extension EvaluationKeywordTVC {
 
 extension EvaluationKeywordTVC {
     private func setSlider() {
-        rateSlider.value = 3
         rateSlider.setThumbImage(self.rateSliderThumbImage(with: self.rateSlider.value), for: UIControl.State.normal)
         rateSlider.setThumbImage(self.rateSliderThumbImage(with: self.rateSlider.value), for: UIControl.State.selected)
         setSliderColor()

@@ -14,6 +14,7 @@ class EvaluationTabCVC: UICollectionViewCell {
     
     var keywords = ["아웃풋", "회고", "열정", nil]
     var goals = ["블로그에 1개 이상 퍼블리싱 하기", "진지한 글쓰기", "리얼 유노윤호 되어보기", nil]
+    var rates = [2.6, 4.2, 3.8, nil]
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -44,7 +45,7 @@ extension EvaluationTabCVC: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: EvaluationKeywordTVC.identifier) as? EvaluationKeywordTVC else {
             return UITableViewCell()
         }
-        cell.setDataToLabel(keyword: keywords[indexPath.item] ?? "", goal: goals[indexPath.item] ?? "", index: indexPath.item)
+        cell.setDataToLabel(keyword: keywords[indexPath.item] ?? "", goal: goals[indexPath.item] ?? "", index: indexPath.item, rate: rates[indexPath.item] ?? 0.0)
         cell.selectionStyle = .none
         return cell
     }
