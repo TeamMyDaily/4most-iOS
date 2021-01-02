@@ -16,7 +16,6 @@ class EvaluationKeywordTVC: UITableViewCell {
     @IBOutlet weak var rateLabel: UILabel!
     @IBOutlet weak var goalLabel: UILabel!
     @IBOutlet weak var totalCountLabel: UILabel!
-    @IBOutlet weak var addKeywordImage: UIImageView!
     
     let mainColor: UIColor = UIColor.init(red: 236/255, green: 104/255, blue: 74/255, alpha: 1)
     let originalColor: UIColor = UIColor.init(red: 196/255, green: 196/255, blue: 196/255, alpha: 1)
@@ -40,20 +39,13 @@ extension EvaluationKeywordTVC {
             goalLabel.text = goal
             rateLabel.text = "\(rate)"
             totalCountLabel.text = "총 \(count)개"
-        } else if keyword == "" && index < 3 {
+        } else {
             keywordLabel.isHidden = true
             rateLabel.isHidden = true
             goalLabel.isHidden = true
             totalCountLabel.isHidden = true
             rateSlider.isHidden = true
             outlineView.isHidden = true
-        } else if keyword == "" && index == 3 {
-            keywordLabel.isHidden = true
-            rateLabel.isHidden = true
-            goalLabel.isHidden = true
-            rateSlider.isHidden = true
-            totalCountLabel.isHidden = true
-            addKeywordImage.isHidden = false
         }
         
         UIView.animate(withDuration: 2, animations:  {() in
@@ -69,7 +61,6 @@ extension EvaluationKeywordTVC {
         outlineView.layer.cornerRadius = 13
         outlineView.layer.borderWidth = 1
         outlineView.layer.borderColor = originalColor.cgColor
-        addKeywordImage.isHidden = true
     }
     
     private func setLabel() {

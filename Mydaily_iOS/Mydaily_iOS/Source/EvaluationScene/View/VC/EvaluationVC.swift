@@ -7,6 +7,34 @@
 
 import UIKit
 
+protocol TableViewTnsideCollectionViewDelegate: class {
+    func cellTaped()
+}
+
+protocol PushDelegate {
+  func makeNavigationPush(_ vc: UIViewController)
+}
+
+extension UIApplication {
+    class func topViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let nav = base as? UINavigationController {
+            return topViewController(base: nav.visibleViewController)
+        }
+        
+        if let tab = base as? UITabBarController {
+            if let selected = tab.selectedViewController {
+                return topViewController(base: selected)
+            }
+        }
+        
+        if let presented = base?.presentedViewController {
+            return topViewController(base: presented)
+        }
+        
+        return base
+    }
+}
+
 class EvaluationVC: UIViewController {
     @IBOutlet weak var weekLabel: UILabel!
     @IBOutlet weak var evaluationTabButton: UIButton!
@@ -69,6 +97,7 @@ extension EvaluationVC: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EvaluationTabCVC.identifier, for: indexPath) as? EvaluationTabCVC else {
                 return UICollectionViewCell()
             }
+            cell.delegate = self
             return cell
         }
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RetrospectiveTabCVC.identifier, for: indexPath) as? RetrospectiveTabCVC else {
@@ -96,6 +125,7 @@ extension EvaluationVC: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: Setting
 extension EvaluationVC {
     private func setWeekLabel() {
         weekLabel.font = .boldSystemFont(ofSize: 12)
@@ -125,5 +155,34 @@ extension EvaluationVC {
     private func setCollectionViewDelegate() {
         keywordCollectionView.delegate = self
         keywordCollectionView.dataSource = self
+    }
+}
+
+// MARK: NavigationViewController
+extension EvaluationVC: TableViewTnsideCollectionViewDelegate {
+    func cellTaped() {
+        guard let dvc = self.storyboard?.instantiateViewController(identifier: "EvaluationDetailVC") as? EvaluationDetailVC else {
+            return
+        }
+        dvc.modalPresentationStyle = .fullScreen
+        self.present(dvc, animated: true, completion: nil)
+    }
+    
+    func topViewController() -> UIViewController? {
+        if let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) {
+            if var viewController = window.rootViewController {
+                while viewController.presentedViewController != nil {
+                    viewController = viewController.presentedViewController!
+                }
+                return viewController
+            }
+        }
+        return nil
+    }
+}
+
+extension EvaluationVC: PushDelegate {
+    func makeNavigationPush(_ vc: UIViewController) {
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
