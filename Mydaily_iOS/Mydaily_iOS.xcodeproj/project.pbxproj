@@ -19,6 +19,9 @@
 		AEFB2210259C6C6A00A3228C /* DailyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFB220F259C6C6900A3228C /* DailyVC.swift */; };
 		AEFB2213259C6E2D00A3228C /* EvaluationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFB2212259C6E2D00A3228C /* EvaluationVC.swift */; };
 		AEFB2216259C6E6700A3228C /* MypageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFB2215259C6E6700A3228C /* MypageVC.swift */; };
+		AEFB221D259C918C00A3228C /* EditKeywordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFB221C259C918C00A3228C /* EditKeywordVC.swift */; };
+		AEFB222325A02CBC00A3228C /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEFB222225A02CBC00A3228C /* Login.storyboard */; };
+		AEFB222625A02CC900A3228C /* Goal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEFB222525A02CC900A3228C /* Goal.storyboard */; };
 		ED266029259EF02E00A376C0 /* EvaluationTabCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266028259EF02E00A376C0 /* EvaluationTabCVC.swift */; };
 		ED266030259EFAB200A376C0 /* RetrospectiveTabCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED26602F259EFAB200A376C0 /* RetrospectiveTabCVC.swift */; };
 		ED266033259F019B00A376C0 /* EvaluationHeaderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266032259F019B00A376C0 /* EvaluationHeaderTVC.swift */; };
@@ -46,6 +49,9 @@
 		ED266032259F019B00A376C0 /* EvaluationHeaderTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationHeaderTVC.swift; sourceTree = "<group>"; };
 		ED266035259F032000A376C0 /* EvaluationKeywordTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationKeywordTVC.swift; sourceTree = "<group>"; };
 		EDAAEB7C25A01B550024E3E4 /* EvaluationDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationDetailVC.swift; sourceTree = "<group>"; };
+		AEFB221C259C918C00A3228C /* EditKeywordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditKeywordVC.swift; sourceTree = "<group>"; };
+		AEFB222225A02CBC00A3228C /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		AEFB222525A02CC900A3228C /* Goal.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Goal.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +114,8 @@
 		AE76C053259B1A89007B3901 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				AEFB222025A02C8800A3228C /* LoginScene */,
+				AEFB222125A02CA700A3228C /* GoalScene */,
 				AEFB21FD259C631F00A3228C /* DailyScene */,
 				AEFB21FC259C631D00A3228C /* EvaluationScene */,
 				AEFB21FB259C631A00A3228C /* MypageScene */,
@@ -197,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				AEFB2215259C6E6700A3228C /* MypageVC.swift */,
+				AEFB221C259C918C00A3228C /* EditKeywordVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -226,6 +235,22 @@
 				ED26602F259EFAB200A376C0 /* RetrospectiveTabCVC.swift */,
 			);
 			path = CVC;
+			sourceTree = "<group>";
+		};
+		AEFB222025A02C8800A3228C /* LoginScene */ = {
+			isa = PBXGroup;
+			children = (
+				AEFB222225A02CBC00A3228C /* Login.storyboard */,
+			);
+			path = LoginScene;
+			sourceTree = "<group>";
+		};
+		AEFB222125A02CA700A3228C /* GoalScene */ = {
+			isa = PBXGroup;
+			children = (
+				AEFB222525A02CC900A3228C /* Goal.storyboard */,
+			);
+			path = GoalScene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,7 +311,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEFB2202259C66F400A3228C /* Evaluation.storyboard in Resources */,
+				AEFB222625A02CC900A3228C /* Goal.storyboard in Resources */,
 				AEFB2205259C66FC00A3228C /* Mypage.storyboard in Resources */,
+				AEFB222325A02CBC00A3228C /* Login.storyboard in Resources */,
 				AEFB21F2259C46C500A3228C /* Tabbar.storyboard in Resources */,
 				AE76C04A259B1A6E007B3901 /* LaunchScreen.storyboard in Resources */,
 				AE76C047259B1A6E007B3901 /* Assets.xcassets in Resources */,
@@ -304,6 +331,7 @@
 				AE76C03E259B1A6D007B3901 /* AppDelegate.swift in Sources */,
 				EDAAEB7D25A01B550024E3E4 /* EvaluationDetailVC.swift in Sources */,
 				AEFB2210259C6C6A00A3228C /* DailyVC.swift in Sources */,
+				AEFB221D259C918C00A3228C /* EditKeywordVC.swift in Sources */,
 				AEFB21F9259C5CB900A3228C /* TabbarController.swift in Sources */,
 				AEFB2216259C6E6700A3228C /* MypageVC.swift in Sources */,
 				AEFB2213259C6E2D00A3228C /* EvaluationVC.swift in Sources */,

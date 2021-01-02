@@ -30,10 +30,7 @@ class TabbarController: UITabBarController {
         
         //HomeView2
         let EvaluationStoryboard = UIStoryboard.init(name: "Evaluation", bundle: nil)
-        guard let secondTab = EvaluationStoryboard.instantiateViewController(identifier: "EvaluationVC")
-            as? EvaluationVC else {
-            return
-        }
+        let secondTab = EvaluationStoryboard.instantiateViewController(identifier: "EvaluationNavi")
 
         secondTab.tabBarItem.title = "평가 및 회고"
 //        secondTab.tabBarItem.image = UIImage(named: "gnbBest")?.withRenderingMode(.alwaysOriginal)

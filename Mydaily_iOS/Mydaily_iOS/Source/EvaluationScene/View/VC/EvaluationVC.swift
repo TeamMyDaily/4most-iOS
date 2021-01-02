@@ -164,8 +164,10 @@ extension EvaluationVC: TableViewTnsideCollectionViewDelegate {
         guard let dvc = self.storyboard?.instantiateViewController(identifier: "EvaluationDetailVC") as? EvaluationDetailVC else {
             return
         }
-        dvc.modalPresentationStyle = .fullScreen
-        self.present(dvc, animated: true, completion: nil)
+//        dvc.modalPresentationStyle = .fullScreen
+//        self.present(dvc, animated: true, completion: nil)
+//        self.makeNavigationPush(dvc)
+        self.navigationController?.pushViewController(dvc, animated: true)
     }
     
     func topViewController() -> UIViewController? {
