@@ -65,19 +65,12 @@ extension EvaluationTabCVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 && (indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3) {
             if keywords[indexPath.row] != nil {
-                // navigation push
-//                guard let vc = UIStoryboard(name: "Evaluation", bundle: nil).instantiateViewController(withIdentifier: "EvaluationDetailVC") as? EvaluationDetailVC else { return }
-//                UIApplication.topViewController()?.navigationController?.pushViewController(vc, animated: true)
                 self.delegate?.cellTaped()
-                print("present")
-//                guard let vc = UIStoryboard(name: "Evaluation", bundle: nil).instantiateViewController(identifier: "EvaluationDetailVC") as? EvaluationDetailVC else { return }
-//                delegate?.makeNavigationPush(vc)
             }
         }
     }
 }
 
-// MARK: Setting
 extension EvaluationTabCVC {
     private func setTableViewSeparator() {
         keywordTableView.separatorStyle = .none
