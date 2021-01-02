@@ -17,54 +17,66 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1IA-9F-9UQ">
-                        <rect key="frame" x="17" y="7" width="288" height="67"/>
+                        <rect key="frame" x="17" y="7" width="157" height="67"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QxA-ap-LkC">
-                                <rect key="frame" x="0.0" y="0.0" width="73" height="67"/>
+                                <rect key="frame" x="0.0" y="0.0" width="33" height="67"/>
                                 <color key="backgroundColor" red="0.76862745099999996" green="0.76862745099999996" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <inset key="contentEdgeInsets" minX="12" minY="4" maxX="12" maxY="5"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="a">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="touchUpButton1:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="UFm-Ub-bDL"/>
+                                    <action selector="touchUpButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kon-dF-eZb"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bdD-BF-6eu">
-                                <rect key="frame" x="81" y="0.0" width="73" height="67"/>
+                                <rect key="frame" x="41" y="0.0" width="33" height="67"/>
                                 <color key="backgroundColor" red="0.76862745099999996" green="0.76862745099999996" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <inset key="contentEdgeInsets" minX="12" minY="5" maxX="12" maxY="5"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="s">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="touchUpButton2:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hOp-zH-9XA"/>
+                                    <action selector="touchUpButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="45W-Of-kEq"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jV9-Ht-XGj">
-                                <rect key="frame" x="162" y="0.0" width="59" height="67"/>
+                                <rect key="frame" x="82" y="0.0" width="33" height="67"/>
                                 <color key="backgroundColor" red="0.76862745099999996" green="0.76862745099999996" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <inset key="contentEdgeInsets" minX="12" minY="4" maxX="12" maxY="5"/>
-                                <state key="normal" title="label">
+                                <state key="normal" title="c">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="touchUpButton3:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="MJH-qI-2wi"/>
+                                    <action selector="touchUpButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="cba-oS-asB"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zSB-Xc-U2m">
-                                <rect key="frame" x="229" y="0.0" width="59" height="67"/>
+                                <rect key="frame" x="123" y="0.0" width="34" height="67"/>
                                 <color key="backgroundColor" red="0.76862745099999996" green="0.76862745099999996" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <inset key="contentEdgeInsets" minX="12" minY="4" maxX="12" maxY="5"/>
-                                <state key="normal" title="hello">
+                                <state key="normal" title="d">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="touchUpButton4:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="glN-T4-Lxd"/>
+                                    <action selector="touchUpButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="6sD-0a-d1Y"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bH-eF-wf1">
+                                <rect key="frame" x="157" y="0.0" width="0.0" height="67"/>
+                                <color key="backgroundColor" red="0.76862745099999996" green="0.76862745099999996" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.76862745099999996" green="0.76862745099999996" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="contentEdgeInsets" minX="12" minY="4" maxX="12" maxY="5"/>
+                                <state key="normal" title="e">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchUpButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Bya-3p-4xU"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -78,11 +90,11 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="keywordButton1" destination="QxA-ap-LkC" id="KR3-aG-EmJ"/>
-                <outlet property="keywordButton2" destination="bdD-BF-6eu" id="ZbR-3K-WjF"/>
-                <outlet property="keywordButton3" destination="jV9-Ht-XGj" id="njW-1j-DRa"/>
-                <outlet property="keywordButton4" destination="zSB-Xc-U2m" id="mBh-n2-JKZ"/>
-                <outletCollection property="KeywordButtonLIst" destination="QxA-ap-LkC" collectionClass="NSMutableArray" id="WS0-V1-geb"/>
+                <outletCollection property="keywordButtonList" destination="QxA-ap-LkC" collectionClass="NSMutableArray" id="q1z-of-d0R"/>
+                <outletCollection property="keywordButtonList" destination="bdD-BF-6eu" collectionClass="NSMutableArray" id="LmN-YT-nj9"/>
+                <outletCollection property="keywordButtonList" destination="jV9-Ht-XGj" collectionClass="NSMutableArray" id="8pZ-03-d7V"/>
+                <outletCollection property="keywordButtonList" destination="zSB-Xc-U2m" collectionClass="NSMutableArray" id="U0h-nE-NCJ"/>
+                <outletCollection property="keywordButtonList" destination="7bH-eF-wf1" collectionClass="NSMutableArray" id="lSe-Bv-nYG"/>
             </connections>
             <point key="canvasLocation" x="-68.115942028985515" y="79.352678571428569"/>
         </tableViewCell>

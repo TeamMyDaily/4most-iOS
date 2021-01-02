@@ -13,7 +13,7 @@ class KeywordSettingVC: UIViewController {
     @IBOutlet var mainLabel: UILabel!
     
     @IBOutlet var completeButton: UIButton!
-    var attitudeOfLife: [String] = ["진정성", "용기", "열정", "꾸준함", "배움", "선한영향력", "아웃풋", "행복", "즐거움", "현명", "타당성", "정당성"]
+    var attitudeOfLife: Array<String> = ["진정성", "용기", "열정", "꾸준함", "배움", "선한영향력", "아웃풋", "행복", "즐거움", "현명", "타당성", "정당성"]
     
     var attitudeOfWork: [String] = ["친절함", "경청", "대충", "진실성", "존중", "신뢰", "의심", "신속성", "돈"]
     
@@ -152,17 +152,22 @@ extension KeywordSettingVC: UITableViewDataSource{
             return UITableViewCell()
         }
         
+        let startIndex = (indexPath.row)*4
+        var endIndex = (indexPath.row)*4 + 3
+        
         if indexPath.section == 0 {
-            cell.setKeywordButton1(text: attitudeOfLife[(indexPath.row)*4 + 0])
-            cell.setKeywordButton2(text: attitudeOfLife[(indexPath.row)*4 + 1])
-            cell.setKeywordButton3(text: attitudeOfLife[(indexPath.row)*4 + 2])
-            cell.setKeywordButton4(text: attitudeOfLife[(indexPath.row)*4 + 3])
-            
+            let subList: [String] = Array(attitudeOfLife[startIndex...endIndex])
+            cell.setKeywordButton(text: subList)
+           
         } else if indexPath.section == 1{
-            cell.setKeywordButton1(text: attitudeOfWork[(indexPath.row)*4 + 0])
-            cell.setKeywordButton2(text: attitudeOfWork[(indexPath.row)*4 + 1])
-            cell.setKeywordButton3(text: attitudeOfWork[(indexPath.row)*4 + 2])
-            cell.setKeywordButton4(text: attitudeOfWork[(indexPath.row)*4 + 3])
+            
+            if indexPath.row == 1{
+                endIndex += 1
+            }
+            
+            let subList: [String] = Array(attitudeOfWork[startIndex...endIndex])
+            cell.setKeywordButton(text: subList)
+           
         }
         else{
             
