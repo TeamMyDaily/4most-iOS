@@ -13,8 +13,9 @@ class EvaluationTabCVC: UICollectionViewCell {
     @IBOutlet weak var keywordTableView: UITableView!
     
     var keywords = ["아웃풋", "회고", "열정", nil]
-    var goals = ["블로그에 1개 이상 퍼블리싱 하기", "진지한 글쓰기", "리얼 유노윤호 되어보기", nil]
-    var rates = [2.6, 4.2, 3.8, nil]
+    var goals = ["블로그에 1개 이상 퍼블리싱 하기", "진지한 글쓰기", "나는야 열정만수르 내가 그 누구보다 잘나가네 야하 나는 열정만수르", nil]
+    var rates = [2.6, 4.2, 5.0, nil]
+    var counts = [4, 3, 3, nil]
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -45,7 +46,7 @@ extension EvaluationTabCVC: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: EvaluationKeywordTVC.identifier) as? EvaluationKeywordTVC else {
             return UITableViewCell()
         }
-        cell.setDataToLabel(keyword: keywords[indexPath.item] ?? "", goal: goals[indexPath.item] ?? "", index: indexPath.item, rate: rates[indexPath.item] ?? 0.0)
+        cell.setData(keyword: keywords[indexPath.item] ?? "", goal: goals[indexPath.item] ?? "", index: indexPath.item, rate: rates[indexPath.item] ?? 0.0, count: counts[indexPath.item] ?? 0)
         cell.selectionStyle = .none
         return cell
     }
@@ -58,7 +59,21 @@ extension EvaluationTabCVC: UITableViewDataSource {
     }
 }
 
-extension EvaluationTabCVC: UITableViewDelegate {}
+extension EvaluationTabCVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 && indexPath.row == 0 && indexPath.row == 1 && indexPath.row == 2 {
+            if keywords[indexPath.row] != nil {
+                // navigation push 
+            }
+        } else if indexPath.section == 1 && indexPath.row == 3 {
+            if keywords[indexPath.row] != nil {
+                // navigation push
+            } else {
+                // 키워드 + 하는 뷰로
+            }
+        }
+    }
+}
 
 extension EvaluationTabCVC {
     private func setTableViewSeparator() {

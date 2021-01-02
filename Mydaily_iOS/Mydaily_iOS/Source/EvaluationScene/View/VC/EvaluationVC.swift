@@ -8,6 +8,7 @@
 import UIKit
 
 class EvaluationVC: UIViewController {
+    @IBOutlet weak var weekLabel: UILabel!
     @IBOutlet weak var evaluationTabButton: UIButton!
     @IBOutlet weak var retrospectiveTabButton: UIButton!
     @IBOutlet weak var headerView: UIView!
@@ -20,6 +21,7 @@ class EvaluationVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setWeekLabel()
         setMenuTabButton()
         setCollectionViewDelegate()
     }
@@ -31,8 +33,11 @@ class EvaluationVC: UIViewController {
                 return
             }
         keywordCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+    
+        setButtonState(enableButton: evaluationTabButton, disableButton: retrospectiveTabButton, enableTabBar: evaluationTabBar, unableTabBar: retrospectiveTabBar)
         
-        setButtonState(enableButton: evaluationTabButton, unableButton: retrospectiveTabButton, enableTabBar: evaluationTabBar, unableTabBar: retrospectiveTabBar)
+        tabBarController?.tabBar.isHidden = false
+        extendedLayoutIncludesOpaqueBars = false
     }
     
     @IBAction func touchUpRetrospectiveTab(_ sender: Any) {
@@ -43,7 +48,11 @@ class EvaluationVC: UIViewController {
             }
         keywordCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
         
-        setButtonState(enableButton: retrospectiveTabButton, unableButton: evaluationTabButton, enableTabBar: retrospectiveTabBar, unableTabBar: evaluationTabBar)
+        setButtonState(enableButton: retrospectiveTabButton, disableButton: evaluationTabButton, enableTabBar: retrospectiveTabBar, unableTabBar: evaluationTabBar)
+        
+        tabBarController?.tabBar.isHidden = true
+        edgesForExtendedLayout = UIRectEdge.bottom
+        extendedLayoutIncludesOpaqueBars = true
     }
 }
 
@@ -88,9 +97,15 @@ extension EvaluationVC: UICollectionViewDelegateFlowLayout {
 }
 
 extension EvaluationVC {
+    private func setWeekLabel() {
+        weekLabel.font = .boldSystemFont(ofSize: 12)
+        weekLabel.textAlignment = .center
+        weekLabel.text = "20년 12월 3주"
+    }
+    
     private func setMenuTabButton() {
         evaluationTabButton.setTitleColor(selectedButtonColor, for: .normal)
-        evaluationTabButton.setTitle("평가", for: .normal)
+        evaluationTabButton.setTitle("리포트", for: .normal)
         evaluationTabButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         
         retrospectiveTabButton.setTitleColor(originalButtonColor, for: .normal)
@@ -100,9 +115,9 @@ extension EvaluationVC {
         retrospectiveTabBar.isHidden = true
     }
     
-    private func setButtonState(enableButton: UIButton, unableButton: UIButton, enableTabBar: UIView, unableTabBar: UIView) {
+    private func setButtonState(enableButton: UIButton, disableButton: UIButton, enableTabBar: UIView, unableTabBar: UIView) {
         enableButton.setTitleColor(selectedButtonColor, for: .normal)
-        unableButton.setTitleColor(originalButtonColor, for: .normal)
+        disableButton.setTitleColor(originalButtonColor, for: .normal)
         enableTabBar.isHidden = false
         unableTabBar.isHidden = true
     }
