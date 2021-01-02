@@ -7,13 +7,21 @@
 
 import UIKit
 
+protocol UserIdentifyInterface {
+    func checkUserToken()
+//    func setUserToken()
+}
+
 @main
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        checkUserToken()
+        
         return true
     }
 
@@ -34,3 +42,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate: UserIdentifyInterface {
+
+    func checkUserToken() {
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+//
+//        if LoginManager.shared.isLogin() {
+//            let storyboard = UIStoryboard(name: "NewLogin", bundle: nil)
+//            let initialViewController = storyboard.instantiateViewController(identifier: TokenTestViewController.identifier)
+//            self.window?.rootViewController = initialViewController
+//            self.window?.makeKeyAndVisible()
+//        } else {
+//            let initialViewController = UIStoryboard(name: "NewLogin", bundle: nil).instantiateInitialViewController()
+//            self.window?.rootViewController = initialViewController
+//            self.window?.makeKeyAndVisible()
+//        }
+        let initialViewController = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
+        
+    }
+}

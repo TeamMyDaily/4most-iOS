@@ -37,7 +37,6 @@ class EditKeywordVC: UIViewController {
             noticeLabel.text = "'\(keywordTextField.text ?? "")'은 이미 생성된 단어에요!"
         }
     }
-    
 }
 
 // MARK: - UITextFieldDelegate
@@ -75,5 +74,4 @@ extension EditKeywordVC: UITextFieldDelegate{
             return true
         }
     }
-    
 }

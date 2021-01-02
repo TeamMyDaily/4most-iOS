@@ -50,6 +50,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EMW-Za-6oO">
                                 <rect key="frame" x="164" y="506" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="addButton:" destination="TuA-eS-NR0" eventType="touchUpInside" id="5fh-61-Ooq"/>
@@ -65,6 +66,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tLF-I8-fVw"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                     </view>
                     <navigationItem key="navigationItem" id="ypB-R9-a6L"/>
                     <connections>
