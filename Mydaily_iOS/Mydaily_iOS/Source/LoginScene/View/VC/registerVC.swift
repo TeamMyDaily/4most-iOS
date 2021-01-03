@@ -56,17 +56,18 @@ extension RegisterVC {
 // MARK: - TextField,Button
 extension RegisterVC {
     private func changeTextFields() {
-        nameTextField.addTarget(self, action: #selector(changenameTextFieldUI), for: .allEditingEvents)
-        emailTextField.addTarget(self, action: #selector(changeemailTextfiledUI), for: .allEditingEvents)
+        nameTextField.addTarget(self, action: #selector(changeNameTextFieldUI), for: .allEditingEvents)
+        emailTextField.addTarget(self, action: #selector(changeEmailTextfiledUI), for: .allEditingEvents)
+        pwTextField.addTarget(self, action: #selector(changePWTextfiledUI), for: .allEditingEvents)
     }
     
     @objc
-    func changenameTextFieldUI(){
+    func changeNameTextFieldUI(){
         changeTextfieldUI(textfield: nameTextField)
     }
     
     @objc
-    func changeemailTextfiledUI(){
+    func changeEmailTextfiledUI(){
         changeTextfieldUI(textfield: emailTextField)
         
         if !(emailTextField.text!.validateEmail()) {
@@ -74,6 +75,18 @@ extension RegisterVC {
         }
         else{
             validateEmailLabel.text = ""
+        }
+    }
+    
+    @objc
+    func changePWTextfiledUI(){
+        changeTextfieldUI(textfield: pwTextField)
+        
+        if !(pwTextField.text!.validatePassword()) {
+            validatePWLabel.text = "영어와 숫자 조합으로 6자리 이상 입력해 주세요!"
+        }
+        else{
+            validatePWLabel.text = ""
         }
     }
     
@@ -108,7 +121,7 @@ extension String {
     
     // Password validation
     public func validatePassword() -> Bool {
-        let passwordRegEx = "^(?=.*[0-9])(?=.*[a-z]).{6}$"
+        let passwordRegEx = "^(?=.*[0-9])(?=.*[a-z]).{6,100}$"
         
         let predicate = NSPredicate(format:"SELF MATCHES %@", passwordRegEx)
         return predicate.evaluate(with: self)
