@@ -17,10 +17,9 @@ class KeywordSettingVC: UIViewController {
     
     var attitudeOfWork: [String] = ["친절함", "경청", "대충", "진실성", "존중", "신뢰", "의심", "신속성", "돈"]
     
-   // var addKeywordList: [String] = []
-    
-    static var selectedKeywordCount: Int = 0
-    static var selectedKeywordList: [String] = []
+    let originButtonColor: UIColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1)
+   
+    var selectedKeyword: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,34 +27,11 @@ class KeywordSettingVC: UIViewController {
         setMainLabelText()
         setDelegate()
         setCompleteButton()
-        
-        //setTableFooterView()
-    }
-    
-    override func viewWillLayoutSubviews() {
-        print("viewWillLayoutSubviews 호출됨")
-        print("\(KeywordSettingVC.selectedKeywordList.count)")
-        if KeywordSettingVC.selectedKeywordList.count == 8 {
-            print("8개")
-            completeButton.backgroundColor = .systemOrange
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        print("viewWillAppear 호출됨")
-        if KeywordSettingVC.selectedKeywordList.count == 8 {
-            print("8개")
-            completeButton.backgroundColor = .systemOrange
-        }
-        
+        setTableFooterView()
     }
   
     @IBAction func submitKeyword(_ sender: Any) {
-        if KeywordSettingVC.selectedKeywordList.count == 8 {
-            print("8개")
-            completeButton.backgroundColor = .systemOrange
-            completeButton.isEnabled = true
-        }
+
     }
     
     
@@ -93,12 +69,6 @@ class KeywordSettingVC: UIViewController {
         completeButton.titleLabel?.font =  UIFont(name: "System-Bold", size: 18.0)
         completeButton.layer.cornerRadius = 15
         completeButton.isEnabled = false
-        
-        if KeywordSettingVC.selectedKeywordList.count == 8 {
-            print("8개")
-            completeButton.backgroundColor = .systemOrange
-            completeButton.isEnabled = true
-        }
     }
     
     func setDelegate(){
@@ -108,42 +78,36 @@ class KeywordSettingVC: UIViewController {
         KeywordTableView.separatorStyle = .none
     }
     
-    static func addSelectedKeyword(text: String){
-        selectedKeywordCount += 1
-        selectedKeywordList.append(text)
-        printSelectedKeyword()
-    }
-    
-    static func removeSelectedKeyword(text: String){
-        let keywordIndex = selectedKeywordList.firstIndex(of: text)
-        if keywordIndex != nil {
-            selectedKeywordList.remove(at: keywordIndex ?? 0)
-            selectedKeywordCount -= 1
-        }
-        printSelectedKeyword()
-    }
-    
-
-    static func printSelectedKeyword(){
+    func printKeyword(){
         
-        print("현재 선택한 keyword list")
-        for txt in selectedKeywordList{
+        print("현재 선택한 새로운 keyword list")
+        for txt in selectedKeyword{
             print(txt)
         }
         print("--------------------------")
+    }
+    
+    func setButtonActive(){
+        if selectedKeyword.count == 8 {
+            print("8개 눌림!!! 버튼 활성화")
+            completeButton.backgroundColor = .systemOrange
+            completeButton.isEnabled = true
+        }else{
+            completeButton.backgroundColor = originButtonColor
+            completeButton.isEnabled = false
+        }
     }
     
 }
 
 
 extension KeywordSettingVC: UITableViewDataSource{
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{
             return 3
-        }else if section == 1 {
+        }else {
             return 2
-        }else{
-            return 1
         }
     }
     
@@ -151,6 +115,8 @@ extension KeywordSettingVC: UITableViewDataSource{
         guard let cell = tableView.dequeueReusableCell(withIdentifier: KeywordTableViewCell.identifier) as? KeywordTableViewCell else {
             return UITableViewCell()
         }
+        
+        cell.cellDelegate = self
         
         let startIndex = (indexPath.row)*4
         var endIndex = (indexPath.row)*4 + 3
@@ -177,10 +143,10 @@ extension KeywordSettingVC: UITableViewDataSource{
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 2
     }
+   
 }
-
 
 extension KeywordSettingVC: UITableViewDelegate{
     
@@ -196,11 +162,8 @@ extension KeywordSettingVC: UITableViewDelegate{
         if(section == 0){
             title = "삷을 대하는 자세"
         }
-        else if (section == 1){
+        if (section == 1){
             title = "일을 대하는 자세"
-        }
-        else{
-            title = "내가 추가한 키워드"
         }
         
         sectionTitleLabel.text = title
@@ -225,17 +188,63 @@ extension KeywordSettingVC: UITableViewDelegate{
     }
     
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("didSelectRowAt 호출됨 + \(indexPath)")
-        if KeywordSettingVC.selectedKeywordList.count == 8 {
-            print("8개")
-            completeButton.backgroundColor = .systemOrange
-            completeButton.isEnabled = true
-        }
+    //내가 추가한 키워드는 table footer로
+    func setTableFooterView(){
+        let footer = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 160))
+        //footer.backgroundColor = .systemRed
+        
+        let titleLabel = UILabel(frame: CGRect(x: 17, y: 0, width: view.frame.size.width, height: 30))
+        titleLabel.text = "찾고 있는 가치(단어)가 없으세요?"
+        titleLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.regular)
+        
+        let completeButton = UIButton(frame: CGRect(x: 17, y: 30, width: 32, height: 32))
+        completeButton.setImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
+        completeButton.tintColor = originButtonColor
+        completeButton.backgroundColor = .blue
+        
+        
+        footer.addSubview(titleLabel)
+        footer.addSubview(completeButton)
+        
+        print(KeywordTableView.frame.height - 60)
+        //오토레이아웃을 코드로 지정 할 때 사용
+        /*
+        completeButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        completeButton.leftAnchor.constraint(equalTo: footer.leftAnchor, constant: 25).isActive = true
+        completeButton.rightAnchor.constraint(equalTo: footer.rightAnchor, constant: -22).isActive = true
+        completeButton.topAnchor.constraint(equalTo: footer.topAnchor, constant: 0).isActive = true
+        completeButton.bottomAnchor.constraint(equalTo: footer.bottomAnchor, constant: 0).isActive = true
+        */
+        KeywordTableView.tableFooterView = footer
     }
+    
 
 }
 
+extension KeywordSettingVC: SelectKeywordDelegate{
+    
+    func addSelectedKeyword(_ cell: KeywordTableViewCell, selectedText: String) {
+        selectedKeyword.append(selectedText)
+        printKeyword()
+        setButtonActive()
+        
+    }
+    
+    func removeSelectedKeyword(_ cell: KeywordTableViewCell, selectedText: String) {
+        let keywordIndex = selectedKeyword.firstIndex(of: selectedText)
+        if keywordIndex != nil {
+            selectedKeyword.remove(at: keywordIndex ?? 0)
+            //selectedKeywordCount -= 1
+            
+            setButtonActive()
+        }
+        
+        printKeyword()
+        
+    }
+    
+}
 
 /*collectionView로 할 경우
 extension KeywordSettingVC: UITableViewDataSource{

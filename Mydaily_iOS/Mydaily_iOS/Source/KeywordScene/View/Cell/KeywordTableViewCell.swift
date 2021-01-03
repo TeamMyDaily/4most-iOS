@@ -7,10 +7,18 @@
 
 import UIKit
 
+protocol SelectKeywordDelegate {
+    func addSelectedKeyword(_ cell: KeywordTableViewCell, selectedText: String)
+   
+    func removeSelectedKeyword(_ cell: KeywordTableViewCell, selectedText: String)
+    
+}
+
 class KeywordTableViewCell: UITableViewCell {
 
     static let identifier = "KeywordTableViewCell"
     @IBOutlet var keywordButtonList: [UIButton]!
+    var cellDelegate: SelectKeywordDelegate?
     
 
     let originButtonColor: UIColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1)
@@ -25,7 +33,6 @@ class KeywordTableViewCell: UITableViewCell {
     
     func setKeywordButton(text: [String]){
         for i in 0..<text.count{
-            print("i = \(i)")
             if i == 4{
                 keywordButtonList[i].isHidden = false
             }
@@ -34,18 +41,18 @@ class KeywordTableViewCell: UITableViewCell {
         }
     }
     
-    
-    
     @IBAction func touchUpButton(_ sender: UIButton) {
         let labelText = sender.titleLabel?.text ?? ""
         
         if sender.backgroundColor != .orange {
             sender.backgroundColor = .orange
-            KeywordSettingVC.addSelectedKeyword(text:labelText)
+            cellDelegate?.addSelectedKeyword(self, selectedText: labelText)
+            //KeywordSettingVC.addSelectedKeyword(text:labelText)
             
         } else{
             sender.backgroundColor = originButtonColor
-            KeywordSettingVC.removeSelectedKeyword(text: labelText)
+            cellDelegate?.removeSelectedKeyword(self, selectedText: labelText)
+            //KeywordSettingVC.removeSelectedKeyword(text: labelText)
         }
     }
     

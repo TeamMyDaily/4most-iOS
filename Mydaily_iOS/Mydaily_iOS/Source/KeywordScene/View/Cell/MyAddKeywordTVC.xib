@@ -16,14 +16,29 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cO2-6f-NCE">
-                        <rect key="frame" x="38" y="23" width="30" height="30"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cO2-6f-NCE">
+                        <rect key="frame" x="17" y="16.5" width="32" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="32" id="65S-1f-ZWS"/>
+                            <constraint firstAttribute="width" secondItem="cO2-6f-NCE" secondAttribute="height" multiplier="1:1" id="65a-Ia-Mbl"/>
+                        </constraints>
+                        <color key="tintColor" red="0.76862745099999996" green="0.76862745099999996" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <state key="normal" backgroundImage="plus.circle.fill" catalog="system">
+                            <color key="titleColor" red="0.76862745099999996" green="0.76862745099999996" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" red="0.76862745099999996" green="0.76862745099999996" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
                     </button>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="cO2-6f-NCE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="DY1-Xu-LhD"/>
+                    <constraint firstItem="cO2-6f-NCE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="17" id="VsW-Zl-hPT"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <point key="canvasLocation" x="82.608695652173921" y="76.339285714285708"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
+    </resources>
 </document>
