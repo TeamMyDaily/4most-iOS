@@ -26,7 +26,13 @@
 		ED266030259EFAB200A376C0 /* RetrospectiveTabCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED26602F259EFAB200A376C0 /* RetrospectiveTabCVC.swift */; };
 		ED266033259F019B00A376C0 /* EvaluationHeaderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266032259F019B00A376C0 /* EvaluationHeaderTVC.swift */; };
 		ED266036259F032000A376C0 /* EvaluationKeywordTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266035259F032000A376C0 /* EvaluationKeywordTVC.swift */; };
+		EDA9CA8425A1A74D00BF46C1 /* DetailRecordContentTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA9CA8325A1A74D00BF46C1 /* DetailRecordContentTVC.swift */; };
 		EDAAEB7D25A01B550024E3E4 /* EvaluationDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAAEB7C25A01B550024E3E4 /* EvaluationDetailVC.swift */; };
+		EDBF738D25A1631700ECDEB9 /* DetailHeaderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF738C25A1631700ECDEB9 /* DetailHeaderTVC.swift */; };
+		EDBF739025A1634000ECDEB9 /* DetailGoalTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF738F25A1634000ECDEB9 /* DetailGoalTVC.swift */; };
+		EDBF739325A1636300ECDEB9 /* DetailRecordTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF739225A1636300ECDEB9 /* DetailRecordTVC.swift */; };
+		EDBF739725A17BD900ECDEB9 /* DetailRecordCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF739625A17BD900ECDEB9 /* DetailRecordCVC.swift */; };
+		EDBF739B25A18BF100ECDEB9 /* DetailRecordLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF739A25A18BF100ECDEB9 /* DetailRecordLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,14 +50,20 @@
 		AEFB220F259C6C6900A3228C /* DailyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyVC.swift; sourceTree = "<group>"; };
 		AEFB2212259C6E2D00A3228C /* EvaluationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationVC.swift; sourceTree = "<group>"; };
 		AEFB2215259C6E6700A3228C /* MypageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageVC.swift; sourceTree = "<group>"; };
+		AEFB221C259C918C00A3228C /* EditKeywordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditKeywordVC.swift; sourceTree = "<group>"; };
+		AEFB222225A02CBC00A3228C /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		AEFB222525A02CC900A3228C /* Goal.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Goal.storyboard; sourceTree = "<group>"; };
 		ED266028259EF02E00A376C0 /* EvaluationTabCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationTabCVC.swift; sourceTree = "<group>"; };
 		ED26602F259EFAB200A376C0 /* RetrospectiveTabCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrospectiveTabCVC.swift; sourceTree = "<group>"; };
 		ED266032259F019B00A376C0 /* EvaluationHeaderTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationHeaderTVC.swift; sourceTree = "<group>"; };
 		ED266035259F032000A376C0 /* EvaluationKeywordTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationKeywordTVC.swift; sourceTree = "<group>"; };
+		EDA9CA8325A1A74D00BF46C1 /* DetailRecordContentTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecordContentTVC.swift; sourceTree = "<group>"; };
 		EDAAEB7C25A01B550024E3E4 /* EvaluationDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationDetailVC.swift; sourceTree = "<group>"; };
-		AEFB221C259C918C00A3228C /* EditKeywordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditKeywordVC.swift; sourceTree = "<group>"; };
-		AEFB222225A02CBC00A3228C /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
-		AEFB222525A02CC900A3228C /* Goal.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Goal.storyboard; sourceTree = "<group>"; };
+		EDBF738C25A1631700ECDEB9 /* DetailHeaderTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeaderTVC.swift; sourceTree = "<group>"; };
+		EDBF738F25A1634000ECDEB9 /* DetailGoalTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGoalTVC.swift; sourceTree = "<group>"; };
+		EDBF739225A1636300ECDEB9 /* DetailRecordTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecordTVC.swift; sourceTree = "<group>"; };
+		EDBF739625A17BD900ECDEB9 /* DetailRecordCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecordCVC.swift; sourceTree = "<group>"; };
+		EDBF739A25A18BF100ECDEB9 /* DetailRecordLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecordLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,33 +222,6 @@
 			path = VC;
 			sourceTree = "<group>";
 		};
-		ED266024259EEF9E00A376C0 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				ED266039259F462500A376C0 /* CVC */,
-				ED266038259F460200A376C0 /* TVC */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		ED266038259F460200A376C0 /* TVC */ = {
-			isa = PBXGroup;
-			children = (
-				ED266032259F019B00A376C0 /* EvaluationHeaderTVC.swift */,
-				ED266035259F032000A376C0 /* EvaluationKeywordTVC.swift */,
-			);
-			path = TVC;
-			sourceTree = "<group>";
-		};
-		ED266039259F462500A376C0 /* CVC */ = {
-			isa = PBXGroup;
-			children = (
-				ED266028259EF02E00A376C0 /* EvaluationTabCVC.swift */,
-				ED26602F259EFAB200A376C0 /* RetrospectiveTabCVC.swift */,
-			);
-			path = CVC;
-			sourceTree = "<group>";
-		};
 		AEFB222025A02C8800A3228C /* LoginScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,6 +236,47 @@
 				AEFB222525A02CC900A3228C /* Goal.storyboard */,
 			);
 			path = GoalScene;
+			sourceTree = "<group>";
+		};
+		ED266024259EEF9E00A376C0 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EDBF739525A17ADE00ECDEB9 /* CollectionViewLayout */,
+				ED266039259F462500A376C0 /* CVC */,
+				ED266038259F460200A376C0 /* TVC */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		ED266038259F460200A376C0 /* TVC */ = {
+			isa = PBXGroup;
+			children = (
+				ED266032259F019B00A376C0 /* EvaluationHeaderTVC.swift */,
+				ED266035259F032000A376C0 /* EvaluationKeywordTVC.swift */,
+				EDBF738C25A1631700ECDEB9 /* DetailHeaderTVC.swift */,
+				EDBF738F25A1634000ECDEB9 /* DetailGoalTVC.swift */,
+				EDBF739225A1636300ECDEB9 /* DetailRecordTVC.swift */,
+				EDA9CA8325A1A74D00BF46C1 /* DetailRecordContentTVC.swift */,
+			);
+			path = TVC;
+			sourceTree = "<group>";
+		};
+		ED266039259F462500A376C0 /* CVC */ = {
+			isa = PBXGroup;
+			children = (
+				ED266028259EF02E00A376C0 /* EvaluationTabCVC.swift */,
+				ED26602F259EFAB200A376C0 /* RetrospectiveTabCVC.swift */,
+				EDBF739625A17BD900ECDEB9 /* DetailRecordCVC.swift */,
+			);
+			path = CVC;
+			sourceTree = "<group>";
+		};
+		EDBF739525A17ADE00ECDEB9 /* CollectionViewLayout */ = {
+			isa = PBXGroup;
+			children = (
+				EDBF739A25A18BF100ECDEB9 /* DetailRecordLayout.swift */,
+			);
+			path = CollectionViewLayout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,8 +357,10 @@
 				AE76C03E259B1A6D007B3901 /* AppDelegate.swift in Sources */,
 				EDAAEB7D25A01B550024E3E4 /* EvaluationDetailVC.swift in Sources */,
 				AEFB2210259C6C6A00A3228C /* DailyVC.swift in Sources */,
+				EDBF739325A1636300ECDEB9 /* DetailRecordTVC.swift in Sources */,
 				AEFB221D259C918C00A3228C /* EditKeywordVC.swift in Sources */,
 				AEFB21F9259C5CB900A3228C /* TabbarController.swift in Sources */,
+				EDBF739B25A18BF100ECDEB9 /* DetailRecordLayout.swift in Sources */,
 				AEFB2216259C6E6700A3228C /* MypageVC.swift in Sources */,
 				AEFB2213259C6E2D00A3228C /* EvaluationVC.swift in Sources */,
 				AE76C040259B1A6D007B3901 /* SceneDelegate.swift in Sources */,
@@ -340,6 +368,10 @@
 				ED266036259F032000A376C0 /* EvaluationKeywordTVC.swift in Sources */,
 				ED266030259EFAB200A376C0 /* RetrospectiveTabCVC.swift in Sources */,
 				ED266029259EF02E00A376C0 /* EvaluationTabCVC.swift in Sources */,
+				EDA9CA8425A1A74D00BF46C1 /* DetailRecordContentTVC.swift in Sources */,
+				EDBF738D25A1631700ECDEB9 /* DetailHeaderTVC.swift in Sources */,
+				EDBF739725A17BD900ECDEB9 /* DetailRecordCVC.swift in Sources */,
+				EDBF739025A1634000ECDEB9 /* DetailGoalTVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

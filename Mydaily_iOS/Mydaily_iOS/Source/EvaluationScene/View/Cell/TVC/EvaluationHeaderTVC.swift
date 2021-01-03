@@ -14,14 +14,14 @@ class EvaluationHeaderTVC: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setQuestionLabel()
+        setLabel()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
 
-    private func setQuestionLabel() {
+    private func setLabel() {
         questionLabel.text = "이번 주 키워드와 얼마나 가까워졌나요?"
         questionLabel.font = UIFont.systemFont(ofSize: 25, weight: .black)
         questionLabel.textColor = .black

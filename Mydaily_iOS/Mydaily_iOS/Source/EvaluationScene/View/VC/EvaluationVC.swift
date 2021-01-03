@@ -25,6 +25,7 @@ class EvaluationVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationBar()
         setWeekLabel()
         setMenuTabButton()
         setCollectionViewDelegate()
@@ -102,6 +103,18 @@ extension EvaluationVC: UICollectionViewDelegateFlowLayout {
 }
 
 extension EvaluationVC {
+    private func setNavigationBar() {
+        navigationController?.isNavigationBarHidden = true
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        navigationController?.navigationBar.tintColor = originalButtonColor
+        navigationItem.title = "회고"
+        guard let navigationBar = self.navigationController?.navigationBar else { return }
+        navigationBar.isTranslucent = true
+        navigationBar.backgroundColor = UIColor.clear
+        navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationBar.shadowImage = UIImage()
+    }
+    
     private func setWeekLabel() {
         weekLabel.font = .boldSystemFont(ofSize: 12)
         weekLabel.textAlignment = .center
