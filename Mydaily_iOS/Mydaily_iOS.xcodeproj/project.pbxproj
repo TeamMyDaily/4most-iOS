@@ -12,6 +12,8 @@
 		AE76C047259B1A6E007B3901 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE76C046259B1A6E007B3901 /* Assets.xcassets */; };
 		AE76C04A259B1A6E007B3901 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE76C048259B1A6E007B3901 /* LaunchScreen.storyboard */; };
 		AE9F294525A1719600904FD9 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9F294425A1719600904FD9 /* LoginVC.swift */; };
+		AE9F294A25A1A69400904FD9 /* registerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9F294925A1A69400904FD9 /* registerVC.swift */; };
+		AE9F294D25A1BF1500904FD9 /* RegisterEntryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9F294C25A1BF1500904FD9 /* RegisterEntryVC.swift */; };
 		AEFB21F2259C46C500A3228C /* Tabbar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEFB21F1259C46C500A3228C /* Tabbar.storyboard */; };
 		AEFB21F9259C5CB900A3228C /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFB21F8259C5CB900A3228C /* TabbarController.swift */; };
 		AEFB21FF259C66E800A3228C /* Daily.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEFB21FE259C66E800A3228C /* Daily.storyboard */; };
@@ -38,6 +40,8 @@
 		AE76C049259B1A6E007B3901 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE76C04B259B1A6E007B3901 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE9F294425A1719600904FD9 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		AE9F294925A1A69400904FD9 /* registerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerVC.swift; sourceTree = "<group>"; };
+		AE9F294C25A1BF1500904FD9 /* RegisterEntryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEntryVC.swift; sourceTree = "<group>"; };
 		AEFB21F1259C46C500A3228C /* Tabbar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tabbar.storyboard; sourceTree = "<group>"; };
 		AEFB21F8259C5CB900A3228C /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
 		AEFB21FE259C66E800A3228C /* Daily.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Daily.storyboard; sourceTree = "<group>"; };
@@ -138,6 +142,8 @@
 			isa = PBXGroup;
 			children = (
 				AE9F294425A1719600904FD9 /* LoginVC.swift */,
+				AE9F294925A1A69400904FD9 /* registerVC.swift */,
+				AE9F294C25A1BF1500904FD9 /* RegisterEntryVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -348,6 +354,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE76C03E259B1A6D007B3901 /* AppDelegate.swift in Sources */,
+				AE9F294D25A1BF1500904FD9 /* RegisterEntryVC.swift in Sources */,
+				AE9F294A25A1A69400904FD9 /* registerVC.swift in Sources */,
 				EDAAEB7D25A01B550024E3E4 /* EvaluationDetailVC.swift in Sources */,
 				AEFB2210259C6C6A00A3228C /* DailyVC.swift in Sources */,
 				AEFB221D259C918C00A3228C /* EditKeywordVC.swift in Sources */,

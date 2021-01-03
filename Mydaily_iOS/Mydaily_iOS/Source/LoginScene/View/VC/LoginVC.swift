@@ -18,11 +18,32 @@ class LoginVC: UIViewController {
 
         changeTextFields()
         setUI()
+        setupNavigationBar(.clear)
     }
+    
+    @IBAction func registerButton(_ sender: Any) {
+        guard let dvc = self.storyboard?.instantiateViewController(identifier: "RegisterEntryVC") as? RegisterEntryVC else {
+            return
+        }
+        self.navigationController?.pushViewController(dvc, animated: true)
+    }
+    
+}
 
+//MARK: - UI
+extension LoginVC {
     func setUI() {
         loginButton.isEnabled = false
         pwTextField.isSecureTextEntry = true
+    }
+    
+    func setupNavigationBar(_ color: UIColor) {
+        guard let navigationBar = self.navigationController?.navigationBar else { return }
+        
+        navigationBar.isTranslucent = true
+        navigationBar.backgroundColor = color
+        navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationBar.shadowImage = UIImage()
     }
 }
 
@@ -35,25 +56,25 @@ extension LoginVC {
     
     @objc
     func changeidTextfiledUI(){
-        idTextField.backgroundColor = .white
-        idTextField.layer.borderColor = UIColor.red.cgColor
-        idTextField.layer.borderWidth = 1.5
-        
-        if (idTextField.text != "") && (pwTextField.text != ""){
-            loginButton.isEnabled = true
-        }
-        else{
-            loginButton.isEnabled = false
-        }
+        changeTextfiledUI(textfield: idTextField)
     }
     
     @objc
     func changepwTextfiledUI(){
-        pwTextField.backgroundColor = .white
-        pwTextField.layer.borderColor = UIColor.red.cgColor
-        pwTextField.layer.borderWidth = 1.5
+        changeTextfiledUI(textfield: pwTextField)
+    }
+    
+    func changeTextfiledUI(textfield: UITextField){
+        if !(textfield.text!.isEmpty){
+            textfield.backgroundColor = .white
+            textfield.layer.borderColor = UIColor.red.cgColor
+            textfield.layer.borderWidth = 1.5
+        }
+        else{
+            textfield.layer.borderColor = UIColor.gray.cgColor
+        }
         
-        if (idTextField.text != "") && (pwTextField.text != ""){
+        if !(idTextField.text!.isEmpty) && !(pwTextField.text!.isEmpty){
             loginButton.isEnabled = true
         }
         else{
