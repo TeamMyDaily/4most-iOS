@@ -153,7 +153,32 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lja-BL-CbE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-399.19999999999999" y="-802.46305418719214"/>
+            <point key="canvasLocation" x="-586" y="-804"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="QPj-fS-Jpe">
+            <objects>
+                <viewController id="Uh9-KL-jBs" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PB1-Ks-bls">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JXh-d2-lmA">
+                                <rect key="frame" x="159" y="718" width="57" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.76862745099999996" green="0.76862745099999996" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="선택완료!">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="LCv-G1-hR7"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rxe-Aa-S3B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="287" y="-805"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yQj-si-kRp">

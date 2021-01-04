@@ -8,9 +8,11 @@
 import UIKit
 
 protocol SelectKeywordDelegate {
-    func addSelectedKeyword(_ cell: KeywordTableViewCell, selectedText: String)
+    func addSelectedKeyword(_ cell: KeywordTableViewCell, selectedText: String) -> Bool
+   // func addSelectedKeyword(_ cell: KeywordTableViewCell, selectedText: String, numOfSection: Int)
    
     func removeSelectedKeyword(_ cell: KeywordTableViewCell, selectedText: String)
+   // func removeSelectedKeyword(_ cell: KeywordTableViewCell, selectedText: String, numOfSection: Int)
     
 }
 
@@ -45,9 +47,10 @@ class KeywordTableViewCell: UITableViewCell {
         let labelText = sender.titleLabel?.text ?? ""
         
         if sender.backgroundColor != .orange {
-            sender.backgroundColor = .orange
-            cellDelegate?.addSelectedKeyword(self, selectedText: labelText)
-            //KeywordSettingVC.addSelectedKeyword(text:labelText)
+            let check = cellDelegate?.addSelectedKeyword(self, selectedText: labelText) ?? false
+            if check {
+                sender.backgroundColor = .orange
+            }
             
         } else{
             sender.backgroundColor = originButtonColor
