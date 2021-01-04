@@ -295,7 +295,6 @@ extension KeywordSettingVC: UITableViewDelegate{
             userKeywordTitleLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.bold)
             
         }
-
         
         let buttonWidth = testKeyword.count * 15 + 20
         
