@@ -12,7 +12,7 @@ class DetailRecordContentTVC: UITableViewCell {
     
     @IBOutlet weak var recordCollectionView: UICollectionView!
     
-    let list: [String] = ["안녕", "아티클 5개 읽기", "유노윤호 영상보면서 감상문쓰기", "100자 ㅅ쓰기", "안녕하세요", "아아아아아아 나도 방어회 먹고 싶어", "방구 뀐 놈이 성낸다", "저는 신윤아입니다", "블로그에 5쪽짜리 소설을 필사한 것 올리기(다음주 수요일까지는 마무리하자!! 아자!!", "동해물과 백두산이 마르고 닮도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려강산 대한사람 대한으로 길이보전하세. 남산위에 저 소나무 철갑을 두른듯."]
+    var list: [String] = ["IT 기술에 관한 아티클 정리하기", "글감수집하기", "아티클 리뷰하기", "20글자를써보자20글자를써보자20글자", "mydaily==4most","12345678910111213141", "IT 기술에 관한 아티클 정리하기"]
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,22 +39,26 @@ extension DetailRecordContentTVC: UICollectionViewDataSource {
 
 extension DetailRecordContentTVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-      let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + 10)) / 2
+      let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + 16)) / 2
       return CGSize(width: itemSize, height: itemSize)
     }
 }
 
 extension DetailRecordContentTVC: DetailRecordLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
-        let width = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + 10)) / 2
+        let width = (collectionView.bounds.size.width - (collectionView.contentInset.left + collectionView.contentInset.right + 16 + 16 + 30)) / 2 - 30
         let label: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
+        label.text = list[indexPath.item]
+        label.preferredMaxLayoutWidth = width
         label.numberOfLines = 0
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.text = list[indexPath.item]
+        label.contentMode = .scaleToFill
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.sizeToFit()
         
-        return label.frame.height + 120
+        let calculateHeight = label.intrinsicContentSize.height + 120
+        
+        return calculateHeight
     }
     
     private func setCollectionView() {

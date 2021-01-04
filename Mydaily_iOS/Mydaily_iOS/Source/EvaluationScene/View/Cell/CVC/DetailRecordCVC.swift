@@ -16,15 +16,21 @@ class DetailRecordCVC: UICollectionViewCell {
     @IBOutlet weak var satisfactionLabel: UILabel!
     
     func setConfigure(content: String) {
-        self.layer.cornerRadius = 10
-        self.layer.borderColor = UIColor.systemRed.cgColor
-//        contentBar.layer.cornerRadius = 4
-//
-//        dateLabel.font = .systemFont(ofSize: 12)
-//        contentLabel.font = .boldSystemFont(ofSize: 16)
-//        contentLabel.text = content
-//        contentLabel.adjustsFontSizeToFitWidth = true
-//        contentLabel.sizeToFit()
-//        satisfactionLabel.font = .systemFont(ofSize: 12)
+        layer.cornerRadius = 10
+        layer.borderColor = UIColor.systemRed.cgColor
+        layer.borderWidth = 1
+        contentBar.layer.cornerRadius = 4
+        
+        contentLabel.font = .boldSystemFont(ofSize: 16)
+        contentLabel.text = content
+        contentLabel.preferredMaxLayoutWidth = self.frame.size.width - 16 - 30
+        contentLabel.contentMode = .scaleToFill
+        contentLabel.numberOfLines = 0
+        contentLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+        contentLabel.sizeToFit()
+
+        dateLabel.font = .systemFont(ofSize: 12)
+        satisfactionLabel.font = .systemFont(ofSize: 12)
+        satisfactionLabel.text = "테스크 만족도: 3점"
     }
 }

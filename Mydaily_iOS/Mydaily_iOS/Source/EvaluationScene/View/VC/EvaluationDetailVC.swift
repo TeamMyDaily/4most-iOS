@@ -44,21 +44,25 @@ extension EvaluationDetailVC: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailHeaderTVC.identifier) as? DetailHeaderTVC else {
                 return UITableViewCell()
             }
+            cell.selectionStyle = .none
             return cell
         } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailGoalTVC.identifier) as? DetailGoalTVC else {
                 return UITableViewCell()
             }
+            cell.selectionStyle = .none
             return cell
         } else if indexPath.section == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailRecordTVC.identifier) as? DetailRecordTVC else {
                 return UITableViewCell()
             }
+            cell.selectionStyle = .none
             return cell
         }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailRecordContentTVC.identifier) as? DetailRecordContentTVC else {
             return UITableViewCell()
         }
+        cell.selectionStyle = .none
         listCount = cell.list.count
         return cell
     }
@@ -73,15 +77,14 @@ extension EvaluationDetailVC: UITableViewDelegate {
         } else if indexPath.section == 2 {
             return 63
         }
-        
         var calculateHeight: CGFloat = 0
         if listCount % 2 == 0 {
-            calculateHeight = CGFloat(42 + listCount / 2 * 180)
+            calculateHeight = CGFloat(42 + listCount / 2 * 185)
         } else {
             if listCount == 1 {
                 calculateHeight = 222
             }
-            calculateHeight = CGFloat(42 + (listCount / 2 + 1) * 180)
+            calculateHeight = CGFloat(42 + (listCount / 2 + 1) * 185)
         }
         return calculateHeight
     }

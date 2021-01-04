@@ -11,12 +11,13 @@ class DetailGoalTVC: UITableViewCell {
     static let identifier = "DetailGoalTVC"
 
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var achieveLabel: UILabel!
     @IBOutlet weak var goalLabel: UILabel!
+    @IBOutlet weak var achieveButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setLabel()
+        setButton()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -28,10 +29,16 @@ extension DetailGoalTVC {
     private func setLabel() {
         titleLabel.font = .boldSystemFont(ofSize: 18)
         titleLabel.text = "목표"
-        achieveLabel.font = .systemFont(ofSize: 12)
-        achieveLabel.layer.cornerRadius = 5
-        achieveLabel.layer.masksToBounds = true
-        achieveLabel.clipsToBounds = true
         goalLabel.font = .systemFont(ofSize: 12)
+    }
+    
+    private func setButton() {
+        achieveButton.setTitle("미달성", for: .normal)
+        achieveButton.titleLabel?.font = .systemFont(ofSize: 12)
+        achieveButton.contentEdgeInsets = UIEdgeInsets(top: 3, left: 8, bottom: 3, right: 8)
+        achieveButton.layer.cornerRadius = 10
+        achieveButton.layer.masksToBounds = true
+        achieveButton.setContentHuggingPriority(.required, for: .horizontal)
+        achieveButton.isUserInteractionEnabled = false
     }
 }
