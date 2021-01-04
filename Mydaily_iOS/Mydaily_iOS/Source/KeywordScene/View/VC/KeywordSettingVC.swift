@@ -23,7 +23,8 @@ class KeywordSettingVC: UIViewController {
     
     var selectedKeywordCount = 0
     var selectedKeywordList:[[String]] = []
-    var userAddKeywordList:[String] = []
+  
+    var userKeywordList:[String] = []
     var userKeywordTitleLabel = UILabel()
     
     var footer = UIView()
@@ -150,7 +151,7 @@ class KeywordSettingVC: UIViewController {
     
     
     func printUserAddKeyword(){
-        for txt in userAddKeywordList{
+        for txt in userKeywordList{
             print("추가한 keyword : \(txt)")
         }
     }
@@ -284,26 +285,36 @@ extension KeywordSettingVC: UITableViewDelegate{
     
     
     @objc func addMyKeyword(){
-       
-        let KeywordText = "추가"
-        let testKeyword = KeywordText + "\(userAddKeywordList.count * 30 )"
-        userAddKeywordList.append(testKeyword)
         
-        if userAddKeywordList.count != 0{
+        //키워드 추가 창으로 갔다오기
+        guard let dvc = self.storyboard?.instantiateViewController(identifier: AddUserKeywordVC.identifier) else {
+            return
+        }
+        
+        self.navigationController?.pushViewController(dvc, animated: true)
+        
+        let lastIndex = userKeywordList.count - 1
+        
+        if userKeywordList.count != 0{
             userKeywordTitleLabel.text = "내가 추가한 키워드"
             userKeywordTitleLabel.textColor = .orange
             userKeywordTitleLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.bold)
             
         }
-
+        var KeywordText = "키워드"
         
-        let buttonWidth = testKeyword.count * 15 + 20
+        if userKeywordList.count != 0 {
+            KeywordText = userKeywordList[lastIndex]
+        }
+        
+        
+        let buttonWidth = KeywordText.count * 15 + 20
         
         let myKeywordButton = UIButton(frame: CGRect(x: contentX, y: contentY, width: buttonWidth, height: 32))
         contentX += buttonWidth + 8
         //keywordPlusButton.setImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
         myKeywordButton.titleEdgeInsets = UIEdgeInsets(top: 4, left: 12, bottom: 5, right: 12)
-        myKeywordButton.setTitle(testKeyword, for: .normal)
+        myKeywordButton.setTitle(KeywordText, for: .normal)
         myKeywordButton.setTitleColor(.white, for: .normal)
         myKeywordButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.medium)
         myKeywordButton.layer.cornerRadius = 15
@@ -323,6 +334,7 @@ extension KeywordSettingVC: UITableViewDelegate{
         }
         
         footer.addSubview(myKeywordButton)
+        keywordPlusButton.frame.origin.x = CGFloat(contentX)
        
 //        myKeywordButton.translatesAutoresizingMaskIntoConstraints = false
 //
@@ -332,7 +344,7 @@ extension KeywordSettingVC: UITableViewDelegate{
 //        //completeButton.bottomAnchor.constraint(equalTo: footer.bottomAnchor, constant: 0).isActive = true
 //
         //keywordPlusButton.leftAnchor.constraint(equalTo: myKeywordButton.rightAnchor, constant: 8).isActive = true
-        keywordPlusButton.frame.origin.x = CGFloat(contentX)
+        
         
         
         //footer.addSubview(myKeywordButton)
@@ -378,6 +390,15 @@ extension KeywordSettingVC: UITableViewDelegate{
     }
     
     
+    func addUserKeyword(text :String){
+        userKeywordList.append(text)
+        print("------현재 userKeywordList------")
+        
+        for txt in userKeywordList {
+            print(txt)
+        }
+    }
+    
 }
 
 extension KeywordSettingVC: SelectKeywordDelegate{
@@ -422,8 +443,10 @@ extension KeywordSettingVC: SelectKeywordDelegate{
     }
     
     func alertKeyword(){
-        let alert = UIAlertController(title: "주의", message: "8개만 선택해주세요", preferredStyle: UIAlertController.Style.alert)
-        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in}
+        let txt = "키워드를 많이 선택 하셨어요.\n키워드는 8개 까지 선택이 가능합니다.\n좀 더 고민해서 하나를 제외 해 주세요!"
+        let alert = UIAlertController(title: "8개까지 선택 가능해요!", message: txt, preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: "확인", style: .default) { (action) in}
+       
         alert.addAction(okAction)
         present(alert, animated: false, completion: nil)
     }
