@@ -2,7 +2,7 @@
 //  AddUserKeywordVC.swift
 //  Mydaily_iOS
 //
-//  Created by honglab on 2021/01/04.
+//  Created by 이유진 and 장혜령 on 2021/01/04.
 
 import UIKit
 
@@ -11,20 +11,20 @@ class AddUserKeywordVC: UIViewController {
     static let identifier = "AddUserKeywordVC"
     
     @IBOutlet weak var keywordTextField: UITextField!
-    @IBOutlet weak var addButton: UITextField!
+    
+    @IBOutlet var addButton: UIButton!
     
     @IBOutlet weak var noticeLabel: UILabel!
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var guideLabel: UILabel!
-    
+    let originButtonColor: UIColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1)
     var keywordArray:[String] = ["진정성","용기","대충"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setTitleLabel()
-        setGuideLabel()
+        setContent()
         keywordTextField.delegate = self
         addButton.isEnabled = false
     }
@@ -37,16 +37,27 @@ class AddUserKeywordVC: UIViewController {
     
     func setGuideLabel(){
         guideLabel.numberOfLines = 0
-        guideLabel.text = "공백 없이 최대 5글자까지 가능해요.\n 명사 형태를 추천해요."
+        guideLabel.text = "공백 없이 최대 5글자까지 가능해요.\n명사 형태를 추천해요."
     }
     
-    @IBAction func submitKeyword(_ sender: UIButton) {
+    func setContent(){
+        titleLabel.numberOfLines = 0
+        titleLabel.text = "찾으시는 가치(단어)가\n없으신가요?"
+        
+        guideLabel.numberOfLines = 0
+        guideLabel.text = "공백 없이 최대 5글자까지 가능해요.\n명사 형태를 추천해요."
+        
+        addButton.layer.cornerRadius = 15
+    }
+    
+    @IBAction func addUserKeyword(_ sender: UIButton) {
+
         if keywordArray.contains(keywordTextField.text ?? "") {
             addButton.isEnabled = false
             noticeLabel.text = "'\(keywordTextField.text ?? "")'은 이미 생성된 단어에요!"
         }else{
-         
-            guard let pvc = self.navigationController?.presentingViewController as? KeywordSettingVC else {
+            
+            guard let pvc = self.navigationController?.viewControllers[0] as? KeywordSettingVC else {
                return
             }
            
@@ -88,14 +99,16 @@ extension AddUserKeywordVC: UITextFieldDelegate{
                 addButton.backgroundColor = .orange
                 return true
             }
-            else{
+            else {
                 noticeLabel.text = "최대 5글자의 단어만 입력 가능해요!"
                 addButton.isEnabled = false
+                addButton.backgroundColor = originButtonColor
                 return false
             }
         }
         else{
             addButton.isEnabled = false
+            addButton.backgroundColor = originButtonColor
             return true
         }
     }

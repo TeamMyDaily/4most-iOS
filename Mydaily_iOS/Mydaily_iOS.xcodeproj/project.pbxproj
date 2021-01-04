@@ -13,6 +13,7 @@
 		3C24B1FD259DE05000A38D83 /* KeywordCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C24B1FB259DE05000A38D83 /* KeywordCVC.xib */; };
 		3C429769259F16D10061483E /* KeywordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C429767259F16D10061483E /* KeywordTableViewCell.swift */; };
 		3C42976A259F16D10061483E /* KeywordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C429768259F16D10061483E /* KeywordTableViewCell.xib */; };
+		3C4CBF9625A386E90007A6FF /* NextKeywordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4CBF9525A386E90007A6FF /* NextKeywordVC.swift */; };
 		3C5D94DD259D8B2700BF8DC9 /* KeywordSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5D94DC259D8B2700BF8DC9 /* KeywordSettingVC.swift */; };
 		3CA3DBFA25A049F900DE9D8F /* MyAddKeywordTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3DBF825A049F900DE9D8F /* MyAddKeywordTVC.swift */; };
 		3CA3DBFB25A049F900DE9D8F /* MyAddKeywordTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CA3DBF925A049F900DE9D8F /* MyAddKeywordTVC.xib */; };
@@ -50,6 +51,7 @@
 		3C24B1FB259DE05000A38D83 /* KeywordCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeywordCVC.xib; sourceTree = "<group>"; };
 		3C429767259F16D10061483E /* KeywordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordTableViewCell.swift; sourceTree = "<group>"; };
 		3C429768259F16D10061483E /* KeywordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeywordTableViewCell.xib; sourceTree = "<group>"; };
+		3C4CBF9525A386E90007A6FF /* NextKeywordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextKeywordVC.swift; sourceTree = "<group>"; };
 		3C5D94DC259D8B2700BF8DC9 /* KeywordSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordSettingVC.swift; sourceTree = "<group>"; };
 		3CA3DBF825A049F900DE9D8F /* MyAddKeywordTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAddKeywordTVC.swift; sourceTree = "<group>"; };
 		3CA3DBF925A049F900DE9D8F /* MyAddKeywordTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyAddKeywordTVC.xib; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				3CC8642B259CAFEE0043421A /* KeywordPopUpVC.swift */,
 				3C5D94DC259D8B2700BF8DC9 /* KeywordSettingVC.swift */,
 				DE91345F25A309500045BDCE /* AddUserKeywordVC.swift */,
+				3C4CBF9525A386E90007A6FF /* NextKeywordVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 				3C5D94DD259D8B2700BF8DC9 /* KeywordSettingVC.swift in Sources */,
 				3C24B1F7259DDCA600A38D83 /* KeywordTVC.swift in Sources */,
 				AE76C03E259B1A6D007B3901 /* AppDelegate.swift in Sources */,
+				3C4CBF9625A386E90007A6FF /* NextKeywordVC.swift in Sources */,
 				3CC8642C259CAFEE0043421A /* KeywordPopUpVC.swift in Sources */,
 				3C24B1FC259DE05000A38D83 /* KeywordCVC.swift in Sources */,
 				3C429769259F16D10061483E /* KeywordTableViewCell.swift in Sources */,
