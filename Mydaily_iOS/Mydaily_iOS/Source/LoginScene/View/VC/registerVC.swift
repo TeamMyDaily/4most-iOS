@@ -59,6 +59,7 @@ extension RegisterVC {
         nameTextField.addTarget(self, action: #selector(changeNameTextFieldUI), for: .allEditingEvents)
         emailTextField.addTarget(self, action: #selector(changeEmailTextfiledUI), for: .allEditingEvents)
         pwTextField.addTarget(self, action: #selector(changePWTextfiledUI), for: .allEditingEvents)
+        checkpwTextField.addTarget(self, action: #selector(checkPWTextfiledUI), for: .allEditingEvents)
     }
     
     @objc
@@ -87,6 +88,18 @@ extension RegisterVC {
         }
         else{
             validatePWLabel.text = ""
+        }
+    }
+    
+    @objc
+    func checkPWTextfiledUI(){
+        changeTextfieldUI(textfield: checkpwTextField)
+        
+        if !(pwTextField.text == checkpwTextField.text) {
+            checkPWLabel.text = "비밀번호가 서로 맞지 않아요!"
+        }
+        else{
+            checkPWLabel.text = ""
         }
     }
     
