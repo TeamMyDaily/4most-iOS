@@ -15,22 +15,32 @@ class DetailRecordCVC: UICollectionViewCell {
     @IBOutlet weak var contentBar: UIView!
     @IBOutlet weak var satisfactionLabel: UILabel!
     
-    func setConfigure(content: String) {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setConfigure()
+    }
+}
+
+extension DetailRecordCVC {
+    func setLabelData(content: String) {
+        contentLabel.text = content
+        satisfactionLabel.text = "테스크 만족도: 3점"
+    }
+    
+    private func setConfigure() {
         layer.cornerRadius = 10
         layer.borderColor = UIColor.systemRed.cgColor
         layer.borderWidth = 1
         contentBar.layer.cornerRadius = 4
         
-        contentLabel.font = .boldSystemFont(ofSize: 16)
-        contentLabel.text = content
         contentLabel.preferredMaxLayoutWidth = self.frame.size.width - 16 - 30
         contentLabel.contentMode = .scaleToFill
         contentLabel.numberOfLines = 0
         contentLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
         contentLabel.sizeToFit()
-
+        
+        contentLabel.font = .boldSystemFont(ofSize: 16)
         dateLabel.font = .systemFont(ofSize: 12)
         satisfactionLabel.font = .systemFont(ofSize: 12)
-        satisfactionLabel.text = "테스크 만족도: 3점"
     }
 }

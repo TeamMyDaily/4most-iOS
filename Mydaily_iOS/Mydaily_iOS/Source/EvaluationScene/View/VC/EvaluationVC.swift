@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol TableViewTnsideCollectionViewDelegate: class {
+protocol TableViewInsideCollectionViewDelegate: class {
     func cellTaped()
 }
 
@@ -65,6 +65,7 @@ extension EvaluationVC: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
@@ -105,14 +106,6 @@ extension EvaluationVC: UICollectionViewDelegateFlowLayout {
 extension EvaluationVC {
     private func setNavigationBar() {
         navigationController?.isNavigationBarHidden = true
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        navigationController?.navigationBar.tintColor = originalButtonColor
-        navigationItem.title = "회고"
-        guard let navigationBar = self.navigationController?.navigationBar else { return }
-        navigationBar.isTranslucent = true
-        navigationBar.backgroundColor = UIColor.clear
-        navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationBar.shadowImage = UIImage()
     }
     
     private func setWeekLabel() {
@@ -146,7 +139,7 @@ extension EvaluationVC {
     }
 }
 
-extension EvaluationVC: TableViewTnsideCollectionViewDelegate {
+extension EvaluationVC: TableViewInsideCollectionViewDelegate {
     func cellTaped() {
         guard let dvc = self.storyboard?.instantiateViewController(identifier: "EvaluationDetailVC") as? EvaluationDetailVC else {
             return

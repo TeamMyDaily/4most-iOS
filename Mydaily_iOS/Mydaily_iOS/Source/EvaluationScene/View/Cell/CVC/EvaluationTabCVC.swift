@@ -12,12 +12,12 @@ class EvaluationTabCVC: UICollectionViewCell {
     
     @IBOutlet weak var keywordTableView: UITableView!
     
-    var delegate: TableViewTnsideCollectionViewDelegate?
+    var delegate: TableViewInsideCollectionViewDelegate?
     
-    var keywords = ["아웃풋", "회고", "열정", nil]
-    var goals = ["블로그에 1개 이상 퍼블리싱 하기", "진지한 글쓰기", "나는야 열정만수르 내가 그 누구보다 잘나가네 야하 나는 열정만수르", nil]
-    var rates = [2.6, 4.2, 5.0, nil]
-    var counts = [4, 3, 3, nil]
+    var keywords = ["아웃풋", "회고", "열정", "경청"]
+    var goals = ["블로그에 1개 이상 퍼블리싱 하기", "진지한 글쓰기", "나는야 열정만수르 내가 그 누구보다 잘나가네 야하 나는 열정만수르", "PM님 앞에서 가위춤 추지 않기"]
+    var rates = [2.6, 4.2, 5.0, 3.3]
+    var counts = [4, 3, 3, 5]
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -63,7 +63,7 @@ extension EvaluationTabCVC: UITableViewDataSource {
 
 extension EvaluationTabCVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 1 && (indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3) {
+        if indexPath.section == 1 {
             if keywords[indexPath.row] != nil {
                 self.delegate?.cellTaped()
             }

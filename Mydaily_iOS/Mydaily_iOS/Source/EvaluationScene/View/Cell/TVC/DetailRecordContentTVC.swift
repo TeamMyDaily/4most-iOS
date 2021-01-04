@@ -32,15 +32,15 @@ extension DetailRecordContentTVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailRecordCVC.identifier, for: indexPath as IndexPath) as! DetailRecordCVC
-        cell.setConfigure(content: list[indexPath.item])
+        cell.setLabelData(content: list[indexPath.item])
         return cell
     }
 }
 
 extension DetailRecordContentTVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-      let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + 16)) / 2
-      return CGSize(width: itemSize, height: itemSize)
+        let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + 16)) / 2
+        return CGSize(width: itemSize, height: itemSize)
     }
 }
 
@@ -57,7 +57,6 @@ extension DetailRecordContentTVC: DetailRecordLayoutDelegate {
         label.sizeToFit()
         
         let calculateHeight = label.intrinsicContentSize.height + 120
-        
         return calculateHeight
     }
     
