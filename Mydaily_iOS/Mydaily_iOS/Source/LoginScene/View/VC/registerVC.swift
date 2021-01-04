@@ -13,22 +13,36 @@ class RegisterVC: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var pwTextField: UITextField!
     @IBOutlet weak var checkpwTextField: UITextField!
-    
     @IBOutlet weak var validateEmailLabel: UILabel!
     @IBOutlet weak var validatePWLabel: UILabel!
     @IBOutlet weak var checkPWLabel: UILabel!
+    @IBOutlet weak var nextButton: UIButton!
+    
+    var checkValidate = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupNavigationBar()
         changeTextFields()
+        setUI()
     }
-    
+    @IBAction func pwButton(_ sender: Any) {
+        securityText(textfield: pwTextField)
+    }
+    @IBAction func checkpwButton(_ sender: Any) {
+        securityText(textfield: checkpwTextField)
+    }
 }
 
 //MARK: - UI
 extension RegisterVC {
+    func setUI() {
+        nextButton.isEnabled = false
+        pwTextField.isSecureTextEntry = true
+        checkpwTextField.isSecureTextEntry = true
+    }
+    
     private func setupNavigationBar() {
         guard let navigationBar = self.navigationController?.navigationBar else { return }
         
@@ -65,6 +79,7 @@ extension RegisterVC {
     @objc
     func changeNameTextFieldUI(){
         changeTextfieldUI(textfield: nameTextField)
+        checkValidateUI()
     }
     
     @objc
@@ -77,6 +92,7 @@ extension RegisterVC {
         else{
             validateEmailLabel.text = ""
         }
+        checkValidateUI()
     }
     
     @objc
@@ -87,8 +103,16 @@ extension RegisterVC {
             validatePWLabel.text = "영어와 숫자 조합으로 6자리 이상 입력해 주세요!"
         }
         else{
+            if !(pwTextField.text == checkpwTextField.text) {
+                checkPWLabel.text = "비밀번호가 서로 맞지 않아요!"
+            }
+            else{
+                checkPWLabel.text = ""
+            }
+
             validatePWLabel.text = ""
         }
+        checkValidateUI()
     }
     
     @objc
@@ -101,6 +125,7 @@ extension RegisterVC {
         else{
             checkPWLabel.text = ""
         }
+        checkValidateUI()
     }
     
     func changeTextfieldUI(textfield: UITextField){
@@ -112,13 +137,31 @@ extension RegisterVC {
         else{
             textfield.layer.borderColor = UIColor.gray.cgColor
         }
+    }
+    
+    func checkValidateUI(){
+        if (pwTextField.text == checkpwTextField.text) && (emailTextField.text!.validateEmail()) && (pwTextField.text!.validatePassword()){
+            checkValidate = true
+        }
+        else{
+            checkValidate = false
+        }
         
-//        if !(idTextField.text!.isEmpty) && !(pwTextField.text!.isEmpty){
-//            loginButton.isEnabled = true
-//        }
-//        else{
-//            loginButton.isEnabled = false
-//        }
+        if !(nameTextField.text!.isEmpty) && !(emailTextField.text!.isEmpty) && !(pwTextField.text!.isEmpty) && !(checkpwTextField.text!.isEmpty) && checkValidate{
+            nextButton.isEnabled = true
+        }
+        else{
+            nextButton.isEnabled = false
+        }
+    }
+    
+    func securityText(textfield: UITextField){
+        if textfield.isSecureTextEntry == true {
+            textfield.isSecureTextEntry = false
+        }
+        else{
+            textfield.isSecureTextEntry = true
+        }
     }
 }
 

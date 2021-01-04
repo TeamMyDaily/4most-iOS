@@ -172,19 +172,35 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRn-Fc-IRQ">
-                                <rect key="frame" x="289" y="312" width="42" height="21"/>
+                                <rect key="frame" x="44" y="312" width="287" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xl6-pi-vjd">
-                                <rect key="frame" x="289" y="204" width="42" height="21"/>
+                                <rect key="frame" x="44" y="204" width="287" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tY0-bT-Ofr">
+                                <rect key="frame" x="285" y="341" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="pwButton:" destination="JA3-VH-Jb4" eventType="touchUpInside" id="QtU-xu-enX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ktQ-hR-Uh1">
+                                <rect key="frame" x="285" y="402" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="checkpwButton:" destination="JA3-VH-Jb4" eventType="touchUpInside" id="xLb-bc-tbO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kgo-fn-qZV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -194,6 +210,7 @@
                         <outlet property="checkpwTextField" destination="IN8-sb-0Cr" id="HfT-rf-j9h"/>
                         <outlet property="emailTextField" destination="LvP-wp-XTK" id="aAw-b3-c29"/>
                         <outlet property="nameTextField" destination="kTf-4X-JgJ" id="I5H-Fv-384"/>
+                        <outlet property="nextButton" destination="G4j-xR-sbQ" id="6Ej-wO-ZIE"/>
                         <outlet property="pwTextField" destination="mGi-wg-3Ic" id="Ajp-Tw-jU9"/>
                         <outlet property="validateEmailLabel" destination="xl6-pi-vjd" id="hWe-YE-CfI"/>
                         <outlet property="validatePWLabel" destination="XRn-Fc-IRQ" id="70R-al-IGt"/>
