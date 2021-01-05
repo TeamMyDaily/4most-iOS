@@ -7,8 +7,8 @@
 
 import UIKit
 
-class RetrospectiveWriteTVC: UITableViewCell {
-    static let identifier = "RetrospectiveWriteTVC"
+class RetrospectiveWriteGoodTVC: UITableViewCell {
+    static let identifier = "RetrospectiveWriteGoodTVC"
 
     @IBOutlet weak var writeTextView: UITextView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -30,16 +30,18 @@ class RetrospectiveWriteTVC: UITableViewCell {
     }
 }
 
-extension RetrospectiveWriteTVC: UITextViewDelegate {
+extension RetrospectiveWriteGoodTVC: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         textView.textColor = .black
         
         if textView.text == placeholder {
             textView.text = ""
-            textView.bounds.size.height = UIScreen.main.bounds.height / 3
+            textView.bounds.size.height = UIScreen.main.bounds.height / 2.5
             delegate?.rowHeight = textView.bounds.size.height + 62
             delegate?.beginUpdates()
             delegate?.endUpdates()
+            
+            self.setEditing(true, animated: true)
         }
     }
     
@@ -47,7 +49,12 @@ extension RetrospectiveWriteTVC: UITextViewDelegate {
         if textView.text == "" {
             textView.textColor = .lightGray
             textView.text = placeholder
-            delegate?.rowHeight = (UIScreen.main.bounds.size.height - 150 - 104)/3
+            textView.bounds.size.height = (UIScreen.main.bounds.size.height - 150 - 104)/3 - 60
+            if UIScreen.main.bounds.size.height <= 667.0 {
+                delegate?.rowHeight = (UIScreen.main.bounds.size.height - 70 - 104)/3
+            } else {
+                delegate?.rowHeight = (UIScreen.main.bounds.size.height - 150 - 104)/3
+            }
             delegate?.beginUpdates()
             delegate?.endUpdates()
         } else {
@@ -56,7 +63,7 @@ extension RetrospectiveWriteTVC: UITextViewDelegate {
     }
 }
 
-extension RetrospectiveWriteTVC {
+extension RetrospectiveWriteGoodTVC {
     func setLabelData(title: String, placeholder: String) {
         self.placeholder = placeholder
         titleLabel.text = title

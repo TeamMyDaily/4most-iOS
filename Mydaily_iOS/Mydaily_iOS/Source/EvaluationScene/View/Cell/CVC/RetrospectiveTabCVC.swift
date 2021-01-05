@@ -18,34 +18,64 @@ class RetrospectiveTabCVC: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setTableView()
+        setKeyboardGesture()
     }
 }
 
 extension RetrospectiveTabCVC: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RetrospectiveWriteTVC.identifier) as? RetrospectiveWriteTVC else {
+        if indexPath.section == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: RetrospectiveWriteGoodTVC.identifier) as? RetrospectiveWriteGoodTVC else {
+                return UITableViewCell()
+            }
+            cell.selectionStyle = .none
+            cell.delegate = retrospectiveTableView
+            cell.setLabelData(title: cellTitles[indexPath.section], placeholder: cellPlaceholders[indexPath.section])
+            return cell
+        } else if indexPath.section == 1 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: RetrospectiveWriteShameTVC.identifier) as? RetrospectiveWriteShameTVC else {
+                return UITableViewCell()
+            }
+            cell.selectionStyle = .none
+            cell.delegate = retrospectiveTableView
+            cell.setLabelData(title: cellTitles[indexPath.section], placeholder: cellPlaceholders[indexPath.section])
+            return cell
+        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: RetrospectiveWritePromiseTVC.identifier) as? RetrospectiveWritePromiseTVC else {
             return UITableViewCell()
         }
-//        cell.selectionStyle = .none
-        cell.setLabelData(title: cellTitles[indexPath.row], placeholder: cellPlaceholders[indexPath.row])
+        cell.selectionStyle = .none
+        cell.delegate = retrospectiveTableView
+        cell.setLabelData(title: cellTitles[indexPath.section], placeholder: cellPlaceholders[indexPath.section])
         return cell
     }
 }
 
-extension RetrospectiveTabCVC: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return (UIScreen.main.bounds.size.height - 150 - 104)/3
-    }
-}
+extension RetrospectiveTabCVC: UITableViewDelegate {}
 
 extension RetrospectiveTabCVC {
     private func setTableView() {
         retrospectiveTableView.delegate = self
         retrospectiveTableView.dataSource = self
+        retrospectiveTableView.separatorColor = .clear
+        retrospectiveTableView.estimatedRowHeight = (UIScreen.main.bounds.size.height - 150 - 104)/3
+        retrospectiveTableView.rowHeight = UITableView.automaticDimension
+    }
+    
+    private func setKeyboardGesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        self.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        self.endEditing(true)
     }
 }
-
