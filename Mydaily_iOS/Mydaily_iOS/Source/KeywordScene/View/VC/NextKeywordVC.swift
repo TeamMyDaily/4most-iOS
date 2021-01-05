@@ -44,6 +44,18 @@ class NextKeywordVC: UIViewController {
     }
     
     
+    @IBAction func submitKeyword(_ sender: UIButton) {
+        
+        guard let dvc = self.storyboard?.instantiateViewController(identifier: KeywordDefineVC.identifier) as? KeywordDefineVC else{
+            return
+        }
+        
+        dvc.setReceivedKeywordList(list: selectedKeywordList)
+        
+        self.navigationController?.pushViewController(dvc, animated: true)
+        
+    }
+    
     func setkeywordContentView(){
         
         let content = UIView(frame: CGRect(x: 0, y: 0, width: keywordContentView.frame.width, height:keywordContentView.frame.height))
@@ -149,6 +161,7 @@ class NextKeywordVC: UIViewController {
         }
         
         setButtonActive()
+        printSelectedKeyword()
     }
     
     func alertKeyword(){
@@ -168,6 +181,13 @@ class NextKeywordVC: UIViewController {
         }else{
             completeButton.backgroundColor = originButtonColor
             completeButton.isEnabled = false
+        }
+    }
+    
+    func printSelectedKeyword(){
+        print("--------------선택한 키워드-----------")
+        for txt in selectedKeywordList{
+            print(txt)
         }
     }
     

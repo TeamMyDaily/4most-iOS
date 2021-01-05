@@ -37,6 +37,7 @@
 		AEFB222325A02CBC00A3228C /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEFB222225A02CBC00A3228C /* Login.storyboard */; };
 		AEFB222625A02CC900A3228C /* Goal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEFB222525A02CC900A3228C /* Goal.storyboard */; };
 		DE91346025A309500045BDCE /* AddUserKeywordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91345F25A309500045BDCE /* AddUserKeywordVC.swift */; };
+		DEC98B8125A4435300CC522C /* KeywordDefineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC98B8025A4435300CC522C /* KeywordDefineVC.swift */; };
 		ED266029259EF02E00A376C0 /* EvaluationTabCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266028259EF02E00A376C0 /* EvaluationTabCVC.swift */; };
 		ED266030259EFAB200A376C0 /* RetrospectiveTabCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED26602F259EFAB200A376C0 /* RetrospectiveTabCVC.swift */; };
 		ED266033259F019B00A376C0 /* EvaluationHeaderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266032259F019B00A376C0 /* EvaluationHeaderTVC.swift */; };
@@ -77,6 +78,7 @@
 		AEFB222225A02CBC00A3228C /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		AEFB222525A02CC900A3228C /* Goal.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Goal.storyboard; sourceTree = "<group>"; };
 		DE91345F25A309500045BDCE /* AddUserKeywordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserKeywordVC.swift; sourceTree = "<group>"; };
+		DEC98B8025A4435300CC522C /* KeywordDefineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordDefineVC.swift; sourceTree = "<group>"; };
 		ED266028259EF02E00A376C0 /* EvaluationTabCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationTabCVC.swift; sourceTree = "<group>"; };
 		ED26602F259EFAB200A376C0 /* RetrospectiveTabCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrospectiveTabCVC.swift; sourceTree = "<group>"; };
 		ED266032259F019B00A376C0 /* EvaluationHeaderTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationHeaderTVC.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				3C5D94DC259D8B2700BF8DC9 /* KeywordSettingVC.swift */,
 				DE91345F25A309500045BDCE /* AddUserKeywordVC.swift */,
 				3C4CBF9525A386E90007A6FF /* NextKeywordVC.swift */,
+				DEC98B8025A4435300CC522C /* KeywordDefineVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				AE76C040259B1A6D007B3901 /* SceneDelegate.swift in Sources */,
 				3CA3DBFA25A049F900DE9D8F /* MyAddKeywordTVC.swift in Sources */,
 				ED266033259F019B00A376C0 /* EvaluationHeaderTVC.swift in Sources */,
+				DEC98B8125A4435300CC522C /* KeywordDefineVC.swift in Sources */,
 				ED266036259F032000A376C0 /* EvaluationKeywordTVC.swift in Sources */,
 				ED266030259EFAB200A376C0 /* RetrospectiveTabCVC.swift in Sources */,
 				ED266029259EF02E00A376C0 /* EvaluationTabCVC.swift in Sources */,
