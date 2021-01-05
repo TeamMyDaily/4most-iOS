@@ -7,32 +7,8 @@
 
 import UIKit
 
-protocol TableViewTnsideCollectionViewDelegate: class {
+protocol TableViewInsideCollectionViewDelegate: class {
     func cellTaped()
-}
-
-protocol PushDelegate {
-  func makeNavigationPush(_ vc: UIViewController)
-}
-
-extension UIApplication {
-    class func topViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
-        if let nav = base as? UINavigationController {
-            return topViewController(base: nav.visibleViewController)
-        }
-        
-        if let tab = base as? UITabBarController {
-            if let selected = tab.selectedViewController {
-                return topViewController(base: selected)
-            }
-        }
-        
-        if let presented = base?.presentedViewController {
-            return topViewController(base: presented)
-        }
-        
-        return base
-    }
 }
 
 class EvaluationVC: UIViewController {
@@ -49,6 +25,7 @@ class EvaluationVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationBar()
         setWeekLabel()
         setMenuTabButton()
         setCollectionViewDelegate()
@@ -88,6 +65,7 @@ extension EvaluationVC: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
@@ -125,8 +103,11 @@ extension EvaluationVC: UICollectionViewDelegateFlowLayout {
     }
 }
 
-// MARK: Setting
 extension EvaluationVC {
+    private func setNavigationBar() {
+        navigationController?.isNavigationBarHidden = true
+    }
+    
     private func setWeekLabel() {
         weekLabel.font = .boldSystemFont(ofSize: 12)
         weekLabel.textAlignment = .center
@@ -158,33 +139,11 @@ extension EvaluationVC {
     }
 }
 
-// MARK: NavigationViewController
-extension EvaluationVC: TableViewTnsideCollectionViewDelegate {
+extension EvaluationVC: TableViewInsideCollectionViewDelegate {
     func cellTaped() {
         guard let dvc = self.storyboard?.instantiateViewController(identifier: "EvaluationDetailVC") as? EvaluationDetailVC else {
             return
         }
-//        dvc.modalPresentationStyle = .fullScreen
-//        self.present(dvc, animated: true, completion: nil)
-//        self.makeNavigationPush(dvc)
         self.navigationController?.pushViewController(dvc, animated: true)
-    }
-    
-    func topViewController() -> UIViewController? {
-        if let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) {
-            if var viewController = window.rootViewController {
-                while viewController.presentedViewController != nil {
-                    viewController = viewController.presentedViewController!
-                }
-                return viewController
-            }
-        }
-        return nil
-    }
-}
-
-extension EvaluationVC: PushDelegate {
-    func makeNavigationPush(_ vc: UIViewController) {
-        navigationController?.pushViewController(vc, animated: true)
     }
 }
