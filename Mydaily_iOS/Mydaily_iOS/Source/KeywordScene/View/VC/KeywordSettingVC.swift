@@ -29,6 +29,7 @@ class KeywordSettingVC: UIViewController {
     var keywordPlusButton = UIButton()
     var contentX = 17
     var contentY = 35
+    var checkKeyword = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +42,7 @@ class KeywordSettingVC: UIViewController {
     }
   
     override func viewWillAppear(_ animated: Bool) {
-        if userKeywordList.count > 0 {
+        if userKeywordList.count > 0 && checkKeyword{
             addUserKeyword()
         }
     }
@@ -60,6 +61,7 @@ class KeywordSettingVC: UIViewController {
         }
         
         dvc.setReceivedKeywordList(list: selectedKeywordList)
+        checkKeyword = false
         
         self.navigationController?.pushViewController(dvc, animated: true)
     }
@@ -82,7 +84,7 @@ class KeywordSettingVC: UIViewController {
         guard let dvc = self.storyboard?.instantiateViewController(identifier: "KeywordPopUpVC") else {
             return
         }
-        
+        checkKeyword = false
         dvc.modalPresentationStyle = .fullScreen
         self.present(dvc, animated: true, completion: nil)
     }
@@ -279,7 +281,7 @@ extension KeywordSettingVC: UITableViewDelegate{
         guard let dvc = self.storyboard?.instantiateViewController(identifier: AddUserKeywordVC.identifier) else {
             return
         }
-        
+        checkKeyword = true
         self.navigationController?.pushViewController(dvc, animated: true)
         
     }
