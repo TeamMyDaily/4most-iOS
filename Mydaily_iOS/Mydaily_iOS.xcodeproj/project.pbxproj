@@ -14,6 +14,12 @@
 		AE9F294525A1719600904FD9 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9F294425A1719600904FD9 /* LoginVC.swift */; };
 		AE9F294A25A1A69400904FD9 /* registerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9F294925A1A69400904FD9 /* registerVC.swift */; };
 		AE9F294D25A1BF1500904FD9 /* RegisterEntryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9F294C25A1BF1500904FD9 /* RegisterEntryVC.swift */; };
+		AED84DC825A479FA0050D861 /* RecordTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED84DC625A479FA0050D861 /* RecordTVC.swift */; };
+		AED84DC925A479FA0050D861 /* RecordTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AED84DC725A479FA0050D861 /* RecordTVC.xib */; };
+		AED84DCD25A47A8F0050D861 /* CalendarTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED84DCB25A47A8F0050D861 /* CalendarTVC.swift */; };
+		AED84DCE25A47A8F0050D861 /* CalendarTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AED84DCC25A47A8F0050D861 /* CalendarTVC.xib */; };
+		AED84DDA25A492F70050D861 /* ThreePartDynaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED84DD925A492F70050D861 /* ThreePartDynaTableViewCell.swift */; };
+		AED84DDD25A4930C0050D861 /* SampleThreePartTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED84DDC25A4930C0050D861 /* SampleThreePartTableViewController.swift */; };
 		AEFB21F2259C46C500A3228C /* Tabbar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEFB21F1259C46C500A3228C /* Tabbar.storyboard */; };
 		AEFB21F9259C5CB900A3228C /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFB21F8259C5CB900A3228C /* TabbarController.swift */; };
 		AEFB21FF259C66E800A3228C /* Daily.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEFB21FE259C66E800A3228C /* Daily.storyboard */; };
@@ -51,6 +57,12 @@
 		AE9F294425A1719600904FD9 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		AE9F294925A1A69400904FD9 /* registerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerVC.swift; sourceTree = "<group>"; };
 		AE9F294C25A1BF1500904FD9 /* RegisterEntryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEntryVC.swift; sourceTree = "<group>"; };
+		AED84DC625A479FA0050D861 /* RecordTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTVC.swift; sourceTree = "<group>"; };
+		AED84DC725A479FA0050D861 /* RecordTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordTVC.xib; sourceTree = "<group>"; };
+		AED84DCB25A47A8F0050D861 /* CalendarTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTVC.swift; sourceTree = "<group>"; };
+		AED84DCC25A47A8F0050D861 /* CalendarTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarTVC.xib; sourceTree = "<group>"; };
+		AED84DD925A492F70050D861 /* ThreePartDynaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreePartDynaTableViewCell.swift; sourceTree = "<group>"; };
+		AED84DDC25A4930C0050D861 /* SampleThreePartTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleThreePartTableViewController.swift; sourceTree = "<group>"; };
 		AEFB21F1259C46C500A3228C /* Tabbar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tabbar.storyboard; sourceTree = "<group>"; };
 		AEFB21F8259C5CB900A3228C /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
 		AEFB21FE259C66E800A3228C /* Daily.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Daily.storyboard; sourceTree = "<group>"; };
@@ -166,6 +178,17 @@
 			path = VC;
 			sourceTree = "<group>";
 		};
+		AED84DC425A456810050D861 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				AED84DC625A479FA0050D861 /* RecordTVC.swift */,
+				AED84DC725A479FA0050D861 /* RecordTVC.xib */,
+				AED84DCB25A47A8F0050D861 /* CalendarTVC.swift */,
+				AED84DCC25A47A8F0050D861 /* CalendarTVC.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		AEFB21F5259C491600A3228C /* VC */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +227,9 @@
 		AEFB2207259C670000A3228C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AED84DD925A492F70050D861 /* ThreePartDynaTableViewCell.swift */,
+				AED84DDC25A4930C0050D861 /* SampleThreePartTableViewController.swift */,
+				AED84DC425A456810050D861 /* Cell */,
 				AEFB220A259C672500A3228C /* VC */,
 			);
 			path = View;
@@ -376,8 +402,10 @@
 				AEFB222325A02CBC00A3228C /* Login.storyboard in Resources */,
 				AEFB21F2259C46C500A3228C /* Tabbar.storyboard in Resources */,
 				AE76C04A259B1A6E007B3901 /* LaunchScreen.storyboard in Resources */,
+				AED84DC925A479FA0050D861 /* RecordTVC.xib in Resources */,
 				AE76C047259B1A6E007B3901 /* Assets.xcassets in Resources */,
 				AEFB21FF259C66E800A3228C /* Daily.storyboard in Resources */,
+				AED84DCE25A47A8F0050D861 /* CalendarTVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +421,9 @@
 				AE9F294D25A1BF1500904FD9 /* RegisterEntryVC.swift in Sources */,
 				AE9F294A25A1A69400904FD9 /* registerVC.swift in Sources */,
 				EDAAEB7D25A01B550024E3E4 /* EvaluationDetailVC.swift in Sources */,
+				AED84DDD25A4930C0050D861 /* SampleThreePartTableViewController.swift in Sources */,
+				AED84DCD25A47A8F0050D861 /* CalendarTVC.swift in Sources */,
+				AED84DDA25A492F70050D861 /* ThreePartDynaTableViewCell.swift in Sources */,
 				AEFB2210259C6C6A00A3228C /* DailyVC.swift in Sources */,
 				EDBF739325A1636300ECDEB9 /* DetailRecordTVC.swift in Sources */,
 				EDB8F39E25A3915200F39A09 /* RetrospectiveWritePromiseTVC.swift in Sources */,
@@ -409,6 +440,7 @@
 				EDB8F39625A338EE00F39A09 /* RetrospectiveWriteGoodTVC.swift in Sources */,
 				ED266029259EF02E00A376C0 /* EvaluationTabCVC.swift in Sources */,
 				EDA9CA8425A1A74D00BF46C1 /* DetailRecordContentTVC.swift in Sources */,
+				AED84DC825A479FA0050D861 /* RecordTVC.swift in Sources */,
 				EDBF738D25A1631700ECDEB9 /* DetailHeaderTVC.swift in Sources */,
 				EDBF739725A17BD900ECDEB9 /* DetailRecordCVC.swift in Sources */,
 				EDBF739025A1634000ECDEB9 /* DetailGoalTVC.swift in Sources */,

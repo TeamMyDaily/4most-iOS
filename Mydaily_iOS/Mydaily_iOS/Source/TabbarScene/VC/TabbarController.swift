@@ -18,10 +18,8 @@ class TabbarController: UITabBarController {
     
     func setTabBar(){
         let DailyStoryboard = UIStoryboard.init(name: "Daily", bundle: nil)
-        guard let firstTab = DailyStoryboard.instantiateViewController(identifier: "DailyVC")
-            as? DailyVC else {
-            return
-        }
+        let firstTab = DailyStoryboard.instantiateViewController(identifier: "DailyNavi")
+
         
         firstTab.tabBarItem.title = "하루의 기록"
 //        firstTab.tabBarItem.image = UIImage(named: "gnbHome")?.withRenderingMode(.alwaysOriginal)
