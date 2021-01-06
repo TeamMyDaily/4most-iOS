@@ -1,10 +1,10 @@
 > *기록은 더 쉽게 <br/>
 회고는 더 깊게 <br/>
-**어제보다 나은 하루의 시작, 마이데일리***
+**어제보다 나은 하루의 시작, 4most***
 
 <br/>
 
-## 👩🏻‍💻 TeamMyDaily - iOS Developer
+## 👩🏻‍💻 Team4Most - iOS Developer
 
 | 이유진          | 신윤아    | 장혜령 |
 |---------------|---------|-----|
@@ -14,28 +14,28 @@
 <br/>
 <br/>
 
-## ⚙️ Dailys Code Convention Rule
+## ⚙️ 4Mosts Code Convention Rule
 #### 네이밍
 
 * 함수
   ```swift
-    func setMyDaily() {
+    func set4Most() {
     } 
     lowerCamelCase 사용하고 동사로 시작
   ``` 
 * 변수
   ```swift
-    var myDailyMembers = 13
+    var fourMostMembers = 13
     lowerCamelCase 사용
   ```
 * 상수
   ```swift
-    let myDailyiOSDevelopers: [String] = ["유진", "윤아", "혜령"]
+    let fourMostiOSDevelopers: [String] = ["유진", "윤아", "혜령"]
     lowerCamelCase 사용
   ```
 * 클래스
   ```swift
-    class MyDaily{
+    class fourMost{
     }
     UpperCamelCase 사용
   ```
@@ -63,7 +63,7 @@
   
 <br/>
 
-## 🍎 Dailys Team Rule
+## 🍎 4Mosts Team Rule
 ### git
 🔀 **git branch**
 * master : 제품으로 출시될 수 있는 브랜치
