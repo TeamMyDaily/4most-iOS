@@ -11,7 +11,8 @@ class DailyVC: UIViewController {
     
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var dateButton: UIButton!
+    @IBOutlet weak var dateLabel: UILabel!
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,17 +20,10 @@ class DailyVC: UIViewController {
         setupNavigationBar(.clear)
         setUI()
     }
-    @IBAction func dateButton(_ sender: Any) {
-//        var picker : UIDatePicker = UIDatePicker()
-//        picker.datePickerMode = UIDatePicker.Mode.date
-//        picker.addTarget(self, action: "dueDateChanged:", for: UIControl.Event.valueChanged)
-//        let pickerSize : CGSize = picker.sizeThatFits(CGSize())
-//        picker.frame = CGRect(x: 0.0, y: 250, width: pickerSize.width, height: 460)
-//            // you probably don't want to set background color as black
-//            // picker.backgroundColor = UIColor.blackColor()
-//            self.view.addSubview(picker)
+   
+    @IBAction func changedDate(_ sender: Any) {
+        setDate()
     }
-    
 }
 
 //MARK: - UI
@@ -38,5 +32,13 @@ extension DailyVC {
         headerView.layer.addBorder([.top,.bottom], color: UIColor.blueGray20, width: 1.0)
         
         datePicker.maximumDate = Date()
+        
+        setDate()
+    }
+    
+    func setDate(){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yy년 MM월 dd일"
+        dateLabel.text = dateFormatter.string(from: datePicker.date)
     }
 }

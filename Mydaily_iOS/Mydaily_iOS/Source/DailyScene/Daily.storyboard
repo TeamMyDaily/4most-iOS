@@ -25,22 +25,20 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q50-jR-mKN">
-                                        <rect key="frame" x="294" y="8" width="53" height="24"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AQl-HE-drX">
+                                        <rect key="frame" x="325" y="14" width="27" height="12"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                        <state key="normal" title="21년 1월 1일"/>
-                                        <connections>
-                                            <action selector="dateButton:" destination="8Cf-1i-nYt" eventType="touchUpInside" id="L1P-k7-aJK"/>
-                                        </connections>
-                                    </button>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="AQl-HE-drX" secondAttribute="trailing" constant="23" id="1a7-9E-kW0"/>
                                     <constraint firstItem="QBE-yQ-let" firstAttribute="top" secondItem="Qjx-FC-Tzw" secondAttribute="top" constant="8" id="6ca-EA-QCL"/>
-                                    <constraint firstAttribute="trailing" secondItem="q50-jR-mKN" secondAttribute="trailing" constant="28" id="7Jb-37-G9h"/>
                                     <constraint firstAttribute="height" constant="40" id="N7H-D7-Ung"/>
+                                    <constraint firstItem="AQl-HE-drX" firstAttribute="centerY" secondItem="QBE-yQ-let" secondAttribute="centerY" id="TgH-6E-kUE"/>
                                     <constraint firstAttribute="bottom" secondItem="QBE-yQ-let" secondAttribute="bottom" constant="8" id="hbc-Ff-cGZ"/>
-                                    <constraint firstItem="q50-jR-mKN" firstAttribute="centerY" secondItem="QBE-yQ-let" secondAttribute="centerY" id="oiL-Z5-Soa"/>
                                     <constraint firstItem="QBE-yQ-let" firstAttribute="leading" secondItem="Qjx-FC-Tzw" secondAttribute="leading" constant="16" id="vqF-vB-ozk"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -50,7 +48,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <datePicker autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" contentMode="bottom" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="pvO-Xd-qve">
-                                <rect key="frame" x="271" y="140" width="98" height="188"/>
+                                <rect key="frame" x="229" y="140" width="93" height="36"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <locale key="locale" localeIdentifier="ko_KR"/>
                                 <userDefinedRuntimeAttributes>
@@ -59,6 +57,9 @@
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="changedDate:" destination="8Cf-1i-nYt" eventType="valueChanged" id="N8k-Nd-dT6"/>
+                                </connections>
                             </datePicker>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DpT-Jr-0nz">
                                 <rect key="frame" x="0.0" y="180" width="375" height="487"/>
@@ -89,7 +90,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="F3p-Cp-Ogg"/>
                     <connections>
-                        <outlet property="dateButton" destination="q50-jR-mKN" id="3z2-wM-b9a"/>
+                        <outlet property="dateLabel" destination="AQl-HE-drX" id="7TL-lY-ayp"/>
                         <outlet property="datePicker" destination="pvO-Xd-qve" id="yJf-Uk-jcf"/>
                         <outlet property="headerView" destination="Qjx-FC-Tzw" id="vHI-Wp-mNC"/>
                     </connections>
@@ -97,6 +98,30 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o3J-C9-Aw7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="800.79999999999995" y="98.50074962518741"/>
+        </scene>
+        <!--Daily WriteVC-->
+        <scene sceneID="d4B-Ds-2bh">
+            <objects>
+                <viewController storyboardIdentifier="DailyWriteVC" id="azC-0r-meV" customClass="DailyWriteVC" customModule="Mydaily_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cHz-N0-mAh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="EQm-2a-rx0">
+                                <rect key="frame" x="39" y="492" width="322" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="minimumTrackTintColor" red="1" green="0.45882352941176469" blue="0.33725490196078434" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="maximumTrackTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="thumbTintColor" red="1" green="0.45882352941176469" blue="0.33725490196078434" alpha="1" colorSpace="calibratedRGB"/>
+                            </slider>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="JYQ-Da-hyh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qoc-jH-dR0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1448.8" y="98.50074962518741"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gyu-GP-rK0">
@@ -194,6 +219,9 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M2M-8R-5tS">
                                             <rect key="frame" x="305" y="16" width="46" height="30"/>
                                             <state key="normal" title="Button"/>
+                                            <connections>
+                                                <action selector="addButton:" destination="h1c-Ng-TU4" eventType="touchUpInside" id="zod-Qq-H4X"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFk-Tc-9Z5">
                                             <rect key="frame" x="71" y="67" width="207" height="20.5"/>
@@ -236,6 +264,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="addButton" destination="M2M-8R-5tS" id="M6w-4t-fBS"/>
                                     <outlet property="buttonMore" destination="ufV-hl-Si8" id="b2E-Ly-zSX"/>
                                     <outlet property="labelBody" destination="9ya-9I-RaG" id="DFC-Qo-KCI"/>
                                     <outlet property="labelNum" destination="0rb-XA-TkH" id="fhV-u9-XSX"/>

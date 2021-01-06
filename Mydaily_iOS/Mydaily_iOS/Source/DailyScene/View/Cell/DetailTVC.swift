@@ -18,17 +18,15 @@ class DetailTVC: UITableViewCell {
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var labelSubTitle: UILabel!
     @IBOutlet weak var labelBody: UILabel!
-	
 	@IBOutlet weak var buttonMore: UIButton!
-    
 	@IBOutlet weak var sizingLabel: UILabel!
-	
-	
-	var delegate: ThreePartCellDelegate?
+    @IBOutlet weak var addButton: UIButton!
+    
+    var delegate: ThreePartCellDelegate?
 
-	var isExpanded: Bool = false
-	
-	@IBAction func btnMoreTapped(_ sender: Any) {
+    var isExpanded: Bool = false
+    
+    @IBAction func btnMoreTapped(_ sender: Any) {
 		
 		if sender is UIButton {
 			isExpanded = !isExpanded
@@ -38,11 +36,17 @@ class DetailTVC: UITableViewCell {
 			buttonMore.setTitle(isExpanded ? "Read less..." : "Read more...", for: .normal)
 			
             delegate?.moreTapped(cell: self)
-
 		}
-		
 	}
 	
+    @IBAction func addButton(_ sender: Any) {
+        guard let dvc = UIStoryboard(name: "Daily", bundle: nil).instantiateViewController(withIdentifier: "DailyWriteVC") as? DailyWriteVC else {
+            return
+        }
+        UIApplication.topViewController()?.navigationController?.pushViewController(dvc, animated: true)
+//        self.navigationController?.pushViewController(dvc, animated: true)
+    }
+    
     public func myInit(theTitle: String, theBody: String) {
 		
 		isExpanded = false
