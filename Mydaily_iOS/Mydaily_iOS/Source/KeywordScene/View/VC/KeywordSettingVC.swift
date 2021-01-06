@@ -22,14 +22,17 @@ class KeywordSettingVC: UIViewController {
     var selectedKeywordCount = 0
     var selectedKeywordList:[[String]] = []
   
+    //User Keyword 부분 관련
     var userKeywordList:[String] = []
     var userKeywordTitleLabel = UILabel()
-    
     var footer = UIView()
     var keywordPlusButton = UIButton()
+    var KeywordEditButton = UIButton()
     var contentX = 17
     var contentY = 35
     var checkKeyword = false
+    var isKeywordEditing = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -246,21 +249,27 @@ extension KeywordSettingVC: UITableViewDelegate{
         footer = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 200))
         //footer.backgroundColor = .systemRed
         
-        userKeywordTitleLabel = UILabel(frame: CGRect(x: 17, y: 0, width: view.frame.size.width, height: 30))
+        userKeywordTitleLabel = UILabel(frame: CGRect(x: 16, y: 0, width: view.frame.size.width - 150, height: 30))
         userKeywordTitleLabel.text = "찾고 있는 가치(단어)가 없으세요?"
         userKeywordTitleLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.regular)
         
-        keywordPlusButton = UIButton(frame: CGRect(x: 17, y: 35, width: 32, height: 32))
-        
-        //keywordPlusButton.setImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
+        keywordPlusButton = UIButton(frame: CGRect(x: 16, y: 35, width: 32, height: 32))
         keywordPlusButton.setBackgroundImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
         keywordPlusButton.tintColor = originButtonColor
-        //keywordPlusButton.backgroundColor = .brown
-        
         keywordPlusButton.addTarget(self, action: #selector(goToAddUserKeyword), for: .touchUpInside)
+        
+        KeywordEditButton = UIButton(frame: CGRect(x: view.frame.size.width - 70 , y: 0, width: 50, height: 30))
+        
+        KeywordEditButton.setTitle("", for: .normal)
+        KeywordEditButton.setTitleColor(.blue, for: .normal)
+        KeywordEditButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.regular)
+        
+        //KeywordEditButton.backgroundColor = .red
+        
         
         footer.addSubview(userKeywordTitleLabel)
         footer.addSubview(keywordPlusButton)
+        footer.addSubview(KeywordEditButton)
         
         print(KeywordTableView.frame.height - 60)
         //오토레이아웃을 코드로 지정 할 때 사용
@@ -288,40 +297,62 @@ extension KeywordSettingVC: UITableViewDelegate{
     
     func addUserKeyword(){
         
-            //title label 바꾸기
+        //title label 바꾸기
+    
+        if userKeywordList.count > 0{
             userKeywordTitleLabel.text = "내가 추가한 키워드"
             userKeywordTitleLabel.textColor = .orange
             userKeywordTitleLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.bold)
             
-            let lastIndex = userKeywordList.count - 1
-            
-            let KeywordText = userKeywordList[lastIndex]
-            
-            let buttonWidth = KeywordText.count * 17 + 24
-            
-            let myKeywordButton = UIButton(frame: CGRect(x: contentX, y: contentY, width: buttonWidth, height: 32))
-            contentX += buttonWidth + 8
-            myKeywordButton.titleEdgeInsets = UIEdgeInsets(top: 4, left: 12, bottom: 5, right: 12)
-            myKeywordButton.setTitle(KeywordText, for: .normal)
-            myKeywordButton.setTitleColor(.white, for: .normal)
-            myKeywordButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.medium)
-            myKeywordButton.layer.cornerRadius = 15
-            myKeywordButton.backgroundColor = originButtonColor
-            
-            myKeywordButton.addTarget(self, action: #selector(selectedUserKeyword), for: .touchUpInside)
-            
-            
-            let systemSize = Int(view.frame.size.width)
+            KeywordEditButton.setTitle("수정", for: .normal)
+        }
+        
+        let lastIndex = userKeywordList.count - 1
+        
+        let KeywordText = userKeywordList[lastIndex]
+        
+        let buttonWidth = KeywordText.count * 17 + 24
+        
+        let myKeywordButton = UIButton(frame: CGRect(x: contentX, y: contentY, width: buttonWidth, height: 32))
+        contentX += buttonWidth + 8
+        myKeywordButton.titleEdgeInsets = UIEdgeInsets(top: 4, left: 12, bottom: 5, right: 12)
+        myKeywordButton.setTitle(KeywordText, for: .normal)
+        myKeywordButton.setTitleColor(.white, for: .normal)
+        myKeywordButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.medium)
+        myKeywordButton.layer.cornerRadius = 15
+        myKeywordButton.backgroundColor = originButtonColor
+        myKeywordButton.contentVerticalAlignment = .center
+        
+        
+        myKeywordButton.setImage(UIImage(systemName: "multiply.circle.fill"), for: .normal)
+        
+        myKeywordButton.imageView?.isHidden = true
+        myKeywordButton.semanticContentAttribute = .forceRightToLeft
+//        myKeywordButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
+//
+        
+        myKeywordButton.tintColor = .white
+        
+        myKeywordButton.addTarget(self, action: #selector(selectedUserKeyword), for: .touchUpInside)
+        
+        print("-----")
+        //print(myKeywordButton.imageView)
+        //footer.addSubview(myKeywordButton.imageView!)
+        if userKeywordList.count % 2 == 1 {
+            myKeywordButton.imageView?.isHidden = true
+        }
+        
+        let systemSize = Int(view.frame.size.width)
 
-            if contentX > systemSize - 100 {
-                contentX = 17
-                contentY += 48
-                
-                keywordPlusButton.frame.origin.y = CGFloat(contentY)
-            }
+        if contentX > systemSize - 100 {
+            contentX = 17
+            contentY += 48
             
-            footer.addSubview(myKeywordButton)
-            keywordPlusButton.frame.origin.x = CGFloat(contentX)
+            keywordPlusButton.frame.origin.y = CGFloat(contentY)
+        }
+        
+        footer.addSubview(myKeywordButton)
+        keywordPlusButton.frame.origin.x = CGFloat(contentX)
             
         
        // myKeywordButton.sizeThatFits(CGSize(width: buttonWidth, height: 32))
