@@ -171,7 +171,7 @@ extension EvaluationVC {
         view.addSubview(currentWeekButton)
         currentWeekButton.addTarget(self, action: #selector(backToCurrentWeek), for: .touchUpInside)
         currentWeekButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        currentWeekButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80).isActive = true
+        currentWeekButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -24).isActive = true
         currentWeekButton.widthAnchor.constraint(equalToConstant: 81).isActive = true
         currentWeekButton.heightAnchor.constraint(equalToConstant: 32).isActive = true
         currentWeekButton.setTitle("이번주", for: .normal)
