@@ -18,7 +18,7 @@ class RetrospectiveTabCVC: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setTableView()
-        setKeyboardGesture()
+//        setKeyboardGesture()
     }
 }
 
@@ -70,10 +70,10 @@ extension RetrospectiveTabCVC {
         retrospectiveTableView.rowHeight = UITableView.automaticDimension
     }
     
-    private func setKeyboardGesture() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-        self.addGestureRecognizer(tap)
-    }
+//    private func setKeyboardGesture() {
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+//        self.addGestureRecognizer(tap)
+//    }
     
     @objc func dismissKeyboard() {
         self.endEditing(true)

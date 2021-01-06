@@ -9,16 +9,18 @@
 import UIKit
 
 protocol ThreePartCellDelegate {
-	func moreTapped(cell: ThreePartDynaTableViewCell)
+	func moreTapped(cell: DetailTVC)
 }
 
-class ThreePartDynaTableViewCell: UITableViewCell {
+class DetailTVC: UITableViewCell {
 
-	@IBOutlet weak var labelTitle: UILabel!
-	@IBOutlet weak var labelBody: UILabel!
+    @IBOutlet weak var labelNum: UILabel!
+    @IBOutlet weak var labelTitle: UILabel!
+    @IBOutlet weak var labelSubTitle: UILabel!
+    @IBOutlet weak var labelBody: UILabel!
 	
 	@IBOutlet weak var buttonMore: UIButton!
-	
+    
 	@IBOutlet weak var sizingLabel: UILabel!
 	
 	
@@ -32,14 +34,16 @@ class ThreePartDynaTableViewCell: UITableViewCell {
 			isExpanded = !isExpanded
 			
 			sizingLabel.numberOfLines = isExpanded ? 0 : 1
+            labelBody.textColor = isExpanded ? UIColor.black : UIColor.white
 			buttonMore.setTitle(isExpanded ? "Read less..." : "Read more...", for: .normal)
 			
-			delegate?.moreTapped(cell: self)
+            delegate?.moreTapped(cell: self)
+
 		}
 		
 	}
 	
-	public func myInit(theTitle: String, theBody: String) {
+    public func myInit(theTitle: String, theBody: String) {
 		
 		isExpanded = false
 		
@@ -55,7 +59,8 @@ class ThreePartDynaTableViewCell: UITableViewCell {
 	
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        setUI()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -64,4 +69,14 @@ class ThreePartDynaTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+}
+
+extension DetailTVC {
+    func setUI(){
+        labelNum.text = "01"
+        labelNum.font = .boldSystemFont(ofSize: 62)
+        labelTitle.font = .boldSystemFont(ofSize: 28)
+        labelSubTitle.font = .systemFont(ofSize: 12)
+//        labelBody.textColor = .white
+    }
 }

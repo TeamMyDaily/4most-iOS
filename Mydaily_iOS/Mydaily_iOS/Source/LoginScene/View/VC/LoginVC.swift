@@ -18,7 +18,7 @@ class LoginVC: UIViewController {
 
         changeTextFields()
         setUI()
-        setupNavigationBar(.clear)
+//        setupNavigationBar(.clear)
     }
     
     @IBAction func registerButton(_ sender: Any) {
@@ -37,14 +37,14 @@ extension LoginVC {
         pwTextField.isSecureTextEntry = true
     }
     
-    func setupNavigationBar(_ color: UIColor) {
-        guard let navigationBar = self.navigationController?.navigationBar else { return }
-        
-        navigationBar.isTranslucent = true
-        navigationBar.backgroundColor = color
-        navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationBar.shadowImage = UIImage()
-    }
+//    func setupNavigationBar(_ color: UIColor) {
+//        guard let navigationBar = self.navigationController?.navigationBar else { return }
+//        
+//        navigationBar.isTranslucent = true
+//        navigationBar.backgroundColor = color
+//        navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+//        navigationBar.shadowImage = UIImage()
+//    }
 }
 
 // MARK: - TextField,Button

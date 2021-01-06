@@ -8,26 +8,25 @@
 
 import UIKit
 
-class SampleThreePartTableViewController: UITableViewController, ThreePartCellDelegate {
+class DetailVC: UITableViewController, ThreePartCellDelegate {
     
-//    var myArray = ["4개의 기록이 당신을 기다리고 있어요"]
+
     var myArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.rowHeight = UITableView.automaticDimension
-        self.tableView.estimatedRowHeight = 100; //Set this to any value that works for you.
-        
+        setTableVC()
+
         // create some random data
-        for _ in 1...15 {
+        for _ in 1...4 {
             
             let n = arc4random_uniform(6) + 4
-            var str = "4개의 기록이 당신을 기다리고 있어요 \n"
+            var str = ""
             for i in 1..<n {
                 str += "Line \(i)\n"
             }
-            str += "Line \(n)"
+            
             
             myArray.append(str)
             
@@ -42,13 +41,13 @@ class SampleThreePartTableViewController: UITableViewController, ThreePartCellDe
     }
     
     // MARK: - my cell delegate
-    func moreTapped(cell: ThreePartDynaTableViewCell) {
+    func moreTapped(cell: DetailTVC) {
         
         // this will "refresh" the row heights, without reloading
         tableView.beginUpdates()
         tableView.endUpdates()
         
-        // do anything else you want because the switch was changed
+        
         
     }
     
@@ -67,12 +66,12 @@ class SampleThreePartTableViewController: UITableViewController, ThreePartCellDe
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "threePartCellID", for: indexPath) as! ThreePartDynaTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "threePartCellID", for: indexPath) as! DetailTVC
         
         // Configure the cell...
         
         let str = myArray[indexPath.row]
-        
+        cell.labelBody.textColor = .white
         cell.myInit(theTitle: "아웃풋", theBody: str)
         
         cell.delegate = self
@@ -80,4 +79,14 @@ class SampleThreePartTableViewController: UITableViewController, ThreePartCellDe
         return cell
     }
     
+    
+}
+//SampleThreePartTableViewController
+extension DetailVC {
+    func setTableVC(){
+        tableView.estimatedRowHeight = 100;
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.separatorInset.right = 16
+        tableView.separatorInset.left = 16
+    }
 }
