@@ -9,6 +9,8 @@ import UIKit
 
 class EvaluationDetailVC: UIViewController {
     @IBOutlet weak var navigationTitleLabel: UILabel!
+    @IBOutlet weak var keywordLabel: UILabel!
+    @IBOutlet weak var weekLabel: UILabel!
     @IBOutlet weak var keywordDetailTableView: UITableView!
     
     var listCount = 0
@@ -20,6 +22,7 @@ class EvaluationDetailVC: UIViewController {
         super.viewDidLoad()
         setNavigationBar()
         setTableViewDelegate()
+        setLabel()
     }
     
     @IBAction func touchUpBack(_ sender: Any) {
@@ -29,7 +32,7 @@ class EvaluationDetailVC: UIViewController {
 
 extension EvaluationDetailVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -38,23 +41,18 @@ extension EvaluationDetailVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailHeaderTVC.identifier) as? DetailHeaderTVC else {
-                return UITableViewCell()
-            }
-            cell.selectionStyle = .none
-            return cell
-        } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailGoalTVC.identifier) as? DetailGoalTVC else {
                 return UITableViewCell()
             }
             cell.selectionStyle = .none
             return cell
-        } else if indexPath.section == 2 {
+        } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailRecordTVC.identifier) as? DetailRecordTVC else {
                 return UITableViewCell()
             }
             cell.selectionStyle = .none
             return cell
+            
         }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailRecordContentTVC.identifier) as? DetailRecordContentTVC else {
             return UITableViewCell()
@@ -68,11 +66,9 @@ extension EvaluationDetailVC: UITableViewDataSource {
 extension EvaluationDetailVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 104
+            return 91
         } else if indexPath.section == 1 {
-            return 75
-        } else if indexPath.section == 2 {
-            return 63
+            return 42
         }
         var calculateHeight: CGFloat = 0
         if listCount % 2 == 0 {
@@ -90,7 +86,7 @@ extension EvaluationDetailVC: UITableViewDelegate {
 extension EvaluationDetailVC {
     private func setNavigationBar() {
         navigationTitleLabel.text = "회고"
-        navigationTitleLabel.font = .boldSystemFont(ofSize: 21)
+        navigationTitleLabel.font = .boldSystemFont(ofSize: 20)
     }
     
     private func setTableViewDelegate() {
@@ -99,5 +95,13 @@ extension EvaluationDetailVC {
         keywordDetailTableView.rowHeight = UITableView.automaticDimension
         keywordDetailTableView.estimatedRowHeight = 100
         keywordDetailTableView.separatorColor = .clear
+    }
+    
+    private func setLabel() {
+        keywordLabel.font = .boldSystemFont(ofSize: 32)
+        keywordLabel.text = "아웃풋"
+        weekLabel.font = .systemFont(ofSize: 12)
+        weekLabel.text = "20년 12월 3주"
+        weekLabel.textColor = .lightGray
     }
 }

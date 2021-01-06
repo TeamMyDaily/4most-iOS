@@ -28,5 +28,7 @@ extension DetailRecordTVC {
         titleLabel.font = .boldSystemFont(ofSize: 18)
         titleLabel.text = "하루 기록"
         recordCountLabel.font = .systemFont(ofSize: 12)
+        recordCountLabel.text = "총 5개"
+        recordCountLabel.textColor = .lightGray
     }
 }

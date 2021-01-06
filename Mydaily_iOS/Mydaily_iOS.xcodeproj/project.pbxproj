@@ -29,7 +29,6 @@
 		EDA9CA8425A1A74D00BF46C1 /* DetailRecordContentTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA9CA8325A1A74D00BF46C1 /* DetailRecordContentTVC.swift */; };
 		EDAAEB7D25A01B550024E3E4 /* EvaluationDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAAEB7C25A01B550024E3E4 /* EvaluationDetailVC.swift */; };
 		EDB8F39625A338EE00F39A09 /* RetrospectiveWriteGoodTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB8F39525A338EE00F39A09 /* RetrospectiveWriteGoodTVC.swift */; };
-		EDBF738D25A1631700ECDEB9 /* DetailHeaderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF738C25A1631700ECDEB9 /* DetailHeaderTVC.swift */; };
 		EDBF739025A1634000ECDEB9 /* DetailGoalTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF738F25A1634000ECDEB9 /* DetailGoalTVC.swift */; };
 		EDBF739325A1636300ECDEB9 /* DetailRecordTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF739225A1636300ECDEB9 /* DetailRecordTVC.swift */; };
 		EDBF739725A17BD900ECDEB9 /* DetailRecordCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF739625A17BD900ECDEB9 /* DetailRecordCVC.swift */; };
@@ -63,7 +62,6 @@
 		EDA9CA8325A1A74D00BF46C1 /* DetailRecordContentTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecordContentTVC.swift; sourceTree = "<group>"; };
 		EDAAEB7C25A01B550024E3E4 /* EvaluationDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationDetailVC.swift; sourceTree = "<group>"; };
 		EDB8F39525A338EE00F39A09 /* RetrospectiveWriteGoodTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrospectiveWriteGoodTVC.swift; sourceTree = "<group>"; };
-		EDBF738C25A1631700ECDEB9 /* DetailHeaderTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeaderTVC.swift; sourceTree = "<group>"; };
 		EDBF738F25A1634000ECDEB9 /* DetailGoalTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGoalTVC.swift; sourceTree = "<group>"; };
 		EDBF739225A1636300ECDEB9 /* DetailRecordTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecordTVC.swift; sourceTree = "<group>"; };
 		EDBF739625A17BD900ECDEB9 /* DetailRecordCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecordCVC.swift; sourceTree = "<group>"; };
@@ -261,7 +259,6 @@
 			children = (
 				ED266032259F019B00A376C0 /* EvaluationHeaderTVC.swift */,
 				ED266035259F032000A376C0 /* EvaluationKeywordTVC.swift */,
-				EDBF738C25A1631700ECDEB9 /* DetailHeaderTVC.swift */,
 				EDBF738F25A1634000ECDEB9 /* DetailGoalTVC.swift */,
 				EDBF739225A1636300ECDEB9 /* DetailRecordTVC.swift */,
 				EDA9CA8325A1A74D00BF46C1 /* DetailRecordContentTVC.swift */,
@@ -388,7 +385,6 @@
 				EDB8F39625A338EE00F39A09 /* RetrospectiveWriteGoodTVC.swift in Sources */,
 				ED266029259EF02E00A376C0 /* EvaluationTabCVC.swift in Sources */,
 				EDA9CA8425A1A74D00BF46C1 /* DetailRecordContentTVC.swift in Sources */,
-				EDBF738D25A1631700ECDEB9 /* DetailHeaderTVC.swift in Sources */,
 				EDBF739725A17BD900ECDEB9 /* DetailRecordCVC.swift in Sources */,
 				EDBF739025A1634000ECDEB9 /* DetailGoalTVC.swift in Sources */,
 				EDC1642D25A46C3800CD65B0 /* TableViewInsideCollectionViewDelegate.swift in Sources */,

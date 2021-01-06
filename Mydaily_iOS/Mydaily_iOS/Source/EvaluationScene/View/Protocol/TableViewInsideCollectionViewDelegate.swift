@@ -8,6 +8,6 @@
 import Foundation
 
 protocol TableViewInsideCollectionViewDelegate: class {
-    func cellTapedEvaluation()
+    func cellTapedEvaluation(dvc: EvaluationDetailVC)
     func cellTapedRetrospective(dvc: RetrospectiveWriteVC)
 }

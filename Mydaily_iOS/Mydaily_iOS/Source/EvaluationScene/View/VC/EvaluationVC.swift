@@ -202,10 +202,7 @@ extension EvaluationVC {
 }
 
 extension EvaluationVC: TableViewInsideCollectionViewDelegate {
-    func cellTapedEvaluation() {
-        guard let dvc = self.storyboard?.instantiateViewController(identifier: "EvaluationDetailVC") as? EvaluationDetailVC else {
-            return
-        }
+    func cellTapedEvaluation(dvc: EvaluationDetailVC) {
         self.navigationController?.pushViewController(dvc, animated: true)
     }
     
