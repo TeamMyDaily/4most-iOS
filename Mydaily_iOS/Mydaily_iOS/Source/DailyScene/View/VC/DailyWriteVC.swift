@@ -15,6 +15,7 @@ class DailyWriteVC: UIViewController {
     @IBOutlet weak var textViewCount: UILabel!
     @IBOutlet weak var todayTextView: UITextView!
     @IBOutlet weak var scoreSlider: UISlider!
+    @IBOutlet weak var todayScore: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,13 @@ class DailyWriteVC: UIViewController {
         setUI()
         todayTitle.delegate = self
         placeholderSetting()
+        
+    }
+    @IBAction func changeSlider(_ sender: Any) {
+        scoreSlider.value = roundf(scoreSlider.value)
+        todayScore.text = "\(Int(scoreSlider.value))점"
+        scoreSlider.thumbTintColor = .warmPink
+        todayScore.textColor = .warmPink
     }
 }
 
@@ -91,7 +99,7 @@ extension DailyWriteVC {
         todayTextView.layer.cornerRadius = 15
         
         textViewCount.textColor = .warmPink
-
+        scoreSlider.thumbTintColor = .gray
         
     }
     
@@ -148,5 +156,9 @@ extension DailyWriteVC: UITextViewDelegate {
         guard let str = textView.text else { return true }
         let newLength = str.count + text.count -  range.length
         return newLength <= 500
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        textViewCount.text = "\(textView.text.count)"
     }
 }
