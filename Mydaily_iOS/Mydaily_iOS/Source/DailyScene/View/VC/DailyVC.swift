@@ -29,7 +29,7 @@ class DailyVC: UIViewController {
 //MARK: - UI
 extension DailyVC {
     func setUI() {
-        headerView.layer.addBorder([.top,.bottom], color: UIColor.blueGray20, width: 1.0)
+        headerView.layer.addBorder([.top,.bottom], color: UIColor.blueGray20, width: 1.0, move: 0)
         
         datePicker.maximumDate = Date()
         

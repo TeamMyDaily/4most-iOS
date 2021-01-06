@@ -35,6 +35,11 @@ extension LoginVC {
     func setUI() {
         loginButton.isEnabled = false
         pwTextField.isSecureTextEntry = true
+        
+        idTextField.layer.cornerRadius = 15
+        idTextField.layer.borderColor = UIColor.warmPink.cgColor
+        idTextField.layer.borderWidth = 1
+        idTextField.setLeftPaddingPoints(15)
     }
     
 //    func setupNavigationBar(_ color: UIColor) {

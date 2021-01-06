@@ -179,7 +179,7 @@ extension UIView {
 }
 
 extension CALayer {
-  func addBorder(_ arr_edge: [UIRectEdge], color: UIColor, width: CGFloat) {
+    func addBorder(_ arr_edge: [UIRectEdge], color: UIColor, width: CGFloat, move: CGFloat) {
     for edge in arr_edge {
       let border = CALayer()
       switch edge {
@@ -187,7 +187,7 @@ extension CALayer {
             border.frame = CGRect.init(x: 0, y: 0, width: frame.width, height: width)
             break
         case UIRectEdge.bottom:
-            border.frame = CGRect.init(x: 0, y: frame.height - width, width: frame.width, height: width)
+            border.frame = CGRect.init(x: 0, y: frame.height - width + move, width: frame.width, height: width)
             break
         case UIRectEdge.left:
             border.frame = CGRect.init(x: 0, y: 0, width: width, height: frame.height)
