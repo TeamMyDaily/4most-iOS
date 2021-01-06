@@ -16,6 +16,7 @@ class DailyWriteVC: UIViewController {
     @IBOutlet weak var todayTextView: UITextView!
     @IBOutlet weak var scoreSlider: UISlider!
     @IBOutlet weak var todayScore: UILabel!
+    @IBOutlet var sliderIndex: [UIView]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,13 +25,27 @@ class DailyWriteVC: UIViewController {
         setUI()
         todayTitle.delegate = self
         placeholderSetting()
-        
+        setSliderUI()
+    }
+    
+    func setSliderUI(){
+        for i in 0...4{
+            sliderIndex[i].layer.cornerRadius = sliderIndex[i].frame.height/2
+            sliderIndex[i].layer.backgroundColor = UIColor.gray30.cgColor
+        }
     }
     @IBAction func changeSlider(_ sender: Any) {
         scoreSlider.value = roundf(scoreSlider.value)
         todayScore.text = "\(Int(scoreSlider.value))점"
         scoreSlider.thumbTintColor = .warmPink
         todayScore.textColor = .warmPink
+        
+        for i in 0..<Int(scoreSlider.value) {
+            sliderIndex[i].layer.backgroundColor = UIColor.warmPink.cgColor
+        }
+        for i in Int(scoreSlider.value)..<5 {
+            sliderIndex[i].layer.backgroundColor = UIColor.gray30.cgColor
+        }
     }
 }
 

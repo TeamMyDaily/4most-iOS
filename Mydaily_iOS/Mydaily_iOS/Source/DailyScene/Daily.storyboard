@@ -164,8 +164,76 @@
                                 <color key="textColor" red="0.75686274509999996" green="0.75686274509999996" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="3" minValue="1" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="QQQ-RI-K9C">
-                                <rect key="frame" x="14" y="407" width="347" height="31"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4af-eA-ubE">
+                                <rect key="frame" x="23" y="408" width="28" height="28"/>
+                                <color key="backgroundColor" red="1" green="0.45882352939999999" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="28" id="A4o-u0-Mfm"/>
+                                    <constraint firstAttribute="height" constant="28" id="J8v-8r-neh"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="ibCornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="05j-BQ-KAI">
+                                <rect key="frame" x="98.5" y="408" width="28" height="28"/>
+                                <color key="backgroundColor" red="1" green="0.45882352939999999" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="28" id="cvd-XZ-uzu"/>
+                                    <constraint firstAttribute="height" constant="28" id="dwU-rA-g5a"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="ibCornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nsa-kO-pWK">
+                                <rect key="frame" x="248.5" y="408" width="28" height="28"/>
+                                <color key="backgroundColor" red="1" green="0.45882352939999999" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="FVq-o0-AZA"/>
+                                    <constraint firstAttribute="width" constant="28" id="aSo-eH-QKp"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="ibCornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oLD-Op-agT">
+                                <rect key="frame" x="324" y="408" width="28" height="28"/>
+                                <color key="backgroundColor" red="1" green="0.45882352939999999" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="28" id="6P0-J9-2Ws"/>
+                                    <constraint firstAttribute="height" constant="28" id="hNu-Gp-sYl"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="ibCornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hlI-bI-2kl">
+                                <rect key="frame" x="173.5" y="408" width="28" height="28"/>
+                                <color key="backgroundColor" red="1" green="0.45882352939999999" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="28" id="4Sw-Yz-h5l"/>
+                                    <constraint firstAttribute="height" constant="28" id="hRp-ib-C7Y"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="ibCornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="QQQ-RI-K9C">
+                                <rect key="frame" x="21.5" y="407" width="332" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="328" id="aFU-WR-leG"/>
+                                </constraints>
                                 <color key="minimumTrackTintColor" red="1" green="0.45882352939999999" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="thumbTintColor" red="1" green="0.45882352939999999" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <userDefinedRuntimeAttributes>
@@ -177,46 +245,6 @@
                                     <action selector="changeSlider:" destination="azC-0r-meV" eventType="valueChanged" id="GvH-yP-w8c"/>
                                 </connections>
                             </slider>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4af-eA-ubE">
-                                <rect key="frame" x="16" y="409" width="28" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.45882352939999999" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="ibCornerRadius">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="05j-BQ-KAI">
-                                <rect key="frame" x="95" y="408" width="28" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.45882352939999999" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="ibCornerRadius">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oLD-Op-agT">
-                                <rect key="frame" x="330" y="408" width="28" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.45882352939999999" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="ibCornerRadius">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nsa-kO-pWK">
-                                <rect key="frame" x="250" y="409" width="28" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.45882352939999999" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="ibCornerRadius">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JYQ-Da-hyh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -224,7 +252,10 @@
                             <constraint firstItem="j4f-ye-Flh" firstAttribute="top" secondItem="JYQ-Da-hyh" secondAttribute="top" constant="24" id="07t-ZK-2ua"/>
                             <constraint firstItem="JYQ-Da-hyh" firstAttribute="trailing" secondItem="VPN-o4-WmW" secondAttribute="trailing" constant="16" id="14b-vE-t5X"/>
                             <constraint firstItem="JYQ-Da-hyh" firstAttribute="trailing" secondItem="Bwu-DT-VSK" secondAttribute="trailing" constant="16" id="2hf-Ex-ZtC"/>
+                            <constraint firstItem="hlI-bI-2kl" firstAttribute="centerY" secondItem="QQQ-RI-K9C" secondAttribute="centerY" id="3X4-PD-esV"/>
+                            <constraint firstItem="nsa-kO-pWK" firstAttribute="leading" secondItem="hlI-bI-2kl" secondAttribute="trailing" constant="47" id="4Hf-Xg-ST8"/>
                             <constraint firstItem="fYt-GT-kOD" firstAttribute="centerY" secondItem="9zh-Ga-c0O" secondAttribute="centerY" id="4P7-hO-KnQ"/>
+                            <constraint firstItem="oLD-Op-agT" firstAttribute="centerY" secondItem="QQQ-RI-K9C" secondAttribute="centerY" id="4U6-GH-y7E"/>
                             <constraint firstItem="j4f-ye-Flh" firstAttribute="leading" secondItem="JYQ-Da-hyh" secondAttribute="leading" constant="16" id="7KU-xM-cRw"/>
                             <constraint firstItem="Kpa-XO-vVL" firstAttribute="leading" secondItem="BdB-kj-Kg2" secondAttribute="trailing" id="8RG-2o-mgX"/>
                             <constraint firstItem="9zh-Ga-c0O" firstAttribute="top" secondItem="VPN-o4-WmW" secondAttribute="bottom" constant="8" id="B9o-HL-9a0"/>
@@ -235,14 +266,20 @@
                             <constraint firstItem="VPN-o4-WmW" firstAttribute="top" secondItem="cSF-hQ-BbA" secondAttribute="bottom" constant="24" id="RgJ-UI-Pha"/>
                             <constraint firstItem="cSF-hQ-BbA" firstAttribute="leading" secondItem="JYQ-Da-hyh" secondAttribute="leading" constant="16" id="UIR-sH-mOq"/>
                             <constraint firstItem="Kpa-XO-vVL" firstAttribute="centerY" secondItem="cSF-hQ-BbA" secondAttribute="centerY" id="YRh-ZN-41P"/>
+                            <constraint firstItem="hlI-bI-2kl" firstAttribute="centerX" secondItem="JYQ-Da-hyh" secondAttribute="centerX" id="Yza-fY-QUM"/>
                             <constraint firstItem="Bwu-DT-VSK" firstAttribute="centerY" secondItem="CGn-8r-6vN" secondAttribute="centerY" id="bMz-mR-Pp0"/>
+                            <constraint firstItem="hlI-bI-2kl" firstAttribute="leading" secondItem="05j-BQ-KAI" secondAttribute="trailing" constant="47" id="cvE-cT-qt4"/>
                             <constraint firstItem="cSF-hQ-BbA" firstAttribute="top" secondItem="j4f-ye-Flh" secondAttribute="bottom" constant="32" id="dj7-69-HIN"/>
+                            <constraint firstItem="05j-BQ-KAI" firstAttribute="centerY" secondItem="QQQ-RI-K9C" secondAttribute="centerY" id="gBO-jm-8ex"/>
+                            <constraint firstItem="nsa-kO-pWK" firstAttribute="centerY" secondItem="QQQ-RI-K9C" secondAttribute="centerY" id="gdH-cE-nbd"/>
                             <constraint firstItem="JYQ-Da-hyh" firstAttribute="trailing" secondItem="cSF-hQ-BbA" secondAttribute="trailing" constant="16" id="hIV-xd-uG8"/>
                             <constraint firstItem="JYQ-Da-hyh" firstAttribute="trailing" secondItem="Kpa-XO-vVL" secondAttribute="trailing" constant="16" id="iE3-mx-k1D"/>
+                            <constraint firstItem="QQQ-RI-K9C" firstAttribute="centerX" secondItem="JYQ-Da-hyh" secondAttribute="centerX" id="ljI-8s-P4o"/>
+                            <constraint firstItem="4af-eA-ubE" firstAttribute="centerY" secondItem="QQQ-RI-K9C" secondAttribute="centerY" id="nR7-7k-tn9"/>
                             <constraint firstItem="9zh-Ga-c0O" firstAttribute="leading" secondItem="fYt-GT-kOD" secondAttribute="trailing" id="ouz-9Y-YAO"/>
                             <constraint firstItem="JYQ-Da-hyh" firstAttribute="trailing" secondItem="9zh-Ga-c0O" secondAttribute="trailing" constant="33" id="rKf-M3-Coh"/>
-                            <constraint firstItem="JYQ-Da-hyh" firstAttribute="trailing" secondItem="QQQ-RI-K9C" secondAttribute="trailing" constant="16" id="vb8-y3-MGt"/>
-                            <constraint firstItem="QQQ-RI-K9C" firstAttribute="leading" secondItem="JYQ-Da-hyh" secondAttribute="leading" constant="16" id="wyG-gL-CgA"/>
+                            <constraint firstItem="05j-BQ-KAI" firstAttribute="leading" secondItem="4af-eA-ubE" secondAttribute="trailing" constant="47.5" id="ub9-Nq-zRo"/>
+                            <constraint firstItem="oLD-Op-agT" firstAttribute="leading" secondItem="nsa-kO-pWK" secondAttribute="trailing" constant="47.5" id="v1Q-ZC-XVp"/>
                             <constraint firstItem="BdB-kj-Kg2" firstAttribute="centerY" secondItem="cSF-hQ-BbA" secondAttribute="centerY" id="xfa-TA-elb"/>
                         </constraints>
                     </view>
@@ -254,6 +291,11 @@
                         <outlet property="todayScore" destination="Bwu-DT-VSK" id="m2A-rP-eE4"/>
                         <outlet property="todayTextView" destination="VPN-o4-WmW" id="Orl-g6-jho"/>
                         <outlet property="todayTitle" destination="cSF-hQ-BbA" id="0BN-8y-Il6"/>
+                        <outletCollection property="sliderIndex" destination="4af-eA-ubE" collectionClass="NSMutableArray" id="3MY-o6-35B"/>
+                        <outletCollection property="sliderIndex" destination="05j-BQ-KAI" collectionClass="NSMutableArray" id="t2T-8I-soZ"/>
+                        <outletCollection property="sliderIndex" destination="hlI-bI-2kl" collectionClass="NSMutableArray" id="OEH-hx-Jbe"/>
+                        <outletCollection property="sliderIndex" destination="nsa-kO-pWK" collectionClass="NSMutableArray" id="wpQ-Kh-07e"/>
+                        <outletCollection property="sliderIndex" destination="oLD-Op-agT" collectionClass="NSMutableArray" id="70p-lY-2kt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qoc-jH-dR0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
