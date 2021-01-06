@@ -34,18 +34,7 @@ extension RetrospectiveWriteShameTVC: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         textView.textColor = .black
         
-        if textView.text == placeholder {
-            textView.text = ""
-            textView.bounds.size.height = UIScreen.main.bounds.height / 2.5
-            let path = IndexPath.init(row: 0, section: 1)
-            let cellFrame = delegate?.cellForRow(at: path)
-            cellFrame?.frame.size.height = UIScreen.main.bounds.height / 2.5 + 62
-            delegate?.bounds.size.height += cellFrame?.frame.size.height ?? 0
-//            delegate?.rowHeight = textView.bounds.size.height + 62
-            delegate?.beginUpdates()
-            delegate?.endUpdates()
-            self.setEditing(true, animated: true)
-        }
+        changeTextView()
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -92,5 +81,21 @@ extension RetrospectiveWriteShameTVC {
         writeTextView.textContainerInset.right = 16
         writeTextView.textContainerInset.bottom = 16
         writeTextView.textContainerInset.top = 16
+    }
+    
+    private func changeTextView() {
+        if writeTextView.text == placeholder {
+            self.writeTextView.text = ""
+            self.writeTextView.bounds.size.height = UIScreen.main.bounds.height / 2.5
+            let path = IndexPath.init(row: 0, section: 1)
+            let cellFrame = delegate?.cellForRow(at: path)
+            cellFrame?.frame.size.height = UIScreen.main.bounds.height / 2.5 + 62
+            delegate?.bounds.size.height += cellFrame?.frame.size.height ?? 0
+            //delegate?.rowHeight = self.writeTextView.bounds.size.height + 62
+            delegate?.beginUpdates()
+            delegate?.endUpdates()
+            
+            self.setEditing(true, animated: true)
+        }
     }
 }

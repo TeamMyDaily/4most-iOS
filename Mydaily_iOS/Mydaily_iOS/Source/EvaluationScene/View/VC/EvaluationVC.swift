@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol TableViewInsideCollectionViewDelegate: class {
-    func cellTaped()
-}
-
 class EvaluationVC: UIViewController {
     @IBOutlet weak var weekLabel: UILabel!
     @IBOutlet weak var evaluationTabButton: UIButton!
@@ -36,9 +32,9 @@ class EvaluationVC: UIViewController {
                 IndexPath(item: 0, section: 0)
             }), keywordCollectionView.cellForItem(at: indexPath) != nil else {
                 return
-            }
+        }
         keywordCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
-    
+        
         setButtonState(enableButton: evaluationTabButton, disableButton: retrospectiveTabButton, enableTabBar: evaluationTabBar, unableTabBar: retrospectiveTabBar)
         
         tabBarController?.tabBar.isHidden = false
@@ -50,7 +46,7 @@ class EvaluationVC: UIViewController {
                 IndexPath(item: 0, section: 1)
             }), keywordCollectionView.cellForItem(at: indexPath) != nil else {
                 return
-            }
+        }
         keywordCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
         
         setButtonState(enableButton: retrospectiveTabButton, disableButton: evaluationTabButton, enableTabBar: retrospectiveTabBar, unableTabBar: evaluationTabBar)
@@ -81,6 +77,7 @@ extension EvaluationVC: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RetrospectiveTabCVC.identifier, for: indexPath) as? RetrospectiveTabCVC else {
             return UICollectionViewCell()
         }
+        cell.delegate = self
         return cell
     }
 }
@@ -140,10 +137,14 @@ extension EvaluationVC {
 }
 
 extension EvaluationVC: TableViewInsideCollectionViewDelegate {
-    func cellTaped() {
+    func cellTapedEvaluation() {
         guard let dvc = self.storyboard?.instantiateViewController(identifier: "EvaluationDetailVC") as? EvaluationDetailVC else {
             return
         }
         self.navigationController?.pushViewController(dvc, animated: true)
+    }
+    
+    func cellTapedRetrospective(dvc: RetrospectiveWriteVC) {
+        self.present(dvc, animated: true, completion: nil)
     }
 }

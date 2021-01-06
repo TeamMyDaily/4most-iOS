@@ -15,60 +15,54 @@ class RetrospectiveWriteGoodTVC: UITableViewCell {
     @IBOutlet weak var limitNumberLabel: UILabel!
     @IBOutlet weak var countNumberLabel: UILabel!
     
-    var delegate: UITableView?
+    var delegate: TableViewInsideCollectionViewDelegate?
+    var tableView: UITableView?
     
-    var placeholder = ""
+    var titleText: String = ""
+    var placeholderText: String = ""
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setTextView()
         setLabel()
+        let gesture =  UITapGestureRecognizer(target: self, action: #selector(selectView))
+        writeTextView.addGestureRecognizer(gesture)
+        writeTextView.isUserInteractionEnabled = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
+    @objc func selectView() {
+        guard let dvc =  UIStoryboard.init(name: "Evaluation", bundle: nil).instantiateViewController(identifier: "RetrospectiveWriteVC") as? RetrospectiveWriteVC else {
+            return
+        }
+        //dvc.setLabel(title: titleText, placeholder: placeholderText)
+        dvc.saveContent = { text in
+            if text == self.placeholderText {
+                self.writeTextView.textColor = UIColor.black.withAlphaComponent(0.3)
+            } else {
+                self.writeTextView.textColor = .black
+            }
+            self.writeTextView.text = text
+            self.writeTextView.bounds.size.height = 328
+            self.tableView?.beginUpdates()
+            self.tableView?.endUpdates()
+        }
+        delegate?.cellTapedRetrospective(dvc: dvc)
+    }
 }
 
-extension RetrospectiveWriteGoodTVC: UITextViewDelegate {
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        textView.textColor = .black
-        
-        if textView.text == placeholder {
-            textView.text = ""
-            textView.bounds.size.height = UIScreen.main.bounds.height / 2.5
-            delegate?.rowHeight = textView.bounds.size.height + 62
-            delegate?.beginUpdates()
-            delegate?.endUpdates()
-            
-            self.setEditing(true, animated: true)
-        }
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text == "" {
-            textView.textColor = .lightGray
-            textView.text = placeholder
-            textView.bounds.size.height = (UIScreen.main.bounds.size.height - 150 - 104)/3 - 60
-            if UIScreen.main.bounds.size.height <= 667.0 {
-                delegate?.rowHeight = (UIScreen.main.bounds.size.height - 70 - 104)/3
-            } else {
-                delegate?.rowHeight = (UIScreen.main.bounds.size.height - 150 - 104)/3
-            }
-            delegate?.beginUpdates()
-            delegate?.endUpdates()
-        } else {
-            
-        }
-    }
-}
+extension RetrospectiveWriteGoodTVC: UITextViewDelegate {}
 
 extension RetrospectiveWriteGoodTVC {
     func setLabelData(title: String, placeholder: String) {
-        self.placeholder = placeholder
         titleLabel.text = title
-        writeTextView.text = self.placeholder
+        writeTextView.text = placeholder
         writeTextView.textColor = .lightGray
+        titleText = title
+        placeholderText = placeholder
     }
     
     private func setLabel() {
@@ -83,8 +77,12 @@ extension RetrospectiveWriteGoodTVC {
     
     private func setTextView() {
         writeTextView.delegate = self
+        writeTextView.isEditable = false
         writeTextView.layer.cornerRadius = 10
         writeTextView.backgroundColor = UIColor.black.withAlphaComponent(0.05)
+        writeTextView.scrollIndicatorInsets = UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 5)
+        
+  
         writeTextView.textContainerInset.left = 16
         writeTextView.textContainerInset.right = 16
         writeTextView.textContainerInset.bottom = 16

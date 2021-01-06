@@ -19,14 +19,11 @@ class EvaluationDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
-        setTabBar()
         setTableViewDelegate()
     }
     
     @IBAction func touchUpBack(_ sender: Any) {
         navigationController?.popViewController(animated: true)
-        tabBarController?.tabBar.isHidden = false
-        extendedLayoutIncludesOpaqueBars = false
     }
 }
 
@@ -94,12 +91,6 @@ extension EvaluationDetailVC {
     private func setNavigationBar() {
         navigationTitleLabel.text = "회고"
         navigationTitleLabel.font = .boldSystemFont(ofSize: 21)
-    }
-    
-    private func setTabBar() {
-        tabBarController?.tabBar.isHidden = true
-        edgesForExtendedLayout = UIRectEdge.bottom
-        extendedLayoutIncludesOpaqueBars = true
     }
     
     private func setTableViewDelegate() {

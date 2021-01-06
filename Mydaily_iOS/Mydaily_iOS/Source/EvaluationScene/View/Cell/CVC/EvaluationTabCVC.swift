@@ -65,7 +65,7 @@ extension EvaluationTabCVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             if keywords[indexPath.row] != nil {
-                self.delegate?.cellTaped()
+                self.delegate?.cellTapedEvaluation()
             }
         }
     }
