@@ -11,7 +11,7 @@ protocol SelectKeywordDelegate {
     func addSelectedKeyword(_ cell: KeywordTableViewCell, selectedText: String) -> Bool
    // func addSelectedKeyword(_ cell: KeywordTableViewCell, selectedText: String, numOfSection: Int)
    
-    func removeSelectedKeyword(_ cell: KeywordTableViewCell, selectedText: String)
+    func cancelSelectedKeyword(_ cell: KeywordTableViewCell, selectedText: String)
    // func removeSelectedKeyword(_ cell: KeywordTableViewCell, selectedText: String, numOfSection: Int)
     
 }
@@ -54,7 +54,7 @@ class KeywordTableViewCell: UITableViewCell {
             
         } else{
             sender.backgroundColor = originButtonColor
-            cellDelegate?.removeSelectedKeyword(self, selectedText: labelText)
+            cellDelegate?.cancelSelectedKeyword(self, selectedText: labelText)
             //KeywordSettingVC.removeSelectedKeyword(text: labelText)
         }
     }

@@ -22,7 +22,7 @@ class KeywordDefineVC: UIViewController {
         setTitleLabel()
         setCompleteButton()
         setKeywordLabelList()
-        // Do any additional setup after loading the view.
+        setNavigationBar()
     }
     
     func setTitleLabel(){
@@ -44,6 +44,16 @@ class KeywordDefineVC: UIViewController {
     
     func setReceivedKeywordList(list: [String]){
         keywordList = list
+    }
+    
+    func setNavigationBar(){
+        guard let navigationBar = self.navigationController?.navigationBar else { return }
+        navigationBar.isTranslucent = true
+        navigationBar.backgroundColor = UIColor.clear
+        navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationBar.shadowImage = UIImage()
+        
+        navigationItem.title = "키워드 정의"
     }
     
 }

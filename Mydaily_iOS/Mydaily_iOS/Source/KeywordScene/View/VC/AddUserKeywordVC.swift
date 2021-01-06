@@ -23,7 +23,7 @@ class AddUserKeywordVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setNavigationBar()
         setContent()
         keywordTextField.delegate = self
         addButton.isEnabled = false
@@ -48,6 +48,17 @@ class AddUserKeywordVC: UIViewController {
         guideLabel.text = "공백 없이 최대 5글자까지 가능해요.\n명사 형태를 추천해요."
         
         addButton.layer.cornerRadius = 15
+    }
+    
+    
+    func setNavigationBar(){
+        guard let navigationBar = self.navigationController?.navigationBar else { return }
+        navigationBar.isTranslucent = true
+        navigationBar.backgroundColor = UIColor.clear
+        navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationBar.shadowImage = UIImage()
+        
+        navigationItem.title = "키워드 추가"
     }
     
     @IBAction func addUserKeyword(_ sender: UIButton) {

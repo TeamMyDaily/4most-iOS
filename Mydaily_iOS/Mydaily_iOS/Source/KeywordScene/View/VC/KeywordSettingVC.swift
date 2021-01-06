@@ -28,10 +28,12 @@ class KeywordSettingVC: UIViewController {
     var footer = UIView()
     var keywordPlusButton = UIButton()
     var KeywordEditButton = UIButton()
-    var contentX = 17
+    var userKeywordButtonList :[UIButton] = []
+    var contentX = 16
     var contentY = 35
     var checkKeyword = false
     var isKeywordEditing = false
+    var systemSize = 0
     
     
     override func viewDidLoad() {
@@ -42,6 +44,7 @@ class KeywordSettingVC: UIViewController {
         setCompleteButton()
         setTableFooterView()
         initializeMyKeywordList()
+        systemSize = Int(view.frame.size.width)
     }
   
     override func viewWillAppear(_ animated: Bool) {
@@ -246,7 +249,7 @@ extension KeywordSettingVC: UITableViewDelegate{
     //내가 추가한 키워드는 table footer로
     func setTableFooterView(){
         //let footerHeight = CGFloat(contentY+30)
-        footer = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 200))
+        footer = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 300))
         //footer.backgroundColor = .systemRed
         
         userKeywordTitleLabel = UILabel(frame: CGRect(x: 16, y: 0, width: view.frame.size.width - 150, height: 30))
@@ -258,12 +261,12 @@ extension KeywordSettingVC: UITableViewDelegate{
         keywordPlusButton.tintColor = originButtonColor
         keywordPlusButton.addTarget(self, action: #selector(goToAddUserKeyword), for: .touchUpInside)
         
-        KeywordEditButton = UIButton(frame: CGRect(x: view.frame.size.width - 70 , y: 0, width: 50, height: 30))
+        KeywordEditButton = UIButton(frame: CGRect(x: view.frame.size.width - 66 , y: 0, width: 50, height: 30))
         
         KeywordEditButton.setTitle("", for: .normal)
         KeywordEditButton.setTitleColor(.blue, for: .normal)
         KeywordEditButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.regular)
-        
+        KeywordEditButton.addTarget(self, action: #selector(editUserKeyword), for: .touchUpInside)
         //KeywordEditButton.backgroundColor = .red
         
         
@@ -311,38 +314,37 @@ extension KeywordSettingVC: UITableViewDelegate{
         
         let KeywordText = userKeywordList[lastIndex]
         
-        let buttonWidth = KeywordText.count * 17 + 24
+        let buttonWidth = KeywordText.count * 18 + (20 - KeywordText.count*3)
         
         let myKeywordButton = UIButton(frame: CGRect(x: contentX, y: contentY, width: buttonWidth, height: 32))
         contentX += buttonWidth + 8
-        myKeywordButton.titleEdgeInsets = UIEdgeInsets(top: 4, left: 12, bottom: 5, right: 12)
+        myKeywordButton.titleEdgeInsets = UIEdgeInsets(top: 4, left: 6, bottom: 5, right: 6)
         myKeywordButton.setTitle(KeywordText, for: .normal)
         myKeywordButton.setTitleColor(.white, for: .normal)
         myKeywordButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.medium)
         myKeywordButton.layer.cornerRadius = 15
         myKeywordButton.backgroundColor = originButtonColor
-        myKeywordButton.contentVerticalAlignment = .center
+       // myKeywordButton.contentVerticalAlignment = .center
         
-        
+        /*
         myKeywordButton.setImage(UIImage(systemName: "multiply.circle.fill"), for: .normal)
-        
-        myKeywordButton.imageView?.isHidden = true
         myKeywordButton.semanticContentAttribute = .forceRightToLeft
-//        myKeywordButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
-//
-        
+        myKeywordButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         myKeywordButton.tintColor = .white
         
+      */
+        
+        /*
+        let attributedString = NSMutableAttributedString(string: "")
+        let imageAttachment = NSTextAttachment()
+        imageAttachment.image = UIImage(systemName: "multiply.circle.fill")
+        imageAttachment.bounds = CGRect(x: 0, y: 0, width: 10, height: 10)
+        attributedString.append(NSAttributedString(attachment: imageAttachment))
+        attributedString.append(NSAttributedString(string: KeywordText))
+        myKeywordButton.titleLabel?.attributedText = attributedString
+        */
         myKeywordButton.addTarget(self, action: #selector(selectedUserKeyword), for: .touchUpInside)
         
-        print("-----")
-        //print(myKeywordButton.imageView)
-        //footer.addSubview(myKeywordButton.imageView!)
-        if userKeywordList.count % 2 == 1 {
-            myKeywordButton.imageView?.isHidden = true
-        }
-        
-        let systemSize = Int(view.frame.size.width)
 
         if contentX > systemSize - 100 {
             contentX = 17
@@ -350,10 +352,12 @@ extension KeywordSettingVC: UITableViewDelegate{
             
             keywordPlusButton.frame.origin.y = CGFloat(contentY)
         }
-        
+        userKeywordButtonList.append(myKeywordButton)
         footer.addSubview(myKeywordButton)
         keywordPlusButton.frame.origin.x = CGFloat(contentX)
-            
+       
+        
+       // footer.willRemoveSubview(UIView)
         
        // myKeywordButton.sizeThatFits(CGSize(width: buttonWidth, height: 32))
 //        myKeywordButton.translatesAutoresizingMaskIntoConstraints = false
@@ -372,6 +376,7 @@ extension KeywordSettingVC: UITableViewDelegate{
     @objc func selectedUserKeyword(_ sender: UIButton){
         print("user버튼 눌림")
         let selectedText = sender.titleLabel?.text ?? ""
+        sender.imageView?.isHidden = true
         
         if selectedKeywordCount < 8 {
             if sender.backgroundColor == originButtonColor{
@@ -416,10 +421,145 @@ extension KeywordSettingVC: UITableViewDelegate{
         }
     }
     
+    @objc func editUserKeyword(_ sender: UIButton){
+       
+        let condition = sender.title(for: .normal)
+        var newContentX = 16
+        var newContentY = 35
+        var buttonWidth = 0
+        
+        if condition == "수정"{
+            sender.setTitle("완료", for: .normal)
+        }else{
+            sender.setTitle("수정", for: .normal)
+        }
+        
+        for btn in userKeywordButtonList{
+            btn.removeFromSuperview()
+        }
+        
+        
+        for btn in userKeywordButtonList{
+            let btnTitleText = btn.title(for: .normal) ?? ""
+           
+            if condition == "수정"{
+                keywordPlusButton.isHidden = true
+                buttonWidth = btnTitleText.count * 20 + (30 - btnTitleText.count*4)
+                btn.setImage(UIImage(systemName: "multiply.circle.fill"), for: .normal)
+                btn.semanticContentAttribute = .forceRightToLeft
+                btn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 7, bottom: 0, right: 0)
+                btn.tintColor = .white
+                
+                btn.addTarget(self, action: #selector(deleteUserKeyword), for: .touchUpInside)
+                
+            }else if condition == "완료"{
+                keywordPlusButton.isHidden = false
+                buttonWidth = btnTitleText.count * 18 + (20 - btnTitleText.count*3)
+                btn.setImage(UIImage(), for: .normal)
+                
+            }
+            
+            btn.frame.size.width = CGFloat(buttonWidth)
+            //btn.frame.origin.x = CGFloat(newContentX)
+            //btn.frame.origin.y = CGFloat(newContentY)
+            
+            //newContentX += buttonWidth + 8
+            
+            if newContentX + buttonWidth > systemSize - 50  {
+                newContentX = 16
+                newContentY += 48
+                btn.frame.origin.x = CGFloat(newContentX)
+                btn.frame.origin.y = CGFloat(newContentY)
+            }else{
+                btn.frame.origin.x = CGFloat(newContentX)
+                btn.frame.origin.y = CGFloat(newContentY)
+                newContentX += buttonWidth + 8
+            }
+            print("\(btnTitleText) = System : \(systemSize) ||| contentX : \(newContentX)")
+            //btn.frame.origin.y = CGFloat(newContentY)
+            footer.addSubview(btn)
+        }
+        
+        keywordPlusButton.frame.origin.x = CGFloat(newContentX)
+        
+        contentX = newContentX
+        contentY = newContentY
+            
+        /*
+        if condition == "수정"{  //버튼들에 x 넣기
+            keywordPlusButton.isHidden = true
+            
+            for btn in userKeywordButtonList{
+                let btnTitleText = btn.title(for: .normal) ?? ""
+                let buttonWidth = btnTitleText.count * 20 + (30 - btnTitleText.count*3)
+                
+                btn.frame.size.width = CGFloat(buttonWidth)
+                btn.setImage(UIImage(systemName: "multiply.circle.fill"), for: .normal)
+                btn.semanticContentAttribute = .forceRightToLeft
+                btn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 7, bottom: 0, right: 0)
+                btn.tintColor = .white
+                
+                btn.frame.origin.x = CGFloat(newContentX)
+                newContentX += buttonWidth + 8
+                
+            }
+    
+        }else if condition == "완료"{  //버튼 다시 그리기
+            keywordPlusButton.isHidden = false
+            
+            for btn in userKeywordButtonList{
+                
+                btn.setImage(UIImage(), for: .normal)
+                
+                let btnTitleText = btn.title(for: .normal) ?? ""
+                let buttonWidth = btnTitleText.count * 20 + (20 - btnTitleText.count*3)
+                
+                btn.frame.origin.x = CGFloat(newContentX)
+                newContentX += buttonWidth + 8
+                
+                if newContentX > systemSize - 100 {
+                    newContentX = 17
+                    newContentY += 48
+                }
+                
+                footer.addSubview(btn)
+            }
+            keywordPlusButton.frame.origin.x = CGFloat(newContentX)
+            
+            contentX = newContentX
+            contentY = newContentY
+        }
+        
+        
+        for btn in userKeywordButtonList{
+            
+            btn.frame.origin.x = CGFloat(newContentX)
+            
+            newContentX += buttonWidth + 8
+            
+            if newContentX > systemSize - 100 {
+                newContentX = 17
+                newContentY += 48
+            }
+            
+            
+        }
+        */
+        
+    }
+    
+    @objc func deleteUserKeyword(_ sender: UIButton){
+        let keyword = sender.title(for: .normal)
+        print("delete = \(keyword)")
+    }
+    
+
 }
 
+
+//tableviewcell 안에 버튼 클릭 delegate
 extension KeywordSettingVC: SelectKeywordDelegate{
-    
+   
     func addSelectedKeyword(_ cell: KeywordTableViewCell, selectedText: String) -> Bool{
         if selectedKeywordCount >= 8{
             alertKeyword()
@@ -440,8 +580,7 @@ extension KeywordSettingVC: SelectKeywordDelegate{
         }
     }
     
-    func removeSelectedKeyword(_ cell: KeywordTableViewCell, selectedText: String) {
-        
+    func cancelSelectedKeyword(_ cell: KeywordTableViewCell, selectedText: String) {
         var keywordIndex = -1
         
         for i in 0...2{

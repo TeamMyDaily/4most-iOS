@@ -20,6 +20,7 @@ class KeywordPriorityVC: UIViewController {
         super.viewDidLoad()
         setTitleLabel()
         setTableViewDelegate()
+        setNavigationBar()
     }
     
     func setTableViewDelegate(){
@@ -44,6 +45,31 @@ class KeywordPriorityVC: UIViewController {
     func setReceivedKeywordList(list: [String]){
         keywordList = list
     }
+    
+    @IBAction func submitKeyword(_ sender: UIButton) {
+        
+        guard let dvc = self.storyboard?.instantiateViewController(identifier: KeywordDefineVC.identifier) as? KeywordDefineVC else{
+            return
+        }
+        
+        dvc.setReceivedKeywordList(list: keywordList)
+        self.navigationController?.pushViewController(dvc, animated: true)
+        
+    }
+    
+    
+    func setNavigationBar(){
+        guard let navigationBar = self.navigationController?.navigationBar else { return }
+        navigationBar.isTranslucent = true
+        navigationBar.backgroundColor = UIColor.clear
+        navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationBar.shadowImage = UIImage()
+        
+        navigationItem.title = "키워드 우선순위"
+    }
+    
+    
+    
 }
 
 extension KeywordPriorityVC: UITableViewDataSource{
