@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="m8e-7L-PYA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="m8e-7L-PYA">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -244,11 +244,8 @@
                                 </state>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XKN-4u-FQS">
-                                <rect key="frame" x="16" y="170" width="343" height="300"/>
+                                <rect key="frame" x="16" y="170" width="343" height="332"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="hqf-7t-PGN"/>
-                                </constraints>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MXI-fe-CAj"/>
@@ -258,6 +255,7 @@
                             <constraint firstItem="Xfy-9s-R0i" firstAttribute="top" secondItem="MXI-fe-CAj" secondAttribute="top" constant="48" id="0n4-go-i1m"/>
                             <constraint firstItem="XKN-4u-FQS" firstAttribute="top" secondItem="Xfy-9s-R0i" secondAttribute="bottom" constant="48" id="5XH-x1-PG4"/>
                             <constraint firstItem="XKN-4u-FQS" firstAttribute="leading" secondItem="MXI-fe-CAj" secondAttribute="leading" constant="16" id="9CN-aR-R9T"/>
+                            <constraint firstItem="7HV-e1-BPO" firstAttribute="top" secondItem="XKN-4u-FQS" secondAttribute="bottom" constant="200" id="BL9-kx-Xnl"/>
                             <constraint firstItem="MXI-fe-CAj" firstAttribute="trailing" secondItem="7HV-e1-BPO" secondAttribute="trailing" constant="16" id="EEg-wJ-o9k"/>
                             <constraint firstItem="7HV-e1-BPO" firstAttribute="leading" secondItem="MXI-fe-CAj" secondAttribute="leading" constant="16" id="JVg-hb-BX4"/>
                             <constraint firstItem="MXI-fe-CAj" firstAttribute="bottom" secondItem="7HV-e1-BPO" secondAttribute="bottom" constant="16" id="b8R-6b-7Ev"/>
