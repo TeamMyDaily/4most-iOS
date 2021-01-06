@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ggw-UV-9is">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ggw-UV-9is">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -29,6 +29,9 @@
                                         <rect key="frame" x="294" y="8" width="53" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <state key="normal" title="21년 1월 1일"/>
+                                        <connections>
+                                            <action selector="dateButton:" destination="8Cf-1i-nYt" eventType="touchUpInside" id="L1P-k7-aJK"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -46,6 +49,17 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <datePicker autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" contentMode="bottom" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="pvO-Xd-qve">
+                                <rect key="frame" x="271" y="140" width="98" height="188"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <locale key="locale" localeIdentifier="ko_KR"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </datePicker>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DpT-Jr-0nz">
                                 <rect key="frame" x="0.0" y="180" width="375" height="487"/>
                                 <connections>
@@ -75,6 +89,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="F3p-Cp-Ogg"/>
                     <connections>
+                        <outlet property="dateButton" destination="q50-jR-mKN" id="3z2-wM-b9a"/>
+                        <outlet property="datePicker" destination="pvO-Xd-qve" id="yJf-Uk-jcf"/>
                         <outlet property="headerView" destination="Qjx-FC-Tzw" id="vHI-Wp-mNC"/>
                     </connections>
                 </viewController>
@@ -125,19 +141,32 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transparent Sizing Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1dV-Lx-arm">
+                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1dV-Lx-arm">
                                             <rect key="frame" x="71" y="89" width="187.5" height="13"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                            <attributedString key="attributedText">
+                                                <fragment content="Transparent Sizing Label">
+                                                    <attributes>
+                                                        <font key="NSFont" metaFont="system" size="17"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="10" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KgJ-va-N0G">
-                                            <rect key="frame" x="71" y="89" width="288" height="13"/>
+                                            <rect key="frame" x="71" y="99" width="288" height="0.0"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ya-9I-RaG">
-                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="13"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ya-9I-RaG">
+                                                    <rect key="frame" x="0.0" y="0.0" width="24" height="0.0"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="line">
+                                                            <attributes>
+                                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                <font key="NSFont" metaFont="system" size="15"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="10" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -195,10 +224,10 @@
                                         <constraint firstItem="nt4-1m-nHG" firstAttribute="top" secondItem="I52-gr-Mm4" secondAttribute="top" constant="32" id="Ghw-4x-HTV"/>
                                         <constraint firstAttribute="bottom" secondItem="1dV-Lx-arm" secondAttribute="bottom" id="Gm4-lB-7s0"/>
                                         <constraint firstItem="ufV-hl-Si8" firstAttribute="leading" secondItem="nt4-1m-nHG" secondAttribute="centerX" constant="50" id="PWS-yL-iBj"/>
-                                        <constraint firstItem="KgJ-va-N0G" firstAttribute="top" secondItem="nt4-1m-nHG" secondAttribute="bottom" constant="30" id="QGF-AH-9WD"/>
+                                        <constraint firstItem="KgJ-va-N0G" firstAttribute="top" secondItem="nt4-1m-nHG" secondAttribute="bottom" constant="40" id="QGF-AH-9WD"/>
                                         <constraint firstItem="yFk-Tc-9Z5" firstAttribute="leading" secondItem="I52-gr-Mm4" secondAttribute="leading" constant="71" id="QVf-Bq-23G"/>
                                         <constraint firstItem="1dV-Lx-arm" firstAttribute="top" secondItem="nt4-1m-nHG" secondAttribute="bottom" constant="30" id="QVf-tU-Y4B"/>
-                                        <constraint firstAttribute="bottom" secondItem="KgJ-va-N0G" secondAttribute="bottom" id="Sjk-iM-0GT"/>
+                                        <constraint firstAttribute="bottom" secondItem="KgJ-va-N0G" secondAttribute="bottom" constant="3" id="Sjk-iM-0GT"/>
                                         <constraint firstItem="ufV-hl-Si8" firstAttribute="top" secondItem="I52-gr-Mm4" secondAttribute="top" constant="24" id="e4K-HQ-Ttn"/>
                                         <constraint firstItem="KgJ-va-N0G" firstAttribute="leading" secondItem="I52-gr-Mm4" secondAttribute="leadingMargin" constant="55" id="j5F-EB-fb8"/>
                                         <constraint firstItem="nt4-1m-nHG" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="I52-gr-Mm4" secondAttribute="trailing" constant="-16" id="m54-Fg-Otw"/>

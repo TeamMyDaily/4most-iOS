@@ -77,6 +77,11 @@ extension DetailTVC {
         labelNum.font = .boldSystemFont(ofSize: 62)
         labelTitle.font = .boldSystemFont(ofSize: 28)
         labelSubTitle.font = .systemFont(ofSize: 12)
-//        labelBody.textColor = .white
+//        
+//        let attrString = NSMutableAttributedString(string: labelBody.text!)
+//        let paragraphStyle = NSMutableParagraphStyle()
+//        paragraphStyle.lineSpacing = 10
+//        attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attrString.length))
+//        labelBody.attributedText = attrString
     }
 }
