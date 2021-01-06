@@ -33,31 +33,14 @@ extension RetrospectiveTabCVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: RetrospectiveWriteGoodTVC.identifier) as? RetrospectiveWriteGoodTVC else {
-                return UITableViewCell()
-            }
-            cell.delegate = self.delegate
-            cell.tableView = retrospectiveTableView
-            cell.selectionStyle = .none
-            cell.setLabelData(title: cellTitles[indexPath.section], placeholder: cellPlaceholders[indexPath.section])
-            return cell
-        } else if indexPath.section == 1 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: RetrospectiveWriteShameTVC.identifier) as? RetrospectiveWriteShameTVC else {
-                return UITableViewCell()
-            }
-            cell.selectionStyle = .none
-            cell.delegate = retrospectiveTableView
-            cell.setLabelData(title: cellTitles[indexPath.section], placeholder: cellPlaceholders[indexPath.section])
-            return cell
-        }
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RetrospectiveWritePromiseTVC.identifier) as? RetrospectiveWritePromiseTVC else {
-            return UITableViewCell()
-        }
-        cell.selectionStyle = .none
-        cell.delegate = retrospectiveTableView
-        cell.setLabelData(title: cellTitles[indexPath.section], placeholder: cellPlaceholders[indexPath.section])
-        return cell
+           guard let cell = tableView.dequeueReusableCell(withIdentifier: RetrospectiveWriteGoodTVC.identifier) as? RetrospectiveWriteGoodTVC else {
+               return UITableViewCell()
+           }
+           cell.delegate = self.delegate
+           cell.tableView = retrospectiveTableView
+           cell.selectionStyle = .none
+           cell.setLabelData(title: cellTitles[indexPath.section], placeholder: cellPlaceholders[indexPath.section])
+           return cell
     }
 }
 

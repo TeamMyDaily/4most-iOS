@@ -29,8 +29,6 @@
 		EDA9CA8425A1A74D00BF46C1 /* DetailRecordContentTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA9CA8325A1A74D00BF46C1 /* DetailRecordContentTVC.swift */; };
 		EDAAEB7D25A01B550024E3E4 /* EvaluationDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAAEB7C25A01B550024E3E4 /* EvaluationDetailVC.swift */; };
 		EDB8F39625A338EE00F39A09 /* RetrospectiveWriteGoodTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB8F39525A338EE00F39A09 /* RetrospectiveWriteGoodTVC.swift */; };
-		EDB8F39B25A3910E00F39A09 /* RetrospectiveWriteShameTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB8F39A25A3910E00F39A09 /* RetrospectiveWriteShameTVC.swift */; };
-		EDB8F39E25A3915200F39A09 /* RetrospectiveWritePromiseTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB8F39D25A3915200F39A09 /* RetrospectiveWritePromiseTVC.swift */; };
 		EDBF738D25A1631700ECDEB9 /* DetailHeaderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF738C25A1631700ECDEB9 /* DetailHeaderTVC.swift */; };
 		EDBF739025A1634000ECDEB9 /* DetailGoalTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF738F25A1634000ECDEB9 /* DetailGoalTVC.swift */; };
 		EDBF739325A1636300ECDEB9 /* DetailRecordTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF739225A1636300ECDEB9 /* DetailRecordTVC.swift */; };
@@ -65,8 +63,6 @@
 		EDA9CA8325A1A74D00BF46C1 /* DetailRecordContentTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecordContentTVC.swift; sourceTree = "<group>"; };
 		EDAAEB7C25A01B550024E3E4 /* EvaluationDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationDetailVC.swift; sourceTree = "<group>"; };
 		EDB8F39525A338EE00F39A09 /* RetrospectiveWriteGoodTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrospectiveWriteGoodTVC.swift; sourceTree = "<group>"; };
-		EDB8F39A25A3910E00F39A09 /* RetrospectiveWriteShameTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrospectiveWriteShameTVC.swift; sourceTree = "<group>"; };
-		EDB8F39D25A3915200F39A09 /* RetrospectiveWritePromiseTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrospectiveWritePromiseTVC.swift; sourceTree = "<group>"; };
 		EDBF738C25A1631700ECDEB9 /* DetailHeaderTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeaderTVC.swift; sourceTree = "<group>"; };
 		EDBF738F25A1634000ECDEB9 /* DetailGoalTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGoalTVC.swift; sourceTree = "<group>"; };
 		EDBF739225A1636300ECDEB9 /* DetailRecordTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecordTVC.swift; sourceTree = "<group>"; };
@@ -270,8 +266,6 @@
 				EDBF739225A1636300ECDEB9 /* DetailRecordTVC.swift */,
 				EDA9CA8325A1A74D00BF46C1 /* DetailRecordContentTVC.swift */,
 				EDB8F39525A338EE00F39A09 /* RetrospectiveWriteGoodTVC.swift */,
-				EDB8F39A25A3910E00F39A09 /* RetrospectiveWriteShameTVC.swift */,
-				EDB8F39D25A3915200F39A09 /* RetrospectiveWritePromiseTVC.swift */,
 			);
 			path = TVC;
 			sourceTree = "<group>";
@@ -378,12 +372,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDC1642925A4617600CD65B0 /* RetrospectiveWriteVC.swift in Sources */,
-				EDB8F39B25A3910E00F39A09 /* RetrospectiveWriteShameTVC.swift in Sources */,
 				AE76C03E259B1A6D007B3901 /* AppDelegate.swift in Sources */,
 				EDAAEB7D25A01B550024E3E4 /* EvaluationDetailVC.swift in Sources */,
 				AEFB2210259C6C6A00A3228C /* DailyVC.swift in Sources */,
 				EDBF739325A1636300ECDEB9 /* DetailRecordTVC.swift in Sources */,
-				EDB8F39E25A3915200F39A09 /* RetrospectiveWritePromiseTVC.swift in Sources */,
 				AEFB221D259C918C00A3228C /* EditKeywordVC.swift in Sources */,
 				AEFB21F9259C5CB900A3228C /* TabbarController.swift in Sources */,
 				EDBF739B25A18BF100ECDEB9 /* DetailRecordLayout.swift in Sources */,

@@ -37,15 +37,15 @@ extension EvaluationKeywordTVC {
         if keyword != "" {
             keywordLabel.text = keyword
             goalLabel.text = goal
-            rateLabel.text = "\(rate)"
             totalCountLabel.text = "총 \(count)개"
+            if count == 0 {
+                rateLabel.text = "0"
+                rateLabel.textColor = originalColor
+            } else {
+                rateLabel.text = "\(rate)"
+            }
         } else {
-            keywordLabel.isHidden = true
-            rateLabel.isHidden = true
-            goalLabel.isHidden = true
-            totalCountLabel.isHidden = true
-            rateSlider.isHidden = true
-            outlineView.isHidden = true
+            self.isHidden = true
         }
         
         UIView.animate(withDuration: 2, animations:  {() in

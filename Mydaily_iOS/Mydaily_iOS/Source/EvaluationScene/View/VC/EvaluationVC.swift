@@ -16,6 +16,17 @@ class EvaluationVC: UIViewController {
     @IBOutlet weak var retrospectiveTabBar: UIView!
     @IBOutlet weak var keywordCollectionView: UICollectionView!
     
+    lazy var currentWeekButton: UIButton = {
+        let currentWeekButton = UIButton()
+        currentWeekButton.translatesAutoresizingMaskIntoConstraints = false
+        currentWeekButton.backgroundColor = UIColor.black.withAlphaComponent(0.35)
+        return currentWeekButton
+    }()
+    
+    var calendar = Calendar.current
+    var dateFormatter = DateFormatter()
+    var dateValue = 0
+    
     let originalButtonColor: UIColor = UIColor.init(red: 196/255, green: 196/255, blue: 196/255, alpha: 1)
     let selectedButtonColor: UIColor = UIColor.init(red: 236/255, green: 104/255, blue: 74/255, alpha: 1)
 
@@ -25,6 +36,7 @@ class EvaluationVC: UIViewController {
         setWeekLabel()
         setMenuTabButton()
         setCollectionViewDelegate()
+        setCurrentButton()
     }
     
     @IBAction func touchUpEvaluationTab(_ sender: Any) {
@@ -36,9 +48,6 @@ class EvaluationVC: UIViewController {
         keywordCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
         
         setButtonState(enableButton: evaluationTabButton, disableButton: retrospectiveTabButton, enableTabBar: evaluationTabBar, unableTabBar: retrospectiveTabBar)
-        
-        tabBarController?.tabBar.isHidden = false
-        extendedLayoutIncludesOpaqueBars = false
     }
     
     @IBAction func touchUpRetrospectiveTab(_ sender: Any) {
@@ -50,10 +59,40 @@ class EvaluationVC: UIViewController {
         keywordCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
         
         setButtonState(enableButton: retrospectiveTabButton, disableButton: evaluationTabButton, enableTabBar: retrospectiveTabBar, unableTabBar: evaluationTabBar)
+    }
+    
+    @IBAction func touchUpBeforeWeek(_ sender: Any) {
+        dateValue -= 1
         
-        tabBarController?.tabBar.isHidden = true
-        edgesForExtendedLayout = UIRectEdge.bottom
-        extendedLayoutIncludesOpaqueBars = true
+        guard let todayDate = calendar.date(byAdding: .weekOfMonth, value: dateValue, to: Date()) else {return}
+        guard let currentDate = calendar.date(byAdding: .weekOfMonth, value: 0, to: Date()) else {return}
+        let today = "\(todayDate)"
+        let current = "\(currentDate)"
+        dateFormatter.dateFormat = "yy년 MM월 W주"
+        weekLabel.text = dateFormatter.string(from: todayDate)
+        
+        if today != current {
+            currentWeekButton.isHidden = false
+        } else {
+            currentWeekButton.isHidden = true
+        }
+    }
+    
+    @IBAction func touchUpAfterWeek(_ sender: Any) {
+        dateValue += 1
+        
+        guard let todayDate = calendar.date(byAdding: .weekOfMonth, value: dateValue, to: Date()) else {return}
+        guard let currentDate = calendar.date(byAdding: .weekOfMonth, value: 0, to: Date()) else {return}
+        let today = "\(todayDate)"
+        let current = "\(currentDate)"
+        dateFormatter.dateFormat = "yy년 MM월 W주"
+        weekLabel.text = dateFormatter.string(from: todayDate)
+        
+        if today != current {
+            currentWeekButton.isHidden = false
+        } else {
+            currentWeekButton.isHidden = true
+        }
     }
 }
 
@@ -106,9 +145,14 @@ extension EvaluationVC {
     }
     
     private func setWeekLabel() {
+        dateValue = 0
+        let todayDate = Calendar.current.date(byAdding: .weekOfMonth, value: dateValue, to: Date())!
+        dateFormatter.dateFormat = "yy년 MM월 w주"
+        dateFormatter.locale = Locale(identifier: "ko")
+        weekLabel.text = dateFormatter.string(from: todayDate)
+        
         weekLabel.font = .boldSystemFont(ofSize: 12)
         weekLabel.textAlignment = .center
-        weekLabel.text = "20년 12월 3주"
     }
     
     private func setMenuTabButton() {
@@ -123,6 +167,22 @@ extension EvaluationVC {
         retrospectiveTabBar.isHidden = true
     }
     
+    private func setCurrentButton() {
+        view.addSubview(currentWeekButton)
+        currentWeekButton.addTarget(self, action: #selector(backToCurrentWeek), for: .touchUpInside)
+        currentWeekButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        currentWeekButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80).isActive = true
+        currentWeekButton.widthAnchor.constraint(equalToConstant: 81).isActive = true
+        currentWeekButton.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        currentWeekButton.setTitle("이번주", for: .normal)
+        currentWeekButton.titleLabel?.textAlignment = .left
+        currentWeekButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
+        currentWeekButton.titleLabel?.textColor = .white
+        currentWeekButton.layer.cornerRadius = 15
+        currentWeekButton.layer.masksToBounds = true
+        currentWeekButton.isHidden = true
+    }
+    
     private func setButtonState(enableButton: UIButton, disableButton: UIButton, enableTabBar: UIView, unableTabBar: UIView) {
         enableButton.setTitleColor(selectedButtonColor, for: .normal)
         disableButton.setTitleColor(originalButtonColor, for: .normal)
@@ -133,6 +193,11 @@ extension EvaluationVC {
     private func setCollectionViewDelegate() {
         keywordCollectionView.delegate = self
         keywordCollectionView.dataSource = self
+    }
+    
+    @objc func backToCurrentWeek() {
+        setWeekLabel()
+        currentWeekButton.isHidden = true
     }
 }
 
@@ -145,6 +210,6 @@ extension EvaluationVC: TableViewInsideCollectionViewDelegate {
     }
     
     func cellTapedRetrospective(dvc: RetrospectiveWriteVC) {
-        self.present(dvc, animated: true, completion: nil)
+        self.navigationController?.pushViewController(dvc, animated: true)
     }
 }
