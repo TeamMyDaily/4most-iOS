@@ -65,6 +65,7 @@ class AddUserKeywordVC: UIViewController {
             
             if userKeyword != ""{
                 pvc.addUserKeyword(text: userKeyword)
+                pvc.checkForUserKeyword(check: true)
                 self.navigationController?.popViewController(animated: true)
             }
             
