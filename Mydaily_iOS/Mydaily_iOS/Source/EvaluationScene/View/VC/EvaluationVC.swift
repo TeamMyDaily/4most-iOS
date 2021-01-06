@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ChangeModifyButtonDelegate: class {
+    func changeModifyButton(isActive: Bool)
+}
+
 class EvaluationVC: UIViewController {
     @IBOutlet weak var weekLabel: UILabel!
     @IBOutlet weak var evaluationTabButton: UIButton!
@@ -23,6 +27,12 @@ class EvaluationVC: UIViewController {
         return currentWeekButton
     }()
     
+    lazy var modifyButton: UIButton = {
+        let modifyButton = UIButton()
+        modifyButton.translatesAutoresizingMaskIntoConstraints = false
+        return modifyButton
+    }()
+    
     var calendar = Calendar.current
     var dateFormatter = DateFormatter()
     var dateValue = 0
@@ -37,6 +47,7 @@ class EvaluationVC: UIViewController {
         setMenuTabButton()
         setCollectionViewDelegate()
         setCurrentButton()
+        setModifyButton()
     }
     
     @IBAction func touchUpEvaluationTab(_ sender: Any) {
@@ -48,6 +59,8 @@ class EvaluationVC: UIViewController {
         keywordCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
         
         setButtonState(enableButton: evaluationTabButton, disableButton: retrospectiveTabButton, enableTabBar: evaluationTabBar, unableTabBar: retrospectiveTabBar)
+        
+        modifyButton.isHidden = true
     }
     
     @IBAction func touchUpRetrospectiveTab(_ sender: Any) {
@@ -116,6 +129,7 @@ extension EvaluationVC: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RetrospectiveTabCVC.identifier, for: indexPath) as? RetrospectiveTabCVC else {
             return UICollectionViewCell()
         }
+        cell.heightDelegate = self
         cell.delegate = self
         return cell
     }
@@ -190,6 +204,17 @@ extension EvaluationVC {
         unableTabBar.isHidden = true
     }
     
+    private func setModifyButton() {
+        view.addSubview(modifyButton)
+        modifyButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 13).isActive = true
+        modifyButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
+        modifyButton.setTitle("수정", for: .normal)
+        modifyButton.setTitleColor(.blue, for: .normal)
+        modifyButton.titleLabel?.font = .systemFont(ofSize: 16)
+        modifyButton.isHidden = true
+        modifyButton.addTarget(self, action: #selector(touchUpModify), for: .touchUpInside)
+    }
+    
     private func setCollectionViewDelegate() {
         keywordCollectionView.delegate = self
         keywordCollectionView.dataSource = self
@@ -198,6 +223,10 @@ extension EvaluationVC {
     @objc func backToCurrentWeek() {
         setWeekLabel()
         currentWeekButton.isHidden = true
+    }
+    
+    @objc func touchUpModify() {
+        
     }
 }
 
@@ -208,5 +237,11 @@ extension EvaluationVC: TableViewInsideCollectionViewDelegate {
     
     func cellTapedRetrospective(dvc: RetrospectiveWriteVC) {
         self.navigationController?.pushViewController(dvc, animated: true)
+    }
+}
+
+extension EvaluationVC: ChangeModifyButtonDelegate {
+    func changeModifyButton(isActive: Bool) {
+        modifyButton.isHidden = isActive
     }
 }

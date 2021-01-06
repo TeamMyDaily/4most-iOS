@@ -13,6 +13,7 @@ class RetrospectiveTabCVC: UICollectionViewCell {
     @IBOutlet weak var retrospectiveTableView: UITableView!
     
     var delegate: TableViewInsideCollectionViewDelegate?
+    var heightDelegate: ChangeModifyButtonDelegate?
     
     
     override func awakeFromNib() {
@@ -27,13 +28,14 @@ extension RetrospectiveTabCVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-           guard let cell = tableView.dequeueReusableCell(withIdentifier: RetrospectiveWriteTVC.identifier) as? RetrospectiveWriteTVC else {
-               return UITableViewCell()
-           }
-           cell.delegate = self.delegate
-           cell.tableView = retrospectiveTableView
-           cell.selectionStyle = .none
-           return cell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: RetrospectiveWriteTVC.identifier) as? RetrospectiveWriteTVC else {
+            return UITableViewCell()
+        }
+        cell.delegate = self.delegate
+        cell.buttonDelegate = self.heightDelegate
+        cell.tableView = retrospectiveTableView
+        cell.selectionStyle = .none
+        return cell
     }
 }
 
