@@ -8,7 +8,7 @@
 import UIKit
 
 class KeywordPriorityTVC: UITableViewCell {
-
+    static let identifier = "KeywordPriorityTVC"
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -16,11 +16,15 @@ class KeywordPriorityTVC: UITableViewCell {
     @IBOutlet weak var keywordLabel: UILabel!
     @IBOutlet weak var moveButton: UIButton!
     
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        
+    }
+    
+    func setKeywordLabel(text: String){
+        keywordLabel.text = text
+        print("-------cell--------")
+        print(keywordLabel.text)
     }
     
 }

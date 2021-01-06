@@ -21,12 +21,15 @@ class KeywordPriorityVC: UIViewController {
         super.viewDidLoad()
         setTitleLabel()
         setTableViewDelegate()
+        model.setModelList(list: keywordList)
     }
     
     func setTableViewDelegate(){
         keywordTableView.dragInteractionEnabled = true // Enable intra-app drags for iPhone.
         keywordTableView.dragDelegate = self
         keywordTableView.dropDelegate = self
+        keywordTableView.delegate = self
+        keywordTableView.register(UINib(nibName: "KeywordPriorityTVC", bundle: .main), forCellReuseIdentifier: KeywordPriorityTVC.identifier)
     }
     
     func setTitleLabel(){
@@ -42,23 +45,46 @@ class KeywordPriorityVC: UIViewController {
     
     func setReceivedKeywordList(list: [String]){
         keywordList = list
+        print("------------------")
+        for txt in list{
+            print(txt)
+        }
     }
-
 }
 
 extension KeywordPriorityVC: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: KeywordPriorityTVC.identifier) as? KeywordPriorityTVC else{
+            return UITableViewCell()
+        }
+        print("table셀 이상해,,")
+        cell.setKeywordLabel(text: keywordList[indexPath.row])
+        
+        return cell
     }
-    
-    
 }
 
 extension KeywordPriorityVC: UITableViewDelegate{
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        model.moveItem(at: sourceIndexPath.row, to: destinationIndexPath.row)
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
+    }
+    
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
     
 }
 
@@ -67,13 +93,11 @@ extension KeywordPriorityVC: UITableViewDragDelegate{
         return model.dragItems(for: indexPath)
     }
     
-    
 }
 
 
 //먼저 drop 하려면 3개의 함수구현 해야 함
 extension KeywordPriorityVC: UITableViewDropDelegate{
-    
     
     //그중 1번 This project’s implementation allows a user to drop only instances of the NSString class
     func tableView(_ tableView: UITableView, canHandle session: UIDropSession) -> Bool {
@@ -92,7 +116,7 @@ extension KeywordPriorityVC: UITableViewDropDelegate{
         
         dropProposal = UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
         // The .move drag operation is available only for dragging within this app and while in edit mode.
-        /*
+        
         if tableView.hasActiveDrag {
             if tableView.isEditing {
                 dropProposal = UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
@@ -101,7 +125,7 @@ extension KeywordPriorityVC: UITableViewDropDelegate{
             // Drag is coming from outside the app.
             dropProposal = UITableViewDropProposal(operation: .copy, intent: .insertAtDestinationIndexPath)
         }
-         */
+         
         return dropProposal
     }
     

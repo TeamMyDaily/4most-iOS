@@ -11,17 +11,11 @@ import MobileCoreServices
 
 /// The data model used to populate the table view on app launch.
 struct Model {
-    private(set) var placeNames = [
-        "Yosemite",
-        "Yellowstone",
-        "Theodore Roosevelt",
-        "Sequoia",
-        "Pinnacles",
-        "Mount Rainier",
-        "Mammoth Cave",
-        "Great Basin",
-        "Grand Canyon"
-    ]
+    private(set) var placeNames = [""]
+    
+    mutating func setModelList(list: [String]){
+        placeNames = list
+    }
     
     /// The traditional method for rearranging rows in a table view.
     mutating func moveItem(at sourceIndex: Int, to destinationIndex: Int) {
