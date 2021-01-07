@@ -9,9 +9,12 @@
 import UIKit
 
 struct AppFontName {
-    static let regular = "AppleSDGothicNeo-Regular"
+    static let thin = "NotoSansKR-Thin"
+    static let light = "NotoSansKR-Light"
+    static let regular = "NotoSansKR-Regular"
+    static let medium = "NotoSansKR-Medium"
     static let bold = "AppleSDGothicNeo-Bold"
-    static let italic = "AppleSDGothicNeo-Light"
+    static let black = "NotoSansKR-Black"
 }
 
 extension UIFontDescriptor.AttributeName {
@@ -20,17 +23,30 @@ extension UIFontDescriptor.AttributeName {
 
 extension UIFont {
 
-    @objc class func mySystemFont(ofSize size: CGFloat) -> UIFont {
-        return UIFont(name: AppFontName.regular, size: size)!
+    @objc class func myThinSystemFont(ofSize size: CGFloat) -> UIFont {
+        return UIFont(name: AppFontName.thin, size: size)!
     }
 
+    @objc class func myLightSystemFont(ofSize size: CGFloat) -> UIFont {
+        return UIFont(name: AppFontName.light, size: size)!
+    }
+    
+    @objc class func myRegularSystemFont(ofSize size: CGFloat) -> UIFont {
+        return UIFont(name: AppFontName.regular, size: size)!
+    }
+    
+    @objc class func myMediumSystemFont(ofSize size: CGFloat) -> UIFont {
+        return UIFont(name: AppFontName.medium, size: size)!
+    }
+    
     @objc class func myBoldSystemFont(ofSize size: CGFloat) -> UIFont {
         return UIFont(name: AppFontName.bold, size: size)!
     }
-
-    @objc class func myItalicSystemFont(ofSize size: CGFloat) -> UIFont {
-        return UIFont(name: AppFontName.italic, size: size)!
+    
+    @objc class func myBlackSystemFont(ofSize size: CGFloat) -> UIFont {
+        return UIFont(name: AppFontName.black, size: size)!
     }
+
 
     @objc convenience init(myCoder aDecoder: NSCoder) {
         if let fontDescriptor = aDecoder.decodeObject(forKey: "UIFontDescriptor") as? UIFontDescriptor {
@@ -42,7 +58,7 @@ extension UIFont {
                 case "CTFontEmphasizedUsage", "CTFontBoldUsage":
                     fontName = AppFontName.bold
                 case "CTFontObliqueUsage":
-                    fontName = AppFontName.italic
+                    fontName = AppFontName.black
                 default:
                     fontName = AppFontName.regular
                 }
@@ -60,7 +76,7 @@ extension UIFont {
      class func overrideInitialize() {
         if self == UIFont.self {
            let systemFontMethod = class_getClassMethod(self, #selector(systemFont(ofSize:)))
-           let mySystemFontMethod = class_getClassMethod(self, #selector(mySystemFont(ofSize:)))
+           let mySystemFontMethod = class_getClassMethod(self, #selector(myThinSystemFont(ofSize:)))
            method_exchangeImplementations(systemFontMethod!, mySystemFontMethod!)
 
            let boldSystemFontMethod = class_getClassMethod(self, #selector(boldSystemFont(ofSize:)))
@@ -68,7 +84,7 @@ extension UIFont {
            method_exchangeImplementations(boldSystemFontMethod!, myBoldSystemFontMethod!)
 
            let italicSystemFontMethod = class_getClassMethod(self, #selector(italicSystemFont(ofSize:)))
-           let myItalicSystemFontMethod = class_getClassMethod(self, #selector(myItalicSystemFont(ofSize:)))
+           let myItalicSystemFontMethod = class_getClassMethod(self, #selector(myBlackSystemFont(ofSize:)))
            method_exchangeImplementations(italicSystemFontMethod!, myItalicSystemFontMethod!)
 
            let initCoderMethod = class_getInstanceMethod(self, #selector(UIFontDescriptor.init(coder:))) // Trick to get over the lack of UIFont.init(coder:))

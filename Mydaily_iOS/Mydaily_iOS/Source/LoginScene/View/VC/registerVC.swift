@@ -168,12 +168,12 @@ extension RegisterVC {
 //MARK: - String
 extension String {
     // E-mail address validation
-    public func validateEmail() -> Bool {
-        let emailRegEx = "^.+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*$"
-        
-        let predicate = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return predicate.evaluate(with: self)
-    }
+//    public func validateEmail() -> Bool {
+//        let emailRegEx = "^.+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*$"
+//        
+//        let predicate = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+//        return predicate.evaluate(with: self)
+//    }
     
     // Password validation
     public func validatePassword() -> Bool {

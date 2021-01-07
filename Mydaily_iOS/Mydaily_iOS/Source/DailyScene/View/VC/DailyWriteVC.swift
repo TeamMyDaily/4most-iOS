@@ -37,11 +37,11 @@ class DailyWriteVC: UIViewController {
     @IBAction func changeSlider(_ sender: Any) {
         scoreSlider.value = roundf(scoreSlider.value)
         todayScore.text = "\(Int(scoreSlider.value))점"
-        scoreSlider.thumbTintColor = .warmPink
-        todayScore.textColor = .warmPink
+        scoreSlider.thumbTintColor = .mainOrange
+        todayScore.textColor = .mainOrange
         
         for i in 0..<Int(scoreSlider.value) {
-            sliderIndex[i].layer.backgroundColor = UIColor.warmPink.cgColor
+            sliderIndex[i].layer.backgroundColor = UIColor.mainOrange.cgColor
         }
         for i in Int(scoreSlider.value)..<5 {
             sliderIndex[i].layer.backgroundColor = UIColor.gray30.cgColor
@@ -74,7 +74,7 @@ extension DailyWriteVC {
             
             button.setTitleTextAttributes([
                                             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
-                                            NSAttributedString.Key.foregroundColor: UIColor.warmPink], for: .selected)
+                                            NSAttributedString.Key.foregroundColor: UIColor.mainOrange], for: .selected)
             
             return button
         }()
@@ -89,7 +89,7 @@ extension DailyWriteVC {
         textLabel.numberOfLines = 2
         textLabel.font = .systemFont(ofSize: 24)
         //내가 적용하고싶은 폰트 사이즈
-        let fontSize = UIFont.boldSystemFont(ofSize: 24)
+        let fontSize = UIFont.myBlackSystemFont(ofSize: 24)
         
         //label에 있는 Text를 NSMutableAttributedString으로 만들어준다.
         let attributedStr = NSMutableAttributedString(string: textLabel.text ?? "")
@@ -101,19 +101,19 @@ extension DailyWriteVC {
         textLabel.attributedText = attributedStr
         
         todayTitle.setLeftPaddingPoints(3)
-        todayTitle.layer.addBorder([.bottom], color: .warmPink, width: 1, move: 5)
+        todayTitle.layer.addBorder([.bottom], color: .mainOrange, width: 1, move: 5)
         todayTitle.font = .systemFont(ofSize: 16)
         todayTitle.placeholder = "오늘 하루 무슨일이 있었나요?"
         
         labelCount.font = .systemFont(ofSize: 12)
-        labelCount.textColor = .warmPink
+        labelCount.textColor = .mainOrange
         
         todayTitle.addTarget(self, action: #selector(textFieldDidChange), for: UIControl.Event.editingChanged)
         
         todayTextView.backgroundColor = .gray30
         todayTextView.layer.cornerRadius = 15
         
-        textViewCount.textColor = .warmPink
+        textViewCount.textColor = .mainOrange
         scoreSlider.thumbTintColor = .gray
         
     }

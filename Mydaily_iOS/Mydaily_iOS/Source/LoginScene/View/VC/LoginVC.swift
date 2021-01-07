@@ -37,7 +37,7 @@ extension LoginVC {
         pwTextField.isSecureTextEntry = true
         
         idTextField.layer.cornerRadius = 15
-        idTextField.layer.borderColor = UIColor.warmPink.cgColor
+        idTextField.layer.borderColor = UIColor.mainOrange.cgColor
         idTextField.layer.borderWidth = 1
         idTextField.setLeftPaddingPoints(15)
     }
