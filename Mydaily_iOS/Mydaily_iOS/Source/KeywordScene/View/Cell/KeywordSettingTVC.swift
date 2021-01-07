@@ -1,5 +1,5 @@
 //
-//  KeywordTableViewCell.swift
+//  KeywordSettingTVC.swift
 //  Mydaily_iOS
 //
 //  Created by 장혜령 on 2021/01/01.
@@ -8,17 +8,14 @@
 import UIKit
 
 protocol SelectKeywordDelegate {
-    func addSelectedKeyword(_ cell: KeywordTableViewCell, selectedText: String) -> Bool
-   // func addSelectedKeyword(_ cell: KeywordTableViewCell, selectedText: String, numOfSection: Int)
+    func addSelectedKeyword(_ cell: KeywordSettingTVC, selectedText: String) -> Bool
    
-    func cancelSelectedKeyword(_ cell: KeywordTableViewCell, selectedText: String)
-   // func removeSelectedKeyword(_ cell: KeywordTableViewCell, selectedText: String, numOfSection: Int)
-    
+    func cancelSelectedKeyword(_ cell: KeywordSettingTVC, selectedText: String)
 }
 
-class KeywordTableViewCell: UITableViewCell {
+class KeywordSettingTVC: UITableViewCell {
 
-    static let identifier = "KeywordTableViewCell"
+    static let identifier = "KeywordSettingTVC"
     @IBOutlet var keywordButtonList: [UIButton]!
     var cellDelegate: SelectKeywordDelegate?
     
@@ -55,7 +52,6 @@ class KeywordTableViewCell: UITableViewCell {
         } else{
             sender.backgroundColor = originButtonColor
             cellDelegate?.cancelSelectedKeyword(self, selectedText: labelText)
-            //KeywordSettingVC.removeSelectedKeyword(text: labelText)
         }
     }
     

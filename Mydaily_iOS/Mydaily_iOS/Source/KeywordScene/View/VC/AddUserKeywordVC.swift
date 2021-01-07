@@ -57,8 +57,12 @@ class AddUserKeywordVC: UIViewController {
         navigationBar.backgroundColor = UIColor.clear
         navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationBar.shadowImage = UIImage()
+        navigationBar.backIndicatorImage = UIImage(systemName: "questionmark.circle.fill")
+      
+        self.navigationItem.title = "키워드 추가"
         
-        navigationItem.title = "키워드 추가"
+        //self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
     }
     
     @IBAction func addUserKeyword(_ sender: UIButton) {

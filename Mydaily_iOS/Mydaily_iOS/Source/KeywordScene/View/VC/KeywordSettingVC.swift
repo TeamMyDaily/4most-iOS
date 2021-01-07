@@ -31,7 +31,6 @@ class KeywordSettingVC: UIViewController {
     var userKeywordButtonList :[UIButton] = []
     var contentX = 16
     var contentY = 35
-    //var userKeywordLine = 0
     var checkKeyword = false
     var isKeywordEditing = false
     var systemSize = 0
@@ -55,13 +54,6 @@ class KeywordSettingVC: UIViewController {
         checkKeyword = false
     }
     
-    func initializeMyKeywordList(){
-        for _ in 0...2{
-            var list: [String] = []
-            selectedKeywordList.append(list)
-        }
-    }
-    
     @IBAction func submitKeyword(_ sender: Any) {
 
         guard let dvc = self.storyboard?.instantiateViewController(identifier: NextKeywordVC.identifier) as? NextKeywordVC else{
@@ -72,18 +64,38 @@ class KeywordSettingVC: UIViewController {
         self.navigationController?.pushViewController(dvc, animated: true)
     }
     
+    func initializeMyKeywordList(){
+        for _ in 0...2{
+            var list: [String] = []
+            selectedKeywordList.append(list)
+        }
+    }
+    
+   
+    
     func setNavigationBar(){
         guard let navigationBar = self.navigationController?.navigationBar else { return }
         navigationBar.isTranslucent = true
         navigationBar.backgroundColor = UIColor.clear
         navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationBar.shadowImage = UIImage()
-        
+      
         navigationItem.title = "키워드 설정하기"
         let questionItem = UIBarButtonItem(image: UIImage(systemName: "questionmark.circle.fill"), style: .plain, target: self, action: #selector(goKeywordPopUp))
-            
+        let testItem = UIBarButtonItem(image: UIImage(systemName: "questionmark.circle.fill"), style: .plain, target: self, action: nil)
+        navigationBar.backIndicatorTransitionMaskImage = nil
         navigationItem.rightBarButtonItem = questionItem
+        navigationItem.backBarButtonItem = testItem
+        navigationBar.backIndicatorImage = nil
         
+        
+//      navigation
+//        let backItem2 = UIBarButtonItem(title: "", image: nil, primaryAction: nil, menu: nil)
+//        let backItem = UIBarButtonItem(title: "왜이래,,", image: UIImage(systemName: "chevron.backward"), primaryAction: nil, menu: nil)
+//        navigationItem.backBarButtonItem = backItem
+//        navigationBar.backIndicatorImage = UIImage(systemName: "questionmark.circle.fill")
+        
+        //navigationItem.backBarButtonItem?.imageInsets = UIEdgeInsets(top: 5, left: 30, bottom: 5, right: 0)
     }
     
     @objc func goKeywordPopUp(){
@@ -110,7 +122,7 @@ class KeywordSettingVC: UIViewController {
     func setDelegate(){
         KeywordTableView.dataSource = self
         KeywordTableView.delegate = self
-        KeywordTableView.register(UINib(nibName: "KeywordTableViewCell", bundle: .main), forCellReuseIdentifier: KeywordTableViewCell.identifier)
+        KeywordTableView.register(UINib(nibName: "KeywordSettingTVC", bundle: .main), forCellReuseIdentifier: KeywordSettingTVC.identifier)
         KeywordTableView.separatorStyle = .none
     }
  
@@ -131,14 +143,12 @@ class KeywordSettingVC: UIViewController {
             print("user 추가 : \(txt)")
         }
         
-        print("--------------------------")
     }
     
     
     
     func setButtonActive(){
         if selectedKeywordCount == 8 {
-            print("8개 눌림!!! 버튼 활성화")
             completeButton.backgroundColor = .systemOrange
             completeButton.isEnabled = true
         }else{
@@ -168,7 +178,7 @@ extension KeywordSettingVC: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: KeywordTableViewCell.identifier) as? KeywordTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: KeywordSettingTVC.identifier) as? KeywordSettingTVC else {
             return UITableViewCell()
         }
         
@@ -226,15 +236,12 @@ extension KeywordSettingVC: UITableViewDelegate{
         }
         
         sectionTitleLabel.text = title
-        
         sectionTitleLabel.font = UIFont.boldSystemFont(ofSize: 16)
         header.addSubview(sectionTitleLabel)
         
         //top autolayout지정
         sectionTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-               
         sectionTitleLabel.leftAnchor.constraint(equalTo: header.leftAnchor, constant: 17).isActive = true
-        //sectionTitleLabel.topAnchor.constraint(equalTo: header.topAnchor, constant: 20).isActive = true
                
         return header
     }
@@ -249,9 +256,7 @@ extension KeywordSettingVC: UITableViewDelegate{
     
     //내가 추가한 키워드는 table footer로
     func setTableFooterView(){
-        //let footerHeight = CGFloat(contentY+30)
-        footer = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 300))
-        //footer.backgroundColor = .systemRed
+        footer = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
         
         userKeywordTitleLabel = UILabel(frame: CGRect(x: 16, y: 0, width: view.frame.size.width - 150, height: 30))
         userKeywordTitleLabel.text = "찾고 있는 가치(단어)가 없으세요?"
@@ -276,15 +281,6 @@ extension KeywordSettingVC: UITableViewDelegate{
         footer.addSubview(KeywordEditButton)
         
         print(KeywordTableView.frame.height - 60)
-        //오토레이아웃을 코드로 지정 할 때 사용
-        
-//       // keywordPlusButton.translatesAutoresizingMaskIntoConstraints = false
-//
-//        keywordPlusButton.leftAnchor.constraint(equalTo: footer.leftAnchor, constant: 17).isActive = true
-//        //completeButton.rightAnchor.constraint(equalTo: footer.rightAnchor, constant: -22).isActive = true
-//        keywordPlusButton.topAnchor.constraint(equalTo: footer.topAnchor, constant: 40).isActive = true
-//        //completeButton.bottomAnchor.constraint(equalTo: footer.bottomAnchor, constant: 0).isActive = true
-//
         KeywordTableView.tableFooterView = footer
     }
     
@@ -295,14 +291,15 @@ extension KeywordSettingVC: UITableViewDelegate{
         self.navigationController?.pushViewController(dvc, animated: true)
     }
     
+    
     func checkForUserKeyword(check: Bool){
         checkKeyword = check
     }
     
+    
     func addUserKeyword(){
         
         //title label 바꾸기
-    
         if userKeywordList.count > 0{
             userKeywordTitleLabel.text = "내가 추가한 키워드"
             userKeywordTitleLabel.textColor = .orange
@@ -325,53 +322,22 @@ extension KeywordSettingVC: UITableViewDelegate{
         myKeywordButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.medium)
         myKeywordButton.layer.cornerRadius = 15
         myKeywordButton.backgroundColor = originButtonColor
-       // myKeywordButton.contentVerticalAlignment = .center
-        
-        /*
-        myKeywordButton.setImage(UIImage(systemName: "multiply.circle.fill"), for: .normal)
-        myKeywordButton.semanticContentAttribute = .forceRightToLeft
-        myKeywordButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
-        myKeywordButton.tintColor = .white
-        
-      */
-        
-        /*
-        let attributedString = NSMutableAttributedString(string: "")
-        let imageAttachment = NSTextAttachment()
-        imageAttachment.image = UIImage(systemName: "multiply.circle.fill")
-        imageAttachment.bounds = CGRect(x: 0, y: 0, width: 10, height: 10)
-        attributedString.append(NSAttributedString(attachment: imageAttachment))
-        attributedString.append(NSAttributedString(string: KeywordText))
-        myKeywordButton.titleLabel?.attributedText = attributedString
-        */
+       
         myKeywordButton.addTarget(self, action: #selector(selectedUserKeyword), for: .touchUpInside)
         
 
         if contentX > systemSize - 100 {
             contentX = 17
             contentY += 48
-            
             keywordPlusButton.frame.origin.y = CGFloat(contentY)
+            footer.frame.size.height = CGFloat(contentY+50)
+            footer.backgroundColor = getRandomColor()
+            KeywordTableView.tableFooterView = footer
         }
         userKeywordButtonList.append(myKeywordButton)
         footer.addSubview(myKeywordButton)
         keywordPlusButton.frame.origin.x = CGFloat(contentX)
        
-        
-       // footer.willRemoveSubview(UIView)
-        
-       // myKeywordButton.sizeThatFits(CGSize(width: buttonWidth, height: 32))
-//        myKeywordButton.translatesAutoresizingMaskIntoConstraints = false
-//
-//        myKeywordButton.leftAnchor.constraint(equalTo: footer.leftAnchor, constant: 17).isActive = true
-//        //completeButton.rightAnchor.constraint(equalTo: footer.rightAnchor, constant: -22).isActive = true
-//        myKeywordButton.topAnchor.constraint(equalTo: footer.topAnchor, constant: 40).isActive = true
-//        //completeButton.bottomAnchor.constraint(equalTo: footer.bottomAnchor, constant: 0).isActive = true
-//
-        //keywordPlusButton.leftAnchor.constraint(equalTo: myKeywordButton.rightAnchor, constant: 8).isActive = true
-        
-        //footer.addSubview(myKeywordButton)
-       // myKeywordButton.frame.width
     }
     
     @objc func selectedUserKeyword(_ sender: UIButton){
@@ -432,86 +398,10 @@ extension KeywordSettingVC: UITableViewDelegate{
             drawKeywordCompleteMode()
             sender.setTitle("수정", for: .normal)
         }
+        
       
     }
     
-    
-    /*
-    @objc func editUserKeyword1(_ sender: UIButton){
-       
-        let condition = sender.title(for: .normal)
-        var newContentX = 16
-        var newContentY = 35
-        
-        var userKeywordLine = 0
-        var buttonWidth = 0
-     
-        for btn in userKeywordButtonList{
-            btn.removeFromSuperview()
-        }
-        keywordPlusButton.removeFromSuperview()
-        
-        
-        for btn in userKeywordButtonList{
-            userKeywordLine = 0
-            let btnTitleText = btn.title(for: .normal) ?? ""
-           
-            if condition == "수정"{
-               
-                
-                keywordPlusButton.isHidden = true
-                buttonWidth = btnTitleText.count * 20 + (30 - btnTitleText.count*4)
-                btn.setImage(UIImage(systemName: "multiply.circle.fill"), for: .normal)
-                btn.semanticContentAttribute = .forceRightToLeft
-                btn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 7, bottom: 0, right: 0)
-                btn.tintColor = .white
-                btn.removeTarget(self, action: #selector(selectedUserKeyword), for: .touchUpInside)
-                btn.addTarget(self, action: #selector(deleteUserKeyword), for: .touchUpInside)
-                
-            }else if condition == "완료"{
-                keywordPlusButton.isHidden = false
-                buttonWidth = btnTitleText.count * 18 + (20 - btnTitleText.count*3)
-                btn.setImage(UIImage(), for: .normal)
-                
-                btn.removeTarget(self, action: #selector(deleteUserKeyword), for: .touchUpInside)
-                btn.addTarget(self, action: #selector(selectedUserKeyword), for: .touchUpInside)
-                
-            }
-            
-            btn.frame.size.width = CGFloat(buttonWidth)
-            btn.frame.origin.x = CGFloat(newContentX)
-            btn.frame.origin.y = CGFloat(newContentY)
-            
-            newContentX += buttonWidth + 8 //다음 X위치
-            
-            if newContentX > systemSize - 120  { //다음 X위치가 옆으로 넘어갈 것 같으면 밑으로 내리기
-                userKeywordLine += 1
-                newContentX = 16
-                newContentY = 48 * userKeywordLine + 35
-            }
-            
-            footer.addSubview(btn)
-            
-        }
-        
-        keywordPlusButton.frame.origin.x = CGFloat(newContentX)
-        keywordPlusButton.frame.origin.y = CGFloat(newContentY)
-        
-        contentX = newContentX
-        contentY = newContentY
-        
-        print("\(userKeywordLine) ||| contentX : \(contentX) ,  contentY : \(contentY)")
-        
-        footer.addSubview(keywordPlusButton)
-        
-        if condition == "수정"{
-            sender.setTitle("완료", for: .normal)
-        }else{
-            sender.setTitle("수정", for: .normal)
-        }
-        
-    }
- */
     
     @objc func deleteUserKeyword(_ sender: UIButton){
         let keyword = sender.title(for: .normal) ?? ""
@@ -571,7 +461,7 @@ extension KeywordSettingVC: UITableViewDelegate{
                 userKeywordLine += 1
                 newContentX = 16
                 newContentY += 48
-                //newContentY = 48 * userKeywordLine + 35
+                updateSizeOfFooter(height: newContentY)
             }
             
             footer.addSubview(btn)
@@ -612,6 +502,7 @@ extension KeywordSettingVC: UITableViewDelegate{
                 userKeywordLine += 1
                 newContentX = 16
                 newContentY = 48 * userKeywordLine + 35
+                updateSizeOfFooter(height: newContentY)
             }
             
             footer.addSubview(btn)
@@ -625,6 +516,12 @@ extension KeywordSettingVC: UITableViewDelegate{
         contentX = newContentX
         contentY = newContentY
         
+    }
+    
+    func updateSizeOfFooter(height: Int){
+        footer.frame.size.height = CGFloat(height+50)
+        footer.backgroundColor = getRandomColor()
+        KeywordTableView.tableFooterView = footer
     }
     
     
@@ -644,11 +541,10 @@ extension KeywordSettingVC: UITableViewDelegate{
 
 }
 
-
 //tableviewcell 안에 버튼 클릭 delegate
 extension KeywordSettingVC: SelectKeywordDelegate{
    
-    func addSelectedKeyword(_ cell: KeywordTableViewCell, selectedText: String) -> Bool{
+    func addSelectedKeyword(_ cell: KeywordSettingTVC, selectedText: String) -> Bool{
         if selectedKeywordCount >= 8{
             alertKeyword()
             return false
@@ -668,7 +564,7 @@ extension KeywordSettingVC: SelectKeywordDelegate{
         }
     }
     
-    func cancelSelectedKeyword(_ cell: KeywordTableViewCell, selectedText: String) {
+    func cancelSelectedKeyword(_ cell: KeywordSettingTVC, selectedText: String) {
         var keywordIndex = -1
         
         for i in 0...2{
@@ -696,47 +592,4 @@ extension KeywordSettingVC: SelectKeywordDelegate{
     }
     
 }
-
-
-/*collectionView로 할 경우
-extension KeywordSettingVC: UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: KeywordTVC.identifier) as? KeywordTVC else {
-            return UITableViewCell()
-        }
-        
-        
-        if indexPath.section == 0 {
-            cell.setKeywordList(list: attitudeOfLife)
-        } else if indexPath.section == 1{
-            cell.setKeywordList(list: attitudeOfWork)
-        }
-        else{
-            cell.setKeywordList(list: addKeywordList)
-        }
-        
-        return cell
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if(section == 0){
-            return "삷을 대하는 자세"
-        }
-        else if (section == 1){
-            return "일을 대하는 자세"
-        }
-        else{
-            return "내가 추가한 키워드"
-        }
-    }
-}
-*/
 

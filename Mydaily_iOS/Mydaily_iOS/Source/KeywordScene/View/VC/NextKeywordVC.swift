@@ -23,7 +23,6 @@ class NextKeywordVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //printReceiveList()
         setkeywordContentView()
         setCompleteButton()
         setTitleLabel()
