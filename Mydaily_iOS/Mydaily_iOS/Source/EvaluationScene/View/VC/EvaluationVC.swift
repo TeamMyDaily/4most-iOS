@@ -8,6 +8,7 @@
 import UIKit
 
 class EvaluationVC: UIViewController {
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var weekLabel: UILabel!
     @IBOutlet weak var evaluationTabButton: UIButton!
     @IBOutlet weak var retrospectiveTabButton: UIButton!
@@ -20,7 +21,7 @@ class EvaluationVC: UIViewController {
     lazy var currentWeekButton: UIButton = {
         let currentWeekButton = UIButton()
         currentWeekButton.translatesAutoresizingMaskIntoConstraints = false
-        currentWeekButton.backgroundColor = UIColor.black.withAlphaComponent(0.35)
+        currentWeekButton.backgroundColor = UIColor.mainBlack.withAlphaComponent(0.45)
         return currentWeekButton
     }()
     
@@ -34,13 +35,11 @@ class EvaluationVC: UIViewController {
     var dateFormatter = DateFormatter()
     var checkDateFormatter = DateFormatter()
     var dateValue = 0
-    
-    let originalButtonColor: UIColor = UIColor.init(red: 196/255, green: 196/255, blue: 196/255, alpha: 1)
-    let selectedButtonColor: UIColor = UIColor.init(red: 236/255, green: 104/255, blue: 74/255, alpha: 1)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
+        setTabBar()
         setWeekLabel()
         setMenuTabButton()
         setCollectionViewDelegate()
@@ -86,12 +85,12 @@ class EvaluationVC: UIViewController {
         let current = "\(currentDate)"
         dateFormatter.dateFormat = "yy년 MM월 W주"
         weekLabel.text = dateFormatter.string(from: todayDate)
-        weekLabel.textColor = .black
+        weekLabel.textColor = .mainBlack
         if today != current {
             currentWeekButton.isHidden = false
         } else {
             currentWeekButton.isHidden = true
-            weekLabel.textColor = .systemRed
+            weekLabel.textColor = .mainOrange
         }
     }
     
@@ -107,13 +106,13 @@ class EvaluationVC: UIViewController {
             let current = "\(currentDate)"
             dateFormatter.dateFormat = "yy년 MM월 W주"
             weekLabel.text = dateFormatter.string(from: todayDate)
-            weekLabel.textColor = .black
+            weekLabel.textColor = .mainBlack
             
             if today != current {
                 currentWeekButton.isHidden = false
             } else {
                 currentWeekButton.isHidden = true
-                weekLabel.textColor = .systemRed
+                weekLabel.textColor = .mainOrange
             }
         }
     }
@@ -168,6 +167,11 @@ extension EvaluationVC {
         navigationController?.isNavigationBarHidden = true
     }
     
+    private func setTabBar() {
+        evaluationTabBar.tintColor = .mainOrange
+        retrospectiveTabBar.tintColor = .mainOrange
+    }
+    
     private func setWeekLabel() {
         dateValue = 0
         let todayDate = Calendar.current.date(byAdding: .weekOfMonth, value: dateValue, to: Date())!
@@ -175,9 +179,12 @@ extension EvaluationVC {
         dateFormatter.locale = Locale(identifier: "ko")
         weekLabel.text = dateFormatter.string(from: todayDate)
         
-        weekLabel.font = .boldSystemFont(ofSize: 12)
+        weekLabel.font = .myBoldSystemFont(ofSize: 12)
         weekLabel.textAlignment = .center
-        weekLabel.textColor = .systemRed
+        weekLabel.textColor = .mainOrange
+        
+        titleLabel.font = .myBoldSystemFont(ofSize: 20)
+        titleLabel.textColor = .mainBlack
     }
     
     private func setAfterWeekButton() {
@@ -185,13 +192,13 @@ extension EvaluationVC {
     }
     
     private func setMenuTabButton() {
-        evaluationTabButton.setTitleColor(selectedButtonColor, for: .normal)
+        evaluationTabButton.setTitleColor(.mainOrange, for: .normal)
         evaluationTabButton.setTitle("리포트", for: .normal)
-        evaluationTabButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        evaluationTabButton.titleLabel?.font = .myMediumSystemFont(ofSize: 16)
         
-        retrospectiveTabButton.setTitleColor(originalButtonColor, for: .normal)
+        retrospectiveTabButton.setTitleColor(.mainGray, for: .normal)
         retrospectiveTabButton.setTitle("회고", for: .normal)
-        retrospectiveTabButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        retrospectiveTabButton.titleLabel?.font = .myMediumSystemFont(ofSize: 16)
         
         retrospectiveTabBar.isHidden = true
     }
@@ -205,7 +212,7 @@ extension EvaluationVC {
         currentWeekButton.heightAnchor.constraint(equalToConstant: 32).isActive = true
         currentWeekButton.setTitle("이번주", for: .normal)
         currentWeekButton.titleLabel?.textAlignment = .left
-        currentWeekButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
+        currentWeekButton.titleLabel?.font = .myMediumSystemFont(ofSize: 16)
         currentWeekButton.titleLabel?.textColor = .white
         currentWeekButton.layer.cornerRadius = 15
         currentWeekButton.layer.masksToBounds = true
@@ -213,8 +220,8 @@ extension EvaluationVC {
     }
     
     private func setButtonState(enableButton: UIButton, disableButton: UIButton, enableTabBar: UIView, unableTabBar: UIView) {
-        enableButton.setTitleColor(selectedButtonColor, for: .normal)
-        disableButton.setTitleColor(originalButtonColor, for: .normal)
+        enableButton.setTitleColor(.mainOrange, for: .normal)
+        disableButton.setTitleColor(.mainGray, for: .normal)
         enableTabBar.isHidden = false
         unableTabBar.isHidden = true
     }
@@ -224,8 +231,8 @@ extension EvaluationVC {
         modifyButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 13).isActive = true
         modifyButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
         modifyButton.setTitle("수정", for: .normal)
-        modifyButton.setTitleColor(.blue, for: .normal)
-        modifyButton.titleLabel?.font = .systemFont(ofSize: 16)
+        modifyButton.setTitleColor(.mainBlue, for: .normal)
+        modifyButton.titleLabel?.font = .myRegularSystemFont(ofSize: 16)
         modifyButton.isHidden = true
         modifyButton.addTarget(self, action: #selector(touchUpModify), for: .touchUpInside)
     }
@@ -261,8 +268,8 @@ extension EvaluationVC: ChangeModifyButtonDelegate {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let noAction = UIAlertAction(title: "다음에하기", style: .default)
         let okAction = UIAlertAction(title: "재설정하기", style: .default)
-        noAction.setValue(UIColor.lightGray, forKey: "titleTextColor")
-        okAction.setValue(UIColor.systemRed, forKey: "titleTextColor")
+        noAction.setValue(UIColor.mainGray, forKey: "titleTextColor")
+        okAction.setValue(UIColor.mainOrange, forKey: "titleTextColor")
         alert.addAction(noAction)
         alert.addAction(okAction)
         present(alert, animated: true)

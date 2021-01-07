@@ -25,13 +25,15 @@ extension DetailRecordCVC {
     func setLabelData(content: String) {
         contentLabel.text = content
         satisfactionLabel.text = "테스크 만족도: 3점"
+        dateLabel.text = "2020. 12. 18"
     }
     
     private func setConfigure() {
         layer.cornerRadius = 10
-        layer.borderColor = UIColor.systemRed.cgColor
+        layer.borderColor = UIColor.mainLightOrange.cgColor
         layer.borderWidth = 1
         contentBar.layer.cornerRadius = 4
+        contentBar.tintColor = .mainPaleOrange
         
         contentLabel.preferredMaxLayoutWidth = self.frame.size.width - 16 - 30
         contentLabel.contentMode = .scaleToFill
@@ -39,8 +41,11 @@ extension DetailRecordCVC {
         contentLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
         contentLabel.sizeToFit()
         
-        contentLabel.font = .boldSystemFont(ofSize: 16)
-        dateLabel.font = .systemFont(ofSize: 12)
-        satisfactionLabel.font = .systemFont(ofSize: 12)
+        contentLabel.font = .myBoldSystemFont(ofSize: 16)
+        contentLabel.textColor = .mainBlack
+        dateLabel.font = .myRegularSystemFont(ofSize: 12)
+        dateLabel.textColor = .mainGray
+        satisfactionLabel.font = .myRegularSystemFont(ofSize: 12)
+        satisfactionLabel.textColor = .mainBlack
     }
 }

@@ -46,6 +46,10 @@ extension RetrospectiveTabCVC {
         retrospectiveTableView.delegate = self
         retrospectiveTableView.dataSource = self
         retrospectiveTableView.separatorColor = .clear
-        retrospectiveTableView.rowHeight = UIScreen.main.bounds.size.height - 180
+        if UIScreen.main.bounds.size.height <= 667 {
+            retrospectiveTableView.rowHeight = UIScreen.main.bounds.size.height - 50
+        } else {
+            retrospectiveTableView.rowHeight = UIScreen.main.bounds.size.height - 180
+        }
     }
 }

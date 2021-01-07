@@ -53,7 +53,7 @@ extension DetailRecordContentTVC: DetailRecordLayoutDelegate {
         label.numberOfLines = 0
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
         label.contentMode = .scaleToFill
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = .myBoldSystemFont(ofSize: 16)
         label.sizeToFit()
         
         let calculateHeight = label.intrinsicContentSize.height + 120

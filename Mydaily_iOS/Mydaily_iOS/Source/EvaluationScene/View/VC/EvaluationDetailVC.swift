@@ -14,9 +14,6 @@ class EvaluationDetailVC: UIViewController {
     @IBOutlet weak var keywordDetailTableView: UITableView!
     
     var listCount = 0
-    
-    let originalColor: UIColor = UIColor.init(red: 196/255, green: 196/255, blue: 196/255, alpha: 1)
-    let mainColor: UIColor = UIColor.init(red: 236/255, green: 104/255, blue: 74/255, alpha: 1)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,7 +82,8 @@ extension EvaluationDetailVC: UITableViewDelegate {
 extension EvaluationDetailVC {
     private func setNavigationBar() {
         navigationTitleLabel.text = "회고"
-        navigationTitleLabel.font = .boldSystemFont(ofSize: 20)
+        navigationTitleLabel.textColor = .mainBlack
+        navigationTitleLabel.font = .myBoldSystemFont(ofSize: 20)
     }
     
     private func setTableViewDelegate() {
@@ -97,10 +95,11 @@ extension EvaluationDetailVC {
     }
     
     private func setLabel() {
-        keywordLabel.font = .boldSystemFont(ofSize: 32)
+        keywordLabel.font = .myBoldSystemFont(ofSize: 32)
         keywordLabel.text = "아웃풋"
-        weekLabel.font = .systemFont(ofSize: 12)
+        keywordLabel.textColor = .mainBlack
+        weekLabel.font = .myRegularSystemFont(ofSize: 12)
         weekLabel.text = "20년 12월 3주"
-        weekLabel.textColor = .lightGray
+        weekLabel.textColor = .mainGray
     }
 }

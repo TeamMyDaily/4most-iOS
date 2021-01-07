@@ -82,14 +82,14 @@ class RetrospectiveWriteTVC: UITableViewCell {
         dvc.saveContent = { text, textCount in
             if text == "" || text == self.cellPlaceholders[0] {
                 self.contentOneTextViewButton.layer.borderWidth = 0
-                self.contentOneTextViewButton.backgroundColor = UIColor.black.withAlphaComponent(0.3)
-                self.writeOneTextView.textColor = .lightGray
+                self.contentOneTextViewButton.backgroundColor = .mainLightGray
+                self.writeOneTextView.textColor = .mainGray
             } else {
                 self.contentOneTextViewButton.layer.borderWidth = 1
-                self.contentOneTextViewButton.layer.borderColor = UIColor.systemRed.cgColor
+                self.contentOneTextViewButton.layer.borderColor = UIColor.mainPaleOrange.cgColor
                 self.contentOneTextViewButton.backgroundColor = .white
                 
-                self.writeOneTextView.textColor = .black
+                self.writeOneTextView.textColor = .mainBlack
                 self.writeOneTextView.text = text
                 self.countNumberLabel.text = "\(textCount)"
                 
@@ -121,14 +121,14 @@ class RetrospectiveWriteTVC: UITableViewCell {
         dvc.saveContent = { text, textCount in
             if text == "" || text == self.cellPlaceholders[1] {
                 self.contentTwoTextViewButton.layer.borderWidth = 0
-                self.contentTwoTextViewButton.backgroundColor = UIColor.black.withAlphaComponent(0.3)
-                self.writeTwoTextView.textColor = .lightGray
+                self.contentTwoTextViewButton.backgroundColor = .mainLightGray
+                self.writeTwoTextView.textColor = .mainGray
             } else {
                 self.contentTwoTextViewButton.layer.borderWidth = 1
-                self.contentTwoTextViewButton.layer.borderColor = UIColor.systemRed.cgColor
+                self.contentTwoTextViewButton.layer.borderColor = UIColor.mainPaleOrange.cgColor
                 self.contentTwoTextViewButton.backgroundColor = .white
                 
-                self.writeTwoTextView.textColor = .black
+                self.writeTwoTextView.textColor = .mainBlack
                 self.writeTwoTextView.text = text
                 self.countTwoNumberLabel.text = "\(textCount)"
                 
@@ -160,14 +160,14 @@ class RetrospectiveWriteTVC: UITableViewCell {
         dvc.saveContent = { text, textCount in
             if text == "" || text == self.cellPlaceholders[2] {
                 self.contentThreeTextViewButton.layer.borderWidth = 0
-                self.contentThreeTextViewButton.backgroundColor = UIColor.black.withAlphaComponent(0.3)
-                self.writeThreeTextView.textColor = .lightGray
+                self.contentThreeTextViewButton.backgroundColor = .mainLightGray
+                self.writeThreeTextView.textColor = .mainGray
             } else {
                 self.contentThreeTextViewButton.layer.borderWidth = 1
-                self.contentThreeTextViewButton.layer.borderColor = UIColor.systemRed.cgColor
+                self.contentThreeTextViewButton.layer.borderColor = UIColor.mainPaleOrange.cgColor
                 self.contentThreeTextViewButton.backgroundColor = .white
                 
-                self.writeThreeTextView.textColor = .black
+                self.writeThreeTextView.textColor = .mainBlack
                 self.writeThreeTextView.text = text
                 self.countThreeNumberLabel.text = "\(textCount)"
                 
@@ -196,7 +196,6 @@ class RetrospectiveWriteTVC: UITableViewCell {
         buttonDelegate?.changeModifyButton(isActive: false)
         saveButton.isHidden = true
         isSaved = true
-        // notification
         buttonDelegate?.showAlert(title: "목표를 재설정 하시겠어요?", message: "한주의 회고를 다 마치셨군요!\n 목표를 달성하셨다면 새로운 목표로 재설정 하시겠어요?")
     }
 }
@@ -205,49 +204,52 @@ extension RetrospectiveWriteTVC: UITextViewDelegate {}
 
 extension RetrospectiveWriteTVC {
     private func setLabel() {
-        titleLabel.font = .boldSystemFont(ofSize: 21)
+        titleLabel.font = .myBoldSystemFont(ofSize: 21)
+        titleLabel.textColor = .mainBlack
         titleLabel.text = cellTitles[0]
-        titleTwoLabel.font = .boldSystemFont(ofSize: 21)
+        titleTwoLabel.font = .myBoldSystemFont(ofSize: 21)
+        titleTwoLabel.textColor = .mainBlack
         titleTwoLabel.text = cellTitles[1]
-        titleThreeLabel.font = .boldSystemFont(ofSize: 21)
+        titleThreeLabel.font = .myBoldSystemFont(ofSize: 21)
+        titleThreeLabel.textColor = .mainBlack
         titleThreeLabel.text = cellTitles[2]
         
-        limitNumberLabel.font = .systemFont(ofSize: 12)
-        limitNumberLabel.textColor = UIColor.black.withAlphaComponent(0.3)
+        limitNumberLabel.font = .myRegularSystemFont(ofSize: 12)
+        limitNumberLabel.textColor = .mainGray
         limitNumberLabel.text = "/800자"
-        limitTwoNumberLabel.font = .systemFont(ofSize: 12)
-        limitTwoNumberLabel.textColor = UIColor.black.withAlphaComponent(0.3)
+        limitTwoNumberLabel.font = .myRegularSystemFont(ofSize: 12)
+        limitTwoNumberLabel.textColor = .mainGray
         limitTwoNumberLabel.text = "/800자"
-        limitThreeNumberLabel.font = .systemFont(ofSize: 12)
-        limitThreeNumberLabel.textColor = UIColor.black.withAlphaComponent(0.3)
+        limitThreeNumberLabel.font = .myRegularSystemFont(ofSize: 12)
+        limitThreeNumberLabel.textColor = .mainGray
         limitThreeNumberLabel.text = "/800자"
         
-        countNumberLabel.font = .systemFont(ofSize: 12)
-        countNumberLabel.textColor = .systemRed
+        countNumberLabel.font = .myRegularSystemFont(ofSize: 12)
+        countNumberLabel.textColor = .mainOrange
         countNumberLabel.text = "0"
-        countTwoNumberLabel.font = .systemFont(ofSize: 12)
-        countTwoNumberLabel.textColor = .systemRed
+        countTwoNumberLabel.font = .myRegularSystemFont(ofSize: 12)
+        countTwoNumberLabel.textColor = .mainOrange
         countTwoNumberLabel.text = "0"
-        countThreeNumberLabel.font = .systemFont(ofSize: 12)
-        countThreeNumberLabel.textColor = .systemRed
+        countThreeNumberLabel.font = .myRegularSystemFont(ofSize: 12)
+        countThreeNumberLabel.textColor = .mainOrange
         countThreeNumberLabel.text = "0"
     }
     
     private func setSaveButton() {
         if !isSaved {
             if isFillInOne && isFillInTwo && isFillInThree {
-                saveButton.backgroundColor = .systemRed
+                saveButton.backgroundColor = .mainOrange
                 saveButton.layer.masksToBounds = true
                 saveButton.layer.cornerRadius = 15
-                saveButton.titleLabel?.font = .boldSystemFont(ofSize: 18)
+                saveButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
                 saveButton.setTitle("회고완료!", for: .normal)
                 saveButton.setTitleColor(.white, for: .normal)
                 saveButton.isEnabled = true
             } else {
-                saveButton.backgroundColor = .lightGray
+                saveButton.backgroundColor = .mainGray
                 saveButton.layer.masksToBounds = true
                 saveButton.layer.cornerRadius = 15
-                saveButton.titleLabel?.font = .boldSystemFont(ofSize: 18)
+                saveButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
                 saveButton.setTitle("회고완료!", for: .normal)
                 saveButton.setTitleColor(.white, for: .normal)
                 saveButton.isEnabled = false
@@ -283,34 +285,47 @@ extension RetrospectiveWriteTVC {
     }
     
     private func setOneButtonView() {
-        contentOneTextViewButton.backgroundColor = UIColor.black.withAlphaComponent(0.05)
+        contentOneTextViewButton.backgroundColor = .mainLightGray
         contentOneTextViewButton.layer.cornerRadius = 10
         contentOneTextViewButton.layer.masksToBounds = true
         contentOneTextViewButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
         contentOneTextViewButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
-        flowHeightConstraint = contentOneTextViewButton.heightAnchor.constraint(equalToConstant: 104)
+        print(UIScreen.main.bounds.size.height)
+        if UIScreen.main.bounds.size.height <= 667 {
+            flowHeightConstraint = contentOneTextViewButton.heightAnchor.constraint(equalToConstant: 84)
+        } else {
+            flowHeightConstraint = contentOneTextViewButton.heightAnchor.constraint(equalToConstant: 104)
+        }
         flowHeightConstraint?.isActive = true
         contentOneTextViewButton.isHighlighted = false
     }
     
     private func setTwoButtonView() {
-        contentTwoTextViewButton.backgroundColor = UIColor.black.withAlphaComponent(0.05)
+        contentTwoTextViewButton.backgroundColor = .mainLightGray
         contentTwoTextViewButton.layer.cornerRadius = 10
         contentTwoTextViewButton.layer.masksToBounds = true
         contentTwoTextViewButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
         contentTwoTextViewButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
-        flowHeightTwoConstraint = contentTwoTextViewButton.heightAnchor.constraint(equalToConstant: 104)
+        if UIScreen.main.bounds.size.height <= 667 {
+            flowHeightTwoConstraint = contentTwoTextViewButton.heightAnchor.constraint(equalToConstant: 84)
+        } else {
+            flowHeightTwoConstraint = contentTwoTextViewButton.heightAnchor.constraint(equalToConstant: 104)
+        }
         flowHeightTwoConstraint?.isActive = true
         contentTwoTextViewButton.isHighlighted = false
     }
     
     private func setThreeButtonView() {
-        contentThreeTextViewButton.backgroundColor = UIColor.black.withAlphaComponent(0.05)
+        contentThreeTextViewButton.backgroundColor = .mainLightGray
         contentThreeTextViewButton.layer.cornerRadius = 10
         contentThreeTextViewButton.layer.masksToBounds = true
         contentThreeTextViewButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
         contentThreeTextViewButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
-        flowHeightThreeConstraint = contentThreeTextViewButton.heightAnchor.constraint(equalToConstant: 104)
+        if UIScreen.main.bounds.size.height <= 667 {
+            flowHeightThreeConstraint = contentThreeTextViewButton.heightAnchor.constraint(equalToConstant: 84)
+        } else {
+            flowHeightThreeConstraint = contentThreeTextViewButton.heightAnchor.constraint(equalToConstant: 104)
+        }
         flowHeightThreeConstraint?.isActive = true
         contentThreeTextViewButton.isHighlighted = false
     }
@@ -325,14 +340,14 @@ extension RetrospectiveWriteTVC {
     
     private func setOneTextView() {
         contentOneTextViewButton.addSubview(writeOneTextView)
-        writeOneTextView.leadingAnchor.constraint(equalTo: contentOneTextViewButton.leadingAnchor, constant: 17).isActive = true
-        writeOneTextView.trailingAnchor.constraint(equalTo: contentOneTextViewButton.trailingAnchor, constant: -17).isActive = true
-        writeOneTextView.topAnchor.constraint(equalTo: contentOneTextViewButton.topAnchor, constant: 16).isActive = true
-        writeOneTextView.bottomAnchor.constraint(equalTo: contentOneTextViewButton.bottomAnchor, constant: -16).isActive = true
+        writeOneTextView.leadingAnchor.constraint(equalTo: contentOneTextViewButton.leadingAnchor, constant: 14).isActive = true
+        writeOneTextView.trailingAnchor.constraint(equalTo: contentOneTextViewButton.trailingAnchor, constant: -14).isActive = true
+        writeOneTextView.topAnchor.constraint(equalTo: contentOneTextViewButton.topAnchor, constant: 11).isActive = true
+        writeOneTextView.bottomAnchor.constraint(equalTo: contentOneTextViewButton.bottomAnchor, constant: -11).isActive = true
         
         writeOneTextView.delegate = self
         writeOneTextView.isEditable = false
-        writeOneTextView.layer.cornerRadius = 10
+        writeOneTextView.layer.cornerRadius = 12
         writeOneTextView.backgroundColor = UIColor.clear
         writeOneTextView.autocapitalizationType = .none
         writeOneTextView.autocorrectionType = .no
@@ -340,21 +355,21 @@ extension RetrospectiveWriteTVC {
         writeOneTextView.smartInsertDeleteType = .no
         writeOneTextView.spellCheckingType = .no
         
-        writeOneTextView.font = .systemFont(ofSize: 16)
+        writeOneTextView.font = .myRegularSystemFont(ofSize: 16)
         writeOneTextView.text = cellPlaceholders[0]
-        writeOneTextView.textColor = .lightGray
+        writeOneTextView.textColor = .mainGray
     }
     
     private func setTwoTextView() {
         contentTwoTextViewButton.addSubview(writeTwoTextView)
-        writeTwoTextView.leadingAnchor.constraint(equalTo: contentTwoTextViewButton.leadingAnchor, constant: 17).isActive = true
-        writeTwoTextView.trailingAnchor.constraint(equalTo: contentTwoTextViewButton.trailingAnchor, constant: -17).isActive = true
-        writeTwoTextView.topAnchor.constraint(equalTo: contentTwoTextViewButton.topAnchor, constant: 16).isActive = true
-        writeTwoTextView.bottomAnchor.constraint(equalTo: contentTwoTextViewButton.bottomAnchor, constant: -16).isActive = true
+        writeTwoTextView.leadingAnchor.constraint(equalTo: contentTwoTextViewButton.leadingAnchor, constant: 14).isActive = true
+        writeTwoTextView.trailingAnchor.constraint(equalTo: contentTwoTextViewButton.trailingAnchor, constant: -14).isActive = true
+        writeTwoTextView.topAnchor.constraint(equalTo: contentTwoTextViewButton.topAnchor, constant: 11).isActive = true
+        writeTwoTextView.bottomAnchor.constraint(equalTo: contentTwoTextViewButton.bottomAnchor, constant: -11).isActive = true
         
         writeTwoTextView.delegate = self
         writeTwoTextView.isEditable = false
-        writeTwoTextView.layer.cornerRadius = 10
+        writeTwoTextView.layer.cornerRadius = 12
         writeTwoTextView.backgroundColor = UIColor.clear
         writeTwoTextView.autocapitalizationType = .none
         writeTwoTextView.autocorrectionType = .no
@@ -362,21 +377,21 @@ extension RetrospectiveWriteTVC {
         writeTwoTextView.smartInsertDeleteType = .no
         writeTwoTextView.spellCheckingType = .no
         
-        writeTwoTextView.font = .systemFont(ofSize: 16)
+        writeTwoTextView.font = .myRegularSystemFont(ofSize: 16)
         writeTwoTextView.text = cellPlaceholders[1]
-        writeTwoTextView.textColor = .lightGray
+        writeTwoTextView.textColor = .mainGray
     }
     
     private func setThreeTextView() {
         contentThreeTextViewButton.addSubview(writeThreeTextView)
-        writeThreeTextView.leadingAnchor.constraint(equalTo: contentThreeTextViewButton.leadingAnchor, constant: 17).isActive = true
-        writeThreeTextView.trailingAnchor.constraint(equalTo: contentThreeTextViewButton.trailingAnchor, constant: -17).isActive = true
-        writeThreeTextView.topAnchor.constraint(equalTo: contentThreeTextViewButton.topAnchor, constant: 16).isActive = true
-        writeThreeTextView.bottomAnchor.constraint(equalTo: contentThreeTextViewButton.bottomAnchor, constant: -16).isActive = true
+        writeThreeTextView.leadingAnchor.constraint(equalTo: contentThreeTextViewButton.leadingAnchor, constant: 14).isActive = true
+        writeThreeTextView.trailingAnchor.constraint(equalTo: contentThreeTextViewButton.trailingAnchor, constant: -14).isActive = true
+        writeThreeTextView.topAnchor.constraint(equalTo: contentThreeTextViewButton.topAnchor, constant: 11).isActive = true
+        writeThreeTextView.bottomAnchor.constraint(equalTo: contentThreeTextViewButton.bottomAnchor, constant: -11).isActive = true
         
         writeThreeTextView.delegate = self
         writeThreeTextView.isEditable = false
-        writeThreeTextView.layer.cornerRadius = 10
+        writeThreeTextView.layer.cornerRadius = 12
         writeThreeTextView.backgroundColor = UIColor.clear
         writeThreeTextView.autocapitalizationType = .none
         writeThreeTextView.autocorrectionType = .no
@@ -384,8 +399,8 @@ extension RetrospectiveWriteTVC {
         writeThreeTextView.smartInsertDeleteType = .no
         writeThreeTextView.spellCheckingType = .no
         
-        writeThreeTextView.font = .systemFont(ofSize: 16)
+        writeThreeTextView.font = .myRegularSystemFont(ofSize: 16)
         writeThreeTextView.text = cellPlaceholders[2]
-        writeThreeTextView.textColor = .lightGray
+        writeThreeTextView.textColor = .mainGray
     }
 }

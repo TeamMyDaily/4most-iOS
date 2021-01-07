@@ -71,7 +71,7 @@ extension EvaluationTabCVC: UITableViewDataSource {
         if indexPath.section == 0 {
             return 129
         }
-        return 96
+        return 100
     }
 }
 
@@ -115,21 +115,21 @@ extension EvaluationTabCVC {
         
         notifyLabel.centerYAnchor.constraint(equalTo: noDataView.centerYAnchor).isActive = true
         notifyLabel.centerXAnchor.constraint(equalTo: noDataView.centerXAnchor).isActive = true
-        notifyLabel.font = .systemFont(ofSize: 12)
+        notifyLabel.font = .myRegularSystemFont(ofSize: 12)
         notifyLabel.textAlignment = .center
         notifyLabel.text = "키워드가 존재 하지 않아 목표를 생성 할 수 없어요.😢\n + 버튼을 눌러 키워드를 생성 해 보세요!"
         notifyLabel.numberOfLines = 0
-        notifyLabel.textColor = .lightGray
+        notifyLabel.textColor = .mainGray
         
         createKeywordButton.topAnchor.constraint(equalTo: notifyLabel.bottomAnchor, constant: 47).isActive = true
         createKeywordButton.centerXAnchor.constraint(equalTo:noDataView.centerXAnchor).isActive = true
         createKeywordButton.heightAnchor.constraint(equalToConstant: 32).isActive = true
         createKeywordButton.widthAnchor.constraint(equalToConstant: 114).isActive = true
-        createKeywordButton.backgroundColor = .systemRed
+        createKeywordButton.backgroundColor = .mainOrange
         createKeywordButton.setTitle("키워드 생성", for: .normal)
         createKeywordButton.titleLabel?.textAlignment = .left
         createKeywordButton.titleLabel?.textColor = .white
-        createKeywordButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
+        createKeywordButton.titleLabel?.font = .myMediumSystemFont(ofSize: 16)
         createKeywordButton.layer.cornerRadius = 15
         createKeywordButton.layer.masksToBounds = true
         createKeywordButton.addTarget(self, action: #selector(touchUpCreateKeyword), for: .touchUpInside)

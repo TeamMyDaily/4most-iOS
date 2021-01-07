@@ -14,7 +14,7 @@ class DetailGoalTVC: UITableViewCell {
     @IBOutlet weak var goalLabel: UILabel!
     @IBOutlet weak var achieveButton: UIButton!
     
-    var isAchieve = false
+    var isAchieve = true
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,19 +30,21 @@ class DetailGoalTVC: UITableViewCell {
 
 extension DetailGoalTVC {
     private func setLabel() {
-        titleLabel.font = .boldSystemFont(ofSize: 18)
+        titleLabel.font = .myBoldSystemFont(ofSize: 18)
+        titleLabel.textColor = .mainBlack
         titleLabel.text = "목표"
-        goalLabel.font = .systemFont(ofSize: 12)
+        goalLabel.font = .myRegularSystemFont(ofSize: 12)
+        goalLabel.textColor = .mainBlack
         goalLabel.text = "블로그에 1개이상 퍼블리싱 하기"
     }
     
     private func setButton() {
         if isAchieve {
             achieveButton.setTitle("달성", for: .normal)
-            achieveButton.setTitleColor(.systemRed, for: .normal)
+            achieveButton.setTitleColor(.mainOrange, for: .normal)
             achieveButton.backgroundColor = .white
-            achieveButton.titleLabel?.font = .systemFont(ofSize: 12)
-            achieveButton.contentEdgeInsets = UIEdgeInsets(top: 3, left: 8, bottom: 3, right: 8)
+            achieveButton.titleLabel?.font = .myRegularSystemFont(ofSize: 12)
+            achieveButton.contentEdgeInsets = UIEdgeInsets(top: 1, left: 8, bottom: 1, right: 8)
             achieveButton.layer.cornerRadius = 10
             achieveButton.layer.masksToBounds = true
             achieveButton.setContentHuggingPriority(.required, for: .horizontal)
@@ -50,9 +52,9 @@ extension DetailGoalTVC {
         } else {
             achieveButton.setTitle("미달성", for: .normal)
             achieveButton.setTitleColor(.white, for: .normal)
-            achieveButton.tintColor = UIColor.black.withAlphaComponent(0.1)
-            achieveButton.titleLabel?.font = .systemFont(ofSize: 12)
-            achieveButton.contentEdgeInsets = UIEdgeInsets(top: 3, left: 8, bottom: 3, right: 8)
+            achieveButton.tintColor = .mainLightGray
+            achieveButton.titleLabel?.font = .myRegularSystemFont(ofSize: 12)
+            achieveButton.contentEdgeInsets = UIEdgeInsets(top: 1, left: 8, bottom: 1, right: 8)
             achieveButton.layer.cornerRadius = 10
             achieveButton.layer.masksToBounds = true
             achieveButton.setContentHuggingPriority(.required, for: .horizontal)
@@ -62,13 +64,13 @@ extension DetailGoalTVC {
     
     private func setAchieve() {
         if isAchieve {
-            self.backgroundColor = .systemRed
+            self.backgroundColor = .mainOrange
             goalLabel.textColor = .white
             titleLabel.textColor = .white
         } else {
             self.backgroundColor = .white
-            goalLabel.textColor = .black
-            titleLabel.textColor = .black
+            goalLabel.textColor = .mainBlack
+            titleLabel.textColor = .mainBlack
         }
     }
 }

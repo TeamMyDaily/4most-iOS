@@ -64,25 +64,27 @@ class RetrospectiveWriteVC: UIViewController {
 extension RetrospectiveWriteVC: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         guard let text: String = writeTextView.text else {return}
-        if UIScreen.main.bounds.size.height <= 2340 {
-            flowHeightConstraint?.constant = UIScreen.main.bounds.size.height / 2.5
-        } else if UIScreen.main.bounds.size.height <= 2532 {
+        if UIScreen.main.bounds.size.height <= 667 {
+            flowHeightConstraint?.constant = UIScreen.main.bounds.size.height / 2.6
+        } else if UIScreen.main.bounds.size.height <= 812 {
             flowHeightConstraint?.constant = UIScreen.main.bounds.size.height / 2.7
+        } else if UIScreen.main.bounds.size.height <= 844 {
+            flowHeightConstraint?.constant = UIScreen.main.bounds.size.height / 2.5
         } else {
-            flowHeightConstraint?.constant = UIScreen.main.bounds.size.height / 2
+            flowHeightConstraint?.constant = UIScreen.main.bounds.size.height / 2.3
         }
         if text == cellPlaceholders[cellNum] {
             writeTextView.text = ""
-            writeTextView.textColor = .black
+            writeTextView.textColor = .mainBlack
         }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        flowHeightConstraint?.constant = 471
+        flowHeightConstraint?.constant = 477
         guard let text: String = writeTextView.text else {return}
         if text == "" {
             writeTextView.text = cellPlaceholders[cellNum]
-            writeTextView.textColor = .lightGray
+            writeTextView.textColor = .mainGray
         }
     }
     
@@ -110,10 +112,10 @@ extension RetrospectiveWriteVC {
         if let content = userDefault.string(forKey: "content") {
             writeTextView.text = content
             if content != cellPlaceholders[0] && content != cellPlaceholders[1] && content != cellPlaceholders[2] {
-                writeTextView.textColor = .black
+                writeTextView.textColor = .mainBlack
                 contentSaver = content
             } else {
-                writeTextView.textColor = .lightGray
+                writeTextView.textColor = .mainGray
             }
         }
         
@@ -133,17 +135,19 @@ extension RetrospectiveWriteVC {
     
     private func setLabel() {
         titleLabel.text = "회고"
-        titleLabel.font = .boldSystemFont(ofSize: 21)
-        questionLabel.font = .boldSystemFont(ofSize: 21)
+        titleLabel.font = .myBoldSystemFont(ofSize: 20)
+        titleLabel.textColor = .mainBlack
+        questionLabel.font = .myBoldSystemFont(ofSize: 21)
+        questionLabel.textColor = .mainBlack
         limitCountLabel.text = "/800자"
-        limitCountLabel.font = .systemFont(ofSize: 12)
-        limitCountLabel.textColor = .lightGray
-        countNumberLabel.font = .systemFont(ofSize: 12)
-        countNumberLabel.textColor = .systemRed
+        limitCountLabel.font = .myRegularSystemFont(ofSize: 12)
+        limitCountLabel.textColor = .mainGray
+        countNumberLabel.font = .myRegularSystemFont(ofSize: 12)
+        countNumberLabel.textColor = .mainOrange
     }
     
     private func setView() {
-        writeView.backgroundColor = UIColor.black.withAlphaComponent(0.05)
+        writeView.backgroundColor = .mainLightGray
         writeView.layer.cornerRadius = 15
     }
     
@@ -151,8 +155,8 @@ extension RetrospectiveWriteVC {
         writeView.addSubview(writeTextView)
         writeTextView.leadingAnchor.constraint(equalTo: writeView.leadingAnchor, constant: 17).isActive = true
         writeTextView.trailingAnchor.constraint(equalTo: writeView.trailingAnchor, constant: -17).isActive = true
-        writeTextView.topAnchor.constraint(equalTo: writeView.topAnchor, constant: 16).isActive = true
-        flowHeightConstraint = writeTextView.heightAnchor.constraint(equalToConstant: 471)
+        writeTextView.topAnchor.constraint(equalTo: writeView.topAnchor, constant: 10).isActive = true
+        flowHeightConstraint = writeTextView.heightAnchor.constraint(equalToConstant: 477)
         flowHeightConstraint?.isActive = true
         
         writeTextView.delegate = self
@@ -160,23 +164,23 @@ extension RetrospectiveWriteVC {
         writeTextView.layer.cornerRadius = 10
         writeTextView.backgroundColor = UIColor.clear
         
-        writeTextView.font = .systemFont(ofSize: 16)
-        writeTextView.textColor = .lightGray
+        writeTextView.font = .myRegularSystemFont(ofSize: 16)
+        writeTextView.textColor = .mainGray
     }
     
     private func setButton() {
         saveButton.setTitle("작성완료", for: .normal)
         saveButton.setTitleColor(.white, for: .normal)
-        saveButton.titleLabel?.font = .boldSystemFont(ofSize: 18)
+        saveButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
         saveButton.layer.masksToBounds = true
         saveButton.layer.cornerRadius = 15
         
         guard let text: String = writeTextView.text else {return}
         if text != "" && text != cellPlaceholders[0] && text != cellPlaceholders[1] && text != cellPlaceholders[2] && text != contentSaver {
-            saveButton.backgroundColor = .systemRed
+            saveButton.backgroundColor = .mainOrange
             saveButton.isEnabled = true
         } else {
-            saveButton.backgroundColor = .lightGray
+            saveButton.backgroundColor = .mainGray
             saveButton.isEnabled = false
         }
     }

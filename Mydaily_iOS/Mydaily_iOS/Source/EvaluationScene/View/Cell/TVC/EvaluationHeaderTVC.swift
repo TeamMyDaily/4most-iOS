@@ -25,7 +25,7 @@ class EvaluationHeaderTVC: UITableViewCell {
 extension EvaluationHeaderTVC {
     private func setLabel() {
         questionLabel.text = "이번 주 키워드와 얼마나 가까워졌나요?"
-        questionLabel.font = UIFont.systemFont(ofSize: 25, weight: .black)
-        questionLabel.textColor = .black
+        questionLabel.font = .myBlackSystemFont(ofSize: 25)
+        questionLabel.textColor = .mainBlack
     }
 }
