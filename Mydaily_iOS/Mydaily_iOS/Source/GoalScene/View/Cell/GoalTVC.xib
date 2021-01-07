@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,7 +18,26 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dfR-R4-rWs">
                         <rect key="frame" x="16" y="8" width="328" height="84"/>
-                        <color key="backgroundColor" systemColor="systemFillColor"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y7h-k3-fDc">
+                                <rect key="frame" x="24" y="13" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tkB-8b-hPp">
+                                <rect key="frame" x="24" y="50" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="tkB-8b-hPp" firstAttribute="leading" secondItem="dfR-R4-rWs" secondAttribute="leading" constant="24" id="41h-zO-mNY"/>
+                            <constraint firstItem="y7h-k3-fDc" firstAttribute="leading" secondItem="dfR-R4-rWs" secondAttribute="leading" constant="24" id="W0Z-ci-Jlp"/>
+                            <constraint firstItem="y7h-k3-fDc" firstAttribute="top" secondItem="dfR-R4-rWs" secondAttribute="top" constant="13" id="cqv-Yr-L4l"/>
+                            <constraint firstItem="tkB-8b-hPp" firstAttribute="top" secondItem="y7h-k3-fDc" secondAttribute="bottom" constant="16" id="pnX-nY-oz6"/>
+                        </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                 <color key="value" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -29,24 +47,28 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgK-a0-2Xe">
+                        <rect key="frame" x="281" y="35" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="kgK-a0-2Xe" firstAttribute="centerY" secondItem="dfR-R4-rWs" secondAttribute="centerY" id="0Ie-BV-OXn"/>
                     <constraint firstItem="dfR-R4-rWs" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.911111" id="Ck7-df-eTL"/>
                     <constraint firstItem="dfR-R4-rWs" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="LJE-EL-eWH"/>
+                    <constraint firstItem="dfR-R4-rWs" firstAttribute="trailing" secondItem="kgK-a0-2Xe" secondAttribute="trailing" constant="17" id="sGn-TT-yTy"/>
                     <constraint firstItem="dfR-R4-rWs" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="sp1-z2-mLL"/>
                     <constraint firstItem="dfR-R4-rWs" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.84" id="vAr-Q5-muD"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="addButton" destination="kgK-a0-2Xe" id="6hh-1D-9nB"/>
+                <outlet property="keywordDetail" destination="tkB-8b-hPp" id="Dwb-9l-6cc"/>
+                <outlet property="keywordName" destination="y7h-k3-fDc" id="4hE-A9-g5R"/>
                 <outlet property="outterView" destination="dfR-R4-rWs" id="UVf-B3-wga"/>
             </connections>
             <point key="canvasLocation" x="169.56521739130437" y="131.91964285714286"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <systemColor name="systemFillColor">
-            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-    </resources>
 </document>

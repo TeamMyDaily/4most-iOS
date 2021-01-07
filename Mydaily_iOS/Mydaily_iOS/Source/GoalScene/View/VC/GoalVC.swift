@@ -68,11 +68,21 @@ extension GoalVC: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: GoalTVC.reuseIdentifier, for: indexPath)
                 as? GoalTVC else { return UITableViewCell() }
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = UIColor.white
+        cell.selectedBackgroundView = bgColorView
+
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let VC = self.storyboard?.instantiateViewController(identifier: "GoalWriteVC") as? GoalWriteVC else {return}
+        self.navigationController?.pushViewController(VC, animated: true)
     }
 }
 
