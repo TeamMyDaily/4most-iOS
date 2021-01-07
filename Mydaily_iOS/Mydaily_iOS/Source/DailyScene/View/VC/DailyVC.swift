@@ -17,7 +17,7 @@ class DailyVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNavigationBar(.clear)
+        setupNavigationBar(.clear, titlelabel: "")
         setUI()
     }
    

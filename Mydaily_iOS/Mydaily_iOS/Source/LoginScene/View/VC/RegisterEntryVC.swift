@@ -16,7 +16,7 @@ class RegisterEntryVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupNavigationBar()
+        setupNavigationBar(.clear, titlelabel: "회원가입")
         setUI()
     }
 
@@ -43,14 +43,6 @@ extension RegisterEntryVC {
     }
     
     private func setupNavigationBar() {
-        guard let navigationBar = self.navigationController?.navigationBar else { return }
-        
-        navigationBar.isTranslucent = true
-        navigationBar.backgroundColor = UIColor.clear
-        navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationBar.shadowImage = UIImage()
-        
-        self.navigationItem.title = "회원가입"
         
 //        let leftButton: UIBarButtonItem = {
 //            let button = UIBarButtonItem(image: UIImage(named: "backArrowIc"), style: .plain, target: self, action: #selector(dismissVC))

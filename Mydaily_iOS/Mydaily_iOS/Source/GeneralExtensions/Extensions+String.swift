@@ -34,7 +34,7 @@ extension String {
 
     static var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.dateFormat = "yy년 MM월 dd일"
         return formatter
     }()
 

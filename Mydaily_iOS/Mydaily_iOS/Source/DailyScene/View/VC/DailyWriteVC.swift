@@ -79,7 +79,11 @@ extension DailyWriteVC {
             return button
         }()
         
-        //        navigationItem.leftBarButtonItem = leftButton
+//                let leftButton: UIBarButtonItem = {
+//                    let button = UIBarButtonItem(image: UIImage(named: "backArrowIc"), style: .plain, target: self, action: #selector(dismissVC))
+//                    return button
+//                }()
+//                navigationItem.leftBarButtonItem = leftButton
         navigationItem.rightBarButtonItem = rightButton
     }
     

@@ -16,6 +16,8 @@
 		AE53FBAF25A6E97400D62AA7 /* NotoSansKR-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = AE53FBA825A6E97400D62AA7 /* NotoSansKR-Black.otf */; };
 		AE53FBB025A6E97400D62AA7 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = AE53FBA925A6E97400D62AA7 /* NotoSansKR-Medium.otf */; };
 		AE53FBB125A6E97400D62AA7 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AE53FBAA25A6E97400D62AA7 /* NotoSansKR-Regular.otf */; };
+		AE53FBB825A7206000D62AA7 /* GoalTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FBB625A7206000D62AA7 /* GoalTVC.swift */; };
+		AE53FBB925A7206000D62AA7 /* GoalTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE53FBB725A7206000D62AA7 /* GoalTVC.xib */; };
 		AE76C03E259B1A6D007B3901 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE76C03D259B1A6D007B3901 /* AppDelegate.swift */; };
 		AE76C040259B1A6D007B3901 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE76C03F259B1A6D007B3901 /* SceneDelegate.swift */; };
 		AE76C047259B1A6E007B3901 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE76C046259B1A6E007B3901 /* Assets.xcassets */; };
@@ -72,6 +74,8 @@
 		AE53FBA825A6E97400D62AA7 /* NotoSansKR-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Black.otf"; sourceTree = "<group>"; };
 		AE53FBA925A6E97400D62AA7 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
 		AE53FBAA25A6E97400D62AA7 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
+		AE53FBB625A7206000D62AA7 /* GoalTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTVC.swift; sourceTree = "<group>"; };
+		AE53FBB725A7206000D62AA7 /* GoalTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoalTVC.xib; sourceTree = "<group>"; };
 		AE76C03A259B1A6D007B3901 /* Mydaily_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mydaily_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE76C03D259B1A6D007B3901 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE76C03F259B1A6D007B3901 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 		AE53FBA025A6B1ED00D62AA7 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				AE53FBB625A7206000D62AA7 /* GoalTVC.swift */,
+				AE53FBB725A7206000D62AA7 /* GoalTVC.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -501,6 +507,7 @@
 				AE53FBAE25A6E97400D62AA7 /* OFL.txt in Resources */,
 				AE76C04A259B1A6E007B3901 /* LaunchScreen.storyboard in Resources */,
 				AE53FBAB25A6E97400D62AA7 /* NotoSansKR-Light.otf in Resources */,
+				AE53FBB925A7206000D62AA7 /* GoalTVC.xib in Resources */,
 				AE76C047259B1A6E007B3901 /* Assets.xcassets in Resources */,
 				AE53FBAD25A6E97400D62AA7 /* NotoSansKR-Thin.otf in Resources */,
 				AEFB21FF259C66E800A3228C /* Daily.storyboard in Resources */,
@@ -519,6 +526,7 @@
 				AED84DF325A558B30050D861 /* Extensions+UIView.swift in Sources */,
 				AE9F294D25A1BF1500904FD9 /* RegisterEntryVC.swift in Sources */,
 				AE9F294A25A1A69400904FD9 /* registerVC.swift in Sources */,
+				AE53FBB825A7206000D62AA7 /* GoalTVC.swift in Sources */,
 				EDAAEB7D25A01B550024E3E4 /* EvaluationDetailVC.swift in Sources */,
 				AED84DDD25A4930C0050D861 /* DetailVC.swift in Sources */,
 				AED84DDA25A492F70050D861 /* DetailTVC.swift in Sources */,

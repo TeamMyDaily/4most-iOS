@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="99" id="KGk-i7-Jjw" customClass="GoalTVC" customModule="Mydaily_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="360" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="360" height="100"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dfR-R4-rWs">
+                        <rect key="frame" x="16" y="8" width="328" height="84"/>
+                        <color key="backgroundColor" systemColor="systemFillColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="dfR-R4-rWs" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.911111" id="Ck7-df-eTL"/>
+                    <constraint firstItem="dfR-R4-rWs" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="LJE-EL-eWH"/>
+                    <constraint firstItem="dfR-R4-rWs" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="sp1-z2-mLL"/>
+                    <constraint firstItem="dfR-R4-rWs" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.84" id="vAr-Q5-muD"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="outterView" destination="dfR-R4-rWs" id="UVf-B3-wga"/>
+            </connections>
+            <point key="canvasLocation" x="169.56521739130437" y="131.91964285714286"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemFillColor">
+            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
