@@ -8,22 +8,37 @@
 import UIKit
 
 class DailyVC: UIViewController {
-
+    
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var dateLabel: UILabel!
+ 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupNavigationBar(.clear)
+        setUI()
+    }
+   
+    @IBAction func changedDate(_ sender: Any) {
+        setDate()
+    }
+}
 
-        // Do any additional setup after loading the view.
+//MARK: - UI
+extension DailyVC {
+    func setUI() {
+        headerView.layer.addBorder([.top,.bottom], color: UIColor.gray30, width: 1.0, move: 0)
+        
+        datePicker.maximumDate = Date()
+        
+        setDate()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setDate(){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yy년 MM월 dd일"
+        dateLabel.text = dateFormatter.string(from: datePicker.date)
     }
-    */
-
 }
