@@ -52,7 +52,6 @@ extension EvaluationDetailVC: UITableViewDataSource {
             }
             cell.selectionStyle = .none
             return cell
-            
         }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailRecordContentTVC.identifier) as? DetailRecordContentTVC else {
             return UITableViewCell()
