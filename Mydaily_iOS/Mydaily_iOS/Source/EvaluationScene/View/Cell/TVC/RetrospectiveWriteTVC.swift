@@ -55,6 +55,7 @@ class RetrospectiveWriteTVC: UITableViewCell {
     var isFillInOne = false
     var isFillInTwo = false
     var isFillInThree = false
+    var isSaved = false
     
     var cellTitles = ["이번주의 잘 한 점", "이번주 아쉬운 점", "다음주에 임하는 마음가짐"]
     var cellPlaceholders = ["이번주, 어떤 내 모습을 칭찬 해주고 싶나요?", "한 주에 아쉬움이 남은 점이 있을까요?", "다음주에는 어떻게 지내고 싶은가요?"]
@@ -67,6 +68,7 @@ class RetrospectiveWriteTVC: UITableViewCell {
         setButtonView()
         setTextView()
         setSaveButton()
+        setNotification()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -191,11 +193,11 @@ class RetrospectiveWriteTVC: UITableViewCell {
     }
     
     @IBAction func touchUpSave(_ sender: Any) {
-        // 수정 버튼 생기고
         buttonDelegate?.changeModifyButton(isActive: false)
-        // 버튼 사라지고
         saveButton.isHidden = true
+        isSaved = true
         // notification
+        buttonDelegate?.showAlert(title: "목표를 재설정 하시겠어요?", message: "한주의 회고를 다 마치셨군요!\n 목표를 달성하셨다면 새로운 목표로 재설정 하시겠어요?")
     }
 }
 
@@ -232,22 +234,43 @@ extension RetrospectiveWriteTVC {
     }
     
     private func setSaveButton() {
-        if isFillInOne && isFillInTwo && isFillInThree {
-            saveButton.backgroundColor = .systemRed
-            saveButton.layer.masksToBounds = true
-            saveButton.layer.cornerRadius = 15
-            saveButton.titleLabel?.font = .boldSystemFont(ofSize: 18)
-            saveButton.setTitle("회고완료!", for: .normal)
-            saveButton.setTitleColor(.white, for: .normal)
-            saveButton.isEnabled = true
+        if !isSaved {
+            if isFillInOne && isFillInTwo && isFillInThree {
+                saveButton.backgroundColor = .systemRed
+                saveButton.layer.masksToBounds = true
+                saveButton.layer.cornerRadius = 15
+                saveButton.titleLabel?.font = .boldSystemFont(ofSize: 18)
+                saveButton.setTitle("회고완료!", for: .normal)
+                saveButton.setTitleColor(.white, for: .normal)
+                saveButton.isEnabled = true
+            } else {
+                saveButton.backgroundColor = .lightGray
+                saveButton.layer.masksToBounds = true
+                saveButton.layer.cornerRadius = 15
+                saveButton.titleLabel?.font = .boldSystemFont(ofSize: 18)
+                saveButton.setTitle("회고완료!", for: .normal)
+                saveButton.setTitleColor(.white, for: .normal)
+                saveButton.isEnabled = false
+            }
+        }
+    }
+    
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(hiddenSaveButton), name: Notification.Name(rawValue: "modifyButton"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(selectRetrospectiveTab(_:)), name: Notification.Name(rawValue: "retrospectiveTab"), object: nil)
+    }
+    
+    @objc func hiddenSaveButton() {
+        saveButton.layer.isHidden = false
+        isSaved = false
+    }
+    
+    @objc func selectRetrospectiveTab(_ notification: NSNotification) {
+        let getButton = notification.object as! UIButton
+        if isSaved {
+            getButton.isHidden = false
         } else {
-            saveButton.backgroundColor = .lightGray
-            saveButton.layer.masksToBounds = true
-            saveButton.layer.cornerRadius = 15
-            saveButton.titleLabel?.font = .boldSystemFont(ofSize: 18)
-            saveButton.setTitle("회고완료!", for: .normal)
-            saveButton.setTitleColor(.white, for: .normal)
-            saveButton.isEnabled = false
+            getButton.isHidden = true
         }
     }
 }
@@ -329,7 +352,6 @@ extension RetrospectiveWriteTVC {
         writeTwoTextView.topAnchor.constraint(equalTo: contentTwoTextViewButton.topAnchor, constant: 16).isActive = true
         writeTwoTextView.bottomAnchor.constraint(equalTo: contentTwoTextViewButton.bottomAnchor, constant: -16).isActive = true
         
-        writeTwoTextView.isUserInteractionEnabled = false
         writeTwoTextView.delegate = self
         writeTwoTextView.isEditable = false
         writeTwoTextView.layer.cornerRadius = 10
@@ -352,7 +374,6 @@ extension RetrospectiveWriteTVC {
         writeThreeTextView.topAnchor.constraint(equalTo: contentThreeTextViewButton.topAnchor, constant: 16).isActive = true
         writeThreeTextView.bottomAnchor.constraint(equalTo: contentThreeTextViewButton.bottomAnchor, constant: -16).isActive = true
         
-        writeThreeTextView.isUserInteractionEnabled = false
         writeThreeTextView.delegate = self
         writeThreeTextView.isEditable = false
         writeThreeTextView.layer.cornerRadius = 10

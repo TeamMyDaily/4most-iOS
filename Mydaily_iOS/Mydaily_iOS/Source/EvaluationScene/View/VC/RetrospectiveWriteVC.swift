@@ -27,6 +27,8 @@ class RetrospectiveWriteVC: UIViewController {
     
     var cellPlaceholders = ["이번주, 어떤 내 모습을 칭찬 해주고 싶나요?", "한 주에 아쉬움이 남은 점이 있을까요?", "다음주에는 어떻게 지내고 싶은가요?"]
     
+    var flowHeightConstraint: NSLayoutConstraint?
+    
     var isFillIn = false
     var contentSaver = ""
     var counter = 0
@@ -62,6 +64,13 @@ class RetrospectiveWriteVC: UIViewController {
 extension RetrospectiveWriteVC: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         guard let text: String = writeTextView.text else {return}
+        if UIScreen.main.bounds.size.height <= 2340 {
+            flowHeightConstraint?.constant = UIScreen.main.bounds.size.height / 2.5
+        } else if UIScreen.main.bounds.size.height <= 2532 {
+            flowHeightConstraint?.constant = UIScreen.main.bounds.size.height / 2.7
+        } else {
+            flowHeightConstraint?.constant = UIScreen.main.bounds.size.height / 2
+        }
         if text == cellPlaceholders[cellNum] {
             writeTextView.text = ""
             writeTextView.textColor = .black
@@ -69,6 +78,7 @@ extension RetrospectiveWriteVC: UITextViewDelegate {
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
+        flowHeightConstraint?.constant = 471
         guard let text: String = writeTextView.text else {return}
         if text == "" {
             writeTextView.text = cellPlaceholders[cellNum]
@@ -142,7 +152,8 @@ extension RetrospectiveWriteVC {
         writeTextView.leadingAnchor.constraint(equalTo: writeView.leadingAnchor, constant: 17).isActive = true
         writeTextView.trailingAnchor.constraint(equalTo: writeView.trailingAnchor, constant: -17).isActive = true
         writeTextView.topAnchor.constraint(equalTo: writeView.topAnchor, constant: 16).isActive = true
-        writeTextView.bottomAnchor.constraint(equalTo: writeView.bottomAnchor, constant: -16).isActive = true
+        flowHeightConstraint = writeTextView.heightAnchor.constraint(equalToConstant: 471)
+        flowHeightConstraint?.isActive = true
         
         writeTextView.delegate = self
         writeTextView.isEditable = true
@@ -178,6 +189,6 @@ extension RetrospectiveWriteVC {
     }
     
     @objc func dismissKeyboard() {
-            view.endEditing(true)
+        view.endEditing(true)
     }
 }

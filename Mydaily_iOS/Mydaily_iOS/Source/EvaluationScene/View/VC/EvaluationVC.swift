@@ -9,6 +9,7 @@ import UIKit
 
 protocol ChangeModifyButtonDelegate: class {
     func changeModifyButton(isActive: Bool)
+    func showAlert(title: String, message: String)
 }
 
 class EvaluationVC: UIViewController {
@@ -19,6 +20,7 @@ class EvaluationVC: UIViewController {
     @IBOutlet weak var evaluationTabBar: UIView!
     @IBOutlet weak var retrospectiveTabBar: UIView!
     @IBOutlet weak var keywordCollectionView: UICollectionView!
+    @IBOutlet weak var afterWeekButton: UIButton!
     
     lazy var currentWeekButton: UIButton = {
         let currentWeekButton = UIButton()
@@ -35,7 +37,9 @@ class EvaluationVC: UIViewController {
     
     var calendar = Calendar.current
     var dateFormatter = DateFormatter()
+    var checkDateFormatter = DateFormatter()
     var dateValue = 0
+    var isRetrospectiveTab = false
     
     let originalButtonColor: UIColor = UIColor.init(red: 196/255, green: 196/255, blue: 196/255, alpha: 1)
     let selectedButtonColor: UIColor = UIColor.init(red: 236/255, green: 104/255, blue: 74/255, alpha: 1)
@@ -61,6 +65,8 @@ class EvaluationVC: UIViewController {
         setButtonState(enableButton: evaluationTabButton, disableButton: retrospectiveTabButton, enableTabBar: evaluationTabBar, unableTabBar: retrospectiveTabBar)
         
         modifyButton.isHidden = true
+        
+        isRetrospectiveTab = false
     }
     
     @IBAction func touchUpRetrospectiveTab(_ sender: Any) {
@@ -72,39 +78,54 @@ class EvaluationVC: UIViewController {
         keywordCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
         
         setButtonState(enableButton: retrospectiveTabButton, disableButton: evaluationTabButton, enableTabBar: retrospectiveTabBar, unableTabBar: evaluationTabBar)
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "retrospectiveTab"), object: modifyButton)
+        
+        isRetrospectiveTab = true
     }
     
     @IBAction func touchUpBeforeWeek(_ sender: Any) {
         dateValue -= 1
-        
         guard let todayDate = calendar.date(byAdding: .weekOfMonth, value: dateValue, to: Date()) else {return}
         guard let currentDate = calendar.date(byAdding: .weekOfMonth, value: 0, to: Date()) else {return}
         let today = "\(todayDate)"
         let current = "\(currentDate)"
         dateFormatter.dateFormat = "yy년 MM월 W주"
         weekLabel.text = dateFormatter.string(from: todayDate)
-        
+        weekLabel.textColor = .black
+        print(dateValue)
         if today != current {
             currentWeekButton.isHidden = false
         } else {
             currentWeekButton.isHidden = true
+            weekLabel.textColor = .systemRed
         }
     }
     
     @IBAction func touchUpAfterWeek(_ sender: Any) {
         dateValue += 1
-        
         guard let todayDate = calendar.date(byAdding: .weekOfMonth, value: dateValue, to: Date()) else {return}
         guard let currentDate = calendar.date(byAdding: .weekOfMonth, value: 0, to: Date()) else {return}
         let today = "\(todayDate)"
         let current = "\(currentDate)"
-        dateFormatter.dateFormat = "yy년 MM월 W주"
-        weekLabel.text = dateFormatter.string(from: todayDate)
-        
-        if today != current {
-            currentWeekButton.isHidden = false
+        print(dateValue)
+        if isRetrospectiveTab {
+            if dateValue >= 0  {
+                afterWeekButton.isEnabled = false
+            } else {
+                afterWeekButton.isEnabled = true
+            }
         } else {
-            currentWeekButton.isHidden = true
+            dateFormatter.dateFormat = "yy년 MM월 W주"
+            weekLabel.text = dateFormatter.string(from: todayDate)
+            weekLabel.textColor = .black
+            
+            if today != current {
+                currentWeekButton.isHidden = false
+            } else {
+                currentWeekButton.isHidden = true
+                weekLabel.textColor = .systemRed
+            }
         }
     }
 }
@@ -129,7 +150,7 @@ extension EvaluationVC: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RetrospectiveTabCVC.identifier, for: indexPath) as? RetrospectiveTabCVC else {
             return UICollectionViewCell()
         }
-        cell.heightDelegate = self
+        cell.buttonDelegate = self
         cell.delegate = self
         return cell
     }
@@ -167,6 +188,7 @@ extension EvaluationVC {
         
         weekLabel.font = .boldSystemFont(ofSize: 12)
         weekLabel.textAlignment = .center
+        weekLabel.textColor = .systemRed
     }
     
     private func setMenuTabButton() {
@@ -226,7 +248,8 @@ extension EvaluationVC {
     }
     
     @objc func touchUpModify() {
-        
+        modifyButton.isHidden = true
+        NotificationCenter.default.post(name: Notification.Name("modifyButton"), object: nil)
     }
 }
 
@@ -241,6 +264,17 @@ extension EvaluationVC: TableViewInsideCollectionViewDelegate {
 }
 
 extension EvaluationVC: ChangeModifyButtonDelegate {
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let noAction = UIAlertAction(title: "다음에하기", style: .default)
+        let okAction = UIAlertAction(title: "재설정하기", style: .default)
+        noAction.setValue(UIColor.lightGray, forKey: "titleTextColor")
+        okAction.setValue(UIColor.systemRed, forKey: "titleTextColor")
+        alert.addAction(noAction)
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
+    
     func changeModifyButton(isActive: Bool) {
         modifyButton.isHidden = isActive
     }

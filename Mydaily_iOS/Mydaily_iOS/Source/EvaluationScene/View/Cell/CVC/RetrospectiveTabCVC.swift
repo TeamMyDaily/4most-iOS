@@ -13,7 +13,7 @@ class RetrospectiveTabCVC: UICollectionViewCell {
     @IBOutlet weak var retrospectiveTableView: UITableView!
     
     var delegate: TableViewInsideCollectionViewDelegate?
-    var heightDelegate: ChangeModifyButtonDelegate?
+    var buttonDelegate: ChangeModifyButtonDelegate?
     
     
     override func awakeFromNib() {
@@ -32,7 +32,7 @@ extension RetrospectiveTabCVC: UITableViewDataSource {
             return UITableViewCell()
         }
         cell.delegate = self.delegate
-        cell.buttonDelegate = self.heightDelegate
+        cell.buttonDelegate = self.buttonDelegate
         cell.tableView = retrospectiveTableView
         cell.selectionStyle = .none
         return cell
