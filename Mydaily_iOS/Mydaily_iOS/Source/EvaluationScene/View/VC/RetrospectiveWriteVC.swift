@@ -184,11 +184,11 @@ extension RetrospectiveWriteVC {
 
 extension RetrospectiveWriteVC {
     private func setKeyboard() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissGestureKeyboard))
         view.addGestureRecognizer(tap)
     }
     
-    @objc func dismissKeyboard() {
+    @objc func dismissGestureKeyboard() {
         view.endEditing(true)
     }
 }

@@ -7,11 +7,6 @@
 
 import UIKit
 
-protocol ChangeModifyButtonDelegate: class {
-    func changeModifyButton(isActive: Bool)
-    func showAlert(title: String, message: String)
-}
-
 class EvaluationVC: UIViewController {
     @IBOutlet weak var weekLabel: UILabel!
     @IBOutlet weak var evaluationTabButton: UIButton!
@@ -39,7 +34,6 @@ class EvaluationVC: UIViewController {
     var dateFormatter = DateFormatter()
     var checkDateFormatter = DateFormatter()
     var dateValue = 0
-    var isRetrospectiveTab = false
     
     let originalButtonColor: UIColor = UIColor.init(red: 196/255, green: 196/255, blue: 196/255, alpha: 1)
     let selectedButtonColor: UIColor = UIColor.init(red: 236/255, green: 104/255, blue: 74/255, alpha: 1)
@@ -52,6 +46,7 @@ class EvaluationVC: UIViewController {
         setCollectionViewDelegate()
         setCurrentButton()
         setModifyButton()
+        setAfterWeekButton()
     }
     
     @IBAction func touchUpEvaluationTab(_ sender: Any) {
@@ -65,8 +60,6 @@ class EvaluationVC: UIViewController {
         setButtonState(enableButton: evaluationTabButton, disableButton: retrospectiveTabButton, enableTabBar: evaluationTabBar, unableTabBar: retrospectiveTabBar)
         
         modifyButton.isHidden = true
-        
-        isRetrospectiveTab = false
     }
     
     @IBAction func touchUpRetrospectiveTab(_ sender: Any) {
@@ -80,11 +73,12 @@ class EvaluationVC: UIViewController {
         setButtonState(enableButton: retrospectiveTabButton, disableButton: evaluationTabButton, enableTabBar: retrospectiveTabBar, unableTabBar: evaluationTabBar)
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "retrospectiveTab"), object: modifyButton)
-        
-        isRetrospectiveTab = true
     }
     
     @IBAction func touchUpBeforeWeek(_ sender: Any) {
+        if dateValue <= 0 {
+            afterWeekButton.isEnabled = true
+        }
         dateValue -= 1
         guard let todayDate = calendar.date(byAdding: .weekOfMonth, value: dateValue, to: Date()) else {return}
         guard let currentDate = calendar.date(byAdding: .weekOfMonth, value: 0, to: Date()) else {return}
@@ -93,7 +87,6 @@ class EvaluationVC: UIViewController {
         dateFormatter.dateFormat = "yy년 MM월 W주"
         weekLabel.text = dateFormatter.string(from: todayDate)
         weekLabel.textColor = .black
-        print(dateValue)
         if today != current {
             currentWeekButton.isHidden = false
         } else {
@@ -103,19 +96,15 @@ class EvaluationVC: UIViewController {
     }
     
     @IBAction func touchUpAfterWeek(_ sender: Any) {
-        dateValue += 1
-        guard let todayDate = calendar.date(byAdding: .weekOfMonth, value: dateValue, to: Date()) else {return}
-        guard let currentDate = calendar.date(byAdding: .weekOfMonth, value: 0, to: Date()) else {return}
-        let today = "\(todayDate)"
-        let current = "\(currentDate)"
-        print(dateValue)
-        if isRetrospectiveTab {
-            if dateValue >= 0  {
-                afterWeekButton.isEnabled = false
-            } else {
-                afterWeekButton.isEnabled = true
-            }
+        if dateValue >= 0 {
+            afterWeekButton.isEnabled = false
         } else {
+            afterWeekButton.isEnabled = true
+            dateValue += 1
+            guard let todayDate = calendar.date(byAdding: .weekOfMonth, value: dateValue, to: Date()) else {return}
+            guard let currentDate = calendar.date(byAdding: .weekOfMonth, value: 0, to: Date()) else {return}
+            let today = "\(todayDate)"
+            let current = "\(currentDate)"
             dateFormatter.dateFormat = "yy년 MM월 W주"
             weekLabel.text = dateFormatter.string(from: todayDate)
             weekLabel.textColor = .black
@@ -189,6 +178,10 @@ extension EvaluationVC {
         weekLabel.font = .boldSystemFont(ofSize: 12)
         weekLabel.textAlignment = .center
         weekLabel.textColor = .systemRed
+    }
+    
+    private func setAfterWeekButton() {
+        afterWeekButton.isEnabled = false
     }
     
     private func setMenuTabButton() {
