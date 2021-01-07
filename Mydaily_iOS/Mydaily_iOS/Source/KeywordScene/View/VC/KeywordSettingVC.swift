@@ -82,9 +82,10 @@ class KeywordSettingVC: UIViewController {
       
         navigationItem.title = "키워드 설정하기"
         let questionItem = UIBarButtonItem(image: UIImage(systemName: "questionmark.circle.fill"), style: .plain, target: self, action: #selector(goKeywordPopUp))
-        let testItem = UIBarButtonItem(image: UIImage(systemName: "questionmark.circle.fill"), style: .plain, target: self, action: nil)
-        navigationBar.backIndicatorTransitionMaskImage = nil
         navigationItem.rightBarButtonItem = questionItem
+        let testItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: nil)
+        navigationBar.backIndicatorTransitionMaskImage = nil
+        
         navigationItem.backBarButtonItem = testItem
         navigationBar.backIndicatorImage = nil
         
