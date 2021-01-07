@@ -20,7 +20,9 @@ class AddUserKeywordVC: UIViewController {
     @IBOutlet var guideLabel: UILabel!
     let originButtonColor: UIColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1)
    
-    var keywordArray:[String] = ["진정성","용기","대충"]
+    var keywordArray:[String] = []
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +53,9 @@ class AddUserKeywordVC: UIViewController {
         addButton.layer.cornerRadius = 15
     }
     
+    func setKeywordArray(list: [String]){
+        keywordArray = list
+    }
     
     func setNavigationBar(){
         guard let navigationBar = self.navigationController?.navigationBar else { return }
@@ -79,10 +84,12 @@ class AddUserKeywordVC: UIViewController {
         if userKeyword.count > 5{
             addButton.isEnabled = false
             noticeLabel.text = "최대 5글자의 단어만 입력 가능해요!"
+            addButton.backgroundColor = originButtonColor
             
         } else if keywordArray.contains(userKeyword) {
             addButton.isEnabled = false
             noticeLabel.text = "'\(userKeyword)'은 이미 생성된 단어에요!"
+            addButton.backgroundColor = originButtonColor
         }else{
             
             guard let pvc = self.navigationController?.viewControllers[0] as? KeywordSettingVC else {

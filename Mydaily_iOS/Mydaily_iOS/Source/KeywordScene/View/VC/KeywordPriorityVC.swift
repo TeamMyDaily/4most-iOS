@@ -48,7 +48,7 @@ class KeywordPriorityVC: UIViewController {
     
     @IBAction func submitKeyword(_ sender: UIButton) {
         
-        guard let dvc = self.storyboard?.instantiateViewController(identifier: KeywordDefineVC.identifier) as? KeywordDefineVC else{
+        guard let dvc = self.storyboard?.instantiateViewController(identifier: KeywordDecideVC.identifier) as? KeywordDecideVC else{
             return
         }
         

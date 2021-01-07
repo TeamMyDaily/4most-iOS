@@ -10,7 +10,7 @@ import UIKit
 class KeywordDecideVC: UIViewController {
     static let identifier = "KeywordDecideVC"
     
-    @IBOutlet var keywordUILabelList: [UILabel]!
+    @IBOutlet var keywordUIButtonList: [UIButton]!
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var completeButton: UIButton!
@@ -46,9 +46,33 @@ class KeywordDecideVC: UIViewController {
 
     }
     
-    @IBAction func skipDefiningKeyword(_ sender: Any) {
+    @IBAction func skipDefiningKeyword(_ sender: UILabel) {
         alertKeyword()
         //self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func goToKeywordDefineView(_ sender: UIButton){
+        guard let dvc = self.storyboard?.instantiateViewController(identifier: KeywordDefineVC.identifier) as? KeywordDefineVC else {
+            return
+        }
+        
+        let selectedText = sender.titleLabel?.text ?? ""
+        
+        dvc.setKeyword(text: selectedText)
+        
+        self.navigationController?.pushViewController(dvc, animated: true)
+        
+    }
+    
+    
+    func setKeywordLabelList(){
+        for i in 0..<4{
+            keywordUIButtonList[i].setTitle(keywordList[i], for: .normal)
+        }
+    }
+    
+    func setReceivedKeywordList(list: [String]){
+        keywordList = list
     }
     
     
@@ -69,15 +93,6 @@ class KeywordDecideVC: UIViewController {
     }
     
     
-    func setKeywordLabelList(){
-        for i in 0..<4{
-            keywordUILabelList[i].text = keywordList[i]
-        }
-    }
-    
-    func setReceivedKeywordList(list: [String]){
-        keywordList = list
-    }
     
     func setNavigationBar(){
         guard let navigationBar = self.navigationController?.navigationBar else { return }

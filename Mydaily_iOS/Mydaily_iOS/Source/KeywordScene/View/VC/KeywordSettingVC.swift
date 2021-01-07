@@ -13,7 +13,7 @@ class KeywordSettingVC: UIViewController {
     @IBOutlet var mainLabel: UILabel!
     
     @IBOutlet var completeButton: UIButton!
-    var attitudeOfLife: Array<String> = ["진정성", "용기", "열정", "꾸준함", "배움", "선한영향력", "아웃풋", "행복", "즐거움", "현명", "타당성", "정당성"]
+    var attitudeOfLife: [String] = ["진정성", "용기", "열정", "꾸준함", "배움", "선한영향력", "아웃풋", "행복", "즐거움", "현명", "타당성", "정당성"]
     
     var attitudeOfWork: [String] = ["친절함", "경청", "대충", "진실성", "존중", "신뢰", "의심", "신속성", "돈"]
     
@@ -268,9 +268,14 @@ extension KeywordSettingVC: UITableViewDelegate{
     }
     
     @objc func goToAddUserKeyword(){
-        guard let dvc = self.storyboard?.instantiateViewController(identifier: AddUserKeywordVC.identifier) else {
+        guard let dvc = self.storyboard?.instantiateViewController(identifier: AddUserKeywordVC.identifier) as? AddUserKeywordVC else {
             return
         }
+        
+        let currentKeywordList = attitudeOfLife + attitudeOfWork + userKeywordList
+        
+        dvc.setKeywordArray(list: currentKeywordList)
+        
         self.navigationController?.pushViewController(dvc, animated: true)
     }
     
@@ -522,8 +527,6 @@ extension KeywordSettingVC: SelectKeywordDelegate{
             }
             
             print2DKeyword()
-           //selectedKeyword.append(selectedText)
-            //printKeyword()
             selectedKeywordCount += 1
             setButtonActive()
             return true

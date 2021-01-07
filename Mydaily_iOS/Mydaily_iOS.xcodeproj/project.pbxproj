@@ -11,6 +11,7 @@
 		3C42976A259F16D10061483E /* KeywordSettingTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C429768259F16D10061483E /* KeywordSettingTVC.xib */; };
 		3C4CBF9625A386E90007A6FF /* NextKeywordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4CBF9525A386E90007A6FF /* NextKeywordVC.swift */; };
 		3C5D94DD259D8B2700BF8DC9 /* KeywordSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5D94DC259D8B2700BF8DC9 /* KeywordSettingVC.swift */; };
+		3CB1214D25A778CB0080E60F /* KeywordDefineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB1214C25A778CB0080E60F /* KeywordDefineVC.swift */; };
 		3CC86426259CAFCB0043421A /* Keyword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CC86425259CAFCB0043421A /* Keyword.storyboard */; };
 		3CC8642C259CAFEE0043421A /* KeywordPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC8642B259CAFEE0043421A /* KeywordPopUpVC.swift */; };
 		3CC86433259CCCB00043421A /* ContentCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC86431259CCCB00043421A /* ContentCVC.swift */; };
@@ -55,7 +56,7 @@
 		AEFB222325A02CBC00A3228C /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEFB222225A02CBC00A3228C /* Login.storyboard */; };
 		AEFB222625A02CC900A3228C /* Goal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEFB222525A02CC900A3228C /* Goal.storyboard */; };
 		DE91346025A309500045BDCE /* AddUserKeywordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91345F25A309500045BDCE /* AddUserKeywordVC.swift */; };
-		DEC98B8125A4435300CC522C /* KeywordDefineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC98B8025A4435300CC522C /* KeywordDefineVC.swift */; };
+		DEC98B8125A4435300CC522C /* KeywordDecideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC98B8025A4435300CC522C /* KeywordDecideVC.swift */; };
 		DEC98B8625A483C300CC522C /* KeywordPriorityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC98B8525A483C300CC522C /* KeywordPriorityVC.swift */; };
 		DEC98B8A25A486DC00CC522C /* KeywordPriorityTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC98B8825A486DC00CC522C /* KeywordPriorityTVC.swift */; };
 		DEC98B8B25A486DC00CC522C /* KeywordPriorityTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEC98B8925A486DC00CC522C /* KeywordPriorityTVC.xib */; };
@@ -80,6 +81,7 @@
 		3C429768259F16D10061483E /* KeywordSettingTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeywordSettingTVC.xib; sourceTree = "<group>"; };
 		3C4CBF9525A386E90007A6FF /* NextKeywordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextKeywordVC.swift; sourceTree = "<group>"; };
 		3C5D94DC259D8B2700BF8DC9 /* KeywordSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordSettingVC.swift; sourceTree = "<group>"; };
+		3CB1214C25A778CB0080E60F /* KeywordDefineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordDefineVC.swift; sourceTree = "<group>"; };
 		3CC86425259CAFCB0043421A /* Keyword.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Keyword.storyboard; sourceTree = "<group>"; };
 		3CC8642B259CAFEE0043421A /* KeywordPopUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeywordPopUpVC.swift; sourceTree = "<group>"; };
 		3CC86431259CCCB00043421A /* ContentCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCVC.swift; sourceTree = "<group>"; };
@@ -126,7 +128,7 @@
 		AEFB222225A02CBC00A3228C /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		AEFB222525A02CC900A3228C /* Goal.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Goal.storyboard; sourceTree = "<group>"; };
 		DE91345F25A309500045BDCE /* AddUserKeywordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserKeywordVC.swift; sourceTree = "<group>"; };
-		DEC98B8025A4435300CC522C /* KeywordDefineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordDefineVC.swift; sourceTree = "<group>"; };
+		DEC98B8025A4435300CC522C /* KeywordDecideVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordDecideVC.swift; sourceTree = "<group>"; };
 		DEC98B8525A483C300CC522C /* KeywordPriorityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordPriorityVC.swift; sourceTree = "<group>"; };
 		DEC98B8825A486DC00CC522C /* KeywordPriorityTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordPriorityTVC.swift; sourceTree = "<group>"; };
 		DEC98B8925A486DC00CC522C /* KeywordPriorityTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeywordPriorityTVC.xib; sourceTree = "<group>"; };
@@ -186,8 +188,9 @@
 				3C5D94DC259D8B2700BF8DC9 /* KeywordSettingVC.swift */,
 				DE91345F25A309500045BDCE /* AddUserKeywordVC.swift */,
 				3C4CBF9525A386E90007A6FF /* NextKeywordVC.swift */,
-				DEC98B8025A4435300CC522C /* KeywordDefineVC.swift */,
+				DEC98B8025A4435300CC522C /* KeywordDecideVC.swift */,
 				DEC98B8525A483C300CC522C /* KeywordPriorityVC.swift */,
+				3CB1214C25A778CB0080E60F /* KeywordDefineVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -614,11 +617,12 @@
 				AEFB2216259C6E6700A3228C /* MypageVC.swift in Sources */,
 				AED84DF125A558B30050D861 /* Extensions+Encodable.swift in Sources */,
 				AEFB2213259C6E2D00A3228C /* EvaluationVC.swift in Sources */,
+				3CB1214D25A778CB0080E60F /* KeywordDefineVC.swift in Sources */,
 				DEC98B8A25A486DC00CC522C /* KeywordPriorityTVC.swift in Sources */,
 				3CC86433259CCCB00043421A /* ContentCVC.swift in Sources */,
 				AE76C040259B1A6D007B3901 /* SceneDelegate.swift in Sources */,
 				ED266033259F019B00A376C0 /* EvaluationHeaderTVC.swift in Sources */,
-				DEC98B8125A4435300CC522C /* KeywordDefineVC.swift in Sources */,
+				DEC98B8125A4435300CC522C /* KeywordDecideVC.swift in Sources */,
 				AE9F294525A1719600904FD9 /* LoginVC.swift in Sources */,
 				AE53FB9E25A6B1E600D62AA7 /* GoalVC.swift in Sources */,
 				ED266036259F032000A376C0 /* EvaluationKeywordTVC.swift in Sources */,
