@@ -14,6 +14,7 @@ class KeywordDefineVC: UIViewController {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var completeButton: UIButton!
+    @IBOutlet weak var skipButton: UIButton!
     
     var keywordList: [String] = []
     
@@ -21,8 +22,10 @@ class KeywordDefineVC: UIViewController {
         super.viewDidLoad()
         setTitleLabel()
         setCompleteButton()
+        setSkipButton()
         setKeywordLabelList()
         setNavigationBar()
+        
     }
     
     func setTitleLabel(){
@@ -34,6 +37,13 @@ class KeywordDefineVC: UIViewController {
         completeButton.titleLabel?.font =  UIFont(name: "System-Bold", size: 18.0)
         completeButton.layer.cornerRadius = 15
         completeButton.isEnabled = false
+    }
+    
+    func setSkipButton(){
+        skipButton.layer.borderColor = UIColor.gray.cgColor
+        skipButton.layer.borderWidth = 2
+        skipButton.layer.cornerRadius = 15
+
     }
     
     func setKeywordLabelList(){
