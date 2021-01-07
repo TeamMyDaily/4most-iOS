@@ -19,6 +19,7 @@ class AddUserKeywordVC: UIViewController {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var guideLabel: UILabel!
     let originButtonColor: UIColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1)
+   
     var keywordArray:[String] = ["진정성","용기","대충"]
     
     override func viewDidLoad() {
@@ -73,10 +74,15 @@ class AddUserKeywordVC: UIViewController {
     
     
     @IBAction func addUserKeyword(_ sender: UIButton) {
-
-        if keywordArray.contains(keywordTextField.text ?? "") {
+        let userKeyword = keywordTextField.text ?? ""
+        
+        if userKeyword.count > 5{
             addButton.isEnabled = false
-            noticeLabel.text = "'\(keywordTextField.text ?? "")'은 이미 생성된 단어에요!"
+            noticeLabel.text = "최대 5글자의 단어만 입력 가능해요!"
+            
+        } else if keywordArray.contains(userKeyword) {
+            addButton.isEnabled = false
+            noticeLabel.text = "'\(userKeyword)'은 이미 생성된 단어에요!"
         }else{
             
             guard let pvc = self.navigationController?.viewControllers[0] as? KeywordSettingVC else {
@@ -110,14 +116,34 @@ extension AddUserKeywordVC: UITextFieldDelegate{
                 noticeLabel.text = "잠깐! 특수문자는 입력할 수 없어요!"
                 return false
             }
+            
+            let englishString = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+            if string.rangeOfCharacter(from: englishString) != nil{
+                noticeLabel.text = "잠깐! 영어는 입력할 수 없어요!"
+                return false
+            }
+            
+            let numberString = CharacterSet(charactersIn: "1234567890")
+            if string.rangeOfCharacter(from: numberString) != nil{
+                noticeLabel.text = "잠깐! 숫자는 입력할 수 없어요!"
+                return false
+            }
+            
         }
         
         let currentText = textField.text ?? ""
         
         guard let stringRange = Range(range, in: currentText) else { return false }
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+        
+        if updatedText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count > 5{
+            noticeLabel.text = "!!!!최대 5글자의 단어만 입력 가능해요!"
+            addButton.isEnabled = false
+            addButton.backgroundColor = originButtonColor
+        }
+        
         if !updatedText.isEmpty {
-            if updatedText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count <= 6{
+            if updatedText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count < 6{
                 addButton.isEnabled = true
                 self.addButton.isEnabled = true
                 addButton.backgroundColor = .orange
