@@ -203,7 +203,19 @@ class NextKeywordVC: UIViewController {
             
         navigationItem.rightBarButtonItem = questionItem
         
+        let leftButton: UIBarButtonItem = {
+             let button = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(dismissVC))
+             return button
+           }()
+           navigationItem.leftBarButtonItem = leftButton
+        
     }
+
+    
+    @objc func dismissVC() {
+      self.navigationController?.popViewController(animated: true)
+    }
+    
     
     @objc func goKeywordPopUp(){
         guard let dvc = self.storyboard?.instantiateViewController(identifier: "KeywordPopUpVC") else {

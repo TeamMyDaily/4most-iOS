@@ -85,7 +85,7 @@
         <!--Keyword SettingVC-->
         <scene sceneID="wBi-lg-9RJ">
             <objects>
-                <viewController id="TwJ-78-EFI" customClass="KeywordSettingVC" customModule="Mydaily_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="KeywordSettingVC" id="TwJ-78-EFI" customClass="KeywordSettingVC" customModule="Mydaily_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GQO-U2-b0n">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -387,6 +387,9 @@
                                 <state key="normal" title="skip">
                                     <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="skipDefiningKeyword:" destination="Ktd-f1-yxH" eventType="touchUpInside" id="wNz-Fb-dUB"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="P7y-MP-GmM"/>
@@ -418,7 +421,7 @@
         <!--Navigation Controller-->
         <scene sceneID="yQj-si-kRp">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="m8e-7L-PYA" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="KeywordSettingVCNavigation" automaticallyAdjustsScrollViewInsets="NO" id="m8e-7L-PYA" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cqs-9h-cVY">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>

@@ -18,6 +18,7 @@ class KeywordPriorityVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setCompleteButton()
         setTitleLabel()
         setTableViewDelegate()
         setNavigationBar()
@@ -39,7 +40,6 @@ class KeywordPriorityVC: UIViewController {
     func setCompleteButton(){
         completeButton.titleLabel?.font =  UIFont(name: "System-Bold", size: 18.0)
         completeButton.layer.cornerRadius = 15
-        completeButton.isEnabled = false
     }
     
     func setReceivedKeywordList(list: [String]){
@@ -66,9 +66,19 @@ class KeywordPriorityVC: UIViewController {
         navigationBar.shadowImage = UIImage()
         
         navigationItem.title = "키워드 우선순위"
+      
+        let leftButton: UIBarButtonItem = {
+             let button = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(dismissVC))
+             return button
+           }()
+           navigationItem.leftBarButtonItem = leftButton
+        
     }
-    
-    
+
+    @objc func dismissVC() {
+      self.navigationController?.popViewController(animated: true)
+    }
+   
     
 }
 

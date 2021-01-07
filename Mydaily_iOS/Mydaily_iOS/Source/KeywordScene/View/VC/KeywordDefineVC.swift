@@ -46,6 +46,11 @@ class KeywordDefineVC: UIViewController {
 
     }
     
+    @IBAction func skipDefiningKeyword(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
     func setKeywordLabelList(){
         for i in 0..<4{
             keywordUILabelList[i].text = keywordList[i]
@@ -64,6 +69,27 @@ class KeywordDefineVC: UIViewController {
         navigationBar.shadowImage = UIImage()
         
         navigationItem.title = "키워드 정의"
+        
+        let leftButton: UIBarButtonItem = {
+             let button = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(dismissVC))
+             return button
+           }()
+           navigationItem.leftBarButtonItem = leftButton
+        
+        let questionItem = UIBarButtonItem(image: UIImage(systemName: "questionmark.circle.fill"), style: .plain, target: self, action: #selector(goKeywordPopUp))
+        navigationItem.rightBarButtonItem = questionItem
+    }
+
+    @objc func dismissVC() {
+      self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func goKeywordPopUp(){
+        guard let dvc = self.storyboard?.instantiateViewController(identifier: "KeywordPopUpVC") else {
+            return
+        }
+        dvc.modalPresentationStyle = .fullScreen
+        self.present(dvc, animated: true, completion: nil)
     }
     
 }

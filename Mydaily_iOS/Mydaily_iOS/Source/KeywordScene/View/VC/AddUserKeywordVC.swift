@@ -57,13 +57,20 @@ class AddUserKeywordVC: UIViewController {
         navigationBar.backgroundColor = UIColor.clear
         navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationBar.shadowImage = UIImage()
-        navigationBar.backIndicatorImage = UIImage(systemName: "questionmark.circle.fill")
       
         self.navigationItem.title = "키워드 추가"
         
-        //self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        
+        let leftButton: UIBarButtonItem = {
+             let button = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(dismissVC))
+             return button
+           }()
+           navigationItem.leftBarButtonItem = leftButton
     }
+
+    @objc func dismissVC() {
+      self.navigationController?.popViewController(animated: true)
+    }
+    
     
     @IBAction func addUserKeyword(_ sender: UIButton) {
 
@@ -104,7 +111,9 @@ extension AddUserKeywordVC: UITextFieldDelegate{
                 return false
             }
         }
+        
         let currentText = textField.text ?? ""
+        
         guard let stringRange = Range(range, in: currentText) else { return false }
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
         if !updatedText.isEmpty {

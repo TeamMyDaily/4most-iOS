@@ -8,7 +8,7 @@
 import UIKit
 
 class KeywordSettingVC: UIViewController {
-
+    static let identifier = "KeywordSettingVC"
     @IBOutlet var KeywordTableView: UITableView!
     @IBOutlet var mainLabel: UILabel!
     
@@ -71,8 +71,6 @@ class KeywordSettingVC: UIViewController {
         }
     }
     
-   
-    
     func setNavigationBar(){
         guard let navigationBar = self.navigationController?.navigationBar else { return }
         navigationBar.isTranslucent = true
@@ -83,20 +81,6 @@ class KeywordSettingVC: UIViewController {
         navigationItem.title = "키워드 설정하기"
         let questionItem = UIBarButtonItem(image: UIImage(systemName: "questionmark.circle.fill"), style: .plain, target: self, action: #selector(goKeywordPopUp))
         navigationItem.rightBarButtonItem = questionItem
-        let testItem = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: nil)
-        navigationBar.backIndicatorTransitionMaskImage = nil
-        
-        navigationItem.backBarButtonItem = testItem
-        navigationBar.backIndicatorImage = nil
-        
-        
-//      navigation
-//        let backItem2 = UIBarButtonItem(title: "", image: nil, primaryAction: nil, menu: nil)
-//        let backItem = UIBarButtonItem(title: "왜이래,,", image: UIImage(systemName: "chevron.backward"), primaryAction: nil, menu: nil)
-//        navigationItem.backBarButtonItem = backItem
-//        navigationBar.backIndicatorImage = UIImage(systemName: "questionmark.circle.fill")
-        
-        //navigationItem.backBarButtonItem?.imageInsets = UIEdgeInsets(top: 5, left: 30, bottom: 5, right: 0)
     }
     
     @objc func goKeywordPopUp(){
@@ -274,9 +258,7 @@ extension KeywordSettingVC: UITableViewDelegate{
         KeywordEditButton.setTitleColor(.blue, for: .normal)
         KeywordEditButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.regular)
         KeywordEditButton.addTarget(self, action: #selector(editUserKeyword), for: .touchUpInside)
-        //KeywordEditButton.backgroundColor = .red
-        
-        
+       
         footer.addSubview(userKeywordTitleLabel)
         footer.addSubview(keywordPlusButton)
         footer.addSubview(KeywordEditButton)
@@ -332,7 +314,6 @@ extension KeywordSettingVC: UITableViewDelegate{
             contentY += 48
             keywordPlusButton.frame.origin.y = CGFloat(contentY)
             footer.frame.size.height = CGFloat(contentY+50)
-            footer.backgroundColor = getRandomColor()
             KeywordTableView.tableFooterView = footer
         }
         userKeywordButtonList.append(myKeywordButton)
@@ -521,25 +502,9 @@ extension KeywordSettingVC: UITableViewDelegate{
     
     func updateSizeOfFooter(height: Int){
         footer.frame.size.height = CGFloat(height+50)
-        footer.backgroundColor = getRandomColor()
         KeywordTableView.tableFooterView = footer
     }
     
-    
-    func getRandomColor() -> UIColor{
-            
-        let randomRed:CGFloat = CGFloat(drand48())
-        
-        let randomGreen:CGFloat = CGFloat(drand48())
-        
-        let randomBlue:CGFloat = CGFloat(drand48())
-        
-        return UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
-        
-    }
-
-
-
 }
 
 //tableviewcell 안에 버튼 클릭 delegate
