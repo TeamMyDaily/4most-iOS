@@ -43,7 +43,6 @@
 		AEFB2210259C6C6A00A3228C /* DailyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFB220F259C6C6900A3228C /* DailyVC.swift */; };
 		AEFB2213259C6E2D00A3228C /* EvaluationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFB2212259C6E2D00A3228C /* EvaluationVC.swift */; };
 		AEFB2216259C6E6700A3228C /* MypageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFB2215259C6E6700A3228C /* MypageVC.swift */; };
-		AEFB221D259C918C00A3228C /* EditKeywordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFB221C259C918C00A3228C /* EditKeywordVC.swift */; };
 		AEFB222325A02CBC00A3228C /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEFB222225A02CBC00A3228C /* Login.storyboard */; };
 		AEFB222625A02CC900A3228C /* Goal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEFB222525A02CC900A3228C /* Goal.storyboard */; };
 		ED266029259EF02E00A376C0 /* EvaluationTabCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266028259EF02E00A376C0 /* EvaluationTabCVC.swift */; };
@@ -52,6 +51,8 @@
 		ED266036259F032000A376C0 /* EvaluationKeywordTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266035259F032000A376C0 /* EvaluationKeywordTVC.swift */; };
 		EDA9CA8425A1A74D00BF46C1 /* DetailRecordContentTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA9CA8325A1A74D00BF46C1 /* DetailRecordContentTVC.swift */; };
 		EDAAEB7D25A01B550024E3E4 /* EvaluationDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAAEB7C25A01B550024E3E4 /* EvaluationDetailVC.swift */; };
+		EDAAFA2425A82E0400424BF9 /* MypageSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAAFA2325A82E0400424BF9 /* MypageSettingVC.swift */; };
+		EDAAFA2825A83B7000424BF9 /* SettingSecurityTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAAFA2725A83B7000424BF9 /* SettingSecurityTVC.swift */; };
 		EDB8F39625A338EE00F39A09 /* RetrospectiveWriteTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB8F39525A338EE00F39A09 /* RetrospectiveWriteTVC.swift */; };
 		EDBF739025A1634000ECDEB9 /* DetailGoalTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF738F25A1634000ECDEB9 /* DetailGoalTVC.swift */; };
 		EDBF739325A1636300ECDEB9 /* DetailRecordTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF739225A1636300ECDEB9 /* DetailRecordTVC.swift */; };
@@ -101,7 +102,6 @@
 		AEFB220F259C6C6900A3228C /* DailyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyVC.swift; sourceTree = "<group>"; };
 		AEFB2212259C6E2D00A3228C /* EvaluationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationVC.swift; sourceTree = "<group>"; };
 		AEFB2215259C6E6700A3228C /* MypageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageVC.swift; sourceTree = "<group>"; };
-		AEFB221C259C918C00A3228C /* EditKeywordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditKeywordVC.swift; sourceTree = "<group>"; };
 		AEFB222225A02CBC00A3228C /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		AEFB222525A02CC900A3228C /* Goal.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Goal.storyboard; sourceTree = "<group>"; };
 		ED266028259EF02E00A376C0 /* EvaluationTabCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationTabCVC.swift; sourceTree = "<group>"; };
@@ -110,6 +110,8 @@
 		ED266035259F032000A376C0 /* EvaluationKeywordTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationKeywordTVC.swift; sourceTree = "<group>"; };
 		EDA9CA8325A1A74D00BF46C1 /* DetailRecordContentTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecordContentTVC.swift; sourceTree = "<group>"; };
 		EDAAEB7C25A01B550024E3E4 /* EvaluationDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationDetailVC.swift; sourceTree = "<group>"; };
+		EDAAFA2325A82E0400424BF9 /* MypageSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageSettingVC.swift; sourceTree = "<group>"; };
+		EDAAFA2725A83B7000424BF9 /* SettingSecurityTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSecurityTVC.swift; sourceTree = "<group>"; };
 		EDB8F39525A338EE00F39A09 /* RetrospectiveWriteTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrospectiveWriteTVC.swift; sourceTree = "<group>"; };
 		EDBF738F25A1634000ECDEB9 /* DetailGoalTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGoalTVC.swift; sourceTree = "<group>"; };
 		EDBF739225A1636300ECDEB9 /* DetailRecordTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecordTVC.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 		AEFB2209259C671A00A3228C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EDAAFA2625A83B4800424BF9 /* Cell */,
 				AEFB220C259C672D00A3228C /* VC */,
 			);
 			path = View;
@@ -367,7 +370,7 @@
 			isa = PBXGroup;
 			children = (
 				AEFB2215259C6E6700A3228C /* MypageVC.swift */,
-				AEFB221C259C918C00A3228C /* EditKeywordVC.swift */,
+				EDAAFA2325A82E0400424BF9 /* MypageSettingVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -421,6 +424,14 @@
 				EDBF739625A17BD900ECDEB9 /* DetailRecordCVC.swift */,
 			);
 			path = CVC;
+			sourceTree = "<group>";
+		};
+		EDAAFA2625A83B4800424BF9 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EDAAFA2725A83B7000424BF9 /* SettingSecurityTVC.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		EDBF739525A17ADE00ECDEB9 /* CollectionViewLayout */ = {
@@ -534,7 +545,7 @@
 				AED84DF025A558B30050D861 /* Extensions+UITextField.swift in Sources */,
 				EDBF739325A1636300ECDEB9 /* DetailRecordTVC.swift in Sources */,
 				AED84DEF25A558B30050D861 /* Extensions+UIColor.swift in Sources */,
-				AEFB221D259C918C00A3228C /* EditKeywordVC.swift in Sources */,
+				EDAAFA2425A82E0400424BF9 /* MypageSettingVC.swift in Sources */,
 				AE53FB9925A5B6F300D62AA7 /* DailyWriteVC.swift in Sources */,
 				AEFB21F9259C5CB900A3228C /* TabbarController.swift in Sources */,
 				EDBF739B25A18BF100ECDEB9 /* DetailRecordLayout.swift in Sources */,
@@ -551,6 +562,7 @@
 				EDC0FEC625A72DE200D69379 /* ChangeModifyButtonDelegate.swift in Sources */,
 				AED84DEE25A558B30050D861 /* Extensions+UIFont.swift in Sources */,
 				ED266029259EF02E00A376C0 /* EvaluationTabCVC.swift in Sources */,
+				EDAAFA2825A83B7000424BF9 /* SettingSecurityTVC.swift in Sources */,
 				EDA9CA8425A1A74D00BF46C1 /* DetailRecordContentTVC.swift in Sources */,
 				AED84DF625A558B30050D861 /* UIView+Animation.swift in Sources */,
 				AED84DED25A558B30050D861 /* Extensions+UIApplication.swift in Sources */,

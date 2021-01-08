@@ -29,10 +29,12 @@ class EvaluationTabCVC: UICollectionViewCell {
     
     var dateValue = 0
     
-    var keywords = ["아웃풋", "열정", "경청", "선한영향력"]
-    var goals = ["블로그에 1개 이상 퍼블리싱 하기", "열정 만수르 유노윤호의 영상보고 감상문 5장 이상 쓰기", "PM님 말씀하실 때 가위춤추지 않기", "거짓말 치지 않고 선하게 살기"]
-    var rates = [2.6, 4.2, nil, 3.4]
-    var counts = [4, 3, 0, 3]
+    var keywords = ["아웃풋", "열정", "경청", "선한영향력", "진정성", "자신감", "노력"]
+    var goals = ["블로그에 1개 이상 퍼블리싱 하기", "열정 만수르 유노윤호의 영상보고 감상문 5장 이상 쓰기", "PM님 말씀하실 때 가위춤추지 않기", "거짓말 치지 않고 선하게 살기", "열정 만수르 유노윤호의 영상보고 감상문 5장 이상 쓰기", "PM님 말씀하실 때 가위춤추지 않기", "거짓말 치지 않고 선하게 살기"]
+    var rates = [2.6, 4.2, nil, 3.4, 4.2, 1.5, 3.4]
+    var counts = [3, 3, 2, 1, 6, 6, 7]
+    
+    var removeIndex: [Int] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,6 +42,7 @@ class EvaluationTabCVC: UICollectionViewCell {
         setTableViewSeparator()
         setView()
         setNotification()
+        setArray()
     }
 }
 
@@ -51,7 +54,13 @@ extension EvaluationTabCVC: UITableViewDataSource {
         if section == 0 {
             return 1
         }
-        return 4
+        var cnt = 0
+        for i in counts {
+            if i != 0 {
+                cnt += 1
+            }
+        }
+        return cnt
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -65,7 +74,7 @@ extension EvaluationTabCVC: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: EvaluationKeywordTVC.identifier) as? EvaluationKeywordTVC else {
             return UITableViewCell()
         }
-        cell.setData(keyword: keywords[indexPath.item] ?? "", goal: goals[indexPath.item] ?? "", index: indexPath.item, rate: rates[indexPath.item] ?? 0.0, count: Int(counts[indexPath.item] ?? 0))
+        cell.setData(keyword: keywords[indexPath.item] ?? "", goal: goals[indexPath.item] ?? "", index: indexPath.item, rate: rates[indexPath.item] ?? 0, count: Int(counts[indexPath.item] ?? 0))
         cell.selectionStyle = .none
         return cell
     }
@@ -99,6 +108,25 @@ extension EvaluationTabCVC {
     private func setTableViewDelegate() {
         keywordTableView.delegate = self
         keywordTableView.dataSource = self
+    }
+    
+    private func setArray() {
+        var index = 0
+        removeIndex.removeAll()
+        
+        for i in counts {
+            if i == 0 {
+                removeIndex.append(index)
+            }
+            index += 1
+        }
+        
+        for i in removeIndex.reversed() {
+            keywords.remove(at: i)
+            goals.remove(at: i)
+            rates.remove(at: i)
+            counts.remove(at: i)
+        }
     }
     
     private func setView() {
