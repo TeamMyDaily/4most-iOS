@@ -194,6 +194,9 @@ class RetrospectiveWriteTVC: UITableViewCell {
     
     @IBAction func touchUpSave(_ sender: Any) {
         buttonDelegate?.changeModifyButton(isActive: false)
+        tableView?.rowHeight -= 50
+        self.tableView?.beginUpdates()
+        self.tableView?.endUpdates()
         saveButton.isHidden = true
         isSaved = true
         buttonDelegate?.showAlert(title: "목표를 재설정 하시겠어요?", message: "한주의 회고를 다 마치셨군요!\n 목표를 달성하셨다면 새로운 목표로 재설정 하시겠어요?")
@@ -263,6 +266,9 @@ extension RetrospectiveWriteTVC {
     }
     
     @objc func hiddenSaveButton() {
+        tableView?.rowHeight += 50
+        self.tableView?.beginUpdates()
+        self.tableView?.endUpdates()
         saveButton.layer.isHidden = false
         isSaved = false
     }
