@@ -45,6 +45,9 @@ class RetrospectiveWriteTVC: UITableViewCell {
     var flowHeightConstraint: NSLayoutConstraint?
     var flowHeightTwoConstraint: NSLayoutConstraint?
     var flowHeightThreeConstraint: NSLayoutConstraint?
+    var textHeightConstraint: NSLayoutConstraint?
+    var textHeightTwoConstraint: NSLayoutConstraint?
+    var textHeightThreeConstraint: NSLayoutConstraint?
     
     let userDefault = UserDefaults.standard
     
@@ -89,6 +92,7 @@ class RetrospectiveWriteTVC: UITableViewCell {
                 self.contentOneTextViewButton.layer.borderColor = UIColor.mainPaleOrange.cgColor
                 self.contentOneTextViewButton.backgroundColor = .white
                 
+                self.writeOneTextView.isUserInteractionEnabled = true
                 self.writeOneTextView.textColor = .mainBlack
                 self.writeOneTextView.text = text
                 self.countNumberLabel.text = "\(textCount)"
@@ -128,6 +132,7 @@ class RetrospectiveWriteTVC: UITableViewCell {
                 self.contentTwoTextViewButton.layer.borderColor = UIColor.mainPaleOrange.cgColor
                 self.contentTwoTextViewButton.backgroundColor = .white
                 
+                self.writeTwoTextView.isUserInteractionEnabled = true
                 self.writeTwoTextView.textColor = .mainBlack
                 self.writeTwoTextView.text = text
                 self.countTwoNumberLabel.text = "\(textCount)"
@@ -167,6 +172,7 @@ class RetrospectiveWriteTVC: UITableViewCell {
                 self.contentThreeTextViewButton.layer.borderColor = UIColor.mainPaleOrange.cgColor
                 self.contentThreeTextViewButton.backgroundColor = .white
                 
+                self.writeThreeTextView.isUserInteractionEnabled = true
                 self.writeThreeTextView.textColor = .mainBlack
                 self.writeThreeTextView.text = text
                 self.countThreeNumberLabel.text = "\(textCount)"
@@ -200,6 +206,9 @@ class RetrospectiveWriteTVC: UITableViewCell {
         saveButton.isHidden = true
         isSaved = true
         buttonDelegate?.showAlert(title: "목표를 재설정 하시겠어요?", message: "한주의 회고를 다 마치셨군요!\n 목표를 달성하셨다면 새로운 목표로 재설정 하시겠어요?")
+        contentOneTextViewButton.isUserInteractionEnabled = false
+        contentTwoTextViewButton.isUserInteractionEnabled = false
+        contentThreeTextViewButton.isUserInteractionEnabled = false
     }
 }
 
@@ -269,6 +278,9 @@ extension RetrospectiveWriteTVC {
         tableView?.rowHeight += 50
         self.tableView?.beginUpdates()
         self.tableView?.endUpdates()
+        contentOneTextViewButton.isUserInteractionEnabled = true
+        contentTwoTextViewButton.isUserInteractionEnabled = true
+        contentThreeTextViewButton.isUserInteractionEnabled = true
         saveButton.layer.isHidden = false
         isSaved = false
     }
@@ -345,12 +357,13 @@ extension RetrospectiveWriteTVC {
     }
     
     private func setOneTextView() {
-        contentOneTextViewButton.addSubview(writeOneTextView)
-        writeOneTextView.leadingAnchor.constraint(equalTo: contentOneTextViewButton.leadingAnchor, constant: 14).isActive = true
-        writeOneTextView.trailingAnchor.constraint(equalTo: contentOneTextViewButton.trailingAnchor, constant: -14).isActive = true
-        writeOneTextView.topAnchor.constraint(equalTo: contentOneTextViewButton.topAnchor, constant: 11).isActive = true
-        writeOneTextView.bottomAnchor.constraint(equalTo: contentOneTextViewButton.bottomAnchor, constant: -11).isActive = true
+        self.addSubview(writeOneTextView)
+        writeOneTextView.leadingAnchor.constraint(equalTo: contentOneTextViewButton.leadingAnchor, constant: 16).isActive = true
+        writeOneTextView.trailingAnchor.constraint(equalTo: contentOneTextViewButton.trailingAnchor, constant: -16).isActive = true
+        writeOneTextView.topAnchor.constraint(equalTo: contentOneTextViewButton.topAnchor, constant: 16).isActive = true
+        writeOneTextView.bottomAnchor.constraint(equalTo: contentOneTextViewButton.bottomAnchor, constant: -16).isActive = true
         
+        writeOneTextView.isUserInteractionEnabled = false
         writeOneTextView.delegate = self
         writeOneTextView.isEditable = false
         writeOneTextView.layer.cornerRadius = 12
@@ -367,12 +380,13 @@ extension RetrospectiveWriteTVC {
     }
     
     private func setTwoTextView() {
-        contentTwoTextViewButton.addSubview(writeTwoTextView)
-        writeTwoTextView.leadingAnchor.constraint(equalTo: contentTwoTextViewButton.leadingAnchor, constant: 14).isActive = true
-        writeTwoTextView.trailingAnchor.constraint(equalTo: contentTwoTextViewButton.trailingAnchor, constant: -14).isActive = true
-        writeTwoTextView.topAnchor.constraint(equalTo: contentTwoTextViewButton.topAnchor, constant: 11).isActive = true
-        writeTwoTextView.bottomAnchor.constraint(equalTo: contentTwoTextViewButton.bottomAnchor, constant: -11).isActive = true
+        self.addSubview(writeTwoTextView)
+        writeTwoTextView.leadingAnchor.constraint(equalTo: contentTwoTextViewButton.leadingAnchor, constant: 16).isActive = true
+        writeTwoTextView.trailingAnchor.constraint(equalTo: contentTwoTextViewButton.trailingAnchor, constant: -16).isActive = true
+        writeTwoTextView.topAnchor.constraint(equalTo: contentTwoTextViewButton.topAnchor, constant: 16).isActive = true
+        writeTwoTextView.bottomAnchor.constraint(equalTo: contentTwoTextViewButton.bottomAnchor, constant: -16).isActive = true
         
+        writeOneTextView.isUserInteractionEnabled = false
         writeTwoTextView.delegate = self
         writeTwoTextView.isEditable = false
         writeTwoTextView.layer.cornerRadius = 12
@@ -389,12 +403,13 @@ extension RetrospectiveWriteTVC {
     }
     
     private func setThreeTextView() {
-        contentThreeTextViewButton.addSubview(writeThreeTextView)
-        writeThreeTextView.leadingAnchor.constraint(equalTo: contentThreeTextViewButton.leadingAnchor, constant: 14).isActive = true
-        writeThreeTextView.trailingAnchor.constraint(equalTo: contentThreeTextViewButton.trailingAnchor, constant: -14).isActive = true
-        writeThreeTextView.topAnchor.constraint(equalTo: contentThreeTextViewButton.topAnchor, constant: 11).isActive = true
-        writeThreeTextView.bottomAnchor.constraint(equalTo: contentThreeTextViewButton.bottomAnchor, constant: -11).isActive = true
+        self.addSubview(writeThreeTextView)
+        writeThreeTextView.leadingAnchor.constraint(equalTo: contentThreeTextViewButton.leadingAnchor, constant: 16).isActive = true
+        writeThreeTextView.trailingAnchor.constraint(equalTo: contentThreeTextViewButton.trailingAnchor, constant: -16).isActive = true
+        writeThreeTextView.topAnchor.constraint(equalTo: contentThreeTextViewButton.topAnchor, constant: 16).isActive = true
+        writeThreeTextView.bottomAnchor.constraint(equalTo: contentThreeTextViewButton.bottomAnchor, constant: -16).isActive = true
         
+        writeThreeTextView.isUserInteractionEnabled = false
         writeThreeTextView.delegate = self
         writeThreeTextView.isEditable = false
         writeThreeTextView.layer.cornerRadius = 12
