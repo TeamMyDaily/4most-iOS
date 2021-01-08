@@ -26,8 +26,6 @@ class DetailVC: UITableViewController, ThreePartCellDelegate {
             for i in 1..<n {
                 str += "Line \(i)\n"
             }
-            
-            
             myArray.append(str)
             
         }

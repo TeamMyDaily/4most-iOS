@@ -32,8 +32,10 @@ class DetailTVC: UITableViewCell {
 			isExpanded = !isExpanded
 			
 			sizingLabel.numberOfLines = isExpanded ? 0 : 1
-            labelBody.textColor = isExpanded ? UIColor.black : UIColor.white
-			buttonMore.setTitle(isExpanded ? "Read less..." : "Read more...", for: .normal)
+            labelBody.textColor = isExpanded ? UIColor.mainLightGray3 : UIColor.white
+            labelBody.font = .myRegularSystemFont(ofSize: 15)
+            sizingLabel.font = .myRegularSystemFont(ofSize: 15)
+			buttonMore.setTitle(isExpanded ? "Read..." : "Read...", for: .normal)
 			
             delegate?.moreTapped(cell: self)
 		}
@@ -77,15 +79,19 @@ class DetailTVC: UITableViewCell {
 
 extension DetailTVC {
     func setUI(){
+        //서버연결시 변경
         labelNum.text = "01"
-        labelNum.font = .boldSystemFont(ofSize: 62)
-        labelTitle.font = .boldSystemFont(ofSize: 28)
-        labelSubTitle.font = .systemFont(ofSize: 12)
-//        
-//        let attrString = NSMutableAttributedString(string: labelBody.text!)
-//        let paragraphStyle = NSMutableParagraphStyle()
-//        paragraphStyle.lineSpacing = 10
-//        attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attrString.length))
-//        labelBody.attributedText = attrString
+        labelNum.font = .myBoldSystemFont(ofSize: 62)
+        labelTitle.font = .myBoldSystemFont(ofSize: 28)
+        labelTitle.sizeToFit()
+        labelTitle.textColor = UIColor.mainBlack
+        labelSubTitle.text = "4개의 기록이 당신을 기다리고 있어요."
+        labelSubTitle.font = .myRegularSystemFont(ofSize: 12)
+        labelSubTitle.textColor = UIColor.mainGray
+        
+        let attributedString = NSMutableAttributedString(string: labelSubTitle.text ?? "")
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.mainOrange, range: (labelSubTitle.text! as NSString).range(of:"4개의 기록"))
+        labelSubTitle.attributedText = attributedString
+
     }
 }

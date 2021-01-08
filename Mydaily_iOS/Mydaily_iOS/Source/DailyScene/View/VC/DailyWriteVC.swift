@@ -26,6 +26,7 @@ class DailyWriteVC: UIViewController {
         todayTitle.delegate = self
         placeholderSetting()
         setSliderUI()
+        
     }
     
     func setSliderUI(){
