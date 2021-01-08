@@ -22,7 +22,6 @@ class KeywordDefineVC: UIViewController {
         setContentView()
         setTitleLabel()
         setNavigationBar()
-        
     }
     
     func setKeyword(text: String){
