@@ -1,9 +1,8 @@
 //
-//  SampleThreePartTableViewController.swift
-//  DynamicCellHeight
+//  DetailVC.swift
+//  Mydaily_iOS
 //
-//  Created by Don Mag on 3/23/17.
-//  Copyright © 2017 DonMag. All rights reserved.
+//  Created by 이유진 on 2020/12/30.
 //
 
 import UIKit
@@ -18,7 +17,6 @@ class DetailVC: UITableViewController, ThreePartCellDelegate {
         
         setTableVC()
 
-        // create some random data
         for _ in 1...4 {
             
             let n = arc4random_uniform(6) + 4
@@ -52,21 +50,19 @@ class DetailVC: UITableViewController, ThreePartCellDelegate {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return myArray.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "threePartCellID", for: indexPath) as! DetailTVC
-        
-        // Configure the cell...
+
+        cell.selectionStyle = .none
         
         let str = myArray[indexPath.row]
         cell.labelBody.textColor = .white

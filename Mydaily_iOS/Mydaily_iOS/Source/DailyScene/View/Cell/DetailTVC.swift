@@ -1,10 +1,10 @@
 //
-//  ThreePartDynaTableViewCell.swift
-//  DynamicCellHeight
+//  DailyTVC.swift
+//  Mydaily_iOS
 //
-//  Created by Don Mag on 3/23/17.
-//  Copyright © 2017 DonMag. All rights reserved.
+//  Created by 이유진 on 2020/12/30.
 //
+
 
 import UIKit
 
