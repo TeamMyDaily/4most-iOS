@@ -10,15 +10,21 @@ import UIKit
 class SettingSecurityTVC: UITableViewCell {
     static let identifier = "SettingSecurityTVC"
 
+    @IBOutlet weak var titleLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
+}
 
+extension SettingSecurityTVC {
+    func setCellTitle(title: String, color: UIColor) {
+        titleLabel.font = .myRegularSystemFont(ofSize: 16)
+        titleLabel.text = title
+        titleLabel.textColor = color
+    }
 }

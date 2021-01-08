@@ -53,6 +53,9 @@
 		EDAAEB7D25A01B550024E3E4 /* EvaluationDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAAEB7C25A01B550024E3E4 /* EvaluationDetailVC.swift */; };
 		EDAAFA2425A82E0400424BF9 /* MypageSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAAFA2325A82E0400424BF9 /* MypageSettingVC.swift */; };
 		EDAAFA2825A83B7000424BF9 /* SettingSecurityTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAAFA2725A83B7000424BF9 /* SettingSecurityTVC.swift */; };
+		EDAAFA2E25A8535400424BF9 /* SettingVersionTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAAFA2D25A8535400424BF9 /* SettingVersionTVC.swift */; };
+		EDAAFA3125A873F500424BF9 /* MypageIdentityVerificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAAFA3025A873F500424BF9 /* MypageIdentityVerificationVC.swift */; };
+		EDAAFA3425A8787100424BF9 /* MypageWithdrawalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAAFA3325A8787100424BF9 /* MypageWithdrawalVC.swift */; };
 		EDB8F39625A338EE00F39A09 /* RetrospectiveWriteTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB8F39525A338EE00F39A09 /* RetrospectiveWriteTVC.swift */; };
 		EDBF739025A1634000ECDEB9 /* DetailGoalTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF738F25A1634000ECDEB9 /* DetailGoalTVC.swift */; };
 		EDBF739325A1636300ECDEB9 /* DetailRecordTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF739225A1636300ECDEB9 /* DetailRecordTVC.swift */; };
@@ -112,6 +115,9 @@
 		EDAAEB7C25A01B550024E3E4 /* EvaluationDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationDetailVC.swift; sourceTree = "<group>"; };
 		EDAAFA2325A82E0400424BF9 /* MypageSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageSettingVC.swift; sourceTree = "<group>"; };
 		EDAAFA2725A83B7000424BF9 /* SettingSecurityTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSecurityTVC.swift; sourceTree = "<group>"; };
+		EDAAFA2D25A8535400424BF9 /* SettingVersionTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVersionTVC.swift; sourceTree = "<group>"; };
+		EDAAFA3025A873F500424BF9 /* MypageIdentityVerificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageIdentityVerificationVC.swift; sourceTree = "<group>"; };
+		EDAAFA3325A8787100424BF9 /* MypageWithdrawalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageWithdrawalVC.swift; sourceTree = "<group>"; };
 		EDB8F39525A338EE00F39A09 /* RetrospectiveWriteTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrospectiveWriteTVC.swift; sourceTree = "<group>"; };
 		EDBF738F25A1634000ECDEB9 /* DetailGoalTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGoalTVC.swift; sourceTree = "<group>"; };
 		EDBF739225A1636300ECDEB9 /* DetailRecordTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecordTVC.swift; sourceTree = "<group>"; };
@@ -371,6 +377,8 @@
 			children = (
 				AEFB2215259C6E6700A3228C /* MypageVC.swift */,
 				EDAAFA2325A82E0400424BF9 /* MypageSettingVC.swift */,
+				EDAAFA3025A873F500424BF9 /* MypageIdentityVerificationVC.swift */,
+				EDAAFA3325A8787100424BF9 /* MypageWithdrawalVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -430,6 +438,7 @@
 			isa = PBXGroup;
 			children = (
 				EDAAFA2725A83B7000424BF9 /* SettingSecurityTVC.swift */,
+				EDAAFA2D25A8535400424BF9 /* SettingVersionTVC.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -536,6 +545,7 @@
 				EDC1642925A4617600CD65B0 /* RetrospectiveWriteVC.swift in Sources */,
 				AE76C03E259B1A6D007B3901 /* AppDelegate.swift in Sources */,
 				AED84DF325A558B30050D861 /* Extensions+UIView.swift in Sources */,
+				EDAAFA2E25A8535400424BF9 /* SettingVersionTVC.swift in Sources */,
 				AE9F294D25A1BF1500904FD9 /* RegisterEntryVC.swift in Sources */,
 				AE9F294A25A1A69400904FD9 /* registerVC.swift in Sources */,
 				EDAAEB7D25A01B550024E3E4 /* EvaluationDetailVC.swift in Sources */,
@@ -544,6 +554,7 @@
 				AEFB2210259C6C6A00A3228C /* DailyVC.swift in Sources */,
 				AED84DF025A558B30050D861 /* Extensions+UITextField.swift in Sources */,
 				EDBF739325A1636300ECDEB9 /* DetailRecordTVC.swift in Sources */,
+				EDAAFA3425A8787100424BF9 /* MypageWithdrawalVC.swift in Sources */,
 				AED84DEF25A558B30050D861 /* Extensions+UIColor.swift in Sources */,
 				EDAAFA2425A82E0400424BF9 /* MypageSettingVC.swift in Sources */,
 				AE53FB9925A5B6F300D62AA7 /* DailyWriteVC.swift in Sources */,
@@ -560,6 +571,7 @@
 				ED266030259EFAB200A376C0 /* RetrospectiveTabCVC.swift in Sources */,
 				EDB8F39625A338EE00F39A09 /* RetrospectiveWriteTVC.swift in Sources */,
 				EDC0FEC625A72DE200D69379 /* ChangeModifyButtonDelegate.swift in Sources */,
+				EDAAFA3125A873F500424BF9 /* MypageIdentityVerificationVC.swift in Sources */,
 				AED84DEE25A558B30050D861 /* Extensions+UIFont.swift in Sources */,
 				ED266029259EF02E00A376C0 /* EvaluationTabCVC.swift in Sources */,
 				EDAAFA2825A83B7000424BF9 /* SettingSecurityTVC.swift in Sources */,
