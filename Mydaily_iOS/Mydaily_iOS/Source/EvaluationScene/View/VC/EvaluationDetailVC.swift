@@ -28,6 +28,7 @@ class EvaluationDetailVC: UIViewController {
         tabBarController?.tabBar.isHidden = false
         extendedLayoutIncludesOpaqueBars = false
     }
+    
 }
 
 extension EvaluationDetailVC: UITableViewDataSource {

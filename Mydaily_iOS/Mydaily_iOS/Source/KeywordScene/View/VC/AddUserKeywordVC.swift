@@ -32,51 +32,9 @@ class AddUserKeywordVC: UIViewController {
         addButton.isEnabled = false
     }
     
-    func setTitleLabel(){
-        titleLabel.numberOfLines = 0
-        titleLabel.text = "찾으시는 가치(단어)가\n없으신가요?"
-        
-    }
-    
-    func setGuideLabel(){
-        guideLabel.numberOfLines = 0
-        guideLabel.text = "공백 없이 최대 5글자까지 가능해요.\n명사 형태를 추천해요."
-    }
-    
-    func setContent(){
-        titleLabel.numberOfLines = 0
-        titleLabel.text = "찾으시는 가치(단어)가\n없으신가요?"
-        
-        guideLabel.numberOfLines = 0
-        guideLabel.text = "공백 없이 최대 5글자까지 가능해요.\n명사 형태를 추천해요."
-        
-        addButton.layer.cornerRadius = 15
-    }
-    
     func setKeywordArray(list: [String]){
         keywordArray = list
     }
-    
-    func setNavigationBar(){
-        guard let navigationBar = self.navigationController?.navigationBar else { return }
-        navigationBar.isTranslucent = true
-        navigationBar.backgroundColor = UIColor.clear
-        navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationBar.shadowImage = UIImage()
-      
-        self.navigationItem.title = "키워드 추가"
-        
-        let leftButton: UIBarButtonItem = {
-             let button = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(dismissVC))
-             return button
-           }()
-           navigationItem.leftBarButtonItem = leftButton
-    }
-
-    @objc func dismissVC() {
-      self.navigationController?.popViewController(animated: true)
-    }
-    
     
     @IBAction func addUserKeyword(_ sender: UIButton) {
         let userKeyword = keywordTextField.text ?? ""
@@ -169,4 +127,39 @@ extension AddUserKeywordVC: UITextFieldDelegate{
             return true
         }
     }
+}
+
+
+extension AddUserKeywordVC{
+  
+    func setContent(){
+        titleLabel.numberOfLines = 0
+        titleLabel.text = "찾으시는 가치(단어)가\n없으신가요?"
+        
+        guideLabel.numberOfLines = 0
+        guideLabel.text = "공백 없이 최대 5글자까지 가능해요.\n명사 형태를 추천해요."
+        
+        addButton.layer.cornerRadius = 15
+    }
+   
+    func setNavigationBar(){
+        guard let navigationBar = self.navigationController?.navigationBar else { return }
+        navigationBar.isTranslucent = true
+        navigationBar.backgroundColor = UIColor.clear
+        navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationBar.shadowImage = UIImage()
+      
+        self.navigationItem.title = "키워드 추가"
+        
+        let leftButton: UIBarButtonItem = {
+             let button = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(dismissVC))
+             return button
+           }()
+           navigationItem.leftBarButtonItem = leftButton
+    }
+
+    @objc func dismissVC() {
+      self.navigationController?.popViewController(animated: true)
+    }
+    
 }

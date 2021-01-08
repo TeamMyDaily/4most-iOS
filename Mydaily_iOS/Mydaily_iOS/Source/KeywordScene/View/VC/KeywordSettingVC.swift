@@ -313,7 +313,6 @@ extension KeywordSettingVC: UITableViewDelegate{
        
         myKeywordButton.addTarget(self, action: #selector(selectedUserKeyword), for: .touchUpInside)
         
-
         if contentX > systemSize - 100 {
             contentX = 17
             contentY += 48

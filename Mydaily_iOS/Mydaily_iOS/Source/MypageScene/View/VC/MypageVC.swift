@@ -21,6 +21,12 @@ class MypageVC: UIViewController {
         let dvc = storyboard.instantiateViewController(identifier: "KeywordSettingVCNavigation")
         dvc.modalPresentationStyle = .fullScreen
         self.present(dvc, animated: true, completion: nil)
+
+        //키워드 설정
+//        let vc = storyboard.instantiateViewController(identifier: "KeywordDefineVC")
+//
+//        vc.modalPresentationStyle = .fullScreen
+//        self.present(vc, animated: true, completion: nil)
     }
     
 }
