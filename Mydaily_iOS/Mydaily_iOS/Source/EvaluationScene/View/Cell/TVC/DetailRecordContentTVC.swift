@@ -11,12 +11,21 @@ class DetailRecordContentTVC: UITableViewCell {
     static let identifier = "DetailRecordContentTVC"
     
     @IBOutlet weak var recordCollectionView: UICollectionView!
+    @IBOutlet weak var noRecordView: UIView!
     
-    var list: [String] = ["IT 기술에 관한 아티클 정리하기", "글감수집하기", "아티클 리뷰하기", "20글자를써보자20글자를써보자20글자", "mydaily==4most","12345678910111213141", "IT 기술에 관한 아티클 정리하기"]
+    lazy var notifyLabel: UILabel = {
+        let notifyLabel = UILabel()
+        notifyLabel.translatesAutoresizingMaskIntoConstraints = false
+        return notifyLabel
+    }()
+    
+    var list: [String] = []
 
     override func awakeFromNib() {
         super.awakeFromNib()
         setCollectionView()
+        setNoDataView()
+        setNoRecordView()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -67,5 +76,27 @@ extension DetailRecordContentTVC: DetailRecordLayoutDelegate {
         if let layout = recordCollectionView.collectionViewLayout as? DetailRecordLayout {
             layout.delegate = self
         }
+    }
+    
+    private func setNoDataView() {
+        if list.isEmpty {
+            recordCollectionView.isHidden = true
+            noRecordView.isHidden = false
+        } else {
+            recordCollectionView.isHidden = false
+            noRecordView.isHidden = true
+        }
+    }
+    
+    private func setNoRecordView() {
+        noRecordView.addSubview(notifyLabel)
+        
+        notifyLabel.bottomAnchor.constraint(equalTo: noRecordView.bottomAnchor, constant: -132).isActive = true
+        notifyLabel.centerXAnchor.constraint(equalTo: noRecordView.centerXAnchor).isActive = true
+        notifyLabel.font = .myRegularSystemFont(ofSize: 12)
+        notifyLabel.textAlignment = .center
+        notifyLabel.numberOfLines = 0
+        notifyLabel.textColor = .mainGray
+        notifyLabel.text = "이 날에는 키워드가 없어요.😢"
     }
 }

@@ -67,7 +67,9 @@ extension EvaluationDetailVC: UITableViewDelegate {
             return 42
         }
         var calculateHeight: CGFloat = 0
-        if listCount % 2 == 0 {
+        if listCount == 0 {
+            calculateHeight = 368
+        }   else if listCount % 2 == 0 {
             calculateHeight = CGFloat(42 + listCount / 2 * 185)
         } else {
             if listCount == 1 {
