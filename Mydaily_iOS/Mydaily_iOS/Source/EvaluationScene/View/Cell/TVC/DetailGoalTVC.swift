@@ -13,6 +13,7 @@ class DetailGoalTVC: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var goalLabel: UILabel!
     @IBOutlet weak var achieveButton: UIButton!
+    @IBOutlet weak var rightForwardButton: UIButton!
     
     var isAchieve = true
     
@@ -67,10 +68,12 @@ extension DetailGoalTVC {
             self.backgroundColor = .mainOrange
             goalLabel.textColor = .white
             titleLabel.textColor = .white
+            rightForwardButton.tintColor = .white
         } else {
             self.backgroundColor = .white
             goalLabel.textColor = .mainBlack
             titleLabel.textColor = .mainBlack
+            rightForwardButton.tintColor = .mainGray
         }
     }
 }

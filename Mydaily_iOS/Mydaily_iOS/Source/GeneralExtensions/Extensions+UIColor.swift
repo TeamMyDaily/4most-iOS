@@ -82,7 +82,6 @@ extension UIColor {
     }
 }
 
-
 extension UIColor {
     convenience init(hexString: String) {
         var hexFormatted: String = hexString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).uppercased()

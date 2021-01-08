@@ -570,8 +570,15 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                 </button>
+                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WF2-Ns-J9F">
+                                                    <rect key="frame" x="338" y="36.5" width="13" height="22"/>
+                                                    <color key="tintColor" red="0.76862745099999996" green="0.76862745099999996" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" image="chevron.forward" catalog="system"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="WF2-Ns-J9F" secondAttribute="trailing" constant="24" id="6Qh-AK-MwH"/>
+                                                <constraint firstItem="WF2-Ns-J9F" firstAttribute="centerY" secondItem="Eq9-si-UUu" secondAttribute="centerY" id="6rn-Pr-2jp"/>
                                                 <constraint firstItem="hND-5W-SVQ" firstAttribute="leading" secondItem="Eq9-si-UUu" secondAttribute="leading" id="8As-V1-0fC"/>
                                                 <constraint firstItem="tfQ-J6-1Fl" firstAttribute="leading" secondItem="Eq9-si-UUu" secondAttribute="leading" id="IA0-Uk-UfK"/>
                                                 <constraint firstItem="x1m-8w-bOC" firstAttribute="top" secondItem="hND-5W-SVQ" secondAttribute="bottom" constant="22" id="Ngm-eo-ifE"/>
@@ -589,6 +596,7 @@
                                         <connections>
                                             <outlet property="achieveButton" destination="x1m-8w-bOC" id="5ky-va-lDe"/>
                                             <outlet property="goalLabel" destination="91c-4Q-Cv4" id="fb9-V6-UyV"/>
+                                            <outlet property="rightForwardButton" destination="WF2-Ns-J9F" id="lqM-tw-CpH"/>
                                             <outlet property="titleLabel" destination="BZf-s1-NjB" id="eP4-FK-Yr3"/>
                                         </connections>
                                     </tableViewCell>
@@ -670,7 +678,7 @@
                                                                             </label>
                                                                             <view alpha="0.10000000000000001" contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="V3D-hA-aYh">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="42" height="3"/>
-                                                                                <color key="backgroundColor" systemColor="systemPinkColor"/>
+                                                                                <color key="backgroundColor" red="0.99607843137254903" green="0.7803921568627451" blue="0.72941176470588232" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="3" id="PaZ-vm-Gjk"/>
                                                                                     <constraint firstAttribute="width" constant="42" id="fWR-xc-b7k"/>
@@ -686,6 +694,11 @@
                                                                             <constraint firstItem="v0t-V9-z15" firstAttribute="leading" secondItem="tqx-Nf-ndx" secondAttribute="leading" id="XHs-yQ-AYu"/>
                                                                         </constraints>
                                                                     </view>
+                                                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sIF-Yq-HVS">
+                                                                        <rect key="frame" x="156" y="13.5" width="13" height="22"/>
+                                                                        <color key="tintColor" red="0.76862745098039209" green="0.76862745098039209" blue="0.76862745098039209" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <state key="normal" image="chevron.right" catalog="system"/>
+                                                                    </button>
                                                                 </subviews>
                                                                 <constraints>
                                                                     <constraint firstItem="tqx-Nf-ndx" firstAttribute="top" secondItem="ToG-Dc-k4K" secondAttribute="bottom" constant="16" id="5dk-wE-GJL"/>
@@ -695,6 +708,8 @@
                                                                     <constraint firstItem="xJ4-9X-Ayn" firstAttribute="top" secondItem="3QK-be-JKd" secondAttribute="top" constant="14" id="Nax-MO-BNj"/>
                                                                     <constraint firstAttribute="bottom" secondItem="tqx-Nf-ndx" secondAttribute="bottom" constant="16" id="Zsn-Ux-S9v"/>
                                                                     <constraint firstAttribute="trailing" secondItem="ToG-Dc-k4K" secondAttribute="trailing" constant="30" id="d8C-AJ-5SP"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="sIF-Yq-HVS" secondAttribute="trailing" constant="17" id="qVl-zV-CM5"/>
+                                                                    <constraint firstItem="sIF-Yq-HVS" firstAttribute="centerY" secondItem="xJ4-9X-Ayn" secondAttribute="centerY" id="qfR-Yt-Px4"/>
                                                                     <constraint firstAttribute="trailing" secondItem="tqx-Nf-ndx" secondAttribute="trailing" constant="16" id="xtY-0b-Isj"/>
                                                                     <constraint firstItem="xJ4-9X-Ayn" firstAttribute="leading" secondItem="3QK-be-JKd" secondAttribute="leading" constant="16" id="zsj-DP-Wgp"/>
                                                                 </constraints>
@@ -904,6 +919,7 @@
     </scenes>
     <resources>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
+        <image name="chevron.forward" catalog="system" width="96" height="128"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <systemColor name="labelColor">
@@ -914,9 +930,6 @@
         </systemColor>
         <systemColor name="systemIndigoColor">
             <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

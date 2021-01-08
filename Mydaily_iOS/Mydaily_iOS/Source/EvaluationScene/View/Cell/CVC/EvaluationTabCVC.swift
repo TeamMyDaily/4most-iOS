@@ -27,6 +27,8 @@ class EvaluationTabCVC: UICollectionViewCell {
         return createKeywordButton
     }()
     
+    var dateValue = 0
+    
     var keywords = ["아웃풋", "열정", "경청", "선한영향력"]
     var goals = ["블로그에 1개 이상 퍼블리싱 하기", "열정 만수르 유노윤호의 영상보고 감상문 5장 이상 쓰기", "PM님 말씀하실 때 가위춤추지 않기", "거짓말 치지 않고 선하게 살기"]
     var rates = [2.6, 4.2, nil, 3.4]
@@ -37,6 +39,7 @@ class EvaluationTabCVC: UICollectionViewCell {
         setTableViewDelegate()
         setTableViewSeparator()
         setView()
+        setNotification()
     }
 }
 
@@ -117,22 +120,54 @@ extension EvaluationTabCVC {
         notifyLabel.centerXAnchor.constraint(equalTo: noDataView.centerXAnchor).isActive = true
         notifyLabel.font = .myRegularSystemFont(ofSize: 12)
         notifyLabel.textAlignment = .center
-        notifyLabel.text = "키워드가 존재 하지 않아 목표를 생성 할 수 없어요.😢\n + 버튼을 눌러 키워드를 생성 해 보세요!"
         notifyLabel.numberOfLines = 0
         notifyLabel.textColor = .mainGray
         
-        createKeywordButton.topAnchor.constraint(equalTo: notifyLabel.bottomAnchor, constant: 47).isActive = true
-        createKeywordButton.centerXAnchor.constraint(equalTo:noDataView.centerXAnchor).isActive = true
-        createKeywordButton.heightAnchor.constraint(equalToConstant: 32).isActive = true
-        createKeywordButton.widthAnchor.constraint(equalToConstant: 114).isActive = true
-        createKeywordButton.backgroundColor = .mainOrange
-        createKeywordButton.setTitle("키워드 생성", for: .normal)
-        createKeywordButton.titleLabel?.textAlignment = .left
-        createKeywordButton.titleLabel?.textColor = .white
-        createKeywordButton.titleLabel?.font = .myMediumSystemFont(ofSize: 16)
-        createKeywordButton.layer.cornerRadius = 15
-        createKeywordButton.layer.masksToBounds = true
-        createKeywordButton.addTarget(self, action: #selector(touchUpCreateKeyword), for: .touchUpInside)
+        setViewByDateValue()
+    }
+    
+    private func setViewByDateValue() {
+        if dateValue == 0 {
+            notifyLabel.text = "키워드가 존재 하지 않아 목표를 생성 할 수 없어요.😢\n + 버튼을 눌러 키워드를 생성 해 보세요!"
+            
+            createKeywordButton.isHidden = false
+            createKeywordButton.topAnchor.constraint(equalTo: notifyLabel.bottomAnchor, constant: 47).isActive = true
+            createKeywordButton.centerXAnchor.constraint(equalTo:noDataView.centerXAnchor).isActive = true
+            createKeywordButton.heightAnchor.constraint(equalToConstant: 32).isActive = true
+            createKeywordButton.widthAnchor.constraint(equalToConstant: 114).isActive = true
+            createKeywordButton.backgroundColor = .mainOrange
+            createKeywordButton.setTitle("키워드 생성", for: .normal)
+            createKeywordButton.titleLabel?.textAlignment = .left
+            createKeywordButton.titleLabel?.textColor = .white
+            createKeywordButton.titleLabel?.font = .myMediumSystemFont(ofSize: 16)
+            createKeywordButton.layer.cornerRadius = 15
+            createKeywordButton.layer.masksToBounds = true
+            createKeywordButton.addTarget(self, action: #selector(touchUpCreateKeyword), for: .touchUpInside)
+        } else {
+            notifyLabel.text = "이 주에는 키워드와 목표가 없어요.😢"
+            createKeywordButton.isHidden = true
+        }
+    }
+    
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(sendBeforeWeek), name: NSNotification.Name(rawValue: "BeforeWeek"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(sendAfterWeek), name: NSNotification.Name(rawValue: "AfterWeek"), object: nil)
+    }
+    
+    @objc func sendBeforeWeek() {
+        dateValue -= 1
+        setViewByDateValue()
+        print(dateValue)
+        noDataView.setNeedsLayout()
+        noDataView.layoutIfNeeded()
+    }
+    
+    @objc func sendAfterWeek() {
+        dateValue += 1
+        setViewByDateValue()
+        print(dateValue)
+        noDataView.setNeedsLayout()
+        noDataView.layoutIfNeeded()
     }
     
     @objc func touchUpCreateKeyword() {

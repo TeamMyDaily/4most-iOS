@@ -92,6 +92,12 @@ class EvaluationVC: UIViewController {
             currentWeekButton.isHidden = true
             weekLabel.textColor = .mainOrange
         }
+        
+        if dateValue == 0 {
+            afterWeekButton.isEnabled = false
+        }
+        
+        NotificationCenter.default.post(name: Notification.Name("BeforeWeek"), object: nil)
     }
     
     @IBAction func touchUpAfterWeek(_ sender: Any) {
@@ -114,7 +120,13 @@ class EvaluationVC: UIViewController {
                 currentWeekButton.isHidden = true
                 weekLabel.textColor = .mainOrange
             }
+            
+            if dateValue == 0 {
+                afterWeekButton.isEnabled = false
+            }
         }
+        
+        NotificationCenter.default.post(name: Notification.Name("AfterWeek"), object: nil)
     }
 }
 
