@@ -14,11 +14,24 @@ class DailyVC: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var logoLabel: UILabel!
     @IBOutlet weak var userDaily: UILabel!
+    @IBOutlet weak var tableView: UIView!
+    
+    let dateButton: UIButton = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.setTitle("오늘 >", for: .normal)
+        $0.layer.cornerRadius = 20
+        $0.backgroundColor = .mainBlack
+        $0.titleLabel?.font = .myMediumSystemFont(ofSize: 16)
+        $0.setTitleColor(.white, for: .normal)
+        $0.addTarget(self, action: #selector(setToday), for: .allTouchEvents)
+        return $0
+    }(UIButton(frame: .zero))
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupNavigationBar(.clear, titlelabel: "")
+        floatingButton()
         setUI()
     }
    
@@ -53,9 +66,29 @@ extension DailyVC {
         dateLabel.text = dateFormatter.string(from: datePicker.date)
         if dateLabel.text != dateFormatter.string(from: Date()){
             dateLabel.textColor = .mainGray
+            dateButton.fadeTransition()
+            dateButton.layer.opacity = 100
         }
         else{
             dateLabel.textColor = .mainOrange
+            dateButton.fadeTransition()
+            dateButton.layer.opacity = 0
         }
+    }
+    
+    func floatingButton(){
+        self.tableView.addSubview(dateButton)
+        
+        NSLayoutConstraint.activate([
+            dateButton.bottomAnchor.constraint(equalTo: self.tableView.bottomAnchor, constant: -40),
+            dateButton.centerXAnchor.constraint(equalTo: self.tableView.centerXAnchor),
+            dateButton.widthAnchor.constraint(equalToConstant: 66),
+            dateButton.heightAnchor.constraint(equalToConstant: 32)
+        ])
+    }
+    
+    @objc func setToday(sender: UIButton!) {
+        datePicker.date = Date()
+        setDate()
     }
 }

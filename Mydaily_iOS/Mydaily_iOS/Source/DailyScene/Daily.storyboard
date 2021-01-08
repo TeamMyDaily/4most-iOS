@@ -117,6 +117,7 @@
                         <outlet property="datePicker" destination="pvO-Xd-qve" id="yJf-Uk-jcf"/>
                         <outlet property="headerView" destination="Qjx-FC-Tzw" id="vHI-Wp-mNC"/>
                         <outlet property="logoLabel" destination="jGA-S0-GYV" id="BeW-63-sl6"/>
+                        <outlet property="tableView" destination="DpT-Jr-0nz" id="EmY-tr-Uzh"/>
                         <outlet property="userDaily" destination="QBE-yQ-let" id="Ihd-pB-gmw"/>
                     </connections>
                 </viewController>
