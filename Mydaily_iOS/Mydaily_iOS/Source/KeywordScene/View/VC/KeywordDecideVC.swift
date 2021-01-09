@@ -16,6 +16,8 @@ class KeywordDecideVC: UIViewController {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var completeButton: UIButton!
+    @IBOutlet weak var keywordCompleteButton: UIButton!
+    
     @IBOutlet weak var skipButton: UIButton!
     
     var keywordList: [String] = []
@@ -31,9 +33,31 @@ class KeywordDecideVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        for i in 0..<4{
-            print(keywordAndDefinition[i])
+        var i = 0
+        var count = 0
+        for txt in keywordList{
+            if keywordAndDefinition[i][txt] != ""{
+                keywordUIButtonList[i].setTitleColor(UIColor.mainBlack, for: .normal)
+                numberLabelList[i].textColor = UIColor.mainLightOrange
+                count += 1
+            }
+            
+            print("--------현재 정의된 키워드-------")
+            for (key, value) in keywordAndDefinition[i]{
+                
+                print("key = \(key), value = \(value)")
+            }
+            i += 1
         }
+        
+        if count > 0{
+            skipButton.isHidden = true
+            skipButton.isEnabled = false
+            keywordCompleteButton.isHidden = true
+            completeButton.isHidden = false
+            completeButton.isEnabled = true
+        }
+        
     }
     
     @IBAction func skipDefiningKeyword(_ sender: UILabel) {
@@ -55,14 +79,28 @@ class KeywordDecideVC: UIViewController {
     }
   
     func setReceivedKeywordList(list: [String]){
-        
+        keywordList = list
         for i in 0..<4{
             keywordAndDefinition.append([list[i] : ""])
-           
+            
         }
+        
+      
     }
     
     func setKeywordDefinition(key: String, value: String){
+      
+        for i in 0..<4{
+            if keywordAndDefinition[i][key] != nil{
+                keywordAndDefinition[i].updateValue(value, forKey: key)
+            }
+            
+            print("--------현재 정의-------")
+            for (key, value) in keywordAndDefinition[i]{
+                
+                print("key = \(key), value = \(value)")
+            }
+        }
         
     }
     
@@ -92,9 +130,18 @@ extension KeywordDecideVC{
     }
     
     func setCompleteButton(){
-        completeButton.titleLabel?.font =  UIFont(name: "System-Bold", size: 18.0)
+        completeButton.titleLabel?.font =  UIFont.myBoldSystemFont(ofSize: 18)
         completeButton.layer.cornerRadius = 15
         completeButton.isEnabled = false
+        completeButton.backgroundColor = UIColor.mainOrange
+        completeButton.isHidden = true
+        completeButton.setTitleColor(.white, for: .normal)
+        
+        keywordCompleteButton.titleLabel?.font = UIFont.myBoldSystemFont(ofSize: 18)
+        keywordCompleteButton.layer.cornerRadius = 15
+        keywordCompleteButton.isEnabled = false
+        completeButton.backgroundColor = UIColor.mainOrange
+        
     }
     
     func setSkipButton(){
@@ -105,7 +152,10 @@ extension KeywordDecideVC{
     }
     
     func setKeywordButton(){
-        var count = 0
+        for i in 0..<4{
+            print("index = \(i)")
+            keywordUIButtonList[i].setTitle(keywordList[i], for: .normal)
+        }
         
     }
     
@@ -125,20 +175,10 @@ extension KeywordDecideVC{
            }()
            navigationItem.leftBarButtonItem = leftButton
         
-        let questionItem = UIBarButtonItem(image: UIImage(systemName: "questionmark.circle.fill"), style: .plain, target: self, action: #selector(goKeywordPopUp))
-        navigationItem.rightBarButtonItem = questionItem
     }
 
     @objc func dismissVC() {
       self.navigationController?.popViewController(animated: true)
-    }
-    
-    @objc func goKeywordPopUp(){
-        guard let dvc = self.storyboard?.instantiateViewController(identifier: "KeywordPopUpVC") else {
-            return
-        }
-        dvc.modalPresentationStyle = .fullScreen
-        self.present(dvc, animated: true, completion: nil)
     }
     
     

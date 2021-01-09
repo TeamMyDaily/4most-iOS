@@ -7,24 +7,27 @@
 
 import UIKit
 
-class KeywordDefineVC: UIViewController {
+class KeywordDefineVC: UIViewController{
     static let identifier = "KeywordDefineVC"
     @IBOutlet var titleLabel: UILabel!
+    @IBOutlet weak var subTitleLabel: UILabel!
     @IBOutlet var contentView: UIView!
     @IBOutlet var textView: UIView!
-    @IBOutlet var contentTextField: UITextField!
+    @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet var completeButton: UIButton!
     @IBOutlet weak var numberLabel: UILabel!
+    
     @IBOutlet var changedNumberLabel: UILabel!
     
     var contentViewSize = 0
     var keyword = "키워드"
     var keywordOrder = -1
+    var checkSaving = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setContent()
-        contentTextField.delegate = self
+        contentTextView.delegate = self
         setKeyboardNotification()
         contentViewSize = Int(contentView.frame.height)
         print(contentViewSize)
@@ -43,65 +46,95 @@ class KeywordDefineVC: UIViewController {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        contentTextField.resignFirstResponder()
+        contentTextView.resignFirstResponder()
     }
     
     @IBAction func touchUpSaveKeywordDefinition(_ sender: UIButton){
-        let endIndex = self.navigationController?.viewControllers.count ?? 0
         
-        guard let pvc = self.navigationController?.viewControllers[endIndex] as? KeywordDecideVC else {
-           return
+        titleLabel.text = "\(keyword)에 대한\n나만의 정의에요!"
+        subTitleLabel.text = "정의를 바꾸고 싶다면, 수정 하실 수 있어요!"
+        
+        if checkSaving == false{ // 저장해야되는 상태에서 눌림
+            completeButton.isHidden = true
+            checkSaving = true
+            textView.backgroundColor = UIColor.white
+            textView.borderWidth = 2
+            textView.borderColor = UIColor.mainOrange
+            contentTextView.isEditable = false
+            contentTextView.backgroundColor = .white
+            
+        }else{
+            checkSaving = false
+            textView.backgroundColor = UIColor.mainLightGray
+            textView.borderWidth = 0
+            completeButton.isHidden = false
+            contentTextView.isEditable = true
         }
+            
+        setNavigationModifyButton(modifyMode: checkSaving)
         
-        let definition = contentTextField.text ?? ""
-        pvc.setKeywordDefinition(key: keyword, value: definition)
-        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func setNavigationModifyButton(modifyMode: Bool){
+       // saving == true : 수정 버튼 활성화, 저장버튼 비활성화
+        if modifyMode == true {
+            navigationItem.rightBarButtonItem?.title = "수정"
+        }else{
+            navigationItem.rightBarButtonItem?.title = ""
+            
+        }
     }
 
 }
 
-extension KeywordDefineVC : UITextFieldDelegate{
+
+extension KeywordDefineVC: UITextViewDelegate{
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        contentTextField.resignFirstResponder()
-        return true
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool{
+        guard let str = textView.text else { return true }
+        
+        let newLength = str.count + text.count - range.length
+        
+        return newLength <= 20
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-      
+    func textViewDidChange(_ textView: UITextView) {
+        let textLength = textView.text.count
+        changedNumberLabel.text = "\(textView.text.count)"
         
-        let currentText = textField.text ?? ""
-        
-        guard let stringRange = Range(range, in: currentText) else { return false }
-        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
-        changedNumberLabel.text = "\(updatedText.count)"
-        changedNumberLabel.tintColor = UIColor.mainOrange
-        
-        if updatedText.count <= 0 ||  updatedText.count >= 20 {
+        if textLength <= 0 || textLength >= 20 {
             changedNumberLabel.textColor = UIColor.mainGray
             numberLabel.textColor = UIColor.mainOrange
             completeButton.isEnabled = false
+            if textLength == 0{
+                numberLabel.textColor = UIColor.mainGray
+            }
             completeButton.backgroundColor = UIColor.mainGray
-            return false
+            
         }else{
             changedNumberLabel.textColor = UIColor.mainOrange
             completeButton.isEnabled = true
             completeButton.backgroundColor = UIColor.mainOrange
             numberLabel.textColor = UIColor.mainGray
         }
+    
         
-        if updatedText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count < 6{
-//            addButton.isEnabled = true
-//            self.addButton.isEnabled = true
-//            addButton.backgroundColor = .orange
-            return true
-        }
-       
-        return true
     }
+    
+    // TextView Place Holder
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+        
+    }
+    
     
 }
 
+
+//UI keyboard
 extension KeywordDefineVC{
 
     func setKeyboardNotification(){
@@ -128,6 +161,8 @@ extension KeywordDefineVC{
 }
 
 
+
+
 //UI관련 사항 setting
 extension KeywordDefineVC{
     
@@ -141,11 +176,19 @@ extension KeywordDefineVC{
     func setContentView(){
         textView.layer.cornerRadius = 15
         textView.backgroundColor = UIColor.mainLightGray
-        contentTextField.borderStyle = UITextField.BorderStyle.none
+        contentTextView.backgroundColor = UIColor.mainLightGray
+        changedNumberLabel.textColor = .mainGray
+        
+        if contentTextView.text.isEmpty {
+            contentTextView.text = "나만의 정의를 작성해 주세요."
+            contentTextView.textColor = UIColor.lightGray
+        }
+        
     }
     
     func setTitleLabel(){
         titleLabel.numberOfLines = 0
+        subTitleLabel.textColor = UIColor.mainOrange
         print("\(keyword.index(before: keyword.endIndex))")
         
         if checkLastText(text: keyword) {
@@ -191,11 +234,71 @@ extension KeywordDefineVC{
            }()
            navigationItem.leftBarButtonItem = leftButton
         
+        let rightButton : UIBarButtonItem = {
+            let button = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(modifyDefinition))
+            return button
+        }()
+        
+        navigationItem.rightBarButtonItem = rightButton
+        
     }
     
     @objc func dismissVC() {
-      self.navigationController?.popViewController(animated: true)
+        if contentTextView.text.count <= 0{
+            self.navigationController?.popViewController(animated: true)
+        }else{
+            
+            if checkSaving == true{ // 저장된 상태
+                
+                let endIndex = self.navigationController?.viewControllers.count ?? 0
+        
+                guard let pvc = self.navigationController?.viewControllers[endIndex-2] as? KeywordDecideVC else {
+                    print("여기서 리턴?")
+                   return
+                }
+        
+                let definition = contentTextView.text ?? ""
+               pvc.setKeywordDefinition(key: keyword, value: definition)
+                self.navigationController?.popViewController(animated: true)
+                
+            }else{
+                setSavingAlert()
+            }
+        }
     }
     
+    func setSavingAlert(){
+        let txt = "작성 완료를 하지 않아 작성하신 내용이 저장되지 않습니다."
+        let alert = UIAlertController(title: "작성을 종료하시겠습니까?", message: txt, preferredStyle: UIAlertController.Style.alert)
+        
+        let okAction = UIAlertAction(title: "확인", style: .default) { (action) in
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel){ (action) in}
+        
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: false, completion: nil)
+    }
+    
+    
+    
+    @objc func modifyDefinition(_ sender: UIBarButtonItem){
+      
+        if sender.title == "수정"{
+            checkSaving = false
+            textView.backgroundColor = UIColor.mainLightGray
+            textView.borderWidth = 0
+            completeButton.isHidden = false
+            contentTextView.isEditable = true
+            contentTextView.backgroundColor = textView.backgroundColor
+            completeButton.setTitle("작성완료", for: .normal)
+            sender.title = ""
+        }
+    }
+    
+   
 }
 
