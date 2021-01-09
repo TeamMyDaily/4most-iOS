@@ -10,54 +10,54 @@ import UIKit
 class RetrospectiveWriteTVC: UITableViewCell {
     static let identifier = "RetrospectiveWriteTVC"
 
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var titleTwoLabel: UILabel!
-    @IBOutlet weak var titleThreeLabel: UILabel!
-    @IBOutlet weak var limitNumberLabel: UILabel!
-    @IBOutlet weak var limitTwoNumberLabel: UILabel!
-    @IBOutlet weak var limitThreeNumberLabel: UILabel!
-    @IBOutlet weak var countNumberLabel: UILabel!
-    @IBOutlet weak var countTwoNumberLabel: UILabel!
-    @IBOutlet weak var countThreeNumberLabel: UILabel!
-    @IBOutlet weak var contentOneTextViewButton: UIButton!
-    @IBOutlet weak var contentTwoTextViewButton: UIButton!
-    @IBOutlet weak var contentThreeTextViewButton: UIButton!
+    @IBOutlet weak var goodTitleLabel: UILabel!
+    @IBOutlet weak var badTitleLabel: UILabel!
+    @IBOutlet weak var nextTitleLabel: UILabel!
+    @IBOutlet weak var goodLimitLabel: UILabel!
+    @IBOutlet weak var badLimitLabel: UILabel!
+    @IBOutlet weak var nextLimitLabel: UILabel!
+    @IBOutlet weak var goodCounterLabel: UILabel!
+    @IBOutlet weak var badCounterLabel: UILabel!
+    @IBOutlet weak var nextCounterLabel: UILabel!
+    @IBOutlet weak var goodViewButton: UIButton!
+    @IBOutlet weak var badViewButton: UIButton!
+    @IBOutlet weak var nextViewButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     
-    lazy var writeOneTextView: UITextView = {
-        let writeOneTextView = UITextView()
-        writeOneTextView.translatesAutoresizingMaskIntoConstraints = false
-        return writeOneTextView
+    lazy var goodTextView: UITextView = {
+        let goodTextView = UITextView()
+        goodTextView.translatesAutoresizingMaskIntoConstraints = false
+        return goodTextView
     }()
     
-    lazy var writeTwoTextView: UITextView = {
-        let writeTwoTextView = UITextView()
-        writeTwoTextView.translatesAutoresizingMaskIntoConstraints = false
-        return writeTwoTextView
+    lazy var badTextView: UITextView = {
+        let badTextView = UITextView()
+        badTextView.translatesAutoresizingMaskIntoConstraints = false
+        return badTextView
     }()
     
-    lazy var writeThreeTextView: UITextView = {
-        let writeThreeTextView = UITextView()
-        writeThreeTextView.translatesAutoresizingMaskIntoConstraints = false
-        return writeThreeTextView
+    lazy var nextTextView: UITextView = {
+        let nextTextView = UITextView()
+        nextTextView.translatesAutoresizingMaskIntoConstraints = false
+        return nextTextView
     }()
     
-    var flowHeightConstraint: NSLayoutConstraint?
-    var flowHeightTwoConstraint: NSLayoutConstraint?
-    var flowHeightThreeConstraint: NSLayoutConstraint?
-    var textHeightConstraint: NSLayoutConstraint?
-    var textHeightTwoConstraint: NSLayoutConstraint?
-    var textHeightThreeConstraint: NSLayoutConstraint?
-    
-    let userDefault = UserDefaults.standard
-    
-    var buttonDelegate: ChangeModifyButtonDelegate?
+    var buttonDelegate: OccurWhenClickModifyButtonDelegate?
     var delegate: TableViewInsideCollectionViewDelegate?
     var tableView: UITableView?
     
-    var isFillInOne = false
-    var isFillInTwo = false
-    var isFillInThree = false
+    var goodViewHeightConstraint: NSLayoutConstraint?
+    var badViewHeightConstraint: NSLayoutConstraint?
+    var nextViewHeightConstraint: NSLayoutConstraint?
+    var goodTextViewHeightConstraint: NSLayoutConstraint?
+    var badTextViewHeightConstraint: NSLayoutConstraint?
+    var nextTextViewHeightConstraint: NSLayoutConstraint?
+    
+    let userDefault = UserDefaults.standard
+    
+    var isGoodFilled = false
+    var isBadFilled = false
+    var isNextFilled = false
     var isSaved = false
     
     var cellTitles = ["이번주의 잘 한 점", "이번주 아쉬운 점", "다음주에 임하는 마음가짐"]
@@ -66,39 +66,43 @@ class RetrospectiveWriteTVC: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setTextView()
         setLabel()
-        setButtonView()
-        setTextView()
-        setSaveButton()
         setNotification()
+        setSaveButton()
+        setButtonViews()
+        setTextViews()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
-    @IBAction func touchUpTextView(_ sender: Any) {
+}
+
+//MARK: Action
+extension RetrospectiveWriteTVC {
+    @IBAction func touchUpGoodTextView(_ sender: Any) {
         guard let dvc =  UIStoryboard.init(name: "Evaluation", bundle: nil).instantiateViewController(identifier: "RetrospectiveWriteVC") as? RetrospectiveWriteVC else {
             return
         }
         dvc.saveContent = { text, textCount in
             if text == "" || text == self.cellPlaceholders[0] {
-                self.contentOneTextViewButton.layer.borderWidth = 0
-                self.contentOneTextViewButton.backgroundColor = .mainLightGray
-                self.writeOneTextView.textColor = .mainGray
+                self.goodViewButton.layer.borderWidth = 0
+                self.goodViewButton.backgroundColor = .mainLightGray
+                
+                self.goodTextView.textColor = .mainGray
             } else {
-                self.contentOneTextViewButton.layer.borderWidth = 1
-                self.contentOneTextViewButton.layer.borderColor = UIColor.mainPaleOrange.cgColor
-                self.contentOneTextViewButton.backgroundColor = .white
+                self.goodViewButton.layer.borderWidth = 1
+                self.goodViewButton.layer.borderColor = UIColor.mainPaleOrange.cgColor
+                self.goodViewButton.backgroundColor = .white
                 
-                self.writeOneTextView.isUserInteractionEnabled = true
-                self.writeOneTextView.textColor = .mainBlack
-                self.writeOneTextView.text = text
-                self.countNumberLabel.text = "\(textCount)"
+                self.goodTextView.isUserInteractionEnabled = true
+                self.goodTextView.text = text
+                self.goodTextView.textColor = .mainBlack
                 
-                if self.flowHeightConstraint?.constant != 328 {
-                    self.flowHeightConstraint?.constant = 328
+                self.goodCounterLabel.text = "\(textCount)"
+                
+                if self.goodViewHeightConstraint?.constant != 328 {
+                    self.goodViewHeightConstraint?.constant = 328
                     self.tableView?.rowHeight += 224
                     self.tableView?.beginUpdates()
                     self.tableView?.endUpdates()
@@ -106,8 +110,8 @@ class RetrospectiveWriteTVC: UITableViewCell {
                 
                 self.cellPlaceholders[0] = text
                 self.counts[0] = textCount
+                self.isGoodFilled = true
                 
-                self.isFillInOne = true
                 self.setSaveButton()
             }
         }
@@ -115,30 +119,33 @@ class RetrospectiveWriteTVC: UITableViewCell {
         userDefault.setValue(self.cellPlaceholders[0], forKey: "content")
         userDefault.setValue(self.counts[0], forKey: "count")
         userDefault.setValue(0, forKey: "cellNum")
+        
         delegate?.cellTapedRetrospective(dvc: dvc)
     }
     
-    @IBAction func touchUpShameTextView(_ sender: Any) {
+    @IBAction func touchUpBadTextView(_ sender: Any) {
         guard let dvc =  UIStoryboard.init(name: "Evaluation", bundle: nil).instantiateViewController(identifier: "RetrospectiveWriteVC") as? RetrospectiveWriteVC else {
             return
         }
         dvc.saveContent = { text, textCount in
             if text == "" || text == self.cellPlaceholders[1] {
-                self.contentTwoTextViewButton.layer.borderWidth = 0
-                self.contentTwoTextViewButton.backgroundColor = .mainLightGray
-                self.writeTwoTextView.textColor = .mainGray
+                self.badViewButton.layer.borderWidth = 0
+                self.badViewButton.backgroundColor = .mainLightGray
+                
+                self.badTextView.textColor = .mainGray
             } else {
-                self.contentTwoTextViewButton.layer.borderWidth = 1
-                self.contentTwoTextViewButton.layer.borderColor = UIColor.mainPaleOrange.cgColor
-                self.contentTwoTextViewButton.backgroundColor = .white
+                self.badViewButton.layer.borderWidth = 1
+                self.badViewButton.layer.borderColor = UIColor.mainPaleOrange.cgColor
+                self.badViewButton.backgroundColor = .white
                 
-                self.writeTwoTextView.isUserInteractionEnabled = true
-                self.writeTwoTextView.textColor = .mainBlack
-                self.writeTwoTextView.text = text
-                self.countTwoNumberLabel.text = "\(textCount)"
+                self.badTextView.isUserInteractionEnabled = true
+                self.badTextView.textColor = .mainBlack
+                self.badTextView.text = text
                 
-                if self.flowHeightTwoConstraint?.constant != 328 {
-                    self.flowHeightTwoConstraint?.constant = 328
+                self.badCounterLabel.text = "\(textCount)"
+                
+                if self.badViewHeightConstraint?.constant != 328 {
+                    self.badViewHeightConstraint?.constant = 328
                     self.tableView?.rowHeight += 224
                     self.tableView?.beginUpdates()
                     self.tableView?.endUpdates()
@@ -146,8 +153,8 @@ class RetrospectiveWriteTVC: UITableViewCell {
                 
                 self.cellPlaceholders[1] = text
                 self.counts[1] = textCount
+                self.isBadFilled = true
                 
-                self.isFillInTwo = true
                 self.setSaveButton()
             }
         }
@@ -155,30 +162,33 @@ class RetrospectiveWriteTVC: UITableViewCell {
         userDefault.setValue(self.cellPlaceholders[1], forKey: "content")
         userDefault.setValue(self.counts[1], forKey: "count")
         userDefault.setValue(1, forKey: "cellNum")
+        
         delegate?.cellTapedRetrospective(dvc: dvc)
     }
     
-    @IBAction func touchUpPromiseTextView(_ sender: Any) {
+    @IBAction func touchUpNextTextView(_ sender: Any) {
         guard let dvc =  UIStoryboard.init(name: "Evaluation", bundle: nil).instantiateViewController(identifier: "RetrospectiveWriteVC") as? RetrospectiveWriteVC else {
             return
         }
         dvc.saveContent = { text, textCount in
             if text == "" || text == self.cellPlaceholders[2] {
-                self.contentThreeTextViewButton.layer.borderWidth = 0
-                self.contentThreeTextViewButton.backgroundColor = .mainLightGray
-                self.writeThreeTextView.textColor = .mainGray
+                self.nextViewButton.layer.borderWidth = 0
+                self.nextViewButton.backgroundColor = .mainLightGray
+                
+                self.nextTextView.textColor = .mainGray
             } else {
-                self.contentThreeTextViewButton.layer.borderWidth = 1
-                self.contentThreeTextViewButton.layer.borderColor = UIColor.mainPaleOrange.cgColor
-                self.contentThreeTextViewButton.backgroundColor = .white
+                self.nextViewButton.layer.borderWidth = 1
+                self.nextViewButton.layer.borderColor = UIColor.mainPaleOrange.cgColor
+                self.nextViewButton.backgroundColor = .white
                 
-                self.writeThreeTextView.isUserInteractionEnabled = true
-                self.writeThreeTextView.textColor = .mainBlack
-                self.writeThreeTextView.text = text
-                self.countThreeNumberLabel.text = "\(textCount)"
+                self.nextTextView.isUserInteractionEnabled = true
+                self.nextTextView.textColor = .mainBlack
+                self.nextTextView.text = text
                 
-                if self.flowHeightThreeConstraint?.constant != 328 {
-                    self.flowHeightThreeConstraint?.constant = 328
+                self.nextCounterLabel.text = "\(textCount)"
+                
+                if self.nextViewHeightConstraint?.constant != 328 {
+                    self.nextViewHeightConstraint?.constant = 328
                     self.tableView?.rowHeight += 224
                     self.tableView?.beginUpdates()
                     self.tableView?.endUpdates()
@@ -186,8 +196,8 @@ class RetrospectiveWriteTVC: UITableViewCell {
                 
                 self.cellPlaceholders[2] = text
                 self.counts[2] = textCount
+                self.isNextFilled = true
                 
-                self.isFillInThree = true
                 self.setSaveButton()
             }
         }
@@ -195,80 +205,76 @@ class RetrospectiveWriteTVC: UITableViewCell {
         userDefault.setValue(self.cellPlaceholders[2], forKey: "content")
         userDefault.setValue(self.counts[2], forKey: "count")
         userDefault.setValue(2, forKey: "cellNum")
+        
         delegate?.cellTapedRetrospective(dvc: dvc)
     }
     
     @IBAction func touchUpSave(_ sender: Any) {
         buttonDelegate?.changeModifyButton(isActive: false)
+        buttonDelegate?.showAlert(title: "목표를 재설정 하시겠어요?", message: "한주의 회고를 다 마치셨군요!\n 목표를 달성하셨다면 새로운 목표로 재설정 하시겠어요?")
+        
         tableView?.rowHeight -= 50
         self.tableView?.beginUpdates()
         self.tableView?.endUpdates()
+        
         saveButton.isHidden = true
         isSaved = true
-        buttonDelegate?.showAlert(title: "목표를 재설정 하시겠어요?", message: "한주의 회고를 다 마치셨군요!\n 목표를 달성하셨다면 새로운 목표로 재설정 하시겠어요?")
-        contentOneTextViewButton.isUserInteractionEnabled = false
-        contentTwoTextViewButton.isUserInteractionEnabled = false
-        contentThreeTextViewButton.isUserInteractionEnabled = false
+        goodViewButton.isUserInteractionEnabled = false
+        badViewButton.isUserInteractionEnabled = false
+        nextViewButton.isUserInteractionEnabled = false
     }
 }
 
-extension RetrospectiveWriteTVC: UITextViewDelegate {}
-
+//MARK: Label
 extension RetrospectiveWriteTVC {
     private func setLabel() {
-        titleLabel.font = .myBoldSystemFont(ofSize: 21)
-        titleLabel.textColor = .mainBlack
-        titleLabel.text = cellTitles[0]
-        titleTwoLabel.font = .myBoldSystemFont(ofSize: 21)
-        titleTwoLabel.textColor = .mainBlack
-        titleTwoLabel.text = cellTitles[1]
-        titleThreeLabel.font = .myBoldSystemFont(ofSize: 21)
-        titleThreeLabel.textColor = .mainBlack
-        titleThreeLabel.text = cellTitles[2]
-        
-        limitNumberLabel.font = .myRegularSystemFont(ofSize: 12)
-        limitNumberLabel.textColor = .mainGray
-        limitNumberLabel.text = "/800자"
-        limitTwoNumberLabel.font = .myRegularSystemFont(ofSize: 12)
-        limitTwoNumberLabel.textColor = .mainGray
-        limitTwoNumberLabel.text = "/800자"
-        limitThreeNumberLabel.font = .myRegularSystemFont(ofSize: 12)
-        limitThreeNumberLabel.textColor = .mainGray
-        limitThreeNumberLabel.text = "/800자"
-        
-        countNumberLabel.font = .myRegularSystemFont(ofSize: 12)
-        countNumberLabel.textColor = .mainOrange
-        countNumberLabel.text = "0"
-        countTwoNumberLabel.font = .myRegularSystemFont(ofSize: 12)
-        countTwoNumberLabel.textColor = .mainOrange
-        countTwoNumberLabel.text = "0"
-        countThreeNumberLabel.font = .myRegularSystemFont(ofSize: 12)
-        countThreeNumberLabel.textColor = .mainOrange
-        countThreeNumberLabel.text = "0"
+        setTitleLabel()
+        setCountLabel()
     }
     
-    private func setSaveButton() {
-        if !isSaved {
-            if isFillInOne && isFillInTwo && isFillInThree {
-                saveButton.backgroundColor = .mainOrange
-                saveButton.layer.masksToBounds = true
-                saveButton.layer.cornerRadius = 15
-                saveButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
-                saveButton.setTitle("회고완료!", for: .normal)
-                saveButton.setTitleColor(.white, for: .normal)
-                saveButton.isEnabled = true
-            } else {
-                saveButton.backgroundColor = .mainGray
-                saveButton.layer.masksToBounds = true
-                saveButton.layer.cornerRadius = 15
-                saveButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
-                saveButton.setTitle("회고완료!", for: .normal)
-                saveButton.setTitleColor(.white, for: .normal)
-                saveButton.isEnabled = false
-            }
-        }
+    private func setTitleLabel() {
+        goodTitleLabel.font = .myBoldSystemFont(ofSize: 21)
+        goodTitleLabel.text = cellTitles[0]
+        goodTitleLabel.textColor = .mainBlack
+        
+        badTitleLabel.font = .myBoldSystemFont(ofSize: 21)
+        badTitleLabel.text = cellTitles[1]
+        badTitleLabel.textColor = .mainBlack
+        
+        nextTitleLabel.font = .myBoldSystemFont(ofSize: 21)
+        nextTitleLabel.text = cellTitles[2]
+        nextTitleLabel.textColor = .mainBlack
     }
     
+    private func setCountLabel() {
+        goodLimitLabel.font = .myRegularSystemFont(ofSize: 12)
+        goodLimitLabel.text = "/800자"
+        goodLimitLabel.textColor = .mainGray
+        
+        badLimitLabel.font = .myRegularSystemFont(ofSize: 12)
+        badLimitLabel.text = "/800자"
+        badLimitLabel.textColor = .mainGray
+        
+        nextLimitLabel.font = .myRegularSystemFont(ofSize: 12)
+        nextLimitLabel.text = "/800자"
+        nextLimitLabel.textColor = .mainGray
+        
+        goodCounterLabel.font = .myRegularSystemFont(ofSize: 12)
+        goodCounterLabel.text = "0"
+        goodCounterLabel.textColor = .mainOrange
+        
+        badCounterLabel.font = .myRegularSystemFont(ofSize: 12)
+        badCounterLabel.text = "0"
+        badCounterLabel.textColor = .mainOrange
+        
+        nextCounterLabel.font = .myRegularSystemFont(ofSize: 12)
+        nextCounterLabel.text = "0"
+        nextCounterLabel.textColor = .mainOrange
+    }
+}
+
+//MARK: Notification
+extension RetrospectiveWriteTVC {
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(hiddenSaveButton), name: Notification.Name(rawValue: "modifyButton"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(selectRetrospectiveTab(_:)), name: Notification.Name(rawValue: "retrospectiveTab"), object: nil)
@@ -278,11 +284,12 @@ extension RetrospectiveWriteTVC {
         tableView?.rowHeight += 50
         self.tableView?.beginUpdates()
         self.tableView?.endUpdates()
-        contentOneTextViewButton.isUserInteractionEnabled = true
-        contentTwoTextViewButton.isUserInteractionEnabled = true
-        contentThreeTextViewButton.isUserInteractionEnabled = true
+        
         saveButton.layer.isHidden = false
         isSaved = false
+        goodViewButton.isUserInteractionEnabled = true
+        badViewButton.isUserInteractionEnabled = true
+        nextViewButton.isUserInteractionEnabled = true
     }
     
     @objc func selectRetrospectiveTab(_ notification: NSNotification) {
@@ -295,133 +302,158 @@ extension RetrospectiveWriteTVC {
     }
 }
 
+//MARK: Button
 extension RetrospectiveWriteTVC {
-    private func setButtonView() {
-        setOneButtonView()
-        setTwoButtonView()
-        setThreeButtonView()
+    private func setSaveButton() {
+        if !isSaved {
+            if isGoodFilled && isBadFilled && isNextFilled {
+                saveButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
+                saveButton.setTitle("회고완료!", for: .normal)
+                saveButton.setTitleColor(.white, for: .normal)
+                saveButton.backgroundColor = .mainOrange
+                saveButton.layer.masksToBounds = true
+                saveButton.layer.cornerRadius = 15
+                saveButton.isEnabled = true
+            } else {
+                saveButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
+                saveButton.setTitle("회고완료!", for: .normal)
+                saveButton.setTitleColor(.white, for: .normal)
+                saveButton.backgroundColor = .mainGray
+                saveButton.layer.masksToBounds = true
+                saveButton.layer.cornerRadius = 15
+                saveButton.isEnabled = false
+            }
+        }
     }
     
-    private func setOneButtonView() {
-        contentOneTextViewButton.backgroundColor = .mainLightGray
-        contentOneTextViewButton.layer.cornerRadius = 10
-        contentOneTextViewButton.layer.masksToBounds = true
-        contentOneTextViewButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
-        contentOneTextViewButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
-        print(UIScreen.main.bounds.size.height)
-        if UIScreen.main.bounds.size.height <= 667 {
-            flowHeightConstraint = contentOneTextViewButton.heightAnchor.constraint(equalToConstant: 84)
-        } else {
-            flowHeightConstraint = contentOneTextViewButton.heightAnchor.constraint(equalToConstant: 104)
-        }
-        flowHeightConstraint?.isActive = true
-        contentOneTextViewButton.isHighlighted = false
+    private func setButtonViews() {
+        setGoodButtonView()
+        setBadButtonView()
+        setNextButtonView()
     }
     
-    private func setTwoButtonView() {
-        contentTwoTextViewButton.backgroundColor = .mainLightGray
-        contentTwoTextViewButton.layer.cornerRadius = 10
-        contentTwoTextViewButton.layer.masksToBounds = true
-        contentTwoTextViewButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
-        contentTwoTextViewButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
+    private func setGoodButtonView() {
+        goodViewButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
+        goodViewButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
         if UIScreen.main.bounds.size.height <= 667 {
-            flowHeightTwoConstraint = contentTwoTextViewButton.heightAnchor.constraint(equalToConstant: 84)
+            goodViewHeightConstraint = goodViewButton.heightAnchor.constraint(equalToConstant: 84)
         } else {
-            flowHeightTwoConstraint = contentTwoTextViewButton.heightAnchor.constraint(equalToConstant: 104)
+            goodViewHeightConstraint = goodViewButton.heightAnchor.constraint(equalToConstant: 104)
         }
-        flowHeightTwoConstraint?.isActive = true
-        contentTwoTextViewButton.isHighlighted = false
+        goodViewHeightConstraint?.isActive = true
+        goodViewButton.backgroundColor = .mainLightGray
+        goodViewButton.layer.cornerRadius = 10
+        goodViewButton.layer.masksToBounds = true
+        goodViewButton.isHighlighted = false
     }
     
-    private func setThreeButtonView() {
-        contentThreeTextViewButton.backgroundColor = .mainLightGray
-        contentThreeTextViewButton.layer.cornerRadius = 10
-        contentThreeTextViewButton.layer.masksToBounds = true
-        contentThreeTextViewButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
-        contentThreeTextViewButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
+    private func setBadButtonView() {
+        badViewButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
+        badViewButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
         if UIScreen.main.bounds.size.height <= 667 {
-            flowHeightThreeConstraint = contentThreeTextViewButton.heightAnchor.constraint(equalToConstant: 84)
+            badViewHeightConstraint = badViewButton.heightAnchor.constraint(equalToConstant: 84)
         } else {
-            flowHeightThreeConstraint = contentThreeTextViewButton.heightAnchor.constraint(equalToConstant: 104)
+            badViewHeightConstraint = badViewButton.heightAnchor.constraint(equalToConstant: 104)
         }
-        flowHeightThreeConstraint?.isActive = true
-        contentThreeTextViewButton.isHighlighted = false
+        badViewHeightConstraint?.isActive = true
+        badViewButton.backgroundColor = .mainLightGray
+        badViewButton.layer.cornerRadius = 10
+        badViewButton.layer.masksToBounds = true
+        badViewButton.isHighlighted = false
+    }
+    
+    private func setNextButtonView() {
+        nextViewButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
+        nextViewButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
+        if UIScreen.main.bounds.size.height <= 667 {
+            nextViewHeightConstraint = nextViewButton.heightAnchor.constraint(equalToConstant: 84)
+        } else {
+            nextViewHeightConstraint = nextViewButton.heightAnchor.constraint(equalToConstant: 104)
+        }
+        nextViewHeightConstraint?.isActive = true
+        nextViewButton.backgroundColor = .mainLightGray
+        nextViewButton.layer.cornerRadius = 10
+        nextViewButton.layer.masksToBounds = true
+        nextViewButton.isHighlighted = false
     }
 }
 
+//MARK: TextView
 extension RetrospectiveWriteTVC {
-    private func setTextView() {
-        setOneTextView()
-        setTwoTextView()
-        setThreeTextView()
+    private func setTextViews() {
+        setGoodTextView()
+        setBadTextView()
+        setNextTextView()
     }
     
-    private func setOneTextView() {
-        self.addSubview(writeOneTextView)
-        writeOneTextView.leadingAnchor.constraint(equalTo: contentOneTextViewButton.leadingAnchor, constant: 16).isActive = true
-        writeOneTextView.trailingAnchor.constraint(equalTo: contentOneTextViewButton.trailingAnchor, constant: -16).isActive = true
-        writeOneTextView.topAnchor.constraint(equalTo: contentOneTextViewButton.topAnchor, constant: 16).isActive = true
-        writeOneTextView.bottomAnchor.constraint(equalTo: contentOneTextViewButton.bottomAnchor, constant: -16).isActive = true
+    private func setGoodTextView() {
+        self.addSubview(goodTextView)
         
-        writeOneTextView.isUserInteractionEnabled = false
-        writeOneTextView.delegate = self
-        writeOneTextView.isEditable = false
-        writeOneTextView.layer.cornerRadius = 12
-        writeOneTextView.backgroundColor = UIColor.clear
-        writeOneTextView.autocapitalizationType = .none
-        writeOneTextView.autocorrectionType = .no
-        writeOneTextView.smartDashesType = .no
-        writeOneTextView.smartInsertDeleteType = .no
-        writeOneTextView.spellCheckingType = .no
+        goodTextView.leadingAnchor.constraint(equalTo: goodViewButton.leadingAnchor, constant: 16).isActive = true
+        goodTextView.trailingAnchor.constraint(equalTo: goodViewButton.trailingAnchor, constant: -16).isActive = true
+        goodTextView.topAnchor.constraint(equalTo: goodViewButton.topAnchor, constant: 16).isActive = true
+        goodTextView.bottomAnchor.constraint(equalTo: goodViewButton.bottomAnchor, constant: -16).isActive = true
         
-        writeOneTextView.font = .myRegularSystemFont(ofSize: 16)
-        writeOneTextView.text = cellPlaceholders[0]
-        writeOneTextView.textColor = .mainGray
+        goodTextView.font = .myRegularSystemFont(ofSize: 16)
+        goodTextView.text = cellPlaceholders[0]
+        goodTextView.textColor = .mainGray
+        
+        goodTextView.layer.cornerRadius = 12
+        goodTextView.backgroundColor = UIColor.clear
+        goodTextView.autocapitalizationType = .none
+        goodTextView.autocorrectionType = .no
+        goodTextView.smartDashesType = .no
+        goodTextView.smartInsertDeleteType = .no
+        goodTextView.spellCheckingType = .no
+        goodTextView.isUserInteractionEnabled = false
+        goodTextView.isEditable = false
     }
     
-    private func setTwoTextView() {
-        self.addSubview(writeTwoTextView)
-        writeTwoTextView.leadingAnchor.constraint(equalTo: contentTwoTextViewButton.leadingAnchor, constant: 16).isActive = true
-        writeTwoTextView.trailingAnchor.constraint(equalTo: contentTwoTextViewButton.trailingAnchor, constant: -16).isActive = true
-        writeTwoTextView.topAnchor.constraint(equalTo: contentTwoTextViewButton.topAnchor, constant: 16).isActive = true
-        writeTwoTextView.bottomAnchor.constraint(equalTo: contentTwoTextViewButton.bottomAnchor, constant: -16).isActive = true
+    private func setBadTextView() {
+        self.addSubview(badTextView)
         
-        writeOneTextView.isUserInteractionEnabled = false
-        writeTwoTextView.delegate = self
-        writeTwoTextView.isEditable = false
-        writeTwoTextView.layer.cornerRadius = 12
-        writeTwoTextView.backgroundColor = UIColor.clear
-        writeTwoTextView.autocapitalizationType = .none
-        writeTwoTextView.autocorrectionType = .no
-        writeTwoTextView.smartDashesType = .no
-        writeTwoTextView.smartInsertDeleteType = .no
-        writeTwoTextView.spellCheckingType = .no
+        badTextView.leadingAnchor.constraint(equalTo: badViewButton.leadingAnchor, constant: 16).isActive = true
+        badTextView.trailingAnchor.constraint(equalTo: badViewButton.trailingAnchor, constant: -16).isActive = true
+        badTextView.topAnchor.constraint(equalTo: badViewButton.topAnchor, constant: 16).isActive = true
+        badTextView.bottomAnchor.constraint(equalTo: badViewButton.bottomAnchor, constant: -16).isActive = true
         
-        writeTwoTextView.font = .myRegularSystemFont(ofSize: 16)
-        writeTwoTextView.text = cellPlaceholders[1]
-        writeTwoTextView.textColor = .mainGray
+        badTextView.font = .myRegularSystemFont(ofSize: 16)
+        badTextView.text = cellPlaceholders[1]
+        badTextView.textColor = .mainGray
+        
+        badTextView.layer.cornerRadius = 12
+        badTextView.backgroundColor = UIColor.clear
+        badTextView.autocapitalizationType = .none
+        badTextView.autocorrectionType = .no
+        badTextView.smartDashesType = .no
+        badTextView.smartInsertDeleteType = .no
+        badTextView.spellCheckingType = .no
+        badTextView.isUserInteractionEnabled = false
+        badTextView.isEditable = false
+        
+        
     }
     
-    private func setThreeTextView() {
-        self.addSubview(writeThreeTextView)
-        writeThreeTextView.leadingAnchor.constraint(equalTo: contentThreeTextViewButton.leadingAnchor, constant: 16).isActive = true
-        writeThreeTextView.trailingAnchor.constraint(equalTo: contentThreeTextViewButton.trailingAnchor, constant: -16).isActive = true
-        writeThreeTextView.topAnchor.constraint(equalTo: contentThreeTextViewButton.topAnchor, constant: 16).isActive = true
-        writeThreeTextView.bottomAnchor.constraint(equalTo: contentThreeTextViewButton.bottomAnchor, constant: -16).isActive = true
+    private func setNextTextView() {
+        self.addSubview(nextTextView)
         
-        writeThreeTextView.isUserInteractionEnabled = false
-        writeThreeTextView.delegate = self
-        writeThreeTextView.isEditable = false
-        writeThreeTextView.layer.cornerRadius = 12
-        writeThreeTextView.backgroundColor = UIColor.clear
-        writeThreeTextView.autocapitalizationType = .none
-        writeThreeTextView.autocorrectionType = .no
-        writeThreeTextView.smartDashesType = .no
-        writeThreeTextView.smartInsertDeleteType = .no
-        writeThreeTextView.spellCheckingType = .no
+        nextTextView.leadingAnchor.constraint(equalTo: nextViewButton.leadingAnchor, constant: 16).isActive = true
+        nextTextView.trailingAnchor.constraint(equalTo: nextViewButton.trailingAnchor, constant: -16).isActive = true
+        nextTextView.topAnchor.constraint(equalTo: nextViewButton.topAnchor, constant: 16).isActive = true
+        nextTextView.bottomAnchor.constraint(equalTo: nextViewButton.bottomAnchor, constant: -16).isActive = true
         
-        writeThreeTextView.font = .myRegularSystemFont(ofSize: 16)
-        writeThreeTextView.text = cellPlaceholders[2]
-        writeThreeTextView.textColor = .mainGray
+        nextTextView.font = .myRegularSystemFont(ofSize: 16)
+        nextTextView.text = cellPlaceholders[2]
+        nextTextView.textColor = .mainGray
+        
+        nextTextView.layer.cornerRadius = 12
+        nextTextView.backgroundColor = UIColor.clear
+        nextTextView.autocapitalizationType = .none
+        nextTextView.autocorrectionType = .no
+        nextTextView.smartDashesType = .no
+        nextTextView.smartInsertDeleteType = .no
+        nextTextView.spellCheckingType = .no
+        nextTextView.isUserInteractionEnabled = false
+        nextTextView.isEditable = false
     }
 }

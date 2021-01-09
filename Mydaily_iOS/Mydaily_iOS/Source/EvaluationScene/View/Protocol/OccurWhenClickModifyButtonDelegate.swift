@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ChangeModifyButtonDelegate: class {
+protocol OccurWhenClickModifyButtonDelegate: class {
     func changeModifyButton(isActive: Bool)
     func showAlert(title: String, message: String)
 }

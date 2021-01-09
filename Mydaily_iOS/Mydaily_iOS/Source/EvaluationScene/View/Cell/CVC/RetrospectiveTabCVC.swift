@@ -13,8 +13,7 @@ class RetrospectiveTabCVC: UICollectionViewCell {
     @IBOutlet weak var retrospectiveTableView: UITableView!
     
     var delegate: TableViewInsideCollectionViewDelegate?
-    var buttonDelegate: ChangeModifyButtonDelegate?
-    
+    var buttonDelegate: OccurWhenClickModifyButtonDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -41,6 +40,7 @@ extension RetrospectiveTabCVC: UITableViewDataSource {
 
 extension RetrospectiveTabCVC: UITableViewDelegate {}
 
+//MARK: UI
 extension RetrospectiveTabCVC {
     private func setTableView() {
         retrospectiveTableView.delegate = self

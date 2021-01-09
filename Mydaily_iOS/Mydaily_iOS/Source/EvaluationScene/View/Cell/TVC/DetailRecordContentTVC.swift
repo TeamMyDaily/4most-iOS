@@ -23,9 +23,9 @@ class DetailRecordContentTVC: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        setCollectionView()
-        setNoDataView()
+        hideViewIfListEmpty()
         setNoRecordView()
+        setCollectionView()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -41,7 +41,7 @@ extension DetailRecordContentTVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailRecordCVC.identifier, for: indexPath as IndexPath) as! DetailRecordCVC
-        cell.setLabelData(content: list[indexPath.item])
+        cell.setLabelText(content: list[indexPath.item])
         return cell
     }
 }
@@ -53,8 +53,46 @@ extension DetailRecordContentTVC: UICollectionViewDelegateFlowLayout {
     }
 }
 
+//MARK: UI
+extension DetailRecordContentTVC {
+    private func setNoRecordView() {
+        noRecordView.addSubview(notifyLabel)
+        
+        notifyLabel.bottomAnchor.constraint(equalTo: noRecordView.bottomAnchor, constant: -132).isActive = true
+        notifyLabel.centerXAnchor.constraint(equalTo: noRecordView.centerXAnchor).isActive = true
+        notifyLabel.font = .myRegularSystemFont(ofSize: 12)
+        notifyLabel.text = "이 날에는 키워드가 없어요.😢"
+        notifyLabel.textColor = .mainGray
+        notifyLabel.textAlignment = .center
+        notifyLabel.numberOfLines = 0
+    }
+}
+
+//MARK: View
+extension DetailRecordContentTVC {
+    private func hideViewIfListEmpty() {
+        if list.isEmpty {
+            recordCollectionView.isHidden = true
+            noRecordView.isHidden = false
+        } else {
+            recordCollectionView.isHidden = false
+            noRecordView.isHidden = true
+        }
+    }
+}
+
+//MARK: CollectionView
 extension DetailRecordContentTVC: DetailRecordLayoutDelegate {
-    func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
+    private func setCollectionView() {
+        recordCollectionView.delegate = self
+        recordCollectionView.dataSource = self
+        recordCollectionView.contentInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        if let layout = recordCollectionView.collectionViewLayout as? DetailRecordLayout {
+            layout.delegate = self
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, heightForLabelAtIndexPath indexPath: IndexPath) -> CGFloat {
         let width = (collectionView.bounds.size.width - (collectionView.contentInset.left + collectionView.contentInset.right + 16 + 16 + 30)) / 2 - 30
         let label: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
         label.text = list[indexPath.item]
@@ -67,36 +105,5 @@ extension DetailRecordContentTVC: DetailRecordLayoutDelegate {
         
         let calculateHeight = label.intrinsicContentSize.height + 120
         return calculateHeight
-    }
-    
-    private func setCollectionView() {
-        recordCollectionView.delegate = self
-        recordCollectionView.dataSource = self
-        recordCollectionView.contentInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
-        if let layout = recordCollectionView.collectionViewLayout as? DetailRecordLayout {
-            layout.delegate = self
-        }
-    }
-    
-    private func setNoDataView() {
-        if list.isEmpty {
-            recordCollectionView.isHidden = true
-            noRecordView.isHidden = false
-        } else {
-            recordCollectionView.isHidden = false
-            noRecordView.isHidden = true
-        }
-    }
-    
-    private func setNoRecordView() {
-        noRecordView.addSubview(notifyLabel)
-        
-        notifyLabel.bottomAnchor.constraint(equalTo: noRecordView.bottomAnchor, constant: -132).isActive = true
-        notifyLabel.centerXAnchor.constraint(equalTo: noRecordView.centerXAnchor).isActive = true
-        notifyLabel.font = .myRegularSystemFont(ofSize: 12)
-        notifyLabel.textAlignment = .center
-        notifyLabel.numberOfLines = 0
-        notifyLabel.textColor = .mainGray
-        notifyLabel.text = "이 날에는 키워드가 없어요.😢"
     }
 }

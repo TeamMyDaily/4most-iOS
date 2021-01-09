@@ -12,11 +12,11 @@ class EvaluationVC: UIViewController {
     @IBOutlet weak var weekLabel: UILabel!
     @IBOutlet weak var evaluationTabButton: UIButton!
     @IBOutlet weak var retrospectiveTabButton: UIButton!
+    @IBOutlet weak var afterWeekButton: UIButton!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var evaluationTabBar: UIView!
     @IBOutlet weak var retrospectiveTabBar: UIView!
     @IBOutlet weak var keywordCollectionView: UICollectionView!
-    @IBOutlet weak var afterWeekButton: UIButton!
     
     lazy var currentWeekButton: UIButton = {
         let currentWeekButton = UIButton()
@@ -275,7 +275,7 @@ extension EvaluationVC: TableViewInsideCollectionViewDelegate {
     }
 }
 
-extension EvaluationVC: ChangeModifyButtonDelegate {
+extension EvaluationVC: OccurWhenClickModifyButtonDelegate {
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let noAction = UIAlertAction(title: "다음에하기", style: .default)
