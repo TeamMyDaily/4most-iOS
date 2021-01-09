@@ -94,6 +94,11 @@ extension AddUserKeywordVC: UITextFieldDelegate{
                 return false
             }
             
+            if keywordArray.contains(string){
+                noticeLabel.text = "잠깐! 이미 있슴"
+                return false
+            }
+            
         }
         
         let currentText = textField.text ?? ""
