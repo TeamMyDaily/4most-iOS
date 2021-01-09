@@ -518,7 +518,7 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="touchUpChange:" destination="XxP-dP-Z6u" eventType="touchUpInside" id="NHP-xB-QQr"/>
+                                    <action selector="touchUpChange:" destination="XxP-dP-Z6u" eventType="touchUpInside" id="ahZ-8a-5fI"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BLF-og-8iR">
@@ -535,7 +535,7 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="touchUpConfirmText:" destination="XxP-dP-Z6u" eventType="touchUpInside" id="b7v-6Y-QZQ"/>
+                                    <action selector="touchUpConfirmCurrentPassword:" destination="XxP-dP-Z6u" eventType="touchUpInside" id="b7v-6Y-QZQ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="snd-0m-szm">
@@ -546,7 +546,7 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="touchUpShowNewText:" destination="XxP-dP-Z6u" eventType="touchUpInside" id="DnG-M3-j0G"/>
+                                    <action selector="touchUpShowNewPassword:" destination="XxP-dP-Z6u" eventType="touchUpInside" id="DnG-M3-j0G"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RkN-ll-MY6">
@@ -557,7 +557,7 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="touchUpShowConfirmText:" destination="XxP-dP-Z6u" eventType="touchUpInside" id="RJH-7n-NFk"/>
+                                    <action selector="touchUpShowConfirmPassword:" destination="XxP-dP-Z6u" eventType="touchUpInside" id="RJH-7n-NFk"/>
                                 </connections>
                             </button>
                         </subviews>

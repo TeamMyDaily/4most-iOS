@@ -45,23 +45,23 @@ extension MypageSettingVC: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingSecurityTVC.identifier) as? SettingSecurityTVC else {
                 return UITableViewCell()
             }
-            cell.setCellTitle(title: securityTitles[indexPath.row], color: UIColor.mainBlack)
+            cell.setLabel(title: securityTitles[indexPath.row], color: UIColor.mainBlack)
             return cell
-        } else if indexPath.section == 2 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingVersionTVC.identifier) as? SettingVersionTVC else {
+        } else if indexPath.section == 1 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingSecurityTVC.identifier) as? SettingSecurityTVC else {
                 return UITableViewCell()
             }
-            cell.selectionStyle = .none
+            if policyTitles[indexPath.row] == "회원 탈퇴" {
+                cell.setLabel(title: policyTitles[indexPath.row], color: UIColor.mainGray)
+            } else {
+                cell.setLabel(title: policyTitles[indexPath.row], color: UIColor.mainBlack)
+            }
             return cell
         }
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingSecurityTVC.identifier) as? SettingSecurityTVC else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingVersionTVC.identifier) as? SettingVersionTVC else {
             return UITableViewCell()
         }
-        if policyTitles[indexPath.row] == "회원 탈퇴" {
-            cell.setCellTitle(title: policyTitles[indexPath.row], color: UIColor.mainGray)
-        } else {
-            cell.setCellTitle(title: policyTitles[indexPath.row], color: UIColor.mainBlack)
-        }
+        cell.selectionStyle = .none
         return cell
     }
 
@@ -118,27 +118,28 @@ extension MypageSettingVC: UITableViewDelegate {
     }
 }
 
+//MARK: UI
 extension MypageSettingVC {
     private func setLabel() {
         nameLabel.font = .myBlackSystemFont(ofSize: 25)
-        nameLabel.textColor = .mainBlack
         nameLabel.text = "엄석준님"
+        nameLabel.textColor = .mainBlack
         
         guideLabel.font = .myRegularSystemFont(ofSize: 12)
-        guideLabel.textColor = .mainGray
         guideLabel.text = "안전한 계정 이용을 위해 비밀번호는 주기적으로 변경해 주세요."
+        guideLabel.textColor = .mainGray
         
         securityHeaderLabel.font = .myRegularSystemFont(ofSize: 12)
-        securityHeaderLabel.textColor = .mainGray
         securityHeaderLabel.text = "계정 보안"
+        securityHeaderLabel.textColor = .mainGray
         
         emailLabel.font = .myRegularSystemFont(ofSize: 16)
-        emailLabel.textColor = .mainBlack
         emailLabel.text = "이메일"
+        emailLabel.textColor = .mainBlack
         
         userEmailLabel.font = .myRegularSystemFont(ofSize: 15)
-        userEmailLabel.textColor = .mainOrange
         userEmailLabel.text = "tlsdbsdk05250@gmail.com"
+        userEmailLabel.textColor = .mainOrange
     }
     
     private func setTableView() {

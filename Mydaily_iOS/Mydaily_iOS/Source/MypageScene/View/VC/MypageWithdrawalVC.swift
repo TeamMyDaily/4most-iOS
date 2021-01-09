@@ -26,14 +26,14 @@ class MypageWithdrawalVC: UIViewController {
         setLabel()
         setTextfield()
         setButton()
-        setKeyboard()
+        setKeyboardGesture()
     }
     
     @IBAction func touchUpWithdrawal(_ sender: Any) {
         if passwordTextField.text == pw {
-            print("good bye")
+            print("비밀번호 확인, 탈퇴 완료")
         } else {
-            print("no")
+            print("비밀번호 틀림")
         }
     }
 }
@@ -50,65 +50,68 @@ extension MypageWithdrawalVC: UITextFieldDelegate {
     }
 }
 
+//MARK: UI
 extension MypageWithdrawalVC {
     private func setLabel() {
-        titleLabel.text = "포모스트를 떠날래요."
         titleLabel.font = .myBlackSystemFont(ofSize: 21)
+        titleLabel.text = "포모스트를 떠날래요."
         titleLabel.textColor = .mainBlack
         
-        withdrawalInfoLabel.text = "회원정보 확인 후 탈퇴가 완료됩니다."
         withdrawalInfoLabel.font = .myRegularSystemFont(ofSize: 16)
+        withdrawalInfoLabel.text = "회원정보 확인 후 탈퇴가 완료됩니다."
         withdrawalInfoLabel.textColor = .mainBlack
         
-        emailTitleLabel.text = "이메일"
         emailTitleLabel.font = .myRegularSystemFont(ofSize: 16)
+        emailTitleLabel.text = "이메일"
         emailTitleLabel.textColor = .mainBlack
         
-        emailLabel.text = "tlsdbsdk05250@gmail.com"
         emailLabel.font = .myRegularSystemFont(ofSize: 16)
+        emailLabel.text = "tlsdbsdk05250@gmail.com"
         emailLabel.textColor = .mainOrange
         
-        passwordTitleLabel.text = "비밀번호"
         passwordTitleLabel.font = .myRegularSystemFont(ofSize: 16)
+        passwordTitleLabel.text = "비밀번호"
         passwordTitleLabel.textColor = .mainBlack
         
-        topInfoLabel.text = "지금 회원 탈퇴를 하시면 포모스트를 더이상 이용하실 수 없습니다."
         topInfoLabel.font = .myMediumSystemFont(ofSize: 12)
+        topInfoLabel.text = "지금 회원 탈퇴를 하시면 포모스트를 더이상 이용하실 수 없습니다."
         topInfoLabel.textColor = .mainBlack
         
-        middleInfoLabel.text = "또한 포모스트를 가입/사용 하면서 축적된 정보와 기록은 모두 삭제되며, 복구가 불가능 합니다."
         middleInfoLabel.font = .myMediumSystemFont(ofSize: 12)
+        middleInfoLabel.text = "또한 포모스트를 가입/사용 하면서 축적된 정보와 기록은 모두 삭제되며, 복구가 불가능 합니다."
         middleInfoLabel.textColor = .mainGray
         
-        bottomInfoLabel.text = "해당 아이디로 작성한 기록과 회고등은 영구 소멸되므로, 미리 확인하시고 탈퇴를 진행하시기를 바랍니다."
         bottomInfoLabel.font = .myMediumSystemFont(ofSize: 12)
+        bottomInfoLabel.text = "해당 아이디로 작성한 기록과 회고등은 영구 소멸되므로, 미리 확인하시고 탈퇴를 진행하시기를 바랍니다."
         bottomInfoLabel.textColor = .mainGray
     }
     
     private func setTextfield() {
-        passwordTextField.delegate = self
-        passwordTextField.placeholder = "비밀번호 입력"
-        passwordTextField.borderStyle = .none
-        
         let border = CALayer()
         border.frame = CGRect(x: 0, y: passwordTextField.frame.size.height-1, width: passwordTextField.frame.width, height: 1)
         border.backgroundColor = UIColor.mainGray.cgColor
         passwordTextField.layer.addSublayer((border))
-        passwordTextField.isSecureTextEntry = true
         passwordTextField.setLeftPaddingPoints(10)
+        passwordTextField.placeholder = "비밀번호 입력"
+        passwordTextField.borderStyle = .none
+        passwordTextField.delegate = self
+        passwordTextField.isSecureTextEntry = true
     }
     
     private func setButton() {
+        withdrawalButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
         withdrawalButton.setTitle("떠날래요", for: .normal)
         withdrawalButton.setTitleColor(.white, for: .normal)
-        withdrawalButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
         withdrawalButton.backgroundColor = .mainGray
         withdrawalButton.layer.cornerRadius = 15
         withdrawalButton.layer.masksToBounds = true
         withdrawalButton.isEnabled = false
     }
-    
-    private func setKeyboard() {
+}
+
+//MARK: keyboard
+extension MypageWithdrawalVC {
+    private func setKeyboardGesture() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissGestureKeyboard))
         view.addGestureRecognizer(tap)
     }

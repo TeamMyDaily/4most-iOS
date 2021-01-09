@@ -21,8 +21,9 @@ class SettingSecurityTVC: UITableViewCell {
     }
 }
 
+//MARK: UI
 extension SettingSecurityTVC {
-    func setCellTitle(title: String, color: UIColor) {
+    func setLabel(title: String, color: UIColor) {
         titleLabel.font = .myRegularSystemFont(ofSize: 16)
         titleLabel.text = title
         titleLabel.textColor = color
