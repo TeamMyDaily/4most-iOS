@@ -22,8 +22,6 @@ class KeywordPriorityTVC: UITableViewCell {
     
     func setKeywordLabel(text: String){
         keywordLabel.text = text
-        print("-------cell--------")
-        print(keywordLabel.text)
     }
     
 }

@@ -42,12 +42,12 @@ class AddUserKeywordVC: UIViewController {
         if userKeyword.count > 5{
             addButton.isEnabled = false
             noticeLabel.text = "최대 5글자의 단어만 입력 가능해요!"
-            addButton.backgroundColor = originButtonColor
+            addButton.backgroundColor = UIColor.mainGray
             
         } else if keywordArray.contains(userKeyword) {
             addButton.isEnabled = false
             noticeLabel.text = "'\(userKeyword)'은 이미 생성된 단어에요!"
-            addButton.backgroundColor = originButtonColor
+            addButton.backgroundColor = UIColor.mainGray
         }else{
             
             guard let pvc = self.navigationController?.viewControllers[0] as? KeywordSettingVC else {
@@ -104,26 +104,26 @@ extension AddUserKeywordVC: UITextFieldDelegate{
         if updatedText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count > 5{
             noticeLabel.text = "!!!!최대 5글자의 단어만 입력 가능해요!"
             addButton.isEnabled = false
-            addButton.backgroundColor = originButtonColor
+            addButton.backgroundColor = UIColor.mainGray
         }
         
         if !updatedText.isEmpty {
             if updatedText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count < 6{
                 addButton.isEnabled = true
-                self.addButton.isEnabled = true
-                addButton.backgroundColor = .orange
+                
+                addButton.backgroundColor = UIColor.mainOrange
                 return true
             }
             else {
                 noticeLabel.text = "최대 5글자의 단어만 입력 가능해요!"
                 addButton.isEnabled = false
-                addButton.backgroundColor = originButtonColor
+                addButton.backgroundColor = UIColor.mainGray
                 return false
             }
         }
         else{
             addButton.isEnabled = false
-            addButton.backgroundColor = originButtonColor
+            addButton.backgroundColor = UIColor.mainGray
             return true
         }
     }

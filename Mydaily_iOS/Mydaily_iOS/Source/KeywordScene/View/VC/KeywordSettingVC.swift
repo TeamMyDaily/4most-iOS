@@ -17,7 +17,6 @@ class KeywordSettingVC: UIViewController {
     
     var attitudeOfWork: [String] = ["친절함", "경청", "대충", "진실성", "존중", "신뢰", "의심", "신속성", "돈"]
     
-    let originButtonColor: UIColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1)
     
     var selectedKeywordCount = 0
     var selectedKeywordList:[[String]] = []
@@ -134,10 +133,10 @@ class KeywordSettingVC: UIViewController {
     
     func setButtonActive(){
         if selectedKeywordCount == 8 {
-            completeButton.backgroundColor = .systemOrange
+            completeButton.backgroundColor = UIColor.mainOrange
             completeButton.isEnabled = true
         }else{
-            completeButton.backgroundColor = originButtonColor
+            completeButton.backgroundColor = UIColor.mainGray
             completeButton.isEnabled = false
         }
     }
@@ -249,7 +248,7 @@ extension KeywordSettingVC: UITableViewDelegate{
         
         keywordPlusButton = UIButton(frame: CGRect(x: 16, y: 35, width: 32, height: 32))
         keywordPlusButton.setBackgroundImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
-        keywordPlusButton.tintColor = originButtonColor
+        keywordPlusButton.tintColor = UIColor.mainGray
         keywordPlusButton.addTarget(self, action: #selector(goToAddUserKeyword), for: .touchUpInside)
         
         KeywordEditButton = UIButton(frame: CGRect(x: view.frame.size.width - 66 , y: 0, width: 50, height: 30))
@@ -290,7 +289,7 @@ extension KeywordSettingVC: UITableViewDelegate{
         //title label 바꾸기
         if userKeywordList.count > 0{
             userKeywordTitleLabel.text = "내가 추가한 키워드"
-            userKeywordTitleLabel.textColor = .orange
+            userKeywordTitleLabel.textColor = UIColor.mainOrange
             userKeywordTitleLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.bold)
             
             KeywordEditButton.setTitle("수정", for: .normal)
@@ -309,7 +308,7 @@ extension KeywordSettingVC: UITableViewDelegate{
         myKeywordButton.setTitleColor(.white, for: .normal)
         myKeywordButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.medium)
         myKeywordButton.layer.cornerRadius = 15
-        myKeywordButton.backgroundColor = originButtonColor
+        myKeywordButton.backgroundColor = UIColor.mainGray
        
         myKeywordButton.addTarget(self, action: #selector(selectedUserKeyword), for: .touchUpInside)
         
@@ -332,17 +331,17 @@ extension KeywordSettingVC: UITableViewDelegate{
         sender.imageView?.isHidden = true
         
         if selectedKeywordCount < 8 {
-            if sender.backgroundColor == originButtonColor{
+            if sender.backgroundColor == UIColor.mainGray{
                 addSelectedUserKeyword(text: selectedText)
-                sender.backgroundColor = .orange
+                sender.backgroundColor = UIColor.mainOrange
             }else{
                 cancelSelectedUserKeyword(text: selectedText)
-                sender.backgroundColor = originButtonColor
+                sender.backgroundColor = UIColor.mainGray
             }
             
-        }else if selectedKeywordCount == 8 && sender.backgroundColor != originButtonColor{
+        }else if selectedKeywordCount == 8 && sender.backgroundColor != UIColor.mainGray{
             cancelSelectedUserKeyword(text: selectedText)
-            sender.backgroundColor = originButtonColor
+            sender.backgroundColor = UIColor.mainGray
             
         }else{
             alertKeyword()

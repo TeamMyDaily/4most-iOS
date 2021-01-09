@@ -38,7 +38,7 @@ class KeywordPopUpVC: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    
+   
 }
 
 extension KeywordPopUpVC: UICollectionViewDataSource{
@@ -92,7 +92,7 @@ extension KeywordPopUpVC{
             skipButton.setTitleColor(.white, for: .normal)
             skipButton.titleLabel?.font =  UIFont(name: "System-Heavy", size: 18.0)
             skipButton.layer.cornerRadius = 15
-            skipButton.backgroundColor = UIColor.systemOrange
+            skipButton.backgroundColor = UIColor.mainOrange
             
         }
     }

@@ -16,8 +16,6 @@ class NextKeywordVC: UIViewController {
     
     @IBOutlet weak var completeButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
-    
-    let originButtonColor: UIColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1)
    
     var selectedKeywordList: [String] = []
     
@@ -62,9 +60,7 @@ class NextKeywordVC: UIViewController {
         var contentX = 0
         var contentY = 0
         let systemSize = Int(view.frame.size.width)
-        //content.backgroundColor = .green
        
-        
         for i in 0..<3{
             if keywordList[i].count != 0{
                 let keywordTitleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: keywordContentView.frame.width, height: 32))
@@ -82,7 +78,7 @@ class NextKeywordVC: UIViewController {
                 
                 if i == 2{
                     keywordTitleLabel.text = "내가 추가한 키워드"
-                    keywordTitleLabel.textColor = .orange
+                    keywordTitleLabel.textColor = UIColor.mainOrange
                 }
                 
                 content.addSubview(keywordTitleLabel)
@@ -107,9 +103,7 @@ class NextKeywordVC: UIViewController {
         }
         
         keywordContentView.addSubview(content)
-        //keywordContentView.addSubview(content)
-        //footer.backgroundColor = .systemRed
-        //오토레이아웃을 코드로 지정 할 때 사용
+        
     }
 
    
@@ -128,7 +122,7 @@ class NextKeywordVC: UIViewController {
         keywordButton.setTitleColor(.white, for: .normal)
         keywordButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.medium)
         keywordButton.layer.cornerRadius = 15
-        keywordButton.backgroundColor = originButtonColor
+        keywordButton.backgroundColor = UIColor.mainGray
         
         keywordButton.addTarget(self, action: #selector(selectKeyword), for: .touchUpInside)
     
@@ -142,19 +136,19 @@ class NextKeywordVC: UIViewController {
         let selectedText = sender.titleLabel?.text ?? ""
         
         if selectedKeywordList.count < 4 {
-            if sender.backgroundColor == originButtonColor{
+            if sender.backgroundColor == UIColor.mainGray{
                 selectedKeywordList.append(selectedText)
-                sender.backgroundColor = .orange
+                sender.backgroundColor = UIColor.mainOrange
             }else{
                 let index = selectedKeywordList.firstIndex(of: selectedText) ?? 0
                 selectedKeywordList.remove(at: index)
-                sender.backgroundColor = originButtonColor
+                sender.backgroundColor = UIColor.mainGray
             }
             
-        }else if selectedKeywordList.count == 4 && sender.backgroundColor != originButtonColor{
+        }else if selectedKeywordList.count == 4 && sender.backgroundColor != UIColor.mainGray{
             let index = selectedKeywordList.firstIndex(of: selectedText) ?? 0
             selectedKeywordList.remove(at: index)
-            sender.backgroundColor = originButtonColor
+            sender.backgroundColor = UIColor.mainGray
             
         }else{
             alertKeyword()
@@ -176,10 +170,10 @@ class NextKeywordVC: UIViewController {
     func setButtonActive(){
         if selectedKeywordList.count == 4 {
             print("4개 눌림!!! 버튼 활성화")
-            completeButton.backgroundColor = .systemOrange
+            completeButton.backgroundColor = UIColor.mainOrange
             completeButton.isEnabled = true
         }else{
-            completeButton.backgroundColor = originButtonColor
+            completeButton.backgroundColor = UIColor.mainGray
             completeButton.isEnabled = false
         }
     }

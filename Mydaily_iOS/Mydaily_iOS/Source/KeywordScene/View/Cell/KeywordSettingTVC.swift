@@ -19,9 +19,6 @@ class KeywordSettingTVC: UITableViewCell {
     @IBOutlet var keywordButtonList: [UIButton]!
     var cellDelegate: SelectKeywordDelegate?
     
-
-    let originButtonColor: UIColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1)
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -43,14 +40,14 @@ class KeywordSettingTVC: UITableViewCell {
     @IBAction func touchUpButton(_ sender: UIButton) {
         let labelText = sender.titleLabel?.text ?? ""
         
-        if sender.backgroundColor != .orange {
+        if sender.backgroundColor != UIColor.mainOrange {
             let check = cellDelegate?.addSelectedKeyword(self, selectedText: labelText) ?? false
             if check {
-                sender.backgroundColor = .orange
+                sender.backgroundColor = UIColor.mainOrange
             }
             
         } else{
-            sender.backgroundColor = originButtonColor
+            sender.backgroundColor = UIColor.mainGray
             cellDelegate?.cancelSelectedKeyword(self, selectedText: labelText)
         }
     }
