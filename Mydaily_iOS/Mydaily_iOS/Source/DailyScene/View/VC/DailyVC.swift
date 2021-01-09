@@ -105,7 +105,7 @@ extension DailyVC {
         self.tableView.addSubview(dateButton)
         
         NSLayoutConstraint.activate([
-            dateButton.bottomAnchor.constraint(equalTo: self.tableView.bottomAnchor, constant: -40),
+            dateButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -72),
             dateButton.centerXAnchor.constraint(equalTo: self.tableView.centerXAnchor),
             dateButton.widthAnchor.constraint(equalToConstant: 66),
             dateButton.heightAnchor.constraint(equalToConstant: 32)
