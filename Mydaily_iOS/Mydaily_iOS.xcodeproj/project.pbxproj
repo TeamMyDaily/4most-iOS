@@ -64,6 +64,7 @@
 		EDC0FEC625A72DE200D69379 /* ChangeModifyButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC0FEC525A72DE200D69379 /* ChangeModifyButtonDelegate.swift */; };
 		EDC1642925A4617600CD65B0 /* RetrospectiveWriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1642825A4617600CD65B0 /* RetrospectiveWriteVC.swift */; };
 		EDC1642D25A46C3800CD65B0 /* TableViewInsideCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC1642C25A46C3800CD65B0 /* TableViewInsideCollectionViewDelegate.swift */; };
+		EDDC038925A96926007162CD /* MypageChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDC038825A96926007162CD /* MypageChangePasswordVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,6 +127,7 @@
 		EDC0FEC525A72DE200D69379 /* ChangeModifyButtonDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeModifyButtonDelegate.swift; sourceTree = "<group>"; };
 		EDC1642825A4617600CD65B0 /* RetrospectiveWriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrospectiveWriteVC.swift; sourceTree = "<group>"; };
 		EDC1642C25A46C3800CD65B0 /* TableViewInsideCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewInsideCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		EDDC038825A96926007162CD /* MypageChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageChangePasswordVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -379,6 +381,7 @@
 				EDAAFA2325A82E0400424BF9 /* MypageSettingVC.swift */,
 				EDAAFA3025A873F500424BF9 /* MypageIdentityVerificationVC.swift */,
 				EDAAFA3325A8787100424BF9 /* MypageWithdrawalVC.swift */,
+				EDDC038825A96926007162CD /* MypageChangePasswordVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -547,6 +550,7 @@
 				AED84DF325A558B30050D861 /* Extensions+UIView.swift in Sources */,
 				EDAAFA2E25A8535400424BF9 /* SettingVersionTVC.swift in Sources */,
 				AE9F294D25A1BF1500904FD9 /* RegisterEntryVC.swift in Sources */,
+				EDDC038925A96926007162CD /* MypageChangePasswordVC.swift in Sources */,
 				AE9F294A25A1A69400904FD9 /* registerVC.swift in Sources */,
 				EDAAEB7D25A01B550024E3E4 /* EvaluationDetailVC.swift in Sources */,
 				AED84DDD25A4930C0050D861 /* DetailVC.swift in Sources */,

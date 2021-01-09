@@ -109,6 +109,11 @@ extension MypageSettingVC: UITableViewDelegate {
                 return
             }
             present(dvc, animated: true, completion: nil)
+        } else if indexPath.section == 0 && indexPath.row == 1 {
+            guard let dvc = self.storyboard?.instantiateViewController(identifier: "MypageChangePasswordVC") as? MypageChangePasswordVC else {
+                return
+            }
+            present(dvc, animated: true, completion: nil)
         }
     }
 }
