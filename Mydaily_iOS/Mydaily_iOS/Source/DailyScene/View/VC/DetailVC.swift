@@ -65,7 +65,7 @@ class DetailVC: UITableViewController, ThreePartCellDelegate {
         cell.selectionStyle = .none
         
         let str = myArray[indexPath.row]
-        cell.labelBody.textColor = .white
+        cell.labelBody?.textColor = .white
         cell.myInit(theTitle: "아웃풋", theBody: str)
         
         cell.delegate = self

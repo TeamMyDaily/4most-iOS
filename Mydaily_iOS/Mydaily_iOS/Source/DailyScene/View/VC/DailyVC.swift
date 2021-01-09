@@ -7,14 +7,16 @@
 
 import UIKit
 
-class DailyVC: UIViewController {
-    
+class DailyVC: UIViewController, ThreePartCellDelegate {
+
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var logoLabel: UILabel!
     @IBOutlet weak var userDaily: UILabel!
-    @IBOutlet weak var tableView: UIView!
+    @IBOutlet weak var tableView: UITableView!
+    
+    var myArray = [String]()
     
     let dateButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -30,9 +32,31 @@ class DailyVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setTableVC()
         setupNavigationBar(.clear, titlelabel: "")
         floatingButton()
         setUI()
+        
+        for _ in 1...4 {
+            
+            let n = arc4random_uniform(6) + 4
+            var str = ""
+            for i in 1..<n {
+                str += "Line \(i)\n"
+            }
+            myArray.append(str)
+            
+        }
+        print(myArray)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    func moreTapped(cell: DetailTVC) {
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
    
     @IBAction func changedDate(_ sender: Any) {
@@ -77,6 +101,7 @@ extension DailyVC {
     }
     
     func floatingButton(){
+        
         self.tableView.addSubview(dateButton)
         
         NSLayoutConstraint.activate([
@@ -90,5 +115,43 @@ extension DailyVC {
     @objc func setToday(sender: UIButton!) {
         datePicker.date = Date()
         setDate()
+    }
+}
+
+extension DailyVC: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return myArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: DetailTVC.reuseIdentifier, for: indexPath) as! DetailTVC
+
+        cell.selectionStyle = .none
+        
+        let str = myArray[indexPath.row]
+        cell.labelBody?.textColor = .white
+        cell.myInit(theTitle: "아웃풋", theBody: str)
+        
+        cell.delegate = self
+        
+        return cell
+    }
+}
+
+extension DailyVC {
+    func setTableVC(){
+        tableView.delegate = self
+        tableView.dataSource = self
+        let containNibname = UINib(nibName: DetailTVC.nibName, bundle: nil)
+        tableView.register(containNibname, forCellReuseIdentifier: DetailTVC.reuseIdentifier)
+        
+        tableView.estimatedRowHeight = 108;
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.separatorInset.right = 16
+        tableView.separatorInset.left = 16
     }
 }
