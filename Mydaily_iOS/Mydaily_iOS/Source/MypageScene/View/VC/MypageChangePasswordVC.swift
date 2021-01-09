@@ -22,6 +22,7 @@ class MypageChangePasswordVC: UIViewController {
     
     var isConfirm = false
     var isNewConfirm = false
+    var isUniform = false
     let passwd = "12345df"
     
     override func viewDidLoad() {
@@ -70,6 +71,7 @@ extension MypageChangePasswordVC: UITextFieldDelegate {
                 self.labelStackView.transform = CGAffineTransform(translationX: 0, y: 10)
             }
             isNewConfirm = false
+            checkButton()
         } else {
             UIView.animate(withDuration: 0.1) {
                 self.labelStackView.transform = CGAffineTransform(translationX: 0, y: -10)
@@ -160,7 +162,7 @@ extension MypageChangePasswordVC {
     }
     
     private func checkButton() {
-        if isNewConfirm && isConfirm {
+        if isNewConfirm && isConfirm && isUniform {
             changeButton.backgroundColor = .mainOrange
             changeButton.isEnabled = true
         } else {
@@ -220,15 +222,19 @@ extension MypageChangePasswordVC {
         if !(newPasswordTextField.text!.validatePassword()) {
             notVerifiyLabel.text = "영어와 숫자 조합으로 6자리 이상 입력해 주세요!"
             notVerifiyLabel.isHidden = false
+            isUniform = false
             UIView.animate(withDuration: 0.1) {
                 self.labelStackView.transform = CGAffineTransform(translationX: 0, y: 10)
             }
+            checkButton()
         }
         else{
+            isUniform = true
             if !(newPasswordTextField.text == confirmNewPasswordTextField.text) {
                 notVerifiyLabel.text = "비밀번호가 서로 맞지 않아요!"
                 notVerifiyLabel.isHidden = false
                 isNewConfirm = false
+                checkButton()
             }
             else{
                 notVerifiyLabel.isHidden = true
