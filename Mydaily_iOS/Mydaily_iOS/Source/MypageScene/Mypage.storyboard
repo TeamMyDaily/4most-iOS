@@ -604,6 +604,8 @@
                         <outlet property="notVerifiyLabel" destination="BLF-og-8iR" id="sRl-ez-8WL"/>
                         <outlet property="passwordBottomInfoLabel" destination="RD4-qd-6KS" id="a80-N9-FIE"/>
                         <outlet property="passwordTopInfoLabel" destination="QgJ-QK-lpV" id="qBp-3v-VIU"/>
+                        <outlet property="showConfirmButton" destination="RkN-ll-MY6" id="GWM-rq-yil"/>
+                        <outlet property="showNewButton" destination="snd-0m-szm" id="x1F-GS-iem"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vB3-MS-x3K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

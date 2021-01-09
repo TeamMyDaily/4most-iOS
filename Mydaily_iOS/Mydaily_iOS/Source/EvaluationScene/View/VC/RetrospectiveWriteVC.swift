@@ -65,7 +65,7 @@ extension RetrospectiveWriteVC: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         guard let text: String = writeTextView.text else {return}
         if UIScreen.main.bounds.size.height <= 667 {
-            flowHeightConstraint?.constant = UIScreen.main.bounds.size.height / 2.6
+            flowHeightConstraint?.constant = UIScreen.main.bounds.size.height / 2.5
         } else if UIScreen.main.bounds.size.height <= 812 {
             flowHeightConstraint?.constant = UIScreen.main.bounds.size.height / 2.7
         } else if UIScreen.main.bounds.size.height <= 844 {

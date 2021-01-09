@@ -18,6 +18,8 @@ class MypageChangePasswordVC: UIViewController {
     @IBOutlet weak var confirmNewPasswordTextField: UITextField!
     @IBOutlet weak var currentPasswordCheckButton: UIButton!
     @IBOutlet weak var changeButton: UIButton!
+    @IBOutlet weak var showNewButton: UIButton!
+    @IBOutlet weak var showConfirmButton: UIButton!
     @IBOutlet weak var labelStackView: UIStackView!
     
     var isConfirm = false
@@ -65,6 +67,16 @@ class MypageChangePasswordVC: UIViewController {
 }
 
 extension MypageChangePasswordVC: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        showConfirmButton.isHidden = false
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.text == "" {
+            showConfirmButton.isHidden = true
+        }
+    }
+    
     func textFieldDidChangeSelection(_ textField: UITextField) {
         if textField.text != newPasswordTextField.text {
             UIView.animate(withDuration: 0.1) {
@@ -159,6 +171,9 @@ extension MypageChangePasswordVC {
         changeButton.isEnabled = false
         changeButton.layer.cornerRadius = 15
         changeButton.layer.masksToBounds = true
+        
+        showNewButton.isHidden = true
+        showConfirmButton.isHidden = true
     }
     
     private func checkButton() {
@@ -219,6 +234,7 @@ extension MypageChangePasswordVC {
     }
     
     @objc func changePWTextfiledUI(){
+        showNewButton.isHidden = false
         if !(newPasswordTextField.text!.validatePassword()) {
             notVerifiyLabel.text = "영어와 숫자 조합으로 6자리 이상 입력해 주세요!"
             notVerifiyLabel.isHidden = false
@@ -233,6 +249,9 @@ extension MypageChangePasswordVC {
             if !(newPasswordTextField.text == confirmNewPasswordTextField.text) {
                 notVerifiyLabel.text = "비밀번호가 서로 맞지 않아요!"
                 notVerifiyLabel.isHidden = false
+                UIView.animate(withDuration: 0.1) {
+                    self.labelStackView.transform = CGAffineTransform(translationX: 0, y: 10)
+                }
                 isNewConfirm = false
                 checkButton()
             }
@@ -243,6 +262,16 @@ extension MypageChangePasswordVC {
                 }
                 isNewConfirm = true
                 checkButton()
+            }
+        }
+        
+        if newPasswordTextField.text == "" {
+            showNewButton.isHidden = true
+            if confirmNewPasswordTextField.text == "" {
+                notVerifiyLabel.isHidden = true
+                UIView.animate(withDuration: 0.1) {
+                    self.labelStackView.transform = CGAffineTransform(translationX: 0, y: -10)
+                }
             }
         }
     }
