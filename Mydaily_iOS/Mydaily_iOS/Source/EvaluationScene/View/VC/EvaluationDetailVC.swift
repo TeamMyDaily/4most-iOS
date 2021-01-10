@@ -21,6 +21,7 @@ class EvaluationDetailVC: UIViewController {
         setTableView()
         setLabel()
     }
+    
 }
 
 extension EvaluationDetailVC: UITableViewDataSource {
