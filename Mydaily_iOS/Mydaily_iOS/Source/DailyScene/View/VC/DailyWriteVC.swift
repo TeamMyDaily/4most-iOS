@@ -91,6 +91,7 @@ extension DailyWriteVC {
     
     func setUI(){
         setTextView()
+        todayTextView.delegate = self
         textLabel.sizeToFit()
         textLabel.text = "아웃풋으로 채운\n하루에 대해 알려주세요"
         textLabel.numberOfLines = 2
@@ -110,7 +111,7 @@ extension DailyWriteVC {
         todayTitle.setLeftPaddingPoints(3)
         todayTitle.layer.addBorder([.bottom], color: .mainOrange, width: 1, move: 5)
         todayTitle.font = .myRegularSystemFont(ofSize: 16)
-        todayTitle.textColor = .mainLightGray
+        todayTitle.textColor = .mainBlack
         todayTitle.placeholder = "오늘 하루 무슨일이 있었나요?"
         
         labelCount.font = .myRegularSystemFont(ofSize: 12)
@@ -156,8 +157,8 @@ extension DailyWriteVC: UITextFieldDelegate {
 }
 
 extension DailyWriteVC: UITextViewDelegate {
+    
     func placeholderSetting() {
-        todayTextView.delegate = self
         todayTextView.font = .myRegularSystemFont(ofSize: 15)
         todayTextView.text = "조금 더 자세한 내용을 알려주세요!"
         todayTextView.textColor = UIColor.lightGray
@@ -167,7 +168,7 @@ extension DailyWriteVC: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.mainGray {
             textView.text = nil
-            textView.textColor = UIColor.mainGray
+            textView.textColor = UIColor.mainBlack
         }
         
     }

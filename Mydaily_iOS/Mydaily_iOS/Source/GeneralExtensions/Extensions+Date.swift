@@ -58,7 +58,7 @@ extension Date {
 
         print(comp1)
         guard let week = gregorian.date(from: gregorian.dateComponents([.day], from: self)) else { return nil }
-        
+    
         if comp1.weekday ?? 0 > 5{
             if Calendar.current.component(.weekday, from: self) == 1{ //일요일일때
                 return Calendar.current.component(.weekOfMonth, from: gregorian.date(byAdding: .day, value: -1, to: week)!)

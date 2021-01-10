@@ -58,7 +58,7 @@ extension GoalDetailVC {
         //        }()
         
         let rightButton: UIBarButtonItem = {
-            let button = UIBarButtonItem(title: "수정", style: .done, target: self, action: nil)
+            let button = UIBarButtonItem(title: "수정", style: .done, target: self, action: #selector(modify))
             button.setTitleTextAttributes([
                                             NSAttributedString.Key.font: UIFont.myRegularSystemFont(ofSize: 17),
                                             NSAttributedString.Key.foregroundColor: UIColor.mainOrange], for: .normal)
@@ -75,6 +75,11 @@ extension GoalDetailVC {
 //                }()
 //                navigationItem.leftBarButtonItem = leftButton
         navigationItem.rightBarButtonItem = rightButton
+    }
+    
+    @objc func modify(){
+        guard let VC = self.storyboard?.instantiateViewController(identifier: "GoalModifyVC") as? GoalModifyVC else {return}
+        self.navigationController?.pushViewController(VC, animated: true)
     }
     
     func setUI(){
