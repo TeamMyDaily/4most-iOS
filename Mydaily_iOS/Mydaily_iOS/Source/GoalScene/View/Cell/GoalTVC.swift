@@ -16,6 +16,7 @@ class GoalTVC: UITableViewCell {
     @IBOutlet weak var keywordName: UILabel!
     @IBOutlet weak var keywordDetail: UILabel!
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var achieveLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -48,5 +49,12 @@ extension GoalTVC {
         keywordDetail.textColor = UIColor.mainGray
         keywordDetail.sizeToFit()
         
+        achieveLabel.text = "미달성"
+        achieveLabel.clipsToBounds = true
+        achieveLabel.layer.cornerRadius = 10
+        achieveLabel.backgroundColor = .mainGray
+        achieveLabel.font = .myRegularSystemFont(ofSize: 12)
+        achieveLabel.textColor = .white
+        achieveLabel.textAlignment = .center
     }
 }

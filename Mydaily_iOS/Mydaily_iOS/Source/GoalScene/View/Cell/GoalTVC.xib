@@ -31,12 +31,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1I-He-5dO">
+                                <rect key="frame" x="82" y="13.5" width="52" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="aW2-DE-wxS"/>
+                                    <constraint firstAttribute="width" constant="52" id="ttd-lA-QKF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
                             <constraint firstItem="tkB-8b-hPp" firstAttribute="leading" secondItem="dfR-R4-rWs" secondAttribute="leading" constant="24" id="41h-zO-mNY"/>
+                            <constraint firstItem="x1I-He-5dO" firstAttribute="leading" secondItem="y7h-k3-fDc" secondAttribute="trailing" constant="16" id="86f-05-FfW"/>
                             <constraint firstItem="y7h-k3-fDc" firstAttribute="leading" secondItem="dfR-R4-rWs" secondAttribute="leading" constant="24" id="W0Z-ci-Jlp"/>
                             <constraint firstItem="y7h-k3-fDc" firstAttribute="top" secondItem="dfR-R4-rWs" secondAttribute="top" constant="13" id="cqv-Yr-L4l"/>
                             <constraint firstItem="tkB-8b-hPp" firstAttribute="top" secondItem="y7h-k3-fDc" secondAttribute="bottom" constant="16" id="pnX-nY-oz6"/>
+                            <constraint firstItem="x1I-He-5dO" firstAttribute="centerY" secondItem="y7h-k3-fDc" secondAttribute="centerY" id="zVR-iL-ucM"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -63,6 +75,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="achieveLabel" destination="x1I-He-5dO" id="hfw-lB-06I"/>
                 <outlet property="addButton" destination="kgK-a0-2Xe" id="6hh-1D-9nB"/>
                 <outlet property="keywordDetail" destination="tkB-8b-hPp" id="Dwb-9l-6cc"/>
                 <outlet property="keywordName" destination="y7h-k3-fDc" id="4hE-A9-g5R"/>

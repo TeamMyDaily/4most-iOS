@@ -14,13 +14,24 @@ class GoalVC: UIViewController {
     @IBOutlet weak var goalCountLabel: UILabel!
     @IBOutlet weak var goalTableView: UITableView!
     
+    let dateButton: UIButton = {
+                $0.translatesAutoresizingMaskIntoConstraints = false
+                $0.setTitle("오늘 >", for: .normal)
+                $0.layer.cornerRadius = 20
+                $0.backgroundColor = .mainBlack
+                $0.titleLabel?.font = .myMediumSystemFont(ofSize: 16)
+                $0.setTitleColor(.white, for: .normal)
+//                $0.addTarget(self, action: #selector(setToday), for: .allTouchEvents)
+                return $0
+            }(UIButton(frame: .zero))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupNavigationBar(.clear, titlelabel: "목표")
         setDateLabel()
-        setupTableView()
         setUI()
+        setupTableView()
     }
 }
 
@@ -29,7 +40,6 @@ extension GoalVC {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yy년 MM월 dd일"
         dateLabel.text = dateFormatter.string(from: Date())
-        
         dateLabel.textColor = .mainOrange
         dateLabel.font = .myBoldSystemFont(ofSize: 12)
         dateLabel.sizeToFit()
@@ -46,6 +56,16 @@ extension GoalVC {
         goalCountLabel.font = .myRegularSystemFont(ofSize: 12)
         goalCountLabel.textColor = .mainOrange
         goalCountLabel.sizeToFit()
+ 
+        self.goalTableView.addSubview(dateButton)
+        
+        NSLayoutConstraint.activate([
+            dateButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -40),
+            dateButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            dateButton.widthAnchor.constraint(equalToConstant: 66),
+            dateButton.heightAnchor.constraint(equalToConstant: 32)
+        ])
+        
     }
 }
 

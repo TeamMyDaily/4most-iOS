@@ -189,3 +189,4 @@ extension DailyWriteVC: UITextViewDelegate {
         textViewCount.text = "\(textView.text.count)"
     }
 }
+

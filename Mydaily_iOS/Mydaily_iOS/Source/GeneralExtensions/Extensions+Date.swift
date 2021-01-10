@@ -32,3 +32,23 @@ extension Date {
   }
 }
 
+extension Date {
+    var startOfWeek: Date? {
+        let gregorian = Calendar(identifier: .gregorian)
+        guard let monday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) else { return nil }
+        if Calendar.current.component(.weekday, from: self) == 1{ //일요일일때
+            return gregorian.date(byAdding: .day, value: -5, to: monday)
+        }else{
+            return gregorian.date(byAdding: .day, value: 2, to: monday)
+        }
+    }
+    var endOfWeek: Date? {
+        let gregorian = Calendar(identifier: .gregorian)
+        guard let sunday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) else { return nil }
+        if Calendar.current.component(.weekday, from: self) == 1{ //일요일일때
+            return gregorian.date(byAdding: .day, value: 1, to: sunday)
+        }else{
+            return gregorian.date(byAdding: .day, value: 8, to: sunday)
+        }
+    }
+}

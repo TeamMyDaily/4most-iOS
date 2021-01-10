@@ -31,7 +31,7 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+            
         setTableVC()
         setupNavigationBar(.clear, titlelabel: "")
         floatingButton()
@@ -61,6 +61,9 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
    
     @IBAction func changedDate(_ sender: Any) {
         setDate()
+
+        print("&\(datePicker.date.startOfWeek!)")
+        print("&\(datePicker.date.endOfWeek!)")
     }
 }
 
@@ -155,3 +158,5 @@ extension DailyVC {
         tableView.separatorInset.left = 16
     }
 }
+
+
