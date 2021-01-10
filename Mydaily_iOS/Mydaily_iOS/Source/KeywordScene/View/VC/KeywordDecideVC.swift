@@ -36,6 +36,8 @@ class KeywordDecideVC: UIViewController {
         var i = 0
         var count = 0
         for txt in keywordList{
+            print("--------\(keywordAndDefinition[i][txt])-------")
+            
             if keywordAndDefinition[i][txt] != ""{
                 keywordUIButtonList[i].setTitleColor(UIColor.mainBlack, for: .normal)
                 numberLabelList[i].textColor = UIColor.mainLightOrange
@@ -72,7 +74,17 @@ class KeywordDecideVC: UIViewController {
         
         let selectedText = sender.titleLabel?.text ?? ""
         
-        dvc.setKeyword(text: selectedText)
+        var i = 0
+        print("--------현재 정의된 키워드-------")
+        for (key, value) in keywordAndDefinition[i]{
+            if key == selectedText{
+                dvc.setKeywordAndDefinition(key: key, value: value)
+                break
+            }
+            i += 1
+        }
+        
+        
         
         self.navigationController?.pushViewController(dvc, animated: true)
         
@@ -91,7 +103,8 @@ class KeywordDecideVC: UIViewController {
     func setKeywordDefinition(key: String, value: String){
       
         for i in 0..<4{
-            if keywordAndDefinition[i][key] != nil{
+            
+            if keywordAndDefinition[i][key] != ""{
                 keywordAndDefinition[i].updateValue(value, forKey: key)
             }
             

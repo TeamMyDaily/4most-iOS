@@ -22,8 +22,6 @@ class AddUserKeywordVC: UIViewController {
    
     var keywordArray:[String] = []
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
@@ -31,6 +29,7 @@ class AddUserKeywordVC: UIViewController {
         keywordTextField.delegate = self
         addButton.isEnabled = false
     }
+    
     
     func setKeywordArray(list: [String]){
         keywordArray = list
@@ -75,6 +74,7 @@ extension AddUserKeywordVC: UITextFieldDelegate{
             noticeLabel.text = "잠깐! 공백은 입력할 수 없어요!"
             return false
         }
+        
         if textField.isFirstResponder {
             let validString = CharacterSet(charactersIn: "!@#$%^&*()_+{}[]|\"<>,.~`/:;?-=\\¥'£•¢")
             if string.rangeOfCharacter(from: validString) != nil {
