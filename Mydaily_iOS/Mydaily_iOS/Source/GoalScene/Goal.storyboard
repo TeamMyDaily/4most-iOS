@@ -197,7 +197,7 @@
                                     <constraint firstAttribute="height" constant="1" id="MUi-Lz-HHC"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Rb-UW-jdC">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Rb-UW-jdC">
                                 <rect key="frame" x="23.5" y="231" width="328" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="328" id="VTh-Jy-vvh"/>
@@ -233,6 +233,9 @@
                                     <constraint firstAttribute="height" constant="24" id="y4p-VG-Pfo"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="checkButton:" destination="GLo-Y0-TaA" eventType="touchUpInside" id="ags-4o-Ttw"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9Ak-eL-kQ1"/>
@@ -243,6 +246,7 @@
                             <constraint firstItem="8lZ-ap-334" firstAttribute="top" secondItem="vTa-74-3RH" secondAttribute="bottom" constant="48" id="6sc-0h-QrB"/>
                             <constraint firstItem="Wky-lq-RmS" firstAttribute="leading" secondItem="9Ak-eL-kQ1" secondAttribute="leading" constant="16" id="GcJ-YV-TFX"/>
                             <constraint firstItem="B9a-JM-IFz" firstAttribute="centerX" secondItem="9Ak-eL-kQ1" secondAttribute="centerX" id="Px6-1R-UnE"/>
+                            <constraint firstItem="5Rb-UW-jdC" firstAttribute="top" secondItem="8lZ-ap-334" secondAttribute="bottom" constant="20" id="Sgs-8O-wHo"/>
                             <constraint firstItem="vTa-74-3RH" firstAttribute="top" secondItem="Wky-lq-RmS" secondAttribute="bottom" constant="16" id="ULa-IB-CeA"/>
                             <constraint firstItem="vTa-74-3RH" firstAttribute="leading" secondItem="Wky-lq-RmS" secondAttribute="leading" id="VPe-hv-Glu"/>
                             <constraint firstItem="B9a-JM-IFz" firstAttribute="centerX" secondItem="5Rb-UW-jdC" secondAttribute="centerX" id="VtQ-q0-zn9"/>
@@ -255,6 +259,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="checkButton" destination="8lZ-ap-334" id="a50-2Z-Zgc"/>
                         <outlet property="checkLabel" destination="8cu-D5-Ms3" id="y96-so-Q79"/>
                         <outlet property="goalButton" destination="5Rb-UW-jdC" id="h3l-s2-dRQ"/>
                         <outlet property="goalLabel" destination="vTa-74-3RH" id="WtP-Zg-eWu"/>

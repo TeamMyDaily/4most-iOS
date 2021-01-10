@@ -12,28 +12,33 @@ class GoalDetailVC: UIViewController {
     @IBOutlet weak var weekLabel: UILabel!
     @IBOutlet weak var keywordLabel: UILabel!
     @IBOutlet weak var goalLabel: UILabel!
-    @IBOutlet weak var checkButton: UIImageView!
+    @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var checkLabel: UILabel!
     @IBOutlet weak var goalButton: UIButton!
+    var goal = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        goal = false // 서버연결시 !!
         setupNavigationBar()
         setUI()
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func checkButton(_ sender: Any) {
+        if goal == false {
+            checkLabel.text = "목표 달성시 체크"
+            checkLabel.font = .myLightSystemFont(ofSize: 12)
+            checkLabel.textColor = .mainOrange
+            goal = true
+        }
+        else{
+            checkLabel.text = "목표 달성시 체크"
+            checkLabel.font = .myLightSystemFont(ofSize: 12)
+            checkLabel.textColor = .mainGray
+            goal = false
+        }
     }
-    */
-
+    
 }
 
 extension GoalDetailVC {
@@ -91,10 +96,24 @@ extension GoalDetailVC {
         checkLabel.font = .myLightSystemFont(ofSize: 12)
         checkLabel.textColor = .mainGray
         
+        goalButton.isEnabled = false
         goalButton.layer.cornerRadius = 15
         goalButton.backgroundColor = .mainGray
         goalButton.setTitle("목표 달성", for: .normal)
         goalButton.setTitleColor(.white, for: .normal)
         goalButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
+        
+        checkButton.addTarget(self, action: #selector(enabledButton), for: .allEvents)
+    }
+    
+    @objc func enabledButton() {
+        if goal == true {
+            goalButton.backgroundColor = .mainOrange
+            goalButton.isEnabled = true
+        }
+        else{
+            goalButton.backgroundColor = .mainGray
+            goalButton.isEnabled = false
+        }
     }
 }
