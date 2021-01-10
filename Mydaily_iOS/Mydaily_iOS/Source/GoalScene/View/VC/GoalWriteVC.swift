@@ -16,13 +16,13 @@ class GoalWriteVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupNavigationBar(.clear, titlelabel: "목표")
+        setupNavigationBar()
         setUI()
         placeholderSetting()
         
     }
     @IBAction func saveButton(_ sender: Any) {
-        print("")
+        self.navigationController?.popViewController(animated: true)
     }
 }
 
@@ -50,6 +50,41 @@ extension GoalWriteVC {
         saveButton.setTitle("작성완료", for: .normal)
         saveButton.setTitleColor(.white, for: .normal)
         saveButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
+    }
+    
+    private func setupNavigationBar() {
+        guard let navigationBar = self.navigationController?.navigationBar else { return }
+        
+        navigationBar.isTranslucent = true
+        navigationBar.backgroundColor = UIColor.white
+        navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationBar.shadowImage = UIImage()
+        
+        self.navigationItem.title = "목표"
+        
+                let leftButton: UIBarButtonItem = {
+                    let button = UIBarButtonItem(image: UIImage(named: "backArrowIc"), style: .plain, target: self, action: #selector(cancelAlertaction))
+                    return button
+                }()
+        navigationItem.leftBarButtonItem = leftButton
+    }
+    
+    @objc
+    private func cancelAlertaction() {
+        
+        let alert = UIAlertController(
+            title: "주의!",
+            message: "작성중인 글을 취소하시겠습니까?\n취소할 시, 작성된 글은 저장되지 않습니다.",
+            preferredStyle: UIAlertController.Style.alert
+        )
+        let cancel = UIAlertAction(title: "작성취소", style: .destructive) {
+            _ in
+            self.navigationController?.dismiss(animated: true, completion: nil)
+        }
+        let okAction = UIAlertAction(title: "닫기", style: .default)
+        alert.addAction(cancel)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
 }
 

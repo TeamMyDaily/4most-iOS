@@ -37,13 +37,13 @@ extension GoalModifyVC {
         
         self.navigationItem.title = "목표"
         
-        //        let leftButton: UIBarButtonItem = {
-        //            let button = UIBarButtonItem(image: UIImage(named: "backArrowIc"), style: .plain, target: self, action: #selector(dismissVC))
-        //            return button
-        //        }()
+                let leftButton: UIBarButtonItem = {
+                    let button = UIBarButtonItem(image: UIImage(named: "backArrowIc"), style: .plain, target: self, action: #selector(cancelAlertaction))
+                    return button
+                }()
         
         let rightButton: UIBarButtonItem = {
-            let button = UIBarButtonItem(title: "삭제", style: .done, target: self, action: nil)
+            let button = UIBarButtonItem(title: "삭제", style: .done, target: self, action: #selector(deleteGoal))
             button.setTitleTextAttributes([
                                             NSAttributedString.Key.font: UIFont.myRegularSystemFont(ofSize: 17),
                                             NSAttributedString.Key.foregroundColor: UIColor.mainOrange], for: .normal)
@@ -53,13 +53,39 @@ extension GoalModifyVC {
             
             return button
         }()
-        
-//                let leftButton: UIBarButtonItem = {
-//                    let button = UIBarButtonItem(image: UIImage(named: "backArrowIc"), style: .plain, target: self, action: #selector(dismissVC))
-//                    return button
-//                }()
-//                navigationItem.leftBarButtonItem = leftButton
+        navigationItem.leftBarButtonItem = leftButton
         navigationItem.rightBarButtonItem = rightButton
+    }
+    
+    @objc
+    private func cancelAlertaction() {
+        
+        let alert = UIAlertController(
+            title: "주의!",
+            message: "작성중인 글을 취소하시겠습니까?\n취소할 시, 작성된 글은 저장되지 않습니다.",
+            preferredStyle: UIAlertController.Style.alert
+        )
+        let cancel = UIAlertAction(title: "작성취소", style: .destructive) {
+            _ in
+            self.dismiss(animated: true, completion: nil)
+        }
+        let okAction = UIAlertAction(title: "닫기", style: .default)
+        alert.addAction(cancel)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func deleteGoal(){
+        let alertViewController = UIAlertController(title: "목표를 삭제 하시겠어요?", message: nil, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "취소하기", style: .cancel, handler : nil)
+        let deleteAction = UIAlertAction(title: "삭제하기", style: .destructive) { (action) in
+        //Implement action
+        }
+        
+        alertViewController.addAction(alertAction)
+        alertViewController.addAction(deleteAction)
+        
+        present(alertViewController, animated: false, completion: nil)
     }
     
     func setUI(){
