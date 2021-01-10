@@ -16,7 +16,7 @@ class GoalWriteVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupNavigationBar(.clear, titlelabel: "목표 설정")
+        setupNavigationBar(.clear, titlelabel: "목표")
         setUI()
         placeholderSetting()
         

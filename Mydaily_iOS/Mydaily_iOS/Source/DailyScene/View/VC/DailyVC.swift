@@ -64,6 +64,7 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
 
         print("&\(datePicker.date.startOfWeek!)")
         print("&\(datePicker.date.endOfWeek!)")
+        print("@\(datePicker.date.containWeek)")
     }
 }
 

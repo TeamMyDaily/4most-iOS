@@ -32,13 +32,14 @@ class GoalVC: UIViewController {
         setDateLabel()
         setUI()
         setupTableView()
+        print(Date().containWeek)
     }
 }
 
 extension GoalVC {
     func setDateLabel(){
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yy년 MM월 dd일"
+        dateFormatter.dateFormat = "yy년 MM월 주"
         dateLabel.text = dateFormatter.string(from: Date())
         dateLabel.textColor = .mainOrange
         dateLabel.font = .myBoldSystemFont(ofSize: 12)
@@ -102,8 +103,14 @@ extension GoalVC: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let VC = self.storyboard?.instantiateViewController(identifier: "GoalWriteVC") as? GoalWriteVC else {return}
-        self.navigationController?.pushViewController(VC, animated: true)
+        if indexPath.row == 0{
+            guard let VC = self.storyboard?.instantiateViewController(identifier: "GoalWriteVC") as? GoalWriteVC else {return}
+            self.navigationController?.pushViewController(VC, animated: true)
+        }
+        else{
+            guard let VC = self.storyboard?.instantiateViewController(identifier: "GoalDetailVC") as? GoalDetailVC else {return}
+            self.navigationController?.pushViewController(VC, animated: true)
+        }
     }
 }
 

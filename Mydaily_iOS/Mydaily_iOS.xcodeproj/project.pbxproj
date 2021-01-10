@@ -21,6 +21,7 @@
 		AE53FBBC25A733E900D62AA7 /* GoalWriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FBBB25A733E900D62AA7 /* GoalWriteVC.swift */; };
 		AE53FBC225A8590D00D62AA7 /* DetailTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE53FBC025A8590D00D62AA7 /* DetailTVC.xib */; };
 		AE53FBC725A98E9500D62AA7 /* DetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FBC625A98E9500D62AA7 /* DetailTVC.swift */; };
+		AE53FBCB25AAFA6300D62AA7 /* GoalDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FBCA25AAFA6200D62AA7 /* GoalDetailVC.swift */; };
 		AE76C03E259B1A6D007B3901 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE76C03D259B1A6D007B3901 /* AppDelegate.swift */; };
 		AE76C040259B1A6D007B3901 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE76C03F259B1A6D007B3901 /* SceneDelegate.swift */; };
 		AE76C047259B1A6E007B3901 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE76C046259B1A6E007B3901 /* Assets.xcassets */; };
@@ -81,6 +82,7 @@
 		AE53FBBB25A733E900D62AA7 /* GoalWriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalWriteVC.swift; sourceTree = "<group>"; };
 		AE53FBC025A8590D00D62AA7 /* DetailTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTVC.xib; sourceTree = "<group>"; };
 		AE53FBC625A98E9500D62AA7 /* DetailTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailTVC.swift; path = ../../../../../../../../DetailTVC.swift; sourceTree = "<group>"; };
+		AE53FBCA25AAFA6200D62AA7 /* GoalDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailVC.swift; sourceTree = "<group>"; };
 		AE76C03A259B1A6D007B3901 /* Mydaily_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mydaily_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE76C03D259B1A6D007B3901 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE76C03F259B1A6D007B3901 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			children = (
 				AE53FB9D25A6B1E600D62AA7 /* GoalVC.swift */,
 				AE53FBBB25A733E900D62AA7 /* GoalWriteVC.swift */,
+				AE53FBCA25AAFA6200D62AA7 /* GoalDetailVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -559,6 +562,7 @@
 				EDB8F39625A338EE00F39A09 /* RetrospectiveWriteGoodTVC.swift in Sources */,
 				AED84DEE25A558B30050D861 /* Extensions+UIFont.swift in Sources */,
 				ED266029259EF02E00A376C0 /* EvaluationTabCVC.swift in Sources */,
+				AE53FBCB25AAFA6300D62AA7 /* GoalDetailVC.swift in Sources */,
 				EDA9CA8425A1A74D00BF46C1 /* DetailRecordContentTVC.swift in Sources */,
 				AED84DF625A558B30050D861 /* UIView+Animation.swift in Sources */,
 				AED84DED25A558B30050D861 /* Extensions+UIApplication.swift in Sources */,
