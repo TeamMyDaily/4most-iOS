@@ -35,19 +35,17 @@ class KeywordDecideVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         var i = 0
         var count = 0
+        print("---------------")
         for txt in keywordList{
-            print("--------\(keywordAndDefinition[i][txt])-------")
-            
             if keywordAndDefinition[i][txt] != ""{
                 keywordUIButtonList[i].setTitleColor(UIColor.mainBlack, for: .normal)
                 numberLabelList[i].textColor = UIColor.mainLightOrange
                 count += 1
             }
             
-            print("--------현재 정의된 키워드-------")
             for (key, value) in keywordAndDefinition[i]{
                 
-                print("key = \(key), value = \(value)")
+                print(" \(i) key = \(key), value = \(value)")
             }
             i += 1
         }
@@ -67,24 +65,26 @@ class KeywordDecideVC: UIViewController {
         
     }
     
+    @IBAction func touchUpCompletedKeyword(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func goToKeywordDefineView(_ sender: UIButton){
         guard let dvc = self.storyboard?.instantiateViewController(identifier: KeywordDefineVC.identifier) as? KeywordDefineVC else {
+            print("설마 리턴?")
             return
         }
         
-        let selectedText = sender.titleLabel?.text ?? ""
+        let selectedKeyword = sender.titleLabel?.text ?? ""
         
-        var i = 0
-        print("--------현재 정의된 키워드-------")
-        for (key, value) in keywordAndDefinition[i]{
-            if key == selectedText{
-                dvc.setKeywordAndDefinition(key: key, value: value)
-                break
+        for i in 0..<4{
+            for (key, value) in keywordAndDefinition[i]{
+                if key == selectedKeyword{
+                    dvc.setKeywordAndDefinition(key: key, value: value)
+                    break
+                }
             }
-            i += 1
         }
-        
-        
         
         self.navigationController?.pushViewController(dvc, animated: true)
         
@@ -94,24 +94,15 @@ class KeywordDecideVC: UIViewController {
         keywordList = list
         for i in 0..<4{
             keywordAndDefinition.append([list[i] : ""])
-            
         }
-        
-      
+       
     }
     
     func setKeywordDefinition(key: String, value: String){
-      
+
         for i in 0..<4{
-            
-            if keywordAndDefinition[i][key] != ""{
+            if keywordAndDefinition[i][key] != nil{
                 keywordAndDefinition[i].updateValue(value, forKey: key)
-            }
-            
-            print("--------현재 정의-------")
-            for (key, value) in keywordAndDefinition[i]{
-                
-                print("key = \(key), value = \(value)")
             }
         }
         
@@ -193,6 +184,5 @@ extension KeywordDecideVC{
     @objc func dismissVC() {
       self.navigationController?.popViewController(animated: true)
     }
-    
     
 }
