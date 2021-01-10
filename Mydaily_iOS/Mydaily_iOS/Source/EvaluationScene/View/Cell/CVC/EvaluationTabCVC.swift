@@ -196,8 +196,8 @@ extension EvaluationTabCVC {
 //MARK: Notification
 extension EvaluationTabCVC {
     private func setNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(sendBeforeWeek), name: NSNotification.Name(rawValue: "BeforeWeek"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(sendAfterWeek), name: NSNotification.Name(rawValue: "AfterWeek"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(sendBeforeWeek), name: NSNotification.Name(rawValue: "LastWeek"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(sendAfterWeek), name: NSNotification.Name(rawValue: "NextWeek"), object: nil)
     }
     
     @objc func sendBeforeWeek() {

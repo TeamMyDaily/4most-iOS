@@ -18,12 +18,8 @@ class EvaluationDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
-        setTableViewDelegate()
+        setTableView()
         setLabel()
-    }
-    
-    @IBAction func touchUpBack(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
     }
 }
 
@@ -66,6 +62,7 @@ extension EvaluationDetailVC: UITableViewDelegate {
         } else if indexPath.section == 1 {
             return 42
         }
+        
         var calculateHeight: CGFloat = 0
         if listCount == 0 {
             calculateHeight = 368
@@ -81,6 +78,14 @@ extension EvaluationDetailVC: UITableViewDelegate {
     }
 }
 
+//MARK: Action
+extension EvaluationDetailVC {
+    @IBAction func touchUpBack(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+}
+
+//MARK: UI
 extension EvaluationDetailVC {
     private func setNavigationBar() {
         navigationTitleLabel.text = "회고"
@@ -88,7 +93,7 @@ extension EvaluationDetailVC {
         navigationTitleLabel.font = .myBoldSystemFont(ofSize: 20)
     }
     
-    private func setTableViewDelegate() {
+    private func setTableView() {
         keywordDetailTableView.delegate = self
         keywordDetailTableView.dataSource = self
         keywordDetailTableView.rowHeight = UITableView.automaticDimension
@@ -100,6 +105,7 @@ extension EvaluationDetailVC {
         keywordLabel.font = .myBoldSystemFont(ofSize: 32)
         keywordLabel.text = "아웃풋"
         keywordLabel.textColor = .mainBlack
+        
         weekLabel.font = .myRegularSystemFont(ofSize: 12)
         weekLabel.text = "20년 12월 3주"
         weekLabel.textColor = .mainGray
