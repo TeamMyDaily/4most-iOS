@@ -71,7 +71,6 @@ class KeywordDecideVC: UIViewController {
     
     @IBAction func goToKeywordDefineView(_ sender: UIButton){
         guard let dvc = self.storyboard?.instantiateViewController(identifier: KeywordDefineVC.identifier) as? KeywordDefineVC else {
-            print("설마 리턴?")
             return
         }
         

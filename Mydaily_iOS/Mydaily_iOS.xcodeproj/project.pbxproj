@@ -11,6 +11,10 @@
 		3C42976A259F16D10061483E /* KeywordSettingTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C429768259F16D10061483E /* KeywordSettingTVC.xib */; };
 		3C4CBF9625A386E90007A6FF /* NextKeywordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4CBF9525A386E90007A6FF /* NextKeywordVC.swift */; };
 		3C5D94DD259D8B2700BF8DC9 /* KeywordSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5D94DC259D8B2700BF8DC9 /* KeywordSettingVC.swift */; };
+		3C71FE3825AB7226007BC463 /* RecordKeywordTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71FE3625AB7226007BC463 /* RecordKeywordTVC.swift */; };
+		3C71FE3925AB7226007BC463 /* RecordKeywordTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C71FE3725AB7226007BC463 /* RecordKeywordTVC.xib */; };
+		3C71FE4225AB7BA6007BC463 /* UserKeywordTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71FE4025AB7BA6007BC463 /* UserKeywordTVC.swift */; };
+		3C71FE4325AB7BA6007BC463 /* UserKeywordTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C71FE4125AB7BA6007BC463 /* UserKeywordTVC.xib */; };
 		3CB1214D25A778CB0080E60F /* KeywordDefineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB1214C25A778CB0080E60F /* KeywordDefineVC.swift */; };
 		3CC86426259CAFCB0043421A /* Keyword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CC86425259CAFCB0043421A /* Keyword.storyboard */; };
 		3CC8642C259CAFEE0043421A /* KeywordPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC8642B259CAFEE0043421A /* KeywordPopUpVC.swift */; };
@@ -87,6 +91,10 @@
 		3C429768259F16D10061483E /* KeywordSettingTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeywordSettingTVC.xib; sourceTree = "<group>"; };
 		3C4CBF9525A386E90007A6FF /* NextKeywordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextKeywordVC.swift; sourceTree = "<group>"; };
 		3C5D94DC259D8B2700BF8DC9 /* KeywordSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordSettingVC.swift; sourceTree = "<group>"; };
+		3C71FE3625AB7226007BC463 /* RecordKeywordTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordKeywordTVC.swift; sourceTree = "<group>"; };
+		3C71FE3725AB7226007BC463 /* RecordKeywordTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordKeywordTVC.xib; sourceTree = "<group>"; };
+		3C71FE4025AB7BA6007BC463 /* UserKeywordTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserKeywordTVC.swift; sourceTree = "<group>"; };
+		3C71FE4125AB7BA6007BC463 /* UserKeywordTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserKeywordTVC.xib; sourceTree = "<group>"; };
 		3CB1214C25A778CB0080E60F /* KeywordDefineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordDefineVC.swift; sourceTree = "<group>"; };
 		3CC86425259CAFCB0043421A /* Keyword.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Keyword.storyboard; sourceTree = "<group>"; };
 		3CC8642B259CAFEE0043421A /* KeywordPopUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeywordPopUpVC.swift; sourceTree = "<group>"; };
@@ -354,8 +362,8 @@
 			isa = PBXGroup;
 			children = (
 				AED84DE125A558B30050D861 /* Extensions+String.swift */,
-				AED84DE225A558B30050D861 /* Extensions+UIApplication.swift */,
 				AED84DE325A558B30050D861 /* Extensions+UIFont.swift */,
+				AED84DE225A558B30050D861 /* Extensions+UIApplication.swift */,
 				AED84DE425A558B30050D861 /* Extensions+UIColor.swift */,
 				AED84DE525A558B30050D861 /* Extensions+UITextField.swift */,
 				AED84DE625A558B30050D861 /* Extensions+Encodable.swift */,
@@ -518,6 +526,10 @@
 			children = (
 				EDAAFA2725A83B7000424BF9 /* SettingSecurityTVC.swift */,
 				EDAAFA2D25A8535400424BF9 /* SettingVersionTVC.swift */,
+				3C71FE3625AB7226007BC463 /* RecordKeywordTVC.swift */,
+				3C71FE3725AB7226007BC463 /* RecordKeywordTVC.xib */,
+				3C71FE4025AB7BA6007BC463 /* UserKeywordTVC.swift */,
+				3C71FE4125AB7BA6007BC463 /* UserKeywordTVC.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -608,8 +620,10 @@
 				AEFB21F2259C46C500A3228C /* Tabbar.storyboard in Resources */,
 				3C42976A259F16D10061483E /* KeywordSettingTVC.xib in Resources */,
 				3CC86434259CCCB00043421A /* ContentCVC.xib in Resources */,
+				3C71FE4325AB7BA6007BC463 /* UserKeywordTVC.xib in Resources */,
 				3CC86426259CAFCB0043421A /* Keyword.storyboard in Resources */,
 				AE53FBAE25A6E97400D62AA7 /* OFL.txt in Resources */,
+				3C71FE3925AB7226007BC463 /* RecordKeywordTVC.xib in Resources */,
 				AE76C04A259B1A6E007B3901 /* LaunchScreen.storyboard in Resources */,
 				AE53FBAB25A6E97400D62AA7 /* NotoSansKR-Light.otf in Resources */,
 				AE76C047259B1A6E007B3901 /* Assets.xcassets in Resources */,
@@ -626,7 +640,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDB8F39B25A3910E00F39A09 /* RetrospectiveWriteShameTVC.swift in Sources */,
+				3C71FE4225AB7BA6007BC463 /* UserKeywordTVC.swift in Sources */,
 				3C5D94DD259D8B2700BF8DC9 /* KeywordSettingVC.swift in Sources */,
 				DEC98B8625A483C300CC522C /* KeywordPriorityVC.swift in Sources */,
 				EDC1642925A4617600CD65B0 /* RetrospectiveWriteVC.swift in Sources */,
@@ -658,6 +672,7 @@
 				3CB1214D25A778CB0080E60F /* KeywordDefineVC.swift in Sources */,
 				DEC98B8A25A486DC00CC522C /* KeywordPriorityTVC.swift in Sources */,
 				3CC86433259CCCB00043421A /* ContentCVC.swift in Sources */,
+				3C71FE3825AB7226007BC463 /* RecordKeywordTVC.swift in Sources */,
 				AE76C040259B1A6D007B3901 /* SceneDelegate.swift in Sources */,
 				ED266033259F019B00A376C0 /* EvaluationHeaderTVC.swift in Sources */,
 				DEC98B8125A4435300CC522C /* KeywordDecideVC.swift in Sources */,
