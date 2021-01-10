@@ -32,15 +32,17 @@ class GoalVC: UIViewController {
         setDateLabel()
         setUI()
         setupTableView()
-        print(Date().containWeek)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yy년 MM월 W주"
+        print("\(dateFormatter.string(from: Date().containWeek!))")
     }
 }
 
 extension GoalVC {
     func setDateLabel(){
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yy년 MM월 주"
-        dateLabel.text = dateFormatter.string(from: Date())
+        dateFormatter.dateFormat = "yy년 MM월 W주"
+        dateLabel.text = dateFormatter.string(from: Date().containWeek!)
         dateLabel.textColor = .mainOrange
         dateLabel.font = .myBoldSystemFont(ofSize: 12)
         dateLabel.sizeToFit()

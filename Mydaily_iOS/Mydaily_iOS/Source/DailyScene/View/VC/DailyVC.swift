@@ -62,9 +62,11 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
     @IBAction func changedDate(_ sender: Any) {
         setDate()
 
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yy년 MM월 W주"
         print("&\(datePicker.date.startOfWeek!)")
         print("&\(datePicker.date.endOfWeek!)")
-        print("@\(datePicker.date.containWeek)")
+        print("@\(dateFormatter.string(from: datePicker.date.containWeek!))")
     }
 }
 

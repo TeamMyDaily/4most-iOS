@@ -52,27 +52,64 @@ extension Date {
         }
     }
     
-    var containWeek: Int? {
+    var containWeek: Date? {
         let gregorian = Calendar(identifier: .gregorian)
         let startOfMonth = gregorian.date(from: gregorian.dateComponents([.year, .month], from: self))
+        let nextMonth = gregorian.date(byAdding: .month, value: 1, to: self)
+        let nextStartOfMonth = gregorian.date(from: gregorian.dateComponents([.year, .month], from: nextMonth!))
         let comp1 = gregorian.dateComponents([.weekday], from: startOfMonth!)
 
-        guard let week = gregorian.date(from: gregorian.dateComponents([.day], from: self)) else { return nil }
-    
-        if comp1.weekday ?? 0 > 5{
+        if comp1.weekday ?? 0 > 5{ //시작주가 목요일 이후부터 시작할때 (첫주 과반수가 저번달일때)
             if Calendar.current.component(.weekday, from: self) == 1{ //일요일일때
-//                return Calendar.current.component(.weekOfMonth, from: gregorian.date(byAdding: .weekday, value: -1, to: week)!)
-                return Calendar.current.component(.weekOfMonth, from: week)
-            }else{
-                return Calendar.current.component(.weekOfMonth, from: gregorian.date(byAdding: .day, value: 0, to: week)!)
-//                return gregorian.date(byAdding: .weekOfMonth, value: -1, to: week)
+                if Calendar.current.component(.weekOfMonth, from: self) == 2 { //시작주 일요일일때
+                    print("1")
+                   return gregorian.date(byAdding: .weekOfMonth, value: -1, to: self)
+                }
+                else if Calendar.current.component(.weekOfMonth, from: self) == 3{ //시작주 다음주 일요일일때
+                    print("2")
+                    return gregorian.date(byAdding: .weekOfMonth, value: 0, to: startOfMonth!)
+                }
+                else{ //나머지
+                    print("3")
+                    return gregorian.date(byAdding: .weekOfMonth, value: -2, to: self)
+                }
+            }else{ //일요일 이외의 요일일때
+                if Calendar.current.component(.weekOfMonth, from: self) == 2{ //시작주 요일일때
+                    print("4")
+                    return gregorian.date(byAdding: .weekOfMonth, value: 0, to: startOfMonth!)
+                }
+                else{ //시작주 이외의 요일일때
+                    //문제
+                    if Calendar.current.component(.weekOfMonth, from: self) == 6 && Calendar.current.component(.weekday, from: self) < 5{
+                        print("5") //문제
+                        return gregorian.date(byAdding: .weekOfMonth, value: 0, to: nextStartOfMonth!)
+                    }
+                    else{
+                        print("5-1")
+                        return gregorian.date(byAdding: .weekOfMonth, value: -1, to: startOfWeek!)
+                    }
+                }
             }
         }
-        else{
+        else{ //시작주가 목요일 이전부터 시작할때 (첫주 과반수가 이번달일때)
             if Calendar.current.component(.weekday, from: self) == 1{ //일요일일때
-                return Calendar.current.component(.weekOfMonth, from: gregorian.date(byAdding: .day, value: -2, to: week)!)
+                if Calendar.current.component(.weekOfMonth, from: self) == 2 { //시작주 일요일일때
+                    print("6")
+                    return gregorian.date(byAdding: .weekOfMonth, value: 0, to: startOfMonth!)
+                }
+                else {
+                    print("7")
+                    return gregorian.date(byAdding: .weekOfMonth, value: -1, to: self)
+                }
             }else{
-                return Calendar.current.component(.weekOfMonth, from: self)
+                if Calendar.current.component(.weekOfMonth, from: self) == 5 && Calendar.current.component(.weekday, from: self) < 5{
+                    print("8") //문제
+                    return gregorian.date(byAdding: .weekOfMonth, value: 0, to: startOfWeek!)
+                }
+                else{
+                    print("9")
+                    return gregorian.date(byAdding: .weekOfMonth, value: 0, to: self)
+                }
             }
         }
     }

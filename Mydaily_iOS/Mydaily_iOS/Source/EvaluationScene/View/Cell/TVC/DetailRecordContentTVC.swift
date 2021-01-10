@@ -11,11 +11,20 @@ class DetailRecordContentTVC: UITableViewCell {
     static let identifier = "DetailRecordContentTVC"
     
     @IBOutlet weak var recordCollectionView: UICollectionView!
+    @IBOutlet weak var noRecordView: UIView!
     
-    var list: [String] = ["IT 기술에 관한 아티클 정리하기", "글감수집하기", "아티클 리뷰하기", "20글자를써보자20글자를써보자20글자", "mydaily==4most","12345678910111213141", "IT 기술에 관한 아티클 정리하기"]
+    lazy var notifyLabel: UILabel = {
+        let notifyLabel = UILabel()
+        notifyLabel.translatesAutoresizingMaskIntoConstraints = false
+        return notifyLabel
+    }()
+    
+    var list: [String] = []
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        hideViewIfListEmpty()
+        setNoRecordView()
         setCollectionView()
     }
     
@@ -32,7 +41,7 @@ extension DetailRecordContentTVC: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailRecordCVC.identifier, for: indexPath as IndexPath) as! DetailRecordCVC
-        cell.setLabelData(content: list[indexPath.item])
+        cell.setLabelText(content: list[indexPath.item])
         return cell
     }
 }
@@ -44,22 +53,36 @@ extension DetailRecordContentTVC: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension DetailRecordContentTVC: DetailRecordLayoutDelegate {
-    func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
-        let width = (collectionView.bounds.size.width - (collectionView.contentInset.left + collectionView.contentInset.right + 16 + 16 + 30)) / 2 - 30
-        let label: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
-        label.text = list[indexPath.item]
-        label.preferredMaxLayoutWidth = width
-        label.numberOfLines = 0
-        label.lineBreakMode = NSLineBreakMode.byWordWrapping
-        label.contentMode = .scaleToFill
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.sizeToFit()
+//MARK: UI
+extension DetailRecordContentTVC {
+    private func setNoRecordView() {
+        noRecordView.addSubview(notifyLabel)
         
-        let calculateHeight = label.intrinsicContentSize.height + 120
-        return calculateHeight
+        notifyLabel.bottomAnchor.constraint(equalTo: noRecordView.bottomAnchor, constant: -132).isActive = true
+        notifyLabel.centerXAnchor.constraint(equalTo: noRecordView.centerXAnchor).isActive = true
+        notifyLabel.font = .myRegularSystemFont(ofSize: 12)
+        notifyLabel.text = "이 날에는 키워드가 없어요.😢"
+        notifyLabel.textColor = .mainGray
+        notifyLabel.textAlignment = .center
+        notifyLabel.numberOfLines = 0
     }
-    
+}
+
+//MARK: View
+extension DetailRecordContentTVC {
+    private func hideViewIfListEmpty() {
+        if list.isEmpty {
+            recordCollectionView.isHidden = true
+            noRecordView.isHidden = false
+        } else {
+            recordCollectionView.isHidden = false
+            noRecordView.isHidden = true
+        }
+    }
+}
+
+//MARK: CollectionView
+extension DetailRecordContentTVC: DetailRecordLayoutDelegate {
     private func setCollectionView() {
         recordCollectionView.delegate = self
         recordCollectionView.dataSource = self
@@ -67,5 +90,20 @@ extension DetailRecordContentTVC: DetailRecordLayoutDelegate {
         if let layout = recordCollectionView.collectionViewLayout as? DetailRecordLayout {
             layout.delegate = self
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, heightForLabelAtIndexPath indexPath: IndexPath) -> CGFloat {
+        let width = (collectionView.bounds.size.width - (collectionView.contentInset.left + collectionView.contentInset.right + 16 + 16 + 30)) / 2 - 30
+        let label: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
+        label.text = list[indexPath.item]
+        label.preferredMaxLayoutWidth = width
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.contentMode = .scaleToFill
+        label.font = .myBoldSystemFont(ofSize: 16)
+        label.sizeToFit()
+        
+        let calculateHeight = label.intrinsicContentSize.height + 120
+        return calculateHeight
     }
 }

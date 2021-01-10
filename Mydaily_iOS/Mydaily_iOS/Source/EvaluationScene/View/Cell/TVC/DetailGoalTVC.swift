@@ -13,11 +13,15 @@ class DetailGoalTVC: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var goalLabel: UILabel!
     @IBOutlet weak var achieveButton: UIButton!
+    @IBOutlet weak var rightForwardButton: UIButton!
+    
+    var isAchieve = true
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setLabel()
         setButton()
+        setColorWhenAchieve()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -25,20 +29,53 @@ class DetailGoalTVC: UITableViewCell {
     }
 }
 
+//MARK: UI
 extension DetailGoalTVC {
     private func setLabel() {
-        titleLabel.font = .boldSystemFont(ofSize: 18)
+        titleLabel.font = .myBoldSystemFont(ofSize: 18)
         titleLabel.text = "목표"
-        goalLabel.font = .systemFont(ofSize: 12)
+        titleLabel.textColor = .mainBlack
+        
+        goalLabel.font = .myRegularSystemFont(ofSize: 12)
+        goalLabel.text = "블로그에 1개이상 퍼블리싱 하기"
+        goalLabel.textColor = .mainBlack
     }
     
     private func setButton() {
-        achieveButton.setTitle("미달성", for: .normal)
-        achieveButton.titleLabel?.font = .systemFont(ofSize: 12)
-        achieveButton.contentEdgeInsets = UIEdgeInsets(top: 3, left: 8, bottom: 3, right: 8)
-        achieveButton.layer.cornerRadius = 10
-        achieveButton.layer.masksToBounds = true
-        achieveButton.setContentHuggingPriority(.required, for: .horizontal)
-        achieveButton.isUserInteractionEnabled = false
+        if isAchieve {
+            achieveButton.titleLabel?.font = .myRegularSystemFont(ofSize: 12)
+            achieveButton.setTitle("달성", for: .normal)
+            achieveButton.setTitleColor(.mainOrange, for: .normal)
+            achieveButton.backgroundColor = .white
+            achieveButton.contentEdgeInsets = UIEdgeInsets(top: 1, left: 8, bottom: 1, right: 8)
+            achieveButton.setContentHuggingPriority(.required, for: .horizontal)
+            achieveButton.layer.cornerRadius = 10
+            achieveButton.layer.masksToBounds = true
+            achieveButton.isUserInteractionEnabled = false
+        } else {
+            achieveButton.titleLabel?.font = .myRegularSystemFont(ofSize: 12)
+            achieveButton.setTitle("미달성", for: .normal)
+            achieveButton.setTitleColor(.white, for: .normal)
+            achieveButton.tintColor = .mainLightGray
+            achieveButton.contentEdgeInsets = UIEdgeInsets(top: 1, left: 8, bottom: 1, right: 8)
+            achieveButton.setContentHuggingPriority(.required, for: .horizontal)
+            achieveButton.layer.cornerRadius = 10
+            achieveButton.layer.masksToBounds = true
+            achieveButton.isUserInteractionEnabled = false
+        }
+    }
+    
+    private func setColorWhenAchieve() {
+        if isAchieve {
+            self.backgroundColor = .mainOrange
+            goalLabel.textColor = .white
+            titleLabel.textColor = .white
+            rightForwardButton.tintColor = .white
+        } else {
+            self.backgroundColor = .white
+            goalLabel.textColor = .mainBlack
+            titleLabel.textColor = .mainBlack
+            rightForwardButton.tintColor = .mainGray
+        }
     }
 }

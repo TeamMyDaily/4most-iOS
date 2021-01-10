@@ -12,70 +12,44 @@ class RetrospectiveTabCVC: UICollectionViewCell {
     
     @IBOutlet weak var retrospectiveTableView: UITableView!
     
-    var cellTitles = ["이번주의 잘 한 점", "이번주 아쉬운 점", "다음주에 임하는 마음가짐"]
-    var cellPlaceholders = ["이번주, 어떤 내 모습을 칭찬 해주고 싶나요?", "한 주에 아쉬움이 남은 점이 있을까요?", "다음주에는 어떻게 지내고 싶은가요?"]
+    var delegate: TableViewInsideCollectionViewDelegate?
+    var buttonDelegate: OccurWhenClickModifyButtonDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setTableView()
-//        setKeyboardGesture()
     }
 }
 
 extension RetrospectiveTabCVC: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: RetrospectiveWriteGoodTVC.identifier) as? RetrospectiveWriteGoodTVC else {
-                return UITableViewCell()
-            }
-            cell.selectionStyle = .none
-            cell.delegate = retrospectiveTableView
-            cell.setLabelData(title: cellTitles[indexPath.section], placeholder: cellPlaceholders[indexPath.section])
-            return cell
-        } else if indexPath.section == 1 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: RetrospectiveWriteShameTVC.identifier) as? RetrospectiveWriteShameTVC else {
-                return UITableViewCell()
-            }
-            cell.selectionStyle = .none
-            cell.delegate = retrospectiveTableView
-            cell.setLabelData(title: cellTitles[indexPath.section], placeholder: cellPlaceholders[indexPath.section])
-            return cell
-        }
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RetrospectiveWritePromiseTVC.identifier) as? RetrospectiveWritePromiseTVC else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: RetrospectiveWriteTVC.identifier) as? RetrospectiveWriteTVC else {
             return UITableViewCell()
         }
+        cell.delegate = self.delegate
+        cell.buttonDelegate = self.buttonDelegate
+        cell.tableView = retrospectiveTableView
         cell.selectionStyle = .none
-        cell.delegate = retrospectiveTableView
-        cell.setLabelData(title: cellTitles[indexPath.section], placeholder: cellPlaceholders[indexPath.section])
         return cell
     }
 }
 
 extension RetrospectiveTabCVC: UITableViewDelegate {}
 
+//MARK: UI
 extension RetrospectiveTabCVC {
     private func setTableView() {
         retrospectiveTableView.delegate = self
         retrospectiveTableView.dataSource = self
         retrospectiveTableView.separatorColor = .clear
-        retrospectiveTableView.estimatedRowHeight = (UIScreen.main.bounds.size.height - 150 - 104)/3
-        retrospectiveTableView.rowHeight = UITableView.automaticDimension
-    }
-    
-//    private func setKeyboardGesture() {
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-//        self.addGestureRecognizer(tap)
-//    }
-    
-    @objc func dismissKeyboard() {
-        self.endEditing(true)
+        if UIScreen.main.bounds.size.height <= 667 {
+            retrospectiveTableView.rowHeight = UIScreen.main.bounds.size.height - 50
+        } else {
+            retrospectiveTableView.rowHeight = UIScreen.main.bounds.size.height - 180
+        }
     }
 }

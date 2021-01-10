@@ -9,30 +9,24 @@ import UIKit
 
 class EvaluationDetailVC: UIViewController {
     @IBOutlet weak var navigationTitleLabel: UILabel!
+    @IBOutlet weak var keywordLabel: UILabel!
+    @IBOutlet weak var weekLabel: UILabel!
     @IBOutlet weak var keywordDetailTableView: UITableView!
     
     var listCount = 0
-    
-    let originalColor: UIColor = UIColor.init(red: 196/255, green: 196/255, blue: 196/255, alpha: 1)
-    let mainColor: UIColor = UIColor.init(red: 236/255, green: 104/255, blue: 74/255, alpha: 1)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
-        setTabBar()
-        setTableViewDelegate()
+        setTableView()
+        setLabel()
     }
     
-    @IBAction func touchUpBack(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
-        tabBarController?.tabBar.isHidden = false
-        extendedLayoutIncludesOpaqueBars = false
-    }
 }
 
 extension EvaluationDetailVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -41,18 +35,12 @@ extension EvaluationDetailVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailHeaderTVC.identifier) as? DetailHeaderTVC else {
-                return UITableViewCell()
-            }
-            cell.selectionStyle = .none
-            return cell
-        } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailGoalTVC.identifier) as? DetailGoalTVC else {
                 return UITableViewCell()
             }
             cell.selectionStyle = .none
             return cell
-        } else if indexPath.section == 2 {
+        } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailRecordTVC.identifier) as? DetailRecordTVC else {
                 return UITableViewCell()
             }
@@ -71,14 +59,15 @@ extension EvaluationDetailVC: UITableViewDataSource {
 extension EvaluationDetailVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 104
+            return 91
         } else if indexPath.section == 1 {
-            return 75
-        } else if indexPath.section == 2 {
-            return 63
+            return 42
         }
+        
         var calculateHeight: CGFloat = 0
-        if listCount % 2 == 0 {
+        if listCount == 0 {
+            calculateHeight = 368
+        }   else if listCount % 2 == 0 {
             calculateHeight = CGFloat(42 + listCount / 2 * 185)
         } else {
             if listCount == 1 {
@@ -90,23 +79,36 @@ extension EvaluationDetailVC: UITableViewDelegate {
     }
 }
 
+//MARK: Action
+extension EvaluationDetailVC {
+    @IBAction func touchUpBack(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+}
+
+//MARK: UI
 extension EvaluationDetailVC {
     private func setNavigationBar() {
         navigationTitleLabel.text = "회고"
-        navigationTitleLabel.font = .boldSystemFont(ofSize: 21)
+        navigationTitleLabel.textColor = .mainBlack
+        navigationTitleLabel.font = .myBoldSystemFont(ofSize: 20)
     }
     
-    private func setTabBar() {
-        tabBarController?.tabBar.isHidden = true
-        edgesForExtendedLayout = UIRectEdge.bottom
-        extendedLayoutIncludesOpaqueBars = true
-    }
-    
-    private func setTableViewDelegate() {
+    private func setTableView() {
         keywordDetailTableView.delegate = self
         keywordDetailTableView.dataSource = self
         keywordDetailTableView.rowHeight = UITableView.automaticDimension
         keywordDetailTableView.estimatedRowHeight = 100
         keywordDetailTableView.separatorColor = .clear
+    }
+    
+    private func setLabel() {
+        keywordLabel.font = .myBoldSystemFont(ofSize: 32)
+        keywordLabel.text = "아웃풋"
+        keywordLabel.textColor = .mainBlack
+        
+        weekLabel.font = .myRegularSystemFont(ofSize: 12)
+        weekLabel.text = "20년 12월 3주"
+        weekLabel.textColor = .mainGray
     }
 }
