@@ -51,19 +51,21 @@ extension Date {
             return gregorian.date(byAdding: .day, value: 8, to: sunday)
         }
     }
+    
     var containWeek: Int? {
         let gregorian = Calendar(identifier: .gregorian)
         let startOfMonth = gregorian.date(from: gregorian.dateComponents([.year, .month], from: self))
         let comp1 = gregorian.dateComponents([.weekday], from: startOfMonth!)
 
-        print(comp1)
         guard let week = gregorian.date(from: gregorian.dateComponents([.day], from: self)) else { return nil }
     
         if comp1.weekday ?? 0 > 5{
             if Calendar.current.component(.weekday, from: self) == 1{ //일요일일때
-                return Calendar.current.component(.weekOfMonth, from: gregorian.date(byAdding: .day, value: -1, to: week)!)
+//                return Calendar.current.component(.weekOfMonth, from: gregorian.date(byAdding: .weekday, value: -1, to: week)!)
+                return Calendar.current.component(.weekOfMonth, from: week)
             }else{
-                return Calendar.current.component(.weekOfMonth, from: gregorian.date(byAdding: .weekday, value: 0, to: week)!)
+                return Calendar.current.component(.weekOfMonth, from: gregorian.date(byAdding: .day, value: 0, to: week)!)
+//                return gregorian.date(byAdding: .weekOfMonth, value: -1, to: week)
             }
         }
         else{
