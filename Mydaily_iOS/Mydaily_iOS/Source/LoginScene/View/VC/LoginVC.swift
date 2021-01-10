@@ -12,13 +12,16 @@ class LoginVC: UIViewController {
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var pwTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var findIDButton: UIButton!
+    @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet weak var findPWButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupNavigationBar(.clear, titlelabel: "")
         changeTextFields()
         setUI()
-//        setupNavigationBar(.clear)
     }
     
     @IBAction func registerButton(_ sender: Any) {
@@ -37,9 +40,27 @@ extension LoginVC {
         pwTextField.isSecureTextEntry = true
         
         idTextField.layer.cornerRadius = 15
-        idTextField.layer.borderColor = UIColor.mainOrange.cgColor
+        idTextField.layer.borderColor = UIColor.mainGray.cgColor
         idTextField.layer.borderWidth = 1
         idTextField.setLeftPaddingPoints(15)
+        
+        pwTextField.layer.cornerRadius = 15
+        pwTextField.layer.borderColor = UIColor.mainGray.cgColor
+        pwTextField.layer.borderWidth = 1
+        pwTextField.setLeftPaddingPoints(15)
+        
+        loginButton.layer.cornerRadius = 15
+        loginButton.backgroundColor = .mainOrange
+        loginButton.setTitle("포모스트 입장!", for: .normal)
+        loginButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
+        loginButton.setTitleColor(.white, for: .normal)
+        
+        registerButton.setTitleColor(.mainGray, for: .normal)
+        registerButton.titleLabel?.font = .myMediumSystemFont(ofSize: 12)
+        findIDButton.setTitleColor(.mainGray, for: .normal)
+        findIDButton.titleLabel?.font = .myMediumSystemFont(ofSize: 12)
+        findPWButton.setTitleColor(.mainGray, for: .normal)
+        findPWButton.titleLabel?.font = .myMediumSystemFont(ofSize: 12)
     }
     
 //    func setupNavigationBar(_ color: UIColor) {
@@ -72,11 +93,12 @@ extension LoginVC {
     func changeTextfiledUI(textfield: UITextField){
         if !(textfield.text!.isEmpty){
             textfield.backgroundColor = .white
-            textfield.layer.borderColor = UIColor.red.cgColor
-            textfield.layer.borderWidth = 1.5
+            textfield.layer.borderColor = UIColor.mainOrange.cgColor
+            textfield.layer.borderWidth = 1
         }
         else{
-            textfield.layer.borderColor = UIColor.gray.cgColor
+            textfield.layer.borderWidth = 1
+            textfield.layer.borderColor = UIColor.mainGray.cgColor
         }
         
         if !(idTextField.text!.isEmpty) && !(pwTextField.text!.isEmpty){

@@ -17,6 +17,12 @@ class RegisterVC: UIViewController {
     @IBOutlet weak var validatePWLabel: UILabel!
     @IBOutlet weak var checkPWLabel: UILabel!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var validateNameLabel: UILabel!
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var pwLabel: UILabel!
+    @IBOutlet weak var pwCheckLabel: UILabel!
     
     var checkValidate = false
     
@@ -26,6 +32,7 @@ class RegisterVC: UIViewController {
         setupNavigationBar(.clear, titlelabel: "회원가입")
         changeTextFields()
         setUI()
+        nextButton.isEnabled = true
     }
     @IBAction func pwButton(_ sender: Any) {
         securityText(textfield: pwTextField)
@@ -33,14 +40,58 @@ class RegisterVC: UIViewController {
     @IBAction func checkpwButton(_ sender: Any) {
         securityText(textfield: checkpwTextField)
     }
+    @IBAction func nextButton(_ sender: Any) {
+        let alert = UIAlertController(title: "가입을 축하합니다!", message: "4most회원이 되신걸 진심으로 축하합니다!", preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            if let viewControllers = self.navigationController?.viewControllers {
+                if viewControllers.count > 2 {
+                    self.navigationController?.popToViewController(viewControllers[viewControllers.count - 3], animated: true)
+                } else {
+                            // fail
+                }
+            }
+        }
+        alert.addAction(okAction)
+        present(alert, animated: false, completion: nil)
+    }
 }
 
 //MARK: - UI
 extension RegisterVC {
     func setUI() {
         nextButton.isEnabled = false
+        nextButton.backgroundColor = .mainGray
         pwTextField.isSecureTextEntry = true
         checkpwTextField.isSecureTextEntry = true
+        
+        setInitUI(textfield: nameTextField)
+        setInitUI(textfield: emailTextField)
+        setInitUI(textfield: pwTextField)
+        setInitUI(textfield: checkpwTextField)
+        
+        nameTextField.delegate = self
+        nameLabel.text = "닉네임*"
+        setLabelInitUI(label: nameLabel)
+        emailLabel.text = "이메일*"
+        setLabelInitUI(label: emailLabel)
+        pwLabel.text = "비밀번호*"
+        setLabelInitUI(label: pwLabel)
+        pwCheckLabel.text = "비밀번호 확인*"
+        setLabelInitUI(label: pwCheckLabel)
+
+        validateNameLabel.font = .myRegularSystemFont(ofSize: 12)
+        validateNameLabel.textColor = .mainPaleOrange
+        validateEmailLabel.font = .myRegularSystemFont(ofSize: 12)
+        validateEmailLabel.textColor = .mainPaleOrange
+        validatePWLabel.font = .myRegularSystemFont(ofSize: 12)
+        validatePWLabel.textColor = .mainPaleOrange
+        checkPWLabel.font = .myRegularSystemFont(ofSize: 12)
+        checkPWLabel.textColor = .mainPaleOrange
+        
+        nextButton.layer.cornerRadius = 15
+        nextButton.backgroundColor = .mainGray
+        nextButton.setTitle("다음", for: .normal)
+        nextButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
     }
 }
 
@@ -55,67 +106,77 @@ extension RegisterVC {
     
     @objc
     func changeNameTextFieldUI(){
-        changeTextfieldUI(textfield: nameTextField)
+        changeTextfiledUI(textfield: nameTextField)
+        
         checkValidateUI()
     }
     
     @objc
     func changeEmailTextfiledUI(){
-        changeTextfieldUI(textfield: emailTextField)
+        changeTextfiledUI(textfield: emailTextField)
         
         if !(emailTextField.text!.validateEmail()) {
             validateEmailLabel.text = "사용 불가능한 이메일이에요!"
+            setLabelInitUI(label: emailLabel)
         }
         else{
             validateEmailLabel.text = ""
+            emailLabel.textColor = .mainOrange
         }
         checkValidateUI()
     }
     
     @objc
     func changePWTextfiledUI(){
-        changeTextfieldUI(textfield: pwTextField)
+        changeTextfiledUI(textfield: pwTextField)
         
         if !(pwTextField.text!.validatePassword()) {
             validatePWLabel.text = "영어와 숫자 조합으로 6자리 이상 입력해 주세요!"
+            setLabelInitUI(label: pwLabel)
         }
         else{
             if !(pwTextField.text == checkpwTextField.text) {
                 checkPWLabel.text = "비밀번호가 서로 맞지 않아요!"
+                setLabelInitUI(label: pwCheckLabel)
             }
             else{
                 checkPWLabel.text = ""
+                pwCheckLabel.textColor = .mainOrange
             }
 
             validatePWLabel.text = ""
+            pwLabel.textColor = .mainOrange
         }
         checkValidateUI()
     }
     
     @objc
     func checkPWTextfiledUI(){
-        changeTextfieldUI(textfield: checkpwTextField)
+        changeTextfiledUI(textfield: checkpwTextField)
         
         if !(pwTextField.text == checkpwTextField.text) {
             checkPWLabel.text = "비밀번호가 서로 맞지 않아요!"
+            setLabelInitUI(label: pwCheckLabel)
         }
         else{
             checkPWLabel.text = ""
+            pwCheckLabel.textColor = .mainOrange
         }
         checkValidateUI()
     }
     
-    func changeTextfieldUI(textfield: UITextField){
+    func changeTextfiledUI(textfield: UITextField){
         if !(textfield.text!.isEmpty){
             textfield.backgroundColor = .white
-            textfield.layer.borderColor = UIColor.red.cgColor
-            textfield.layer.borderWidth = 1.5
+            textfield.layer.borderColor = UIColor.mainOrange.cgColor
+            textfield.layer.borderWidth = 1
         }
         else{
-            textfield.layer.borderColor = UIColor.gray.cgColor
+            textfield.layer.borderWidth = 1
+            textfield.layer.borderColor = UIColor.mainGray.cgColor
         }
     }
-    
+        
     func checkValidateUI(){
         if (pwTextField.text == checkpwTextField.text) && (emailTextField.text!.validateEmail()) && (pwTextField.text!.validatePassword()){
             checkValidate = true
@@ -126,9 +187,11 @@ extension RegisterVC {
         
         if !(nameTextField.text!.isEmpty) && !(emailTextField.text!.isEmpty) && !(pwTextField.text!.isEmpty) && !(checkpwTextField.text!.isEmpty) && checkValidate{
             nextButton.isEnabled = true
+            nextButton.backgroundColor = .mainOrange
         }
         else{
             nextButton.isEnabled = false
+            nextButton.backgroundColor = .mainGray
         }
     }
     
@@ -139,6 +202,22 @@ extension RegisterVC {
         else{
             textfield.isSecureTextEntry = true
         }
+    }
+    func setInitUI(textfield: UITextField){
+        textfield.layer.cornerRadius = 15
+        textfield.layer.borderColor = UIColor.mainGray.cgColor
+        textfield.layer.borderWidth = 1
+        textfield.setLeftPaddingPoints(15)
+    }
+    func setLabelInitUI(label: UILabel){
+        label.backgroundColor = .white
+        label.font = .myRegularSystemFont(ofSize: 14)
+        label.textColor = .mainBlack
+        label.textAlignment = .center
+        
+        let attributedString = NSMutableAttributedString(string: label.text ?? "")
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.mainOrange, range: ((label.text ?? "") as NSString).range(of:"*"))
+        label.attributedText = attributedString
     }
 }
 
@@ -158,5 +237,50 @@ extension String {
         
         let predicate = NSPredicate(format:"SELF MATCHES %@", passwordRegEx)
         return predicate.evaluate(with: self)
+    }
+}
+
+extension RegisterVC: UITextFieldDelegate{
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        validateNameLabel.text = ""
+        setLabelInitUI(label: nameLabel)
+        if (string == " ") {
+            validateNameLabel.text = "공백은 입력할 수 없어요!"
+            setLabelInitUI(label: nameLabel)
+            return false
+        }
+        if textField.isFirstResponder {
+            let validString = CharacterSet(charactersIn: "!@#$%^&*()_+{}[]|\"<>,.~`/:;?-=\\¥'£•¢abcdefghijklmnopqrstuvwxyzQWERTYUIOPASDFGHJKLZXCVBNM")
+            if string.rangeOfCharacter(from: validString) != nil {
+                validateNameLabel.text = "영어/특수문자는 입력할 수 없어요!"
+                setLabelInitUI(label: nameLabel)
+                return false
+            }
+        }
+        let currentText = textField.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+        if !updatedText.isEmpty {
+            if updatedText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count <= 7{
+                if !(nameTextField.text!.isEmpty) && !(emailTextField.text!.isEmpty) && !(pwTextField.text!.isEmpty) && !(checkpwTextField.text!.isEmpty) && checkValidate {
+                    nextButton.isEnabled = true
+                    nameLabel.textColor = .mainOrange
+                }
+                self.nextButton.isEnabled = true
+                nameLabel.textColor = .mainOrange
+                return true
+            }
+            else{
+                validateNameLabel.text = "최대 6글자의 단어만 입력 가능해요!"
+                nextButton.isEnabled = false
+                setLabelInitUI(label: nameLabel)
+                return false
+            }
+        }
+        else{
+            setLabelInitUI(label: nameLabel)
+            nextButton.isEnabled = false
+            return true
+        }
     }
 }

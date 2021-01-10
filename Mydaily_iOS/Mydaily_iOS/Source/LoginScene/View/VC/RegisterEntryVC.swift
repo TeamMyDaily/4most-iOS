@@ -42,38 +42,6 @@ extension RegisterEntryVC {
         nextButton.isEnabled = false
     }
     
-    private func setupNavigationBar() {
-        
-//        let leftButton: UIBarButtonItem = {
-//            let button = UIBarButtonItem(image: UIImage(named: "backArrowIc"), style: .plain, target: self, action: #selector(dismissVC))
-//            return button
-//        }()
-//
-//        navigationItem.leftBarButtonItem = leftButton
-//    }
-//
-//    @objc
-//    func dismissVC() {
-//        self.navigationController?.popViewController(animated: true)
-    }
-//
-//    func checkButton(button: UIButton){
-//        if button.currentImage == UIImage(named: "pencil.circle"){
-//            button.setImage(UIImage(named: "pencil.circle.fill"), for: .normal)
-//            checkCount += 1
-//            print(checkCount)
-//        }
-//        else{
-//            button.setImage(UIImage(named: "pencil.circle"), for: .normal)
-//            checkCount -= 1
-//            print(checkCount)
-//        }
-//
-//        if checkCount == 2 {
-//            nextButton.isEnabled = true
-//        }
-//    }
-    
     //test용 -> 추후에 삭제할것!
     func checkButton(button: UIButton){
         checkCount += 1
