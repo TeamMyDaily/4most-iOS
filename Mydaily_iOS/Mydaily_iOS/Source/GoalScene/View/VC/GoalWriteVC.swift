@@ -19,6 +19,10 @@ class GoalWriteVC: UIViewController {
         setupNavigationBar(.clear, titlelabel: "목표 설정")
         setUI()
         placeholderSetting()
+        
+    }
+    @IBAction func saveButton(_ sender: Any) {
+        print("")
     }
 }
 
@@ -40,10 +44,12 @@ extension GoalWriteVC {
         
         textViewCount.textColor = .mainOrange
         
+        saveButton.isEnabled = false
         saveButton.layer.cornerRadius = 15
-        saveButton.backgroundColor = .mainOrange
-        saveButton.setTitle("저장할래요", for: .normal)
+        saveButton.backgroundColor = .mainGray
+        saveButton.setTitle("작성완료", for: .normal)
         saveButton.setTitleColor(.white, for: .normal)
+        saveButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
     }
 }
 
@@ -79,5 +85,20 @@ extension GoalWriteVC: UITextViewDelegate{
 
     func textViewDidChange(_ textView: UITextView) {
         textViewCount.text = "\(textView.text.count)"
+        if textView.text.count == 0 {
+            saveButton.isEnabled = false
+            saveButton.layer.cornerRadius = 15
+            saveButton.backgroundColor = .mainGray
+            saveButton.setTitle("작성완료", for: .normal)
+            saveButton.setTitleColor(.white, for: .normal)
+            saveButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
+        }
+        else{
+            saveButton.isEnabled = true
+            saveButton.layer.cornerRadius = 15
+            saveButton.backgroundColor = .mainOrange
+            saveButton.setTitle("작성완료", for: .normal)
+            saveButton.setTitleColor(.white, for: .normal)
+        }
     }
 }

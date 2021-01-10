@@ -56,7 +56,7 @@ extension GoalVC: UITableViewDataSource{
         goalTableView.delegate = self
         goalTableView.dataSource = self
         goalTableView.separatorStyle = .none
-        goalTableView.isScrollEnabled = false
+//        goalTableView.isScrollEnabled = false
 
         let containNibname = UINib(nibName: GoalTVC.nibName, bundle: nil)
         goalTableView.register(containNibname, forCellReuseIdentifier: GoalTVC.reuseIdentifier)
