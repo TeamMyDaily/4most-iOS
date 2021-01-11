@@ -56,14 +56,17 @@ extension UIViewController {
         }
     }
     
-    func setupNavigationBar(_ color: UIColor) {
+    func setupNavigationBar(_ color: UIColor, titlelabel: String) {
         guard let navigationBar = self.navigationController?.navigationBar else { return }
         
         navigationBar.isTranslucent = true
         navigationBar.backgroundColor = color
         navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationBar.shadowImage = UIImage()
+        
+        self.navigationItem.title = titlelabel
     }
+
     
 //    func _configure(with dataSource: TPDataSource, delegate: TPProgressDelegate? = nil, state: Int, containVC: ContainerViewController) {
 ////        let vc = ContainerViewController()

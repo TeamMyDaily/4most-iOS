@@ -31,9 +31,13 @@ class DailyWriteVC: UIViewController {
     func setSliderUI(){
         for i in 0...4{
             sliderIndex[i].layer.cornerRadius = sliderIndex[i].frame.height/2
-            sliderIndex[i].layer.backgroundColor = UIColor.gray30.cgColor
+            sliderIndex[i].layer.backgroundColor = UIColor.mainGray.cgColor
         }
+        scoreSlider.thumbTintColor = .mainGray
+        scoreSlider.minimumTrackTintColor = UIColor.mainOrange
+        scoreSlider.maximumTrackTintColor = UIColor.mainGray
     }
+    
     @IBAction func changeSlider(_ sender: Any) {
         scoreSlider.value = roundf(scoreSlider.value)
         todayScore.text = "\(Int(scoreSlider.value))점"
@@ -44,7 +48,7 @@ class DailyWriteVC: UIViewController {
             sliderIndex[i].layer.backgroundColor = UIColor.mainOrange.cgColor
         }
         for i in Int(scoreSlider.value)..<5 {
-            sliderIndex[i].layer.backgroundColor = UIColor.gray30.cgColor
+            sliderIndex[i].layer.backgroundColor = UIColor.mainGray.cgColor
         }
     }
 }
@@ -67,27 +71,31 @@ extension DailyWriteVC {
         
         let rightButton: UIBarButtonItem = {
             let button = UIBarButtonItem(title: "저장", style: .done, target: self, action: nil)
-            button.isEnabled = false
             button.setTitleTextAttributes([
-                                            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
-                                            NSAttributedString.Key.foregroundColor: UIColor.gray40], for: .disabled)
-            
+                                            NSAttributedString.Key.font: UIFont.myRegularSystemFont(ofSize: 17),
+                                            NSAttributedString.Key.foregroundColor: UIColor.mainOrange], for: .normal)
             button.setTitleTextAttributes([
-                                            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
+                                            NSAttributedString.Key.font: UIFont.myRegularSystemFont(ofSize: 17),
                                             NSAttributedString.Key.foregroundColor: UIColor.mainOrange], for: .selected)
             
             return button
         }()
         
-        //        navigationItem.leftBarButtonItem = leftButton
+//                let leftButton: UIBarButtonItem = {
+//                    let button = UIBarButtonItem(image: UIImage(named: "backArrowIc"), style: .plain, target: self, action: #selector(dismissVC))
+//                    return button
+//                }()
+//                navigationItem.leftBarButtonItem = leftButton
         navigationItem.rightBarButtonItem = rightButton
     }
     
     func setUI(){
+        setTextView()
+        todayTextView.delegate = self
         textLabel.sizeToFit()
         textLabel.text = "아웃풋으로 채운\n하루에 대해 알려주세요"
         textLabel.numberOfLines = 2
-        textLabel.font = .systemFont(ofSize: 24)
+        textLabel.font = .myMediumSystemFont(ofSize: 24)
         //내가 적용하고싶은 폰트 사이즈
         let fontSize = UIFont.myBlackSystemFont(ofSize: 24)
         
@@ -102,20 +110,25 @@ extension DailyWriteVC {
         
         todayTitle.setLeftPaddingPoints(3)
         todayTitle.layer.addBorder([.bottom], color: .mainOrange, width: 1, move: 5)
-        todayTitle.font = .systemFont(ofSize: 16)
+        todayTitle.font = .myRegularSystemFont(ofSize: 16)
+        todayTitle.textColor = .mainBlack
         todayTitle.placeholder = "오늘 하루 무슨일이 있었나요?"
         
-        labelCount.font = .systemFont(ofSize: 12)
+        labelCount.font = .myRegularSystemFont(ofSize: 12)
         labelCount.textColor = .mainOrange
         
         todayTitle.addTarget(self, action: #selector(textFieldDidChange), for: UIControl.Event.editingChanged)
         
-        todayTextView.backgroundColor = .gray30
+        textViewCount.textColor = .mainOrange
+    }
+    
+    func setTextView() {
+        todayTextView.backgroundColor = .mainLightGray2
         todayTextView.layer.cornerRadius = 15
         
-        textViewCount.textColor = .mainOrange
-        scoreSlider.thumbTintColor = .gray
-        
+//        todayTextView.borderWidth = 1
+//        todayTextView.backgroundColor = .white
+//        todayTextView.borderColor = .mainOrange
     }
     
     @objc func textFieldDidChange(textField : UITextField){
@@ -144,18 +157,18 @@ extension DailyWriteVC: UITextFieldDelegate {
 }
 
 extension DailyWriteVC: UITextViewDelegate {
+    
     func placeholderSetting() {
-        todayTextView.delegate = self
-        todayTextView.font = .systemFont(ofSize: 15)
+        todayTextView.font = .myRegularSystemFont(ofSize: 15)
         todayTextView.text = "조금 더 자세한 내용을 알려주세요!"
         todayTextView.textColor = UIColor.lightGray
         todayTextView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
     }
     // TextView Place Holder
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
+        if textView.textColor == UIColor.mainGray {
             textView.text = nil
-            textView.textColor = UIColor.black
+            textView.textColor = UIColor.mainBlack
         }
         
     }
@@ -177,3 +190,4 @@ extension DailyWriteVC: UITextViewDelegate {
         textViewCount.text = "\(textView.text.count)"
     }
 }
+

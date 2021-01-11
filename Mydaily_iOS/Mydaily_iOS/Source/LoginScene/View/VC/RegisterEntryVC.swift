@@ -16,7 +16,7 @@ class RegisterEntryVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupNavigationBar()
+        setupNavigationBar(.clear, titlelabel: "회원가입")
         setUI()
     }
 
@@ -41,46 +41,6 @@ extension RegisterEntryVC {
     func setUI() {
         nextButton.isEnabled = false
     }
-    
-    private func setupNavigationBar() {
-        guard let navigationBar = self.navigationController?.navigationBar else { return }
-        
-        navigationBar.isTranslucent = true
-        navigationBar.backgroundColor = UIColor.clear
-        navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationBar.shadowImage = UIImage()
-        
-        self.navigationItem.title = "회원가입"
-        
-//        let leftButton: UIBarButtonItem = {
-//            let button = UIBarButtonItem(image: UIImage(named: "backArrowIc"), style: .plain, target: self, action: #selector(dismissVC))
-//            return button
-//        }()
-//
-//        navigationItem.leftBarButtonItem = leftButton
-//    }
-//
-//    @objc
-//    func dismissVC() {
-//        self.navigationController?.popViewController(animated: true)
-    }
-//
-//    func checkButton(button: UIButton){
-//        if button.currentImage == UIImage(named: "pencil.circle"){
-//            button.setImage(UIImage(named: "pencil.circle.fill"), for: .normal)
-//            checkCount += 1
-//            print(checkCount)
-//        }
-//        else{
-//            button.setImage(UIImage(named: "pencil.circle"), for: .normal)
-//            checkCount -= 1
-//            print(checkCount)
-//        }
-//
-//        if checkCount == 2 {
-//            nextButton.isEnabled = true
-//        }
-//    }
     
     //test용 -> 추후에 삭제할것!
     func checkButton(button: UIButton){

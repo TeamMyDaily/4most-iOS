@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2ADE5A8EA718965B022E7E74 /* Pods_Mydaily_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DAD6BD77FE2A877525BCC6C /* Pods_Mydaily_iOS.framework */; };
 		3C429769259F16D10061483E /* KeywordSettingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C429767259F16D10061483E /* KeywordSettingTVC.swift */; };
 		3C42976A259F16D10061483E /* KeywordSettingTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C429768259F16D10061483E /* KeywordSettingTVC.xib */; };
 		3C4CBF9625A386E90007A6FF /* NextKeywordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4CBF9525A386E90007A6FF /* NextKeywordVC.swift */; };
@@ -20,6 +21,14 @@
 		3CC8642C259CAFEE0043421A /* KeywordPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC8642B259CAFEE0043421A /* KeywordPopUpVC.swift */; };
 		3CC86433259CCCB00043421A /* ContentCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC86431259CCCB00043421A /* ContentCVC.swift */; };
 		3CC86434259CCCB00043421A /* ContentCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CC86432259CCCB00043421A /* ContentCVC.xib */; };
+		AE46FA1225ABF8820051D667 /* DetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA1125ABF8820051D667 /* DetailTVC.swift */; };
+		AE46FA2325AC13B50051D667 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA2225AC13B50051D667 /* LoginService.swift */; };
+		AE46FA2625AC13CE0051D667 /* GeneralAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA2525AC13CE0051D667 /* GeneralAPI.swift */; };
+		AE46FA2A25AC16090051D667 /* SignupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA2925AC16090051D667 /* SignupRequest.swift */; };
+		AE46FA2D25AC178C0051D667 /* SignupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA2C25AC178C0051D667 /* SignupModel.swift */; };
+		AE46FA3025AC1ADE0051D667 /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA2F25AC1ADE0051D667 /* NetworkLoggerPlugin.swift */; };
+		AE46FA3425AC45E80051D667 /* SigninRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA3325AC45E80051D667 /* SigninRequest.swift */; };
+		AE46FA3725AC46110051D667 /* SigninModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA3625AC46110051D667 /* SigninModel.swift */; };
 		AE53FB9925A5B6F300D62AA7 /* DailyWriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FB9825A5B6F300D62AA7 /* DailyWriteVC.swift */; };
 		AE53FB9E25A6B1E600D62AA7 /* GoalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FB9D25A6B1E600D62AA7 /* GoalVC.swift */; };
 		AE53FBAB25A6E97400D62AA7 /* NotoSansKR-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = AE53FBA425A6E97400D62AA7 /* NotoSansKR-Light.otf */; };
@@ -29,6 +38,12 @@
 		AE53FBAF25A6E97400D62AA7 /* NotoSansKR-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = AE53FBA825A6E97400D62AA7 /* NotoSansKR-Black.otf */; };
 		AE53FBB025A6E97400D62AA7 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = AE53FBA925A6E97400D62AA7 /* NotoSansKR-Medium.otf */; };
 		AE53FBB125A6E97400D62AA7 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AE53FBAA25A6E97400D62AA7 /* NotoSansKR-Regular.otf */; };
+		AE53FBB825A7206000D62AA7 /* GoalTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FBB625A7206000D62AA7 /* GoalTVC.swift */; };
+		AE53FBB925A7206000D62AA7 /* GoalTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE53FBB725A7206000D62AA7 /* GoalTVC.xib */; };
+		AE53FBBC25A733E900D62AA7 /* GoalWriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FBBB25A733E900D62AA7 /* GoalWriteVC.swift */; };
+		AE53FBC225A8590D00D62AA7 /* DetailTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE53FBC025A8590D00D62AA7 /* DetailTVC.xib */; };
+		AE53FBCB25AAFA6300D62AA7 /* GoalDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FBCA25AAFA6200D62AA7 /* GoalDetailVC.swift */; };
+		AE53FBCE25AB02E000D62AA7 /* GoalModifyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FBCD25AB02E000D62AA7 /* GoalModifyVC.swift */; };
 		AE76C03E259B1A6D007B3901 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE76C03D259B1A6D007B3901 /* AppDelegate.swift */; };
 		AE76C040259B1A6D007B3901 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE76C03F259B1A6D007B3901 /* SceneDelegate.swift */; };
 		AE76C047259B1A6E007B3901 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE76C046259B1A6E007B3901 /* Assets.xcassets */; };
@@ -36,7 +51,6 @@
 		AE9F294525A1719600904FD9 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9F294425A1719600904FD9 /* LoginVC.swift */; };
 		AE9F294A25A1A69400904FD9 /* registerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9F294925A1A69400904FD9 /* registerVC.swift */; };
 		AE9F294D25A1BF1500904FD9 /* RegisterEntryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9F294C25A1BF1500904FD9 /* RegisterEntryVC.swift */; };
-		AED84DDA25A492F70050D861 /* DetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED84DD925A492F70050D861 /* DetailTVC.swift */; };
 		AED84DDD25A4930C0050D861 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED84DDC25A4930C0050D861 /* DetailVC.swift */; };
 		AED84DEC25A558B30050D861 /* Extensions+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED84DE125A558B30050D861 /* Extensions+String.swift */; };
 		AED84DED25A558B30050D861 /* Extensions+UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED84DE225A558B30050D861 /* Extensions+UIApplication.swift */; };
@@ -100,6 +114,17 @@
 		3CC8642B259CAFEE0043421A /* KeywordPopUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeywordPopUpVC.swift; sourceTree = "<group>"; };
 		3CC86431259CCCB00043421A /* ContentCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCVC.swift; sourceTree = "<group>"; };
 		3CC86432259CCCB00043421A /* ContentCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentCVC.xib; sourceTree = "<group>"; };
+		5956CC336820D9D74ADEB069 /* Pods-Mydaily_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mydaily_iOS.debug.xcconfig"; path = "Target Support Files/Pods-Mydaily_iOS/Pods-Mydaily_iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		6DAD6BD77FE2A877525BCC6C /* Pods_Mydaily_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mydaily_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9828837A31425EF64043B250 /* Pods-Mydaily_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mydaily_iOS.release.xcconfig"; path = "Target Support Files/Pods-Mydaily_iOS/Pods-Mydaily_iOS.release.xcconfig"; sourceTree = "<group>"; };
+		AE46FA1125ABF8820051D667 /* DetailTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTVC.swift; sourceTree = "<group>"; };
+		AE46FA2225AC13B50051D667 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		AE46FA2525AC13CE0051D667 /* GeneralAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralAPI.swift; sourceTree = "<group>"; };
+		AE46FA2925AC16090051D667 /* SignupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRequest.swift; sourceTree = "<group>"; };
+		AE46FA2C25AC178C0051D667 /* SignupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupModel.swift; sourceTree = "<group>"; };
+		AE46FA2F25AC1ADE0051D667 /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
+		AE46FA3325AC45E80051D667 /* SigninRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninRequest.swift; sourceTree = "<group>"; };
+		AE46FA3625AC46110051D667 /* SigninModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninModel.swift; sourceTree = "<group>"; };
 		AE53FB9825A5B6F300D62AA7 /* DailyWriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWriteVC.swift; sourceTree = "<group>"; };
 		AE53FB9D25A6B1E600D62AA7 /* GoalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalVC.swift; sourceTree = "<group>"; };
 		AE53FBA425A6E97400D62AA7 /* NotoSansKR-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Light.otf"; sourceTree = "<group>"; };
@@ -109,6 +134,12 @@
 		AE53FBA825A6E97400D62AA7 /* NotoSansKR-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Black.otf"; sourceTree = "<group>"; };
 		AE53FBA925A6E97400D62AA7 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
 		AE53FBAA25A6E97400D62AA7 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
+		AE53FBB625A7206000D62AA7 /* GoalTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTVC.swift; sourceTree = "<group>"; };
+		AE53FBB725A7206000D62AA7 /* GoalTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoalTVC.xib; sourceTree = "<group>"; };
+		AE53FBBB25A733E900D62AA7 /* GoalWriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalWriteVC.swift; sourceTree = "<group>"; };
+		AE53FBC025A8590D00D62AA7 /* DetailTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTVC.xib; sourceTree = "<group>"; };
+		AE53FBCA25AAFA6200D62AA7 /* GoalDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailVC.swift; sourceTree = "<group>"; };
+		AE53FBCD25AB02E000D62AA7 /* GoalModifyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalModifyVC.swift; sourceTree = "<group>"; };
 		AE76C03A259B1A6D007B3901 /* Mydaily_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mydaily_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE76C03D259B1A6D007B3901 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE76C03F259B1A6D007B3901 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,7 +149,6 @@
 		AE9F294425A1719600904FD9 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		AE9F294925A1A69400904FD9 /* registerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerVC.swift; sourceTree = "<group>"; };
 		AE9F294C25A1BF1500904FD9 /* RegisterEntryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEntryVC.swift; sourceTree = "<group>"; };
-		AED84DD925A492F70050D861 /* DetailTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTVC.swift; sourceTree = "<group>"; };
 		AED84DDC25A4930C0050D861 /* DetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 		AED84DE125A558B30050D861 /* Extensions+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extensions+String.swift"; sourceTree = "<group>"; };
 		AED84DE225A558B30050D861 /* Extensions+UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extensions+UIApplication.swift"; sourceTree = "<group>"; };
@@ -173,6 +203,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2ADE5A8EA718965B022E7E74 /* Pods_Mydaily_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,6 +255,23 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		62D8182CBB4E4086D951909D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6DAD6BD77FE2A877525BCC6C /* Pods_Mydaily_iOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		86DD90383A536D85CADBA800 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5956CC336820D9D74ADEB069 /* Pods-Mydaily_iOS.debug.xcconfig */,
+				9828837A31425EF64043B250 /* Pods-Mydaily_iOS.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		AE0C5E58259C46660059FA38 /* TabbarScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +279,53 @@
 				AEFB21F5259C491600A3228C /* VC */,
 			);
 			path = TabbarScene;
+			sourceTree = "<group>";
+		};
+		AE46FA1D25AC12860051D667 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AE46FA1E25AC12B00051D667 /* APIServices */,
+				AE46FA1F25AC12C40051D667 /* ResponseModel */,
+				AE46FA2025AC12D00051D667 /* RequestModel */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AE46FA1E25AC12B00051D667 /* APIServices */ = {
+			isa = PBXGroup;
+			children = (
+				AE46FA2225AC13B50051D667 /* LoginService.swift */,
+			);
+			path = APIServices;
+			sourceTree = "<group>";
+		};
+		AE46FA1F25AC12C40051D667 /* ResponseModel */ = {
+			isa = PBXGroup;
+			children = (
+				AE46FA2C25AC178C0051D667 /* SignupModel.swift */,
+				AE46FA3625AC46110051D667 /* SigninModel.swift */,
+			);
+			path = ResponseModel;
+			sourceTree = "<group>";
+		};
+		AE46FA2025AC12D00051D667 /* RequestModel */ = {
+			isa = PBXGroup;
+			children = (
+				AE46FA2925AC16090051D667 /* SignupRequest.swift */,
+				AE46FA3325AC45E80051D667 /* SigninRequest.swift */,
+			);
+			path = RequestModel;
+			sourceTree = "<group>";
+		};
+		AE46FA3925AC631E0051D667 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				AE76C03D259B1A6D007B3901 /* AppDelegate.swift */,
+				AE76C03F259B1A6D007B3901 /* SceneDelegate.swift */,
+				AE46FA2525AC13CE0051D667 /* GeneralAPI.swift */,
+				AE46FA2F25AC1ADE0051D667 /* NetworkLoggerPlugin.swift */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 		AE53FB9B25A6B1C600D62AA7 /* View */ = {
@@ -246,6 +341,9 @@
 			isa = PBXGroup;
 			children = (
 				AE53FB9D25A6B1E600D62AA7 /* GoalVC.swift */,
+				AE53FBBB25A733E900D62AA7 /* GoalWriteVC.swift */,
+				AE53FBCA25AAFA6200D62AA7 /* GoalDetailVC.swift */,
+				AE53FBCD25AB02E000D62AA7 /* GoalModifyVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -253,6 +351,8 @@
 		AE53FBA025A6B1ED00D62AA7 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				AE53FBB625A7206000D62AA7 /* GoalTVC.swift */,
+				AE53FBB725A7206000D62AA7 /* GoalTVC.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -284,6 +384,8 @@
 			children = (
 				AE76C03C259B1A6D007B3901 /* Mydaily_iOS */,
 				AE76C03B259B1A6D007B3901 /* Products */,
+				86DD90383A536D85CADBA800 /* Pods */,
+				62D8182CBB4E4086D951909D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -318,10 +420,9 @@
 		AE76C053259B1A89007B3901 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				3CC86422259CAF8F0043421A /* KeywordScene */,
-				AE76C03D259B1A6D007B3901 /* AppDelegate.swift */,
-				AE76C03F259B1A6D007B3901 /* SceneDelegate.swift */,
 				AED84DE025A558B30050D861 /* GeneralExtensions */,
+				AE46FA3925AC631E0051D667 /* Support */,
+				3CC86422259CAF8F0043421A /* KeywordScene */,
 				AEFB222025A02C8800A3228C /* LoginScene */,
 				AEFB222125A02CA700A3228C /* GoalScene */,
 				AEFB21FD259C631F00A3228C /* DailyScene */,
@@ -353,6 +454,8 @@
 		AED84DC425A456810050D861 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				AE53FBC025A8590D00D62AA7 /* DetailTVC.xib */,
+				AE46FA1125ABF8820051D667 /* DetailTVC.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -474,6 +577,7 @@
 			isa = PBXGroup;
 			children = (
 				AEFB222225A02CBC00A3228C /* Login.storyboard */,
+				AE46FA1D25AC12860051D667 /* Model */,
 				AE9F294225A1716C00904FD9 /* View */,
 			);
 			path = LoginScene;
@@ -559,9 +663,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AE76C04E259B1A6E007B3901 /* Build configuration list for PBXNativeTarget "Mydaily_iOS" */;
 			buildPhases = (
+				CBDFD9BCCF2A48A014BBAE3B /* [CP] Check Pods Manifest.lock */,
 				AE76C036259B1A6D007B3901 /* Sources */,
 				AE76C037259B1A6D007B3901 /* Frameworks */,
 				AE76C038259B1A6D007B3901 /* Resources */,
+				A30E61312A0335D069F5A8F6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -614,6 +720,7 @@
 				AE53FBB025A6E97400D62AA7 /* NotoSansKR-Medium.otf in Resources */,
 				AEFB2205259C66FC00A3228C /* Mypage.storyboard in Resources */,
 				AE53FBB125A6E97400D62AA7 /* NotoSansKR-Regular.otf in Resources */,
+				AE53FBC225A8590D00D62AA7 /* DetailTVC.xib in Resources */,
 				AEFB222325A02CBC00A3228C /* Login.storyboard in Resources */,
 				AE53FBAC25A6E97400D62AA7 /* NotoSansKR-Bold.otf in Resources */,
 				AE53FBAF25A6E97400D62AA7 /* NotoSansKR-Black.otf in Resources */,
@@ -626,6 +733,7 @@
 				3C71FE3925AB7226007BC463 /* RecordKeywordTVC.xib in Resources */,
 				AE76C04A259B1A6E007B3901 /* LaunchScreen.storyboard in Resources */,
 				AE53FBAB25A6E97400D62AA7 /* NotoSansKR-Light.otf in Resources */,
+				AE53FBB925A7206000D62AA7 /* GoalTVC.xib in Resources */,
 				AE76C047259B1A6E007B3901 /* Assets.xcassets in Resources */,
 				DEC98B8B25A486DC00CC522C /* KeywordPriorityTVC.xib in Resources */,
 				AE53FBAD25A6E97400D62AA7 /* NotoSansKR-Thin.otf in Resources */,
@@ -634,6 +742,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A30E61312A0335D069F5A8F6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Mydaily_iOS/Pods-Mydaily_iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Mydaily_iOS/Pods-Mydaily_iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Mydaily_iOS/Pods-Mydaily_iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CBDFD9BCCF2A48A014BBAE3B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Mydaily_iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AE76C036259B1A6D007B3901 /* Sources */ = {
@@ -645,17 +795,19 @@
 				DEC98B8625A483C300CC522C /* KeywordPriorityVC.swift in Sources */,
 				EDC1642925A4617600CD65B0 /* RetrospectiveWriteVC.swift in Sources */,
 				AE76C03E259B1A6D007B3901 /* AppDelegate.swift in Sources */,
+				AE46FA2325AC13B50051D667 /* LoginService.swift in Sources */,
 				AED84DF325A558B30050D861 /* Extensions+UIView.swift in Sources */,
+				AE53FBBC25A733E900D62AA7 /* GoalWriteVC.swift in Sources */,
 				EDAAFA2E25A8535400424BF9 /* SettingVersionTVC.swift in Sources */,
 				AE9F294D25A1BF1500904FD9 /* RegisterEntryVC.swift in Sources */,
 				EDDC038925A96926007162CD /* MypageChangePasswordVC.swift in Sources */,
 				AE9F294A25A1A69400904FD9 /* registerVC.swift in Sources */,
+				AE53FBB825A7206000D62AA7 /* GoalTVC.swift in Sources */,
 				3C4CBF9625A386E90007A6FF /* NextKeywordVC.swift in Sources */,
 				3CC8642C259CAFEE0043421A /* KeywordPopUpVC.swift in Sources */,
 				3C429769259F16D10061483E /* KeywordSettingTVC.swift in Sources */,
 				EDAAEB7D25A01B550024E3E4 /* EvaluationDetailVC.swift in Sources */,
 				AED84DDD25A4930C0050D861 /* DetailVC.swift in Sources */,
-				AED84DDA25A492F70050D861 /* DetailTVC.swift in Sources */,
 				AEFB2210259C6C6A00A3228C /* DailyVC.swift in Sources */,
 				AED84DF025A558B30050D861 /* Extensions+UITextField.swift in Sources */,
 				EDDC038D25A9E025007162CD /* DetailRecordLayoutDelegate.swift in Sources */,
@@ -666,14 +818,19 @@
 				AE53FB9925A5B6F300D62AA7 /* DailyWriteVC.swift in Sources */,
 				AEFB21F9259C5CB900A3228C /* TabbarController.swift in Sources */,
 				EDBF739B25A18BF100ECDEB9 /* DetailRecordLayout.swift in Sources */,
+				AE46FA2625AC13CE0051D667 /* GeneralAPI.swift in Sources */,
 				AEFB2216259C6E6700A3228C /* MypageVC.swift in Sources */,
+				AE53FBCE25AB02E000D62AA7 /* GoalModifyVC.swift in Sources */,
 				AED84DF125A558B30050D861 /* Extensions+Encodable.swift in Sources */,
 				AEFB2213259C6E2D00A3228C /* EvaluationVC.swift in Sources */,
+				AE46FA1225ABF8820051D667 /* DetailTVC.swift in Sources */,
 				3CB1214D25A778CB0080E60F /* KeywordDefineVC.swift in Sources */,
 				DEC98B8A25A486DC00CC522C /* KeywordPriorityTVC.swift in Sources */,
 				3CC86433259CCCB00043421A /* ContentCVC.swift in Sources */,
+				AE46FA2A25AC16090051D667 /* SignupRequest.swift in Sources */,
 				3C71FE3825AB7226007BC463 /* RecordKeywordTVC.swift in Sources */,
 				AE76C040259B1A6D007B3901 /* SceneDelegate.swift in Sources */,
+				AE46FA3725AC46110051D667 /* SigninModel.swift in Sources */,
 				ED266033259F019B00A376C0 /* EvaluationHeaderTVC.swift in Sources */,
 				DEC98B8125A4435300CC522C /* KeywordDecideVC.swift in Sources */,
 				AE9F294525A1719600904FD9 /* LoginVC.swift in Sources */,
@@ -687,15 +844,19 @@
 				ED266029259EF02E00A376C0 /* EvaluationTabCVC.swift in Sources */,
 				DE91346025A309500045BDCE /* AddUserKeywordVC.swift in Sources */,
 				EDAAFA2825A83B7000424BF9 /* SettingSecurityTVC.swift in Sources */,
+				AE53FBCB25AAFA6300D62AA7 /* GoalDetailVC.swift in Sources */,
 				EDA9CA8425A1A74D00BF46C1 /* DetailRecordContentTVC.swift in Sources */,
 				AED84DF625A558B30050D861 /* UIView+Animation.swift in Sources */,
 				AED84DED25A558B30050D861 /* Extensions+UIApplication.swift in Sources */,
+				AE46FA3025AC1ADE0051D667 /* NetworkLoggerPlugin.swift in Sources */,
+				AE46FA2D25AC178C0051D667 /* SignupModel.swift in Sources */,
 				AED84DEC25A558B30050D861 /* Extensions+String.swift in Sources */,
 				AED84DF425A558B30050D861 /* Extensions+UIViewController.swift in Sources */,
 				EDBF739725A17BD900ECDEB9 /* DetailRecordCVC.swift in Sources */,
 				AED84DF225A558B30050D861 /* Extensions+Date.swift in Sources */,
 				EDBF739025A1634000ECDEB9 /* DetailGoalTVC.swift in Sources */,
 				EDC1642D25A46C3800CD65B0 /* TableViewInsideCollectionViewDelegate.swift in Sources */,
+				AE46FA3425AC45E80051D667 /* SigninRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -831,6 +992,7 @@
 		};
 		AE76C04F259B1A6E007B3901 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5956CC336820D9D74ADEB069 /* Pods-Mydaily_iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -849,6 +1011,7 @@
 		};
 		AE76C050259B1A6E007B3901 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9828837A31425EF64043B250 /* Pods-Mydaily_iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
