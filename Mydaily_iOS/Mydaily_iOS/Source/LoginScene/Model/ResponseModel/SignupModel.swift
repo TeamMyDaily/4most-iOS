@@ -12,10 +12,10 @@ struct SignupModel: Codable {
     let status: Int
     let success: Bool
     let message: String
-    let data: LoginResponse
+    let data: SignupResponse
 }
 
 // MARK: - LoginResponse
-struct LoginResponse: Codable {
+struct SignupResponse: Codable {
     let email, userName: String
 }

@@ -22,6 +22,7 @@
 		AE46FA2625AC13CE0051D667 /* GeneralAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA2525AC13CE0051D667 /* GeneralAPI.swift */; };
 		AE46FA2A25AC16090051D667 /* SignupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA2925AC16090051D667 /* SignupRequest.swift */; };
 		AE46FA2D25AC178C0051D667 /* SignupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA2C25AC178C0051D667 /* SignupModel.swift */; };
+		AE46FA3025AC1ADE0051D667 /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA2F25AC1ADE0051D667 /* NetworkLoggerPlugin.swift */; };
 		AE53FB9925A5B6F300D62AA7 /* DailyWriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FB9825A5B6F300D62AA7 /* DailyWriteVC.swift */; };
 		AE53FB9E25A6B1E600D62AA7 /* GoalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FB9D25A6B1E600D62AA7 /* GoalVC.swift */; };
 		AE53FBAB25A6E97400D62AA7 /* NotoSansKR-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = AE53FBA425A6E97400D62AA7 /* NotoSansKR-Light.otf */; };
@@ -111,6 +112,7 @@
 		AE46FA2525AC13CE0051D667 /* GeneralAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralAPI.swift; sourceTree = "<group>"; };
 		AE46FA2925AC16090051D667 /* SignupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRequest.swift; sourceTree = "<group>"; };
 		AE46FA2C25AC178C0051D667 /* SignupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupModel.swift; sourceTree = "<group>"; };
+		AE46FA2F25AC1ADE0051D667 /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
 		AE53FB9825A5B6F300D62AA7 /* DailyWriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWriteVC.swift; sourceTree = "<group>"; };
 		AE53FB9D25A6B1E600D62AA7 /* GoalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalVC.swift; sourceTree = "<group>"; };
 		AE53FBA425A6E97400D62AA7 /* NotoSansKR-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Light.otf"; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 				AE76C03D259B1A6D007B3901 /* AppDelegate.swift */,
 				AE76C03F259B1A6D007B3901 /* SceneDelegate.swift */,
 				AE46FA2525AC13CE0051D667 /* GeneralAPI.swift */,
+				AE46FA2F25AC1ADE0051D667 /* NetworkLoggerPlugin.swift */,
 				3CC86422259CAF8F0043421A /* KeywordScene */,
 				AED84DE025A558B30050D861 /* GeneralExtensions */,
 				AEFB222025A02C8800A3228C /* LoginScene */,
@@ -813,6 +816,7 @@
 				EDA9CA8425A1A74D00BF46C1 /* DetailRecordContentTVC.swift in Sources */,
 				AED84DF625A558B30050D861 /* UIView+Animation.swift in Sources */,
 				AED84DED25A558B30050D861 /* Extensions+UIApplication.swift in Sources */,
+				AE46FA3025AC1ADE0051D667 /* NetworkLoggerPlugin.swift in Sources */,
 				AE46FA2D25AC178C0051D667 /* SignupModel.swift in Sources */,
 				AED84DEC25A558B30050D861 /* Extensions+String.swift in Sources */,
 				AED84DF425A558B30050D861 /* Extensions+UIViewController.swift in Sources */,

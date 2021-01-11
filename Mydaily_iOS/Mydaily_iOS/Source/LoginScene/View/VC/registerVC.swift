@@ -10,6 +10,9 @@ import Moya
 
 class RegisterVC: UIViewController {
     
+    private let authProvider = MoyaProvider<LoginServices>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    var userData: SignupModel?
+    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var pwTextField: UITextField!
@@ -42,6 +45,7 @@ class RegisterVC: UIViewController {
         securityText(textfield: checkpwTextField)
     }
     @IBAction func nextButton(_ sender: Any) {
+        signup()
         let alert = UIAlertController(title: "가입을 축하합니다!", message: "4most회원이 되신걸 진심으로 축하합니다!", preferredStyle: UIAlertController.Style.alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
             if let viewControllers = self.navigationController?.viewControllers {
@@ -282,6 +286,27 @@ extension RegisterVC: UITextFieldDelegate{
             setLabelInitUI(label: nameLabel)
             nextButton.isEnabled = false
             return true
+        }
+    }
+}
+
+extension RegisterVC {
+    func signup(){
+        let param = SignupRequest.init(self.emailTextField.text!, self.pwTextField.text!, self.checkpwTextField.text!, self.nameTextField.text!)
+        print(param)
+        authProvider.request(.signUp(param: param)) { response in
+            switch response {
+                case .success(let result):
+                    do {
+                        let userData = try result.map(SignupModel.self)
+                        print(userData)
+                        
+                    } catch(let err) {
+                        print(err.localizedDescription)
+                    }
+                case .failure(let err):
+                    print(err.localizedDescription)
+            }
         }
     }
 }
