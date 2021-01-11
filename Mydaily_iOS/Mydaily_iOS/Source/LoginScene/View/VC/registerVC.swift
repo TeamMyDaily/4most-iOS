@@ -298,8 +298,7 @@ extension RegisterVC {
             switch response {
                 case .success(let result):
                     do {
-                        let userData = try result.map(SignupModel.self)
-                        print(userData)
+                        self.userData = try result.map(SignupModel.self)
                         
                     } catch(let err) {
                         print(err.localizedDescription)

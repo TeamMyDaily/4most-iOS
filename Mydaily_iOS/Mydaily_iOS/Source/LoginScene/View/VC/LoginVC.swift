@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import Moya
 
 class LoginVC: UIViewController {
 
+    private let authProvider = MoyaProvider<LoginServices>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    var token: SigninModel?
+    
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var pwTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
@@ -31,6 +35,9 @@ class LoginVC: UIViewController {
         self.navigationController?.pushViewController(dvc, animated: true)
     }
     
+    @IBAction func loginButton(_ sender: Any) {
+        signin()
+    }
 }
 
 //MARK: - UI
@@ -106,6 +113,25 @@ extension LoginVC {
         }
         else{
             loginButton.isEnabled = false
+        }
+    }
+}
+
+extension LoginVC {
+    func signin(){
+        let param = SigninRequest.init(self.idTextField.text!, self.pwTextField.text!)
+        authProvider.request(.signIn(param: param)) { response in
+            switch response {
+                case .success(let result):
+                    do {
+                        self.token = try result.map(SigninModel.self)
+                        print("~~\(self.token)")
+                    } catch(let err) {
+                        print(err.localizedDescription)
+                    }
+                case .failure(let err):
+                    print(err.localizedDescription)
+            }
         }
     }
 }

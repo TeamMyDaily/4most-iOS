@@ -23,6 +23,8 @@
 		AE46FA2A25AC16090051D667 /* SignupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA2925AC16090051D667 /* SignupRequest.swift */; };
 		AE46FA2D25AC178C0051D667 /* SignupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA2C25AC178C0051D667 /* SignupModel.swift */; };
 		AE46FA3025AC1ADE0051D667 /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA2F25AC1ADE0051D667 /* NetworkLoggerPlugin.swift */; };
+		AE46FA3425AC45E80051D667 /* SigninRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA3325AC45E80051D667 /* SigninRequest.swift */; };
+		AE46FA3725AC46110051D667 /* SigninModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA3625AC46110051D667 /* SigninModel.swift */; };
 		AE53FB9925A5B6F300D62AA7 /* DailyWriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FB9825A5B6F300D62AA7 /* DailyWriteVC.swift */; };
 		AE53FB9E25A6B1E600D62AA7 /* GoalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FB9D25A6B1E600D62AA7 /* GoalVC.swift */; };
 		AE53FBAB25A6E97400D62AA7 /* NotoSansKR-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = AE53FBA425A6E97400D62AA7 /* NotoSansKR-Light.otf */; };
@@ -113,6 +115,8 @@
 		AE46FA2925AC16090051D667 /* SignupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRequest.swift; sourceTree = "<group>"; };
 		AE46FA2C25AC178C0051D667 /* SignupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupModel.swift; sourceTree = "<group>"; };
 		AE46FA2F25AC1ADE0051D667 /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
+		AE46FA3325AC45E80051D667 /* SigninRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninRequest.swift; sourceTree = "<group>"; };
+		AE46FA3625AC46110051D667 /* SigninModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninModel.swift; sourceTree = "<group>"; };
 		AE53FB9825A5B6F300D62AA7 /* DailyWriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWriteVC.swift; sourceTree = "<group>"; };
 		AE53FB9D25A6B1E600D62AA7 /* GoalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalVC.swift; sourceTree = "<group>"; };
 		AE53FBA425A6E97400D62AA7 /* NotoSansKR-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Light.otf"; sourceTree = "<group>"; };
@@ -291,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				AE46FA2C25AC178C0051D667 /* SignupModel.swift */,
+				AE46FA3625AC46110051D667 /* SigninModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -299,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				AE46FA2925AC16090051D667 /* SignupRequest.swift */,
+				AE46FA3325AC45E80051D667 /* SigninRequest.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -799,6 +805,7 @@
 				3CC86433259CCCB00043421A /* ContentCVC.swift in Sources */,
 				AE46FA2A25AC16090051D667 /* SignupRequest.swift in Sources */,
 				AE76C040259B1A6D007B3901 /* SceneDelegate.swift in Sources */,
+				AE46FA3725AC46110051D667 /* SigninModel.swift in Sources */,
 				ED266033259F019B00A376C0 /* EvaluationHeaderTVC.swift in Sources */,
 				DEC98B8125A4435300CC522C /* KeywordDecideVC.swift in Sources */,
 				AE9F294525A1719600904FD9 /* LoginVC.swift in Sources */,
@@ -824,6 +831,7 @@
 				AED84DF225A558B30050D861 /* Extensions+Date.swift in Sources */,
 				EDBF739025A1634000ECDEB9 /* DetailGoalTVC.swift in Sources */,
 				EDC1642D25A46C3800CD65B0 /* TableViewInsideCollectionViewDelegate.swift in Sources */,
+				AE46FA3425AC45E80051D667 /* SigninRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
