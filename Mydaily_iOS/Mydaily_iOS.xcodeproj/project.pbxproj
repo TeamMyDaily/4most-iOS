@@ -28,6 +28,7 @@
 		AE46FA4525ACA2140051D667 /* DailyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA4425ACA2140051D667 /* DailyService.swift */; };
 		AE46FA4825ACA32B0051D667 /* DailyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA4725ACA32B0051D667 /* DailyModel.swift */; };
 		AE46FA4C25ACB2170051D667 /* DailyTaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA4B25ACB2170051D667 /* DailyTaskModel.swift */; };
+		AE46FA4F25ACB56C0051D667 /* DailyWriteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA4E25ACB56C0051D667 /* DailyWriteRequest.swift */; };
 		AE53FB9925A5B6F300D62AA7 /* DailyWriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FB9825A5B6F300D62AA7 /* DailyWriteVC.swift */; };
 		AE53FB9E25A6B1E600D62AA7 /* GoalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FB9D25A6B1E600D62AA7 /* GoalVC.swift */; };
 		AE53FBAB25A6E97400D62AA7 /* NotoSansKR-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = AE53FBA425A6E97400D62AA7 /* NotoSansKR-Light.otf */; };
@@ -123,6 +124,7 @@
 		AE46FA4425ACA2140051D667 /* DailyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyService.swift; sourceTree = "<group>"; };
 		AE46FA4725ACA32B0051D667 /* DailyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyModel.swift; sourceTree = "<group>"; };
 		AE46FA4B25ACB2170051D667 /* DailyTaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTaskModel.swift; sourceTree = "<group>"; };
+		AE46FA4E25ACB56C0051D667 /* DailyWriteRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWriteRequest.swift; sourceTree = "<group>"; };
 		AE53FB9825A5B6F300D62AA7 /* DailyWriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWriteVC.swift; sourceTree = "<group>"; };
 		AE53FB9D25A6B1E600D62AA7 /* GoalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalVC.swift; sourceTree = "<group>"; };
 		AE53FBA425A6E97400D62AA7 /* NotoSansKR-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Light.otf"; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 		AE46FA4325ACA1D20051D667 /* RequestModel */ = {
 			isa = PBXGroup;
 			children = (
+				AE46FA4E25ACB56C0051D667 /* DailyWriteRequest.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -827,6 +830,7 @@
 				EDAAFA2E25A8535400424BF9 /* SettingVersionTVC.swift in Sources */,
 				AE9F294D25A1BF1500904FD9 /* RegisterEntryVC.swift in Sources */,
 				EDDC038925A96926007162CD /* MypageChangePasswordVC.swift in Sources */,
+				AE46FA4F25ACB56C0051D667 /* DailyWriteRequest.swift in Sources */,
 				AE9F294A25A1A69400904FD9 /* registerVC.swift in Sources */,
 				AE53FBB825A7206000D62AA7 /* GoalTVC.swift in Sources */,
 				3C4CBF9625A386E90007A6FF /* NextKeywordVC.swift in Sources */,

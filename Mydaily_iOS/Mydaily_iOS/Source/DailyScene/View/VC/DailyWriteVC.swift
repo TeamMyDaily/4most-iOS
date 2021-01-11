@@ -75,7 +75,7 @@ extension DailyWriteVC {
         //        }()
         
         let rightButton: UIBarButtonItem = {
-            let button = UIBarButtonItem(title: "저장", style: .done, target: self, action: nil)
+            let button = UIBarButtonItem(title: "저장", style: .done, target: self, action: #selector(post))
             button.setTitleTextAttributes([
                                             NSAttributedString.Key.font: UIFont.myRegularSystemFont(ofSize: 17),
                                             NSAttributedString.Key.foregroundColor: UIColor.mainOrange], for: .normal)
@@ -92,6 +92,10 @@ extension DailyWriteVC {
 //                }()
 //                navigationItem.leftBarButtonItem = leftButton
         navigationItem.rightBarButtonItem = rightButton
+    }
+    
+    @objc func post(){
+        posting()
     }
     
     func setUI(){
@@ -207,6 +211,23 @@ extension DailyWriteVC {
                         let data = try response.map(DailyTaskModel.self)
                         print(data)
                         self.dailyTask = data
+                    } catch(let err) {
+                        print(err.localizedDescription)
+                    }
+                case .failure(let err):
+                    print(err.localizedDescription)
+            }
+        }
+    }
+    
+    func posting(){
+        let param = DailyWriteRequest.init("1", self.todayTitle.text!, todayTextView.text!, Int(scoreSlider.value))
+        authProvider.request(.dailyWrite(param: param)) { response in
+            switch response {
+                case .success(let result):
+                    do {
+                        self.dailyTask = try result.map(DailyTaskModel.self)
+                        print(self.dailyTask)
                     } catch(let err) {
                         print(err.localizedDescription)
                     }

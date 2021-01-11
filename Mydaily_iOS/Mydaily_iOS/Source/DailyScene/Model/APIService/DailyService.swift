@@ -11,6 +11,7 @@ import Moya
 enum DailyService {
     case dailyinquiry(String)
     case dailytask(Int)
+    case dailyWrite(param: DailyWriteRequest)
 }
 
 extension DailyService: TargetType {
@@ -24,6 +25,8 @@ extension DailyService: TargetType {
             return "/tasks" + date
         case .dailytask(let id):
             return "/tasks/\(id)"
+        case .dailyWrite:
+            return "/tasks"
         }
     }
     
@@ -32,6 +35,8 @@ extension DailyService: TargetType {
         case .dailyinquiry,
              .dailytask:
             return .get
+        case .dailyWrite:
+            return .post
         }
     }
     
@@ -44,6 +49,8 @@ extension DailyService: TargetType {
         case .dailyinquiry,
              .dailytask:
             return .requestPlain
+        case .dailyWrite(let param):
+            return .requestJSONEncodable(param)
         }
     }
     
