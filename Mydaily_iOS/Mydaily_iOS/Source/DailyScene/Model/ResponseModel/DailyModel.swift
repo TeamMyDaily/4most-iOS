@@ -21,11 +21,11 @@ struct Keyword: Codable {
     let result: [KeywordData]
 }
 
-// MARK: - Result
+// MARK: - KeywordData
 struct KeywordData: Codable {
     let totalKeywordID, priority: Int
     let name: String
-    let tasks: [task]
+    let tasks: [KeywordTask]
 
     enum CodingKeys: String, CodingKey {
         case totalKeywordID = "TotalKeywordId"
@@ -33,8 +33,8 @@ struct KeywordData: Codable {
     }
 }
 
-// MARK: - task
-struct task: Codable {
+// MARK: - KeywordTask
+struct KeywordTask: Codable {
     let id: Int
     let title: String
 }

@@ -9,7 +9,8 @@ import Foundation
 import Moya
 
 enum DailyService {
-    case dailyinquiry(Int)
+    case dailyinquiry(String)
+    case dailytask(Int)
 }
 
 extension DailyService: TargetType {
@@ -20,13 +21,16 @@ extension DailyService: TargetType {
     var path: String {
         switch self {
         case .dailyinquiry(let date):
-            return "/tasks?date=\(date)"
+            return "/tasks" + date
+        case .dailytask(let id):
+            return "/tasks/\(id)"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .dailyinquiry:
+        case .dailyinquiry,
+             .dailytask:
             return .get
         }
     }
@@ -37,7 +41,8 @@ extension DailyService: TargetType {
     
     var task: Task {
         switch self {
-        case .dailyinquiry:
+        case .dailyinquiry,
+             .dailytask:
             return .requestPlain
         }
     }
@@ -47,7 +52,7 @@ extension DailyService: TargetType {
         default:
             return [
                 "Content-Type": "application/json",
-                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6InFxIiwiZW1haWwiOiJxcUBxcS5xcSIsImlhdCI6MTYxMDMzMzQ0MywiZXhwIjoxNjEyOTI1NDQzLCJpc3MiOiJjeWoifQ.k3HAJg9K_NMVscJWafGBdCB4Odj6qua9VUL2N3_siYo"
+                "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6InFxIiwiZW1haWwiOiJxcUBxcS5xcSIsImlhdCI6MTYxMDMzMzQ0MywiZXhwIjoxNjEyOTI1NDQzLCJpc3MiOiJjeWoifQ.k3HAJg9K_NMVscJWafGBdCB4Odj6qua9VUL2N3_siYo"
             ]
         }
     }

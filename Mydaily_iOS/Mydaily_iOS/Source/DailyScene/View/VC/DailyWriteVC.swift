@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import Moya
 
 class DailyWriteVC: UIViewController {
+    
+    private let authProvider = MoyaProvider<DailyService>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    var dailyTask: DailyTaskModel?
     
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var todayTitle: UITextField!
@@ -26,6 +30,7 @@ class DailyWriteVC: UIViewController {
         todayTitle.delegate = self
         placeholderSetting()
         setSliderUI()
+        getDailyTask()
     }
     
     func setSliderUI(){
@@ -191,3 +196,23 @@ extension DailyWriteVC: UITextViewDelegate {
     }
 }
 
+
+extension DailyWriteVC {
+    func getDailyTask(){
+        authProvider.request(.dailytask(1)) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+                case .success(let response):
+                    do {
+                        let data = try response.map(DailyTaskModel.self)
+                        print(data)
+                        self.dailyTask = data
+                    } catch(let err) {
+                        print(err.localizedDescription)
+                    }
+                case .failure(let err):
+                    print(err.localizedDescription)
+            }
+        }
+    }
+}

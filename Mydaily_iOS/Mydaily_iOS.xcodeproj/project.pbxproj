@@ -27,6 +27,7 @@
 		AE46FA3725AC46110051D667 /* SigninModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA3625AC46110051D667 /* SigninModel.swift */; };
 		AE46FA4525ACA2140051D667 /* DailyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA4425ACA2140051D667 /* DailyService.swift */; };
 		AE46FA4825ACA32B0051D667 /* DailyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA4725ACA32B0051D667 /* DailyModel.swift */; };
+		AE46FA4C25ACB2170051D667 /* DailyTaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA4B25ACB2170051D667 /* DailyTaskModel.swift */; };
 		AE53FB9925A5B6F300D62AA7 /* DailyWriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FB9825A5B6F300D62AA7 /* DailyWriteVC.swift */; };
 		AE53FB9E25A6B1E600D62AA7 /* GoalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FB9D25A6B1E600D62AA7 /* GoalVC.swift */; };
 		AE53FBAB25A6E97400D62AA7 /* NotoSansKR-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = AE53FBA425A6E97400D62AA7 /* NotoSansKR-Light.otf */; };
@@ -121,6 +122,7 @@
 		AE46FA3625AC46110051D667 /* SigninModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninModel.swift; sourceTree = "<group>"; };
 		AE46FA4425ACA2140051D667 /* DailyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyService.swift; sourceTree = "<group>"; };
 		AE46FA4725ACA32B0051D667 /* DailyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyModel.swift; sourceTree = "<group>"; };
+		AE46FA4B25ACB2170051D667 /* DailyTaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTaskModel.swift; sourceTree = "<group>"; };
 		AE53FB9825A5B6F300D62AA7 /* DailyWriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWriteVC.swift; sourceTree = "<group>"; };
 		AE53FB9D25A6B1E600D62AA7 /* GoalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalVC.swift; sourceTree = "<group>"; };
 		AE53FBA425A6E97400D62AA7 /* NotoSansKR-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Light.otf"; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				AE46FA4725ACA32B0051D667 /* DailyModel.swift */,
+				AE46FA4B25ACB2170051D667 /* DailyTaskModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -835,6 +838,7 @@
 				AED84DF025A558B30050D861 /* Extensions+UITextField.swift in Sources */,
 				EDDC038D25A9E025007162CD /* DetailRecordLayoutDelegate.swift in Sources */,
 				EDBF739325A1636300ECDEB9 /* DetailRecordTVC.swift in Sources */,
+				AE46FA4C25ACB2170051D667 /* DailyTaskModel.swift in Sources */,
 				EDAAFA3425A8787100424BF9 /* MypageWithdrawalVC.swift in Sources */,
 				AED84DEF25A558B30050D861 /* Extensions+UIColor.swift in Sources */,
 				EDAAFA2425A82E0400424BF9 /* MypageSettingVC.swift in Sources */,

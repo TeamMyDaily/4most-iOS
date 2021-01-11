@@ -10,6 +10,9 @@ import Moya
 
 class DailyVC: UIViewController, ThreePartCellDelegate {
     
+    private let authProvider = MoyaProvider<DailyService>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    var dailyModel: DailyModel?
+    
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var dateLabel: UILabel!
@@ -29,6 +32,10 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
         $0.addTarget(self, action: #selector(setToday), for: .allTouchEvents)
         return $0
     }(UIButton(frame: .zero))
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getDaily()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -163,4 +170,41 @@ extension DailyVC {
     }
 }
 
-
+extension DailyVC {
+    func getDaily(){
+//        authProvider.request(.dailyinquiry("?date=1610333510000")) { [weak self] result in
+//            guard let self = self else { return }
+//            switch result {
+//                case .success(let response):
+//                    do {
+//                        let data = try response.map(DailyModel.self)
+//                        print(data)
+//                        self.dailyModel = data
+////                        print(self.dailyModel)
+//                        self.tableView.reloadData()
+//                    } catch(let err) {
+//                        print(err.localizedDescription)
+//                    }
+//                case .failure(let err):
+//                    print(err.localizedDescription)
+//            }
+//        }
+        
+        authProvider.request(.dailyinquiry("?date=1610333510000")) { response in
+            switch response {
+                case .success(let result):
+                    do {
+                        let data = try result.map(DailyModel.self)
+                        self.dailyModel = data
+                        print(self.dailyModel)
+                    } catch(let err) {
+                        print(err.localizedDescription)
+                    }
+                case .failure(let err):
+//                    self.token = try err.map(SigninModel.self)
+//                    print("@\(self.token)")
+                    print(err.localizedDescription)
+            }
+        }
+    }
+}
