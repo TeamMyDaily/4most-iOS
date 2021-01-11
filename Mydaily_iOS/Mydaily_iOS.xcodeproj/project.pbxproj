@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2ADE5A8EA718965B022E7E74 /* Pods_Mydaily_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DAD6BD77FE2A877525BCC6C /* Pods_Mydaily_iOS.framework */; };
 		3C429769259F16D10061483E /* KeywordSettingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C429767259F16D10061483E /* KeywordSettingTVC.swift */; };
 		3C42976A259F16D10061483E /* KeywordSettingTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C429768259F16D10061483E /* KeywordSettingTVC.xib */; };
 		3C4CBF9625A386E90007A6FF /* NextKeywordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4CBF9525A386E90007A6FF /* NextKeywordVC.swift */; };
@@ -16,6 +17,7 @@
 		3CC8642C259CAFEE0043421A /* KeywordPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC8642B259CAFEE0043421A /* KeywordPopUpVC.swift */; };
 		3CC86433259CCCB00043421A /* ContentCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC86431259CCCB00043421A /* ContentCVC.swift */; };
 		3CC86434259CCCB00043421A /* ContentCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CC86432259CCCB00043421A /* ContentCVC.xib */; };
+		AE46FA1225ABF8820051D667 /* DetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA1125ABF8820051D667 /* DetailTVC.swift */; };
 		AE53FB9925A5B6F300D62AA7 /* DailyWriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FB9825A5B6F300D62AA7 /* DailyWriteVC.swift */; };
 		AE53FB9E25A6B1E600D62AA7 /* GoalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FB9D25A6B1E600D62AA7 /* GoalVC.swift */; };
 		AE53FBAB25A6E97400D62AA7 /* NotoSansKR-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = AE53FBA425A6E97400D62AA7 /* NotoSansKR-Light.otf */; };
@@ -29,7 +31,6 @@
 		AE53FBB925A7206000D62AA7 /* GoalTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE53FBB725A7206000D62AA7 /* GoalTVC.xib */; };
 		AE53FBBC25A733E900D62AA7 /* GoalWriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FBBB25A733E900D62AA7 /* GoalWriteVC.swift */; };
 		AE53FBC225A8590D00D62AA7 /* DetailTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE53FBC025A8590D00D62AA7 /* DetailTVC.xib */; };
-		AE53FBC725A98E9500D62AA7 /* DetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FBC625A98E9500D62AA7 /* DetailTVC.swift */; };
 		AE53FBCB25AAFA6300D62AA7 /* GoalDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FBCA25AAFA6200D62AA7 /* GoalDetailVC.swift */; };
 		AE53FBCE25AB02E000D62AA7 /* GoalModifyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FBCD25AB02E000D62AA7 /* GoalModifyVC.swift */; };
 		AE76C03E259B1A6D007B3901 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE76C03D259B1A6D007B3901 /* AppDelegate.swift */; };
@@ -98,6 +99,10 @@
 		3CC8642B259CAFEE0043421A /* KeywordPopUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeywordPopUpVC.swift; sourceTree = "<group>"; };
 		3CC86431259CCCB00043421A /* ContentCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCVC.swift; sourceTree = "<group>"; };
 		3CC86432259CCCB00043421A /* ContentCVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentCVC.xib; sourceTree = "<group>"; };
+		5956CC336820D9D74ADEB069 /* Pods-Mydaily_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mydaily_iOS.debug.xcconfig"; path = "Target Support Files/Pods-Mydaily_iOS/Pods-Mydaily_iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		6DAD6BD77FE2A877525BCC6C /* Pods_Mydaily_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mydaily_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9828837A31425EF64043B250 /* Pods-Mydaily_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mydaily_iOS.release.xcconfig"; path = "Target Support Files/Pods-Mydaily_iOS/Pods-Mydaily_iOS.release.xcconfig"; sourceTree = "<group>"; };
+		AE46FA1125ABF8820051D667 /* DetailTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTVC.swift; sourceTree = "<group>"; };
 		AE53FB9825A5B6F300D62AA7 /* DailyWriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWriteVC.swift; sourceTree = "<group>"; };
 		AE53FB9D25A6B1E600D62AA7 /* GoalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalVC.swift; sourceTree = "<group>"; };
 		AE53FBA425A6E97400D62AA7 /* NotoSansKR-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Light.otf"; sourceTree = "<group>"; };
@@ -111,7 +116,6 @@
 		AE53FBB725A7206000D62AA7 /* GoalTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoalTVC.xib; sourceTree = "<group>"; };
 		AE53FBBB25A733E900D62AA7 /* GoalWriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalWriteVC.swift; sourceTree = "<group>"; };
 		AE53FBC025A8590D00D62AA7 /* DetailTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTVC.xib; sourceTree = "<group>"; };
-		AE53FBC625A98E9500D62AA7 /* DetailTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailTVC.swift; path = ../../../../../../../../DetailTVC.swift; sourceTree = "<group>"; };
 		AE53FBCA25AAFA6200D62AA7 /* GoalDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailVC.swift; sourceTree = "<group>"; };
 		AE53FBCD25AB02E000D62AA7 /* GoalModifyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalModifyVC.swift; sourceTree = "<group>"; };
 		AE76C03A259B1A6D007B3901 /* Mydaily_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mydaily_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -177,6 +181,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2ADE5A8EA718965B022E7E74 /* Pods_Mydaily_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,6 +231,24 @@
 				3CC86424259CAF8F0043421A /* VC */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		62D8182CBB4E4086D951909D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6DAD6BD77FE2A877525BCC6C /* Pods_Mydaily_iOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		86DD90383A536D85CADBA800 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5956CC336820D9D74ADEB069 /* Pods-Mydaily_iOS.debug.xcconfig */,
+				9828837A31425EF64043B250 /* Pods-Mydaily_iOS.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		AE0C5E58259C46660059FA38 /* TabbarScene */ = {
@@ -293,6 +316,8 @@
 			children = (
 				AE76C03C259B1A6D007B3901 /* Mydaily_iOS */,
 				AE76C03B259B1A6D007B3901 /* Products */,
+				86DD90383A536D85CADBA800 /* Pods */,
+				62D8182CBB4E4086D951909D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -362,8 +387,8 @@
 		AED84DC425A456810050D861 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				AE53FBC625A98E9500D62AA7 /* DetailTVC.swift */,
 				AE53FBC025A8590D00D62AA7 /* DetailTVC.xib */,
+				AE46FA1125ABF8820051D667 /* DetailTVC.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -565,9 +590,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AE76C04E259B1A6E007B3901 /* Build configuration list for PBXNativeTarget "Mydaily_iOS" */;
 			buildPhases = (
+				CBDFD9BCCF2A48A014BBAE3B /* [CP] Check Pods Manifest.lock */,
 				AE76C036259B1A6D007B3901 /* Sources */,
 				AE76C037259B1A6D007B3901 /* Frameworks */,
 				AE76C038259B1A6D007B3901 /* Resources */,
+				A30E61312A0335D069F5A8F6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -641,12 +668,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A30E61312A0335D069F5A8F6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Mydaily_iOS/Pods-Mydaily_iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Mydaily_iOS/Pods-Mydaily_iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Mydaily_iOS/Pods-Mydaily_iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CBDFD9BCCF2A48A014BBAE3B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Mydaily_iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		AE76C036259B1A6D007B3901 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDB8F39B25A3910E00F39A09 /* RetrospectiveWriteShameTVC.swift in Sources */,
 				3C5D94DD259D8B2700BF8DC9 /* KeywordSettingVC.swift in Sources */,
 				DEC98B8625A483C300CC522C /* KeywordPriorityVC.swift in Sources */,
 				EDC1642925A4617600CD65B0 /* RetrospectiveWriteVC.swift in Sources */,
@@ -675,9 +743,9 @@
 				EDBF739B25A18BF100ECDEB9 /* DetailRecordLayout.swift in Sources */,
 				AEFB2216259C6E6700A3228C /* MypageVC.swift in Sources */,
 				AE53FBCE25AB02E000D62AA7 /* GoalModifyVC.swift in Sources */,
-				AE53FBC725A98E9500D62AA7 /* DetailTVC.swift in Sources */,
 				AED84DF125A558B30050D861 /* Extensions+Encodable.swift in Sources */,
 				AEFB2213259C6E2D00A3228C /* EvaluationVC.swift in Sources */,
+				AE46FA1225ABF8820051D667 /* DetailTVC.swift in Sources */,
 				3CB1214D25A778CB0080E60F /* KeywordDefineVC.swift in Sources */,
 				DEC98B8A25A486DC00CC522C /* KeywordPriorityTVC.swift in Sources */,
 				3CC86433259CCCB00043421A /* ContentCVC.swift in Sources */,
@@ -840,6 +908,7 @@
 		};
 		AE76C04F259B1A6E007B3901 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5956CC336820D9D74ADEB069 /* Pods-Mydaily_iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -858,6 +927,7 @@
 		};
 		AE76C050259B1A6E007B3901 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9828837A31425EF64043B250 /* Pods-Mydaily_iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
