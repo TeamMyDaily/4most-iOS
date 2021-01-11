@@ -97,7 +97,8 @@ extension DailyWriteVC {
     
     @objc func post(){
 //        posting()
-        modify()
+//        modify()
+        delete()
     }
     
     func setUI(){
@@ -246,6 +247,23 @@ extension DailyWriteVC {
                 case .success(let result):
                     do {
                         self.dailyModify = try result.map(DailyModifyModel.self)
+                        print(self.dailyModify)
+                    } catch(let err) {
+                        print(err.localizedDescription)
+                    }
+                case .failure(let err):
+                    print(err.localizedDescription)
+            }
+        }
+    }
+    
+    func delete(){
+        authProvider.request(.dailyDelete(1)) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+                case .success(let response):
+                    do {
+                        self.dailyModify = try response.map(DailyModifyModel.self)
                         print(self.dailyModify)
                     } catch(let err) {
                         print(err.localizedDescription)
