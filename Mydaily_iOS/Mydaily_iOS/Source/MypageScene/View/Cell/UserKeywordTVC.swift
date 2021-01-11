@@ -7,12 +7,18 @@
 
 import UIKit
 
+protocol menuAlertDelegate {
+    func alertKeywordMenu(_ cell: UserKeywordTVC, keyword: String)
+}
+
 class UserKeywordTVC: UITableViewCell {
     static let identifier = "UserKeywordTVC"
     
-    @IBOutlet var fixClipImageView: UIImageView!
+    @IBOutlet var fixClipButton: UIButton!
     @IBOutlet var keywordLabel: UILabel!
-    @IBOutlet var menuImageView: UIImageView!
+    @IBOutlet var menuButton: UIButton!
+    var cellDelegate: menuAlertDelegate?
+    
     var isSelectedKeyword = true
     
     override func awakeFromNib() {
@@ -27,9 +33,20 @@ class UserKeywordTVC: UITableViewCell {
     
     func setContent(selected: Bool, keyword: String){
         if selected {
-            fixClipImageView.image = UIImage(systemName: "paperclip.circle.fill")
+            fixClipButton.setBackgroundImage(UIImage(systemName: "paperclip.circle.fill"), for: .normal)
         }
         keywordLabel.text = keyword
     }
+    
+    @IBAction func alertKeywordMenu(_ sender: UIButton){
+        print("메뉴바 눌림")
+        cellDelegate?.alertKeywordMenu(self, keyword: keywordLabel.text ?? "")
+        
+        
+        
+        
+    }
+    
+    
     
 }

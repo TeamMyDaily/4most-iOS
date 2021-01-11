@@ -555,7 +555,7 @@ extension KeywordSettingVC: SelectKeywordDelegate{
         let okAction = UIAlertAction(title: "확인", style: .default) { (action) in}
        
         alert.addAction(okAction)
-        present(alert, animated: false, completion: nil)
+        
     }
     
 }

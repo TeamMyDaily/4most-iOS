@@ -17,38 +17,33 @@ class MypageVC: UIViewController {
     var userKeywordList: [String] = ["선한영향력", "경청", "친절함", "대충", "열정" ,"진실성", "존중", "신뢰","연어덮밥"]
     var pageNumber = 0
     var userName = "엄석준"
-    var changeButton = UIButton()
+    
     var recordCellList : [RecordKeywordTVC] = []
     var recordCell: RecordKeywordTVC = RecordKeywordTVC()
     var userCellList: [UserKeywordTVC] = []
     var userCell:UserKeywordTVC = UserKeywordTVC()
+    
+    let keywordStoryboard = UIStoryboard(name: "Keyword", bundle: nil)
+    
+    @IBOutlet weak var recordKeywordButton: UIButton!
+    @IBOutlet weak var recordKeywordBarView: UIView!
+    
+    @IBOutlet weak var userKeywordBarView: UIView!
+    @IBOutlet weak var userKeywordButton: UIButton!
+    
     var footer = UIView()
     var subTitle = UILabel()
+    var changeButton = UIButton()
+    var plusButton = UIButton()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegate()
         setTitleLabel()
-        setTableFooterView()
+        setInitTableFooterView()
     }
     
-    func setDelegate(){
-        keywordTableView.dataSource = self
-        keywordTableView.delegate = self
-        keywordTableView.register(UINib(nibName: "RecordKeywordTVC", bundle: .main), forCellReuseIdentifier: RecordKeywordTVC.identifier)
-        keywordTableView.register(UINib(nibName: "UserKeywordTVC", bundle: .main), forCellReuseIdentifier: UserKeywordTVC.identifier)
-        
-        if pageNumber == 0{
-            keywordTableView.isScrollEnabled = false
-        }else{
-            keywordTableView.isScrollEnabled = true
-        }
-    }
-    
-    func setTitleLabel(){
-        titleLabel.numberOfLines = 0
-        titleLabel.text = "\(userName)님의\n목적지를 찾아봐요"
-    }
     
     @IBAction func goToSettingKeywordView(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Keyword", bundle: nil)
@@ -57,6 +52,26 @@ class MypageVC: UIViewController {
         self.present(dvc, animated: true, completion: nil)
 
     }
+    
+    @IBAction func touchUpRecordKeyword(_ sender: UIButton){
+        if sender.title(for:.normal) == "기록키워드"{
+            pageNumber = 0
+            recordKeywordBarView.isHidden = false
+            userKeywordBarView.isHidden = true
+            keywordTableView.isScrollEnabled = false
+            setRecordFooter()
+        }else{
+            pageNumber = 1
+            recordKeywordBarView.isHidden = true
+            userKeywordBarView.isHidden = false
+            keywordTableView.isScrollEnabled = true
+            setKeywordListFooter()
+        }
+        
+        keywordTableView.reloadData()
+        
+    }
+    
     
     
 }
@@ -80,12 +95,13 @@ extension MypageVC: UITableViewDataSource{
             if recordCellList.count <= keywordList.count{
             recordCellList.append(recordCell)
             }
+            
             return recordCell
         }else{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserKeywordTVC") as? UserKeywordTVC else{
                 return UITableViewCell()
             }
-            
+            cell.cellDelegate = self
             if keywordList.contains(userKeywordList[indexPath.row]){
                 print(userKeywordList[indexPath.row])
                 cell.setContent(selected: true, keyword: userKeywordList[indexPath.row])
@@ -123,9 +139,17 @@ extension MypageVC: UITableViewDelegate{
         
     }
     
-    func setTableFooterView(){
+    func setInitTableFooterView(){
         footer = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 100))
+        setRecordFooter()
+        keywordTableView.tableFooterView = footer
+    }
     
+    func setRecordFooter(){
+        for object in footer.subviews{
+            object.removeFromSuperview()
+        }
+        
         subTitle = UILabel(frame: CGRect(x: 0, y: 0, width:  view.frame.width, height: 60))
         subTitle.font = UIFont.myRegularSystemFont(ofSize: 12)
         subTitle.numberOfLines = 0
@@ -145,12 +169,10 @@ extension MypageVC: UITableViewDelegate{
         changeButton.center =  CGPoint(x: footer.frame.width / 2 - 10, y: 30)
         changeButton.addTarget(self, action: #selector(setEditingMode), for: .touchUpInside)
         
-        
         footer.addSubview(subTitle)
         footer.addSubview(changeButton)
-        
-        keywordTableView.tableFooterView = footer
     }
+    
     
     @objc func setEditingMode(_ sender: UIButton){
         if sender.title(for: .normal) == "우선순위 변경 하기"{
@@ -172,7 +194,6 @@ extension MypageVC: UITableViewDelegate{
                 
             }
             
-                        
         }else{
             sender.setTitle("우선순위 변경 하기", for: .normal)
             sender.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
@@ -193,10 +214,79 @@ extension MypageVC: UITableViewDelegate{
             }
             
             keywordTableView.reloadData()
-            
-
         }
         
     }
     
+    
+    func setKeywordListFooter(){
+        for object in footer.subviews{
+            object.removeFromSuperview()
+        }
+        
+        plusButton = UIButton(frame: CGRect(x: 0, y: 0, width: footer.frame.height/2, height: footer.frame.height/2))
+        plusButton.setBackgroundImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
+        
+        plusButton.center = CGPoint(x: footer.frame.width / 2, y:plusButton.frame.height)
+        //plusButton.setImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
+        plusButton.tintColor = UIColor.mainOrange
+        plusButton.addTarget(self, action: #selector(addUserKeyword), for: .touchUpInside)
+        
+        footer.addSubview(plusButton)
+        
+    }
+    
+    @objc func addUserKeyword(){
+        let dvc = keywordStoryboard.instantiateViewController(identifier: "KeywordSettingVCNavigation")
+        dvc.modalPresentationStyle = .fullScreen
+        self.present(dvc, animated: true, completion: nil)
+    }
+    
+}
+
+extension MypageVC: menuAlertDelegate{
+    func alertKeywordMenu(_ cell: UserKeywordTVC, keyword: String) {
+        let actionsheetController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+        
+        let keywordDefinitionAction = UIAlertAction(title: "키워드 정의/수정", style: .default, handler: {
+            (action) in
+            print("키워드 정의/수정")
+        })
+        
+        //newspaper
+        //pin
+        //trash
+        // xmark
+        
+        let definitionImage = UIImage(systemName: "newspaper")
+        let registerImage = UIImage(systemName: "pin")
+        let deleteImage = UIImage(systemName: "trash")
+        let cancelImage = UIImage(systemName: "xmark")
+        
+        
+        let actionCancel = UIAlertAction(title: "액션 캔슬", style: .cancel, handler: nil)
+        actionsheetController.addAction(keywordDefinitionAction)
+        actionsheetController.addAction(actionCancel)
+        
+        present(actionsheetController, animated: true, completion: nil)
+    }
+    
+    
+}
+
+extension MypageVC{
+    func setDelegate(){
+        keywordTableView.dataSource = self
+        keywordTableView.delegate = self
+        keywordTableView.register(UINib(nibName: "RecordKeywordTVC", bundle: .main), forCellReuseIdentifier: RecordKeywordTVC.identifier)
+        keywordTableView.register(UINib(nibName: "UserKeywordTVC", bundle: .main), forCellReuseIdentifier: UserKeywordTVC.identifier)
+        keywordTableView.isScrollEnabled = false
+        
+        
+    }
+    
+    func setTitleLabel(){
+        titleLabel.numberOfLines = 0
+        titleLabel.text = "\(userName)님의\n목적지를 찾아봐요"
+    }
 }
