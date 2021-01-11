@@ -18,20 +18,16 @@ class MypageVC: UIViewController {
     var pageNumber = 0
     var userName = "엄석준"
     
-    var recordCellList : [RecordKeywordTVC] = []
-    var recordCell: RecordKeywordTVC = RecordKeywordTVC()
-    var userCellList: [UserKeywordTVC] = []
-    var userCell:UserKeywordTVC = UserKeywordTVC()
-    
     let keywordStoryboard = UIStoryboard(name: "Keyword", bundle: nil)
     
-    @IBOutlet weak var recordKeywordButton: UIButton!
-    @IBOutlet weak var recordKeywordBarView: UIView!
+    @IBOutlet var recordKeywordButton: UIButton!
+    @IBOutlet var recordKeywordBarView: UIView!
     
-    @IBOutlet weak var userKeywordBarView: UIView!
-    @IBOutlet weak var userKeywordButton: UIButton!
+    @IBOutlet var userKeywordBarView: UIView!
+    @IBOutlet var userKeywordButton: UIButton!
     
     var footer = UIView()
+    var header = UIView()
     var subTitle = UILabel()
     var changeButton = UIButton()
     var plusButton = UIButton()
@@ -41,9 +37,14 @@ class MypageVC: UIViewController {
         super.viewDidLoad()
         setDelegate()
         setTitleLabel()
+        setButton()
+        setNavigationBar()
         setInitTableFooterView()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     @IBAction func goToSettingKeywordView(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Keyword", bundle: nil)
@@ -56,23 +57,27 @@ class MypageVC: UIViewController {
     @IBAction func touchUpRecordKeyword(_ sender: UIButton){
         if sender.title(for:.normal) == "기록키워드"{
             pageNumber = 0
+            recordKeywordButton.setTitleColor(UIColor.mainOrange, for: .normal)
+            userKeywordButton.setTitleColor(UIColor.mainGray, for: .normal)
             recordKeywordBarView.isHidden = false
             userKeywordBarView.isHidden = true
             keywordTableView.isScrollEnabled = false
             setRecordFooter()
+            deleteHeaderView()
         }else{
             pageNumber = 1
+            recordKeywordButton.setTitleColor(UIColor.mainGray, for: .normal)
+            userKeywordButton.setTitleColor(UIColor.mainOrange, for: .normal)
+            keywordTableView.isEditing = false
             recordKeywordBarView.isHidden = true
             userKeywordBarView.isHidden = false
             keywordTableView.isScrollEnabled = true
             setKeywordListFooter()
+            setHeaderView()
         }
-        
         keywordTableView.reloadData()
         
     }
-    
-    
     
 }
 
@@ -88,28 +93,34 @@ extension MypageVC: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if pageNumber == 0{
-            recordCell = (tableView.dequeueReusableCell(withIdentifier: "RecordKeywordTVC") as? RecordKeywordTVC)!
+            let recordCell = (tableView.dequeueReusableCell(withIdentifier: "RecordKeywordTVC") as? RecordKeywordTVC)!
             
             recordCell.setContent(rank: indexPath.row+1, keyword: keywordList[indexPath.row])
-            
-            if recordCellList.count <= keywordList.count{
-            recordCellList.append(recordCell)
+            if subTitle.isHidden == false{ // 우선순위 정하는 중
+               
+                recordCell.rankingNumber.isHidden = true
+                UIView.animate(withDuration: 0.1) {
+                    recordCell.keywordLabel.transform = CGAffineTransform(translationX: -30, y: 0)
+                }
+            }else{
+                recordCell.rankingNumber.isHidden = false
+                UIView.animate(withDuration: 0.1) {
+                    recordCell.keywordLabel.transform = CGAffineTransform(translationX: 0, y: 0)
+                }
             }
             
+            
             return recordCell
+            
         }else{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserKeywordTVC") as? UserKeywordTVC else{
                 return UITableViewCell()
             }
             cell.cellDelegate = self
-            if keywordList.contains(userKeywordList[indexPath.row]){
-                print(userKeywordList[indexPath.row])
-                cell.setContent(selected: true, keyword: userKeywordList[indexPath.row])
-            }else{
-                cell.setContent(selected: false, keyword: userKeywordList[indexPath.row])
-            }
             
-            userCellList.append(cell)
+            let isSelectedKeyword = keywordList.contains(userKeywordList[indexPath.row]) ? true : false
+            cell.setContent(selected: isSelectedKeyword, keyword: userKeywordList[indexPath.row])
+            
             return cell
         }
         
@@ -135,12 +146,25 @@ extension MypageVC: UITableViewDelegate{
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         keywordList.swapAt(sourceIndexPath.row, destinationIndexPath.row)
         
-        //recordCellList.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+    }
+    
+    func setHeaderView(){
+        header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50))
+        let listDescription = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
+        listDescription.text = "\(userName)님이 추구하는 가치관이에요!"
+        listDescription.textColor = UIColor.mainGray
         
+        header.addSubview(listDescription)
+        keywordTableView.tableHeaderView = header
+    }
+    
+    func deleteHeaderView(){
+        header.removeFromSuperview()
+        keywordTableView.tableHeaderView = nil
     }
     
     func setInitTableFooterView(){
-        footer = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 100))
+        footer = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 100))
         setRecordFooter()
         keywordTableView.tableFooterView = footer
     }
@@ -150,13 +174,12 @@ extension MypageVC: UITableViewDelegate{
             object.removeFromSuperview()
         }
         
-        subTitle = UILabel(frame: CGRect(x: 0, y: 0, width:  view.frame.width, height: 60))
+        subTitle = UILabel(frame: CGRect(x: -10, y: 0, width: UIScreen.main.bounds.width, height: 60))
         subTitle.font = UIFont.myRegularSystemFont(ofSize: 12)
         subTitle.numberOfLines = 0
         subTitle.text = "이곳에서 우선순위를 변경하게 되면 기록, 회고, 목표에서\n변경한 순서대로 보여지게 됩니다."
         subTitle.textAlignment = .center
         subTitle.isHidden = true
-        
         
         changeButton = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
         changeButton.setTitleColor(UIColor.mainGray, for: .normal)
@@ -166,7 +189,7 @@ extension MypageVC: UITableViewDelegate{
         changeButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         changeButton.semanticContentAttribute = .forceRightToLeft
         changeButton.layer.cornerRadius = 15
-        changeButton.center =  CGPoint(x: footer.frame.width / 2 - 10, y: 30)
+        changeButton.center =  CGPoint(x: footer.frame.width / 2 , y: 30)
         changeButton.addTarget(self, action: #selector(setEditingMode), for: .touchUpInside)
         
         footer.addSubview(subTitle)
@@ -186,14 +209,6 @@ extension MypageVC: UITableViewDelegate{
             subTitle.isHidden = false
             keywordTableView.isEditing = true
             
-            
-            for i in 0..<recordCellList.count{
-                recordCellList[i].rankingNumber.isHidden = true
-                
-                recordCellList[i].rankingNumber.frame.size.width = 0
-                
-            }
-            
         }else{
             sender.setTitle("우선순위 변경 하기", for: .normal)
             sender.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
@@ -201,20 +216,12 @@ extension MypageVC: UITableViewDelegate{
             sender.frame.size.width = CGFloat(160)
             sender.center =  CGPoint(x: footer.frame.width / 2 , y: 20)
             sender.backgroundColor = .white
+            
             subTitle.isHidden = true
             keywordTableView.isEditing = false
             
-            for i in 0..<recordCellList.count{
-                //recordCellList[i].rankingNumber.text = "\(i+1)"
-                recordCellList[i].rankingNumber.constraint(recordCellList[i].widthAnchor, constant: CGFloat(20))
-                recordCellList[i].rankingNumber.isHidden = false
-                //recordCellList[i].rankingNumber.frame.size.width = 15
-                recordCellList[i].keywordLabel.frame.origin.x = recordCellList[i].keywordLabel.frame.origin.x + 10
-
-            }
-            
-            keywordTableView.reloadData()
         }
+        keywordTableView.reloadData()
         
     }
     
@@ -228,7 +235,6 @@ extension MypageVC: UITableViewDelegate{
         plusButton.setBackgroundImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
         
         plusButton.center = CGPoint(x: footer.frame.width / 2, y:plusButton.frame.height)
-        //plusButton.setImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
         plusButton.tintColor = UIColor.mainOrange
         plusButton.addTarget(self, action: #selector(addUserKeyword), for: .touchUpInside)
         
@@ -246,34 +252,47 @@ extension MypageVC: UITableViewDelegate{
 
 extension MypageVC: menuAlertDelegate{
     func alertKeywordMenu(_ cell: UserKeywordTVC, keyword: String) {
-        let actionsheetController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+        let actionsheetController = UIAlertController(title: nil, message: "이 키워드의 상태 변경", preferredStyle: UIAlertController.Style.actionSheet)
         
-        let keywordDefinitionAction = UIAlertAction(title: "키워드 정의/수정", style: .default, handler: {
+        let definitionAction = UIAlertAction(title: "키워드 정의/수정", style: .default, handler: {
             (action) in
             print("키워드 정의/수정")
         })
         
-        //newspaper
-        //pin
-        //trash
-        // xmark
+        let registerAction = UIAlertAction(title: "기록키워드 등록", style: .default, handler: {
+            (action) in
+            print("기록키워드 등록")
+        })
+       
+        let deleteAction = UIAlertAction(title: "키워드 삭제", style: .destructive , handler: {
+            (action) in
+            print("키워드 삭제")
+        })
+       
+        let cancelAction = UIAlertAction(title: "닫기(취소)", style: .cancel, handler: {
+            (action) in
+            print("닫기(취소)")
+        })
+       
+
+        actionsheetController.addAction(definitionAction)
         
-        let definitionImage = UIImage(systemName: "newspaper")
-        let registerImage = UIImage(systemName: "pin")
-        let deleteImage = UIImage(systemName: "trash")
-        let cancelImage = UIImage(systemName: "xmark")
+        print(cell.keywordLabel)
         
+        if cell.isSelectedKeyword == false {
+            actionsheetController.addAction(registerAction)
+        }
         
-        let actionCancel = UIAlertAction(title: "액션 캔슬", style: .cancel, handler: nil)
-        actionsheetController.addAction(keywordDefinitionAction)
-        actionsheetController.addAction(actionCancel)
+        actionsheetController.addAction(deleteAction)
+        actionsheetController.addAction(cancelAction)
+        
         
         present(actionsheetController, animated: true, completion: nil)
     }
     
-    
 }
 
+//MARK: UI
 extension MypageVC{
     func setDelegate(){
         keywordTableView.dataSource = self
@@ -282,11 +301,49 @@ extension MypageVC{
         keywordTableView.register(UINib(nibName: "UserKeywordTVC", bundle: .main), forCellReuseIdentifier: UserKeywordTVC.identifier)
         keywordTableView.isScrollEnabled = false
         
-        
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+           return .lightContent
+       }
+
+    
     func setTitleLabel(){
-        titleLabel.numberOfLines = 0
-        titleLabel.text = "\(userName)님의\n목적지를 찾아봐요"
+        UIApplication.shared.statusBarStyle = .lightContent
+        UIApplication.shared.setStatusBarStyle(.lightContent, animated: true)
+       // UIApplication.shared.statusBarStyle = .default
+       // UIApplication.shared.statusBarView?.backgroundColor = UIColor.mainOrange
+        //UIApplication.shared.statusBarView?.tintColor = .white
+        titleLabel.text = "\(userName)님의"
     }
+    
+    func setButton(){
+        
+        recordKeywordButton.setTitleColor(UIColor.mainOrange, for: .normal)
+        userKeywordButton.setTitleColor(UIColor.mainGray, for: .normal)
+        userKeywordBarView.isHidden = true
+    }
+    
+    func setNavigationBar(){
+        guard let navigationBar = self.navigationController?.navigationBar else { return }
+        navigationBar.isTranslucent = true
+        navigationBar.backgroundColor = UIColor.mainOrange
+        navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationBar.shadowImage = UIImage()
+      
+        navigationItem.title = "마이페이지"
+        let settingItem = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(goToMypageSetting))
+        navigationItem.rightBarButtonItem = settingItem
+    }
+    
+    @objc func goToMypageSetting(){
+        guard let dvc = self.storyboard?.instantiateViewController(identifier: "MypageSettingVC") as? MypageSettingVC else {
+            return
+        }
+        
+        self.present(dvc, animated: true, completion: nil)
+        
+    }
+   
 }
+

@@ -353,7 +353,6 @@
 		AED84DC425A456810050D861 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				AED84DD925A492F70050D861 /* DetailTVC.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -444,6 +443,7 @@
 				AED84DDC25A4930C0050D861 /* DetailVC.swift */,
 				AEFB220F259C6C6900A3228C /* DailyVC.swift */,
 				AE53FB9825A5B6F300D62AA7 /* DailyWriteVC.swift */,
+				AED84DD925A492F70050D861 /* DetailTVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
