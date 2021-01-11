@@ -12,6 +12,7 @@ class DailyWriteVC: UIViewController {
     
     private let authProvider = MoyaProvider<DailyService>(plugins: [NetworkLoggerPlugin(verbose: true)])
     var dailyTask: DailyTaskModel?
+    var dailyModify: DailyModifyModel?
     
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var todayTitle: UITextField!
@@ -95,7 +96,8 @@ extension DailyWriteVC {
     }
     
     @objc func post(){
-        posting()
+//        posting()
+        modify()
     }
     
     func setUI(){
@@ -228,6 +230,23 @@ extension DailyWriteVC {
                     do {
                         self.dailyTask = try result.map(DailyTaskModel.self)
                         print(self.dailyTask)
+                    } catch(let err) {
+                        print(err.localizedDescription)
+                    }
+                case .failure(let err):
+                    print(err.localizedDescription)
+            }
+        }
+    }
+    
+    func modify(){
+        let param = DailyModifyRequest.init(self.todayTitle.text!, todayTextView.text!, Int(scoreSlider.value))
+        authProvider.request(.dailyModify(param: param)) { response in
+            switch response {
+                case .success(let result):
+                    do {
+                        self.dailyModify = try result.map(DailyModifyModel.self)
+                        print(self.dailyModify)
                     } catch(let err) {
                         print(err.localizedDescription)
                     }
