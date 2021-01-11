@@ -43,6 +43,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 //extension AppDelegate: UserIdentifyInterface {
+//    func checkUserToken() {
+//        <#code#>
+//    }
+//    
+//}
 //
 //    func checkUserToken() {
 //        self.window = UIWindow(frame: UIScreen.main.bounds)

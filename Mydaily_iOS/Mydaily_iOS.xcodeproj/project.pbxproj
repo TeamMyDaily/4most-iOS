@@ -25,6 +25,8 @@
 		AE46FA3025AC1ADE0051D667 /* NetworkLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA2F25AC1ADE0051D667 /* NetworkLoggerPlugin.swift */; };
 		AE46FA3425AC45E80051D667 /* SigninRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA3325AC45E80051D667 /* SigninRequest.swift */; };
 		AE46FA3725AC46110051D667 /* SigninModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA3625AC46110051D667 /* SigninModel.swift */; };
+		AE46FA4525ACA2140051D667 /* DailyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA4425ACA2140051D667 /* DailyService.swift */; };
+		AE46FA4825ACA32B0051D667 /* DailyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA4725ACA32B0051D667 /* DailyModel.swift */; };
 		AE53FB9925A5B6F300D62AA7 /* DailyWriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FB9825A5B6F300D62AA7 /* DailyWriteVC.swift */; };
 		AE53FB9E25A6B1E600D62AA7 /* GoalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FB9D25A6B1E600D62AA7 /* GoalVC.swift */; };
 		AE53FBAB25A6E97400D62AA7 /* NotoSansKR-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = AE53FBA425A6E97400D62AA7 /* NotoSansKR-Light.otf */; };
@@ -117,6 +119,8 @@
 		AE46FA2F25AC1ADE0051D667 /* NetworkLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerPlugin.swift; sourceTree = "<group>"; };
 		AE46FA3325AC45E80051D667 /* SigninRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninRequest.swift; sourceTree = "<group>"; };
 		AE46FA3625AC46110051D667 /* SigninModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninModel.swift; sourceTree = "<group>"; };
+		AE46FA4425ACA2140051D667 /* DailyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyService.swift; sourceTree = "<group>"; };
+		AE46FA4725ACA32B0051D667 /* DailyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyModel.swift; sourceTree = "<group>"; };
 		AE53FB9825A5B6F300D62AA7 /* DailyWriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWriteVC.swift; sourceTree = "<group>"; };
 		AE53FB9D25A6B1E600D62AA7 /* GoalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalVC.swift; sourceTree = "<group>"; };
 		AE53FBA425A6E97400D62AA7 /* NotoSansKR-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Light.otf"; sourceTree = "<group>"; };
@@ -320,6 +324,39 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
+		AE46FA4025ACA1B30051D667 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AE46FA4125ACA1BE0051D667 /* APIService */,
+				AE46FA4325ACA1D20051D667 /* RequestModel */,
+				AE46FA4225ACA1CC0051D667 /* ResponseModel */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AE46FA4125ACA1BE0051D667 /* APIService */ = {
+			isa = PBXGroup;
+			children = (
+				AE46FA4425ACA2140051D667 /* DailyService.swift */,
+			);
+			path = APIService;
+			sourceTree = "<group>";
+		};
+		AE46FA4225ACA1CC0051D667 /* ResponseModel */ = {
+			isa = PBXGroup;
+			children = (
+				AE46FA4725ACA32B0051D667 /* DailyModel.swift */,
+			);
+			path = ResponseModel;
+			sourceTree = "<group>";
+		};
+		AE46FA4325ACA1D20051D667 /* RequestModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RequestModel;
+			sourceTree = "<group>";
+		};
 		AE53FB9B25A6B1C600D62AA7 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -499,6 +536,7 @@
 			isa = PBXGroup;
 			children = (
 				AEFB21FE259C66E800A3228C /* Daily.storyboard */,
+				AE46FA4025ACA1B30051D667 /* Model */,
 				AEFB2207259C670000A3228C /* View */,
 			);
 			path = DailyScene;
@@ -777,6 +815,7 @@
 			files = (
 				3C5D94DD259D8B2700BF8DC9 /* KeywordSettingVC.swift in Sources */,
 				DEC98B8625A483C300CC522C /* KeywordPriorityVC.swift in Sources */,
+				AE46FA4825ACA32B0051D667 /* DailyModel.swift in Sources */,
 				EDC1642925A4617600CD65B0 /* RetrospectiveWriteVC.swift in Sources */,
 				AE76C03E259B1A6D007B3901 /* AppDelegate.swift in Sources */,
 				AE46FA2325AC13B50051D667 /* LoginService.swift in Sources */,
@@ -832,6 +871,7 @@
 				AED84DF625A558B30050D861 /* UIView+Animation.swift in Sources */,
 				AED84DED25A558B30050D861 /* Extensions+UIApplication.swift in Sources */,
 				AE46FA3025AC1ADE0051D667 /* NetworkLoggerPlugin.swift in Sources */,
+				AE46FA4525ACA2140051D667 /* DailyService.swift in Sources */,
 				AE46FA2D25AC178C0051D667 /* SignupModel.swift in Sources */,
 				AED84DEC25A558B30050D861 /* Extensions+String.swift in Sources */,
 				AED84DF425A558B30050D861 /* Extensions+UIViewController.swift in Sources */,
@@ -980,6 +1020,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7ZRM9W758F;
 				INFOPLIST_FILE = Mydaily_iOS/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -999,6 +1040,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7ZRM9W758F;
 				INFOPLIST_FILE = Mydaily_iOS/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

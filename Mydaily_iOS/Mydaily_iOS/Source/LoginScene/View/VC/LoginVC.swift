@@ -145,6 +145,7 @@ extension LoginVC {
                 case .success(let result):
                     do {
                         self.token = try result.map(SigninModel.self)
+                        UserDefaults.standard.setValue(self.token?.data.accessToken, forKey: "accessToken")
                         if self.token?.status == 400{
                             if self.token?.message == "존재하지 않는 이메일 입니다."{
                                 
