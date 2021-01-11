@@ -33,7 +33,6 @@ class EvaluationVC: UIViewController {
     
     var calendar = Calendar.current
     var dateFormatter = DateFormatter()
-    var checkDateFormatter = DateFormatter()
     var dateValue = 0
 
     override func viewDidLoad() {
@@ -229,7 +228,7 @@ extension EvaluationVC {
 extension EvaluationVC {
     private func setWeek() {
         dateValue = 0
-        let todayDate = Calendar.current.date(byAdding: .weekOfMonth, value: dateValue, to: Date())!
+        let todayDate = calendar.date(byAdding: .weekOfMonth, value: dateValue, to: Date())!
         dateFormatter.dateFormat = "yy년 MM월 W주"
         dateFormatter.locale = Locale(identifier: "ko")
         weekLabel.text = dateFormatter.string(from: todayDate)
@@ -238,24 +237,28 @@ extension EvaluationVC {
     }
     
     private func calculateDate() {
-        guard let todayDate = calendar.date(byAdding: .weekOfMonth, value: dateValue, to: Date()) else {return}
-        guard let currentDate = calendar.date(byAdding: .weekOfMonth, value: 0, to: Date()) else {return}
-        let today = "\(todayDate)"
-        let current = "\(currentDate)"
         dateFormatter.dateFormat = "yy년 MM월 W주"
-        weekLabel.text = dateFormatter.string(from: todayDate)
-        
-        if today != current {
-            currentWeekButton.isHidden = false
-            weekLabel.textColor = .mainBlack
-        } else {
-            currentWeekButton.isHidden = true
-            weekLabel.textColor = .mainOrange
-        }
+
+        guard let todayDate = calendar.date(byAdding: .weekOfMonth, value: dateValue, to: Date()) else {return}
+        let changeDate = getMonday(myDate: todayDate)
+
+        weekLabel.text = dateFormatter.string(from: changeDate)
         
         if dateValue == 0 {
             nextWeekButton.isEnabled = false
+            currentWeekButton.isHidden = true
+            weekLabel.textColor = .mainOrange
+        } else {
+            currentWeekButton.isHidden = false
+            weekLabel.textColor = .mainBlack
         }
+    }
+    
+    func getMonday(myDate: Date) -> Date {
+        var weekOfMonday = calendar.dateComponents([.weekOfYear, .yearForWeekOfYear], from: myDate)
+        weekOfMonday.weekday = 2
+        let mondayInWeek = calendar.date(from: weekOfMonday)!
+        return mondayInWeek
     }
 }
 
