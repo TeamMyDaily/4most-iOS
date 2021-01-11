@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,10 @@
 		3CC86433259CCCB00043421A /* ContentCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC86431259CCCB00043421A /* ContentCVC.swift */; };
 		3CC86434259CCCB00043421A /* ContentCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CC86432259CCCB00043421A /* ContentCVC.xib */; };
 		AE46FA1225ABF8820051D667 /* DetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA1125ABF8820051D667 /* DetailTVC.swift */; };
+		AE46FA2325AC13B50051D667 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA2225AC13B50051D667 /* LoginService.swift */; };
+		AE46FA2625AC13CE0051D667 /* GeneralAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA2525AC13CE0051D667 /* GeneralAPI.swift */; };
+		AE46FA2A25AC16090051D667 /* SignupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA2925AC16090051D667 /* SignupRequest.swift */; };
+		AE46FA2D25AC178C0051D667 /* SignupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA2C25AC178C0051D667 /* SignupModel.swift */; };
 		AE53FB9925A5B6F300D62AA7 /* DailyWriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FB9825A5B6F300D62AA7 /* DailyWriteVC.swift */; };
 		AE53FB9E25A6B1E600D62AA7 /* GoalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FB9D25A6B1E600D62AA7 /* GoalVC.swift */; };
 		AE53FBAB25A6E97400D62AA7 /* NotoSansKR-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = AE53FBA425A6E97400D62AA7 /* NotoSansKR-Light.otf */; };
@@ -103,6 +107,10 @@
 		6DAD6BD77FE2A877525BCC6C /* Pods_Mydaily_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mydaily_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9828837A31425EF64043B250 /* Pods-Mydaily_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mydaily_iOS.release.xcconfig"; path = "Target Support Files/Pods-Mydaily_iOS/Pods-Mydaily_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		AE46FA1125ABF8820051D667 /* DetailTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTVC.swift; sourceTree = "<group>"; };
+		AE46FA2225AC13B50051D667 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		AE46FA2525AC13CE0051D667 /* GeneralAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralAPI.swift; sourceTree = "<group>"; };
+		AE46FA2925AC16090051D667 /* SignupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRequest.swift; sourceTree = "<group>"; };
+		AE46FA2C25AC178C0051D667 /* SignupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupModel.swift; sourceTree = "<group>"; };
 		AE53FB9825A5B6F300D62AA7 /* DailyWriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWriteVC.swift; sourceTree = "<group>"; };
 		AE53FB9D25A6B1E600D62AA7 /* GoalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalVC.swift; sourceTree = "<group>"; };
 		AE53FBA425A6E97400D62AA7 /* NotoSansKR-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Light.otf"; sourceTree = "<group>"; };
@@ -247,7 +255,6 @@
 				5956CC336820D9D74ADEB069 /* Pods-Mydaily_iOS.debug.xcconfig */,
 				9828837A31425EF64043B250 /* Pods-Mydaily_iOS.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -258,6 +265,40 @@
 				AEFB21F5259C491600A3228C /* VC */,
 			);
 			path = TabbarScene;
+			sourceTree = "<group>";
+		};
+		AE46FA1D25AC12860051D667 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AE46FA1E25AC12B00051D667 /* APIServices */,
+				AE46FA1F25AC12C40051D667 /* ResponseModel */,
+				AE46FA2025AC12D00051D667 /* RequestModel */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AE46FA1E25AC12B00051D667 /* APIServices */ = {
+			isa = PBXGroup;
+			children = (
+				AE46FA2225AC13B50051D667 /* LoginService.swift */,
+			);
+			path = APIServices;
+			sourceTree = "<group>";
+		};
+		AE46FA1F25AC12C40051D667 /* ResponseModel */ = {
+			isa = PBXGroup;
+			children = (
+				AE46FA2C25AC178C0051D667 /* SignupModel.swift */,
+			);
+			path = ResponseModel;
+			sourceTree = "<group>";
+		};
+		AE46FA2025AC12D00051D667 /* RequestModel */ = {
+			isa = PBXGroup;
+			children = (
+				AE46FA2925AC16090051D667 /* SignupRequest.swift */,
+			);
+			path = RequestModel;
 			sourceTree = "<group>";
 		};
 		AE53FB9B25A6B1C600D62AA7 /* View */ = {
@@ -352,9 +393,10 @@
 		AE76C053259B1A89007B3901 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				3CC86422259CAF8F0043421A /* KeywordScene */,
 				AE76C03D259B1A6D007B3901 /* AppDelegate.swift */,
 				AE76C03F259B1A6D007B3901 /* SceneDelegate.swift */,
+				AE46FA2525AC13CE0051D667 /* GeneralAPI.swift */,
+				3CC86422259CAF8F0043421A /* KeywordScene */,
 				AED84DE025A558B30050D861 /* GeneralExtensions */,
 				AEFB222025A02C8800A3228C /* LoginScene */,
 				AEFB222125A02CA700A3228C /* GoalScene */,
@@ -509,6 +551,7 @@
 			isa = PBXGroup;
 			children = (
 				AEFB222225A02CBC00A3228C /* Login.storyboard */,
+				AE46FA1D25AC12860051D667 /* Model */,
 				AE9F294225A1716C00904FD9 /* View */,
 			);
 			path = LoginScene;
@@ -719,6 +762,7 @@
 				DEC98B8625A483C300CC522C /* KeywordPriorityVC.swift in Sources */,
 				EDC1642925A4617600CD65B0 /* RetrospectiveWriteVC.swift in Sources */,
 				AE76C03E259B1A6D007B3901 /* AppDelegate.swift in Sources */,
+				AE46FA2325AC13B50051D667 /* LoginService.swift in Sources */,
 				AED84DF325A558B30050D861 /* Extensions+UIView.swift in Sources */,
 				AE53FBBC25A733E900D62AA7 /* GoalWriteVC.swift in Sources */,
 				EDAAFA2E25A8535400424BF9 /* SettingVersionTVC.swift in Sources */,
@@ -741,6 +785,7 @@
 				AE53FB9925A5B6F300D62AA7 /* DailyWriteVC.swift in Sources */,
 				AEFB21F9259C5CB900A3228C /* TabbarController.swift in Sources */,
 				EDBF739B25A18BF100ECDEB9 /* DetailRecordLayout.swift in Sources */,
+				AE46FA2625AC13CE0051D667 /* GeneralAPI.swift in Sources */,
 				AEFB2216259C6E6700A3228C /* MypageVC.swift in Sources */,
 				AE53FBCE25AB02E000D62AA7 /* GoalModifyVC.swift in Sources */,
 				AED84DF125A558B30050D861 /* Extensions+Encodable.swift in Sources */,
@@ -749,6 +794,7 @@
 				3CB1214D25A778CB0080E60F /* KeywordDefineVC.swift in Sources */,
 				DEC98B8A25A486DC00CC522C /* KeywordPriorityTVC.swift in Sources */,
 				3CC86433259CCCB00043421A /* ContentCVC.swift in Sources */,
+				AE46FA2A25AC16090051D667 /* SignupRequest.swift in Sources */,
 				AE76C040259B1A6D007B3901 /* SceneDelegate.swift in Sources */,
 				ED266033259F019B00A376C0 /* EvaluationHeaderTVC.swift in Sources */,
 				DEC98B8125A4435300CC522C /* KeywordDecideVC.swift in Sources */,
@@ -767,6 +813,7 @@
 				EDA9CA8425A1A74D00BF46C1 /* DetailRecordContentTVC.swift in Sources */,
 				AED84DF625A558B30050D861 /* UIView+Animation.swift in Sources */,
 				AED84DED25A558B30050D861 /* Extensions+UIApplication.swift in Sources */,
+				AE46FA2D25AC178C0051D667 /* SignupModel.swift in Sources */,
 				AED84DEC25A558B30050D861 /* Extensions+String.swift in Sources */,
 				AED84DF425A558B30050D861 /* Extensions+UIViewController.swift in Sources */,
 				EDBF739725A17BD900ECDEB9 /* DetailRecordCVC.swift in Sources */,
