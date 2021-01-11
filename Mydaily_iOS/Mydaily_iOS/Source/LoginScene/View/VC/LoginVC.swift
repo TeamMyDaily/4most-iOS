@@ -145,10 +145,19 @@ extension LoginVC {
                 case .success(let result):
                     do {
                         self.token = try result.map(SigninModel.self)
+                        if self.token?.status == 400{
+                            if self.token?.message == "존재하지 않는 이메일 입니다."{
+                                
+                            }else{
+                                
+                            }
+                        }
                     } catch(let err) {
                         print(err.localizedDescription)
                     }
                 case .failure(let err):
+//                    self.token = try err.map(SigninModel.self)
+//                    print("@\(self.token)")
                     print(err.localizedDescription)
             }
         }

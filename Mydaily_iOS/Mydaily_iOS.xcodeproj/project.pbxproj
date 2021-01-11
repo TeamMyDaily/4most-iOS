@@ -309,6 +309,17 @@
 			path = RequestModel;
 			sourceTree = "<group>";
 		};
+		AE46FA3925AC631E0051D667 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				AE76C03D259B1A6D007B3901 /* AppDelegate.swift */,
+				AE76C03F259B1A6D007B3901 /* SceneDelegate.swift */,
+				AE46FA2525AC13CE0051D667 /* GeneralAPI.swift */,
+				AE46FA2F25AC1ADE0051D667 /* NetworkLoggerPlugin.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		AE53FB9B25A6B1C600D62AA7 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -401,12 +412,9 @@
 		AE76C053259B1A89007B3901 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				AE76C03D259B1A6D007B3901 /* AppDelegate.swift */,
-				AE76C03F259B1A6D007B3901 /* SceneDelegate.swift */,
-				AE46FA2525AC13CE0051D667 /* GeneralAPI.swift */,
-				AE46FA2F25AC1ADE0051D667 /* NetworkLoggerPlugin.swift */,
-				3CC86422259CAF8F0043421A /* KeywordScene */,
 				AED84DE025A558B30050D861 /* GeneralExtensions */,
+				AE46FA3925AC631E0051D667 /* Support */,
+				3CC86422259CAF8F0043421A /* KeywordScene */,
 				AEFB222025A02C8800A3228C /* LoginScene */,
 				AEFB222125A02CA700A3228C /* GoalScene */,
 				AEFB21FD259C631F00A3228C /* DailyScene */,
