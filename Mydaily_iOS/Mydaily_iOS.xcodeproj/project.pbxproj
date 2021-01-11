@@ -428,6 +428,7 @@
 			isa = PBXGroup;
 			children = (
 				AEFB2201259C66F400A3228C /* Evaluation.storyboard */,
+				EDCF49F325AC1DCB00BE094C /* Network */,
 				AEFB2208259C670A00A3228C /* View */,
 			);
 			path = EvaluationScene;
@@ -577,6 +578,13 @@
 				EDDC038C25A9E025007162CD /* DetailRecordLayoutDelegate.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		EDCF49F325AC1DCB00BE094C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
