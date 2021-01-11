@@ -42,6 +42,7 @@ extension Date {
             return gregorian.date(byAdding: .day, value: 2, to: monday)
         }
     }
+    
     var endOfWeek: Date? {
         let gregorian = Calendar(identifier: .gregorian)
         guard let sunday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) else { return nil }

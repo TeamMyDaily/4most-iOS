@@ -25,12 +25,6 @@ class EvaluationVC: UIViewController {
         return currentWeekButton
     }()
     
-    lazy var modifyButton: UIButton = {
-        let modifyButton = UIButton()
-        modifyButton.translatesAutoresizingMaskIntoConstraints = false
-        return modifyButton
-    }()
-    
     var calendar = Calendar.current
     var dateFormatter = DateFormatter()
     var dateValue = 0
@@ -66,7 +60,6 @@ extension EvaluationVC: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RetrospectiveTabCVC.identifier, for: indexPath) as? RetrospectiveTabCVC else {
             return UICollectionViewCell()
         }
-        cell.buttonDelegate = self
         cell.delegate = self
         return cell
     }
@@ -96,14 +89,12 @@ extension EvaluationVC {
         guard let indexPath = keywordCollectionView.indexPathsForVisibleItems.first.flatMap({_ in IndexPath(item: 0, section: 0)}),keywordCollectionView.cellForItem(at: indexPath) != nil else { return }
         keywordCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
         changeButtonState(enableButton: reportTabButton, disableButton: retrospectiveTabButton, enableTabBar: reportTabBar, unableTabBar: retrospectiveTabBar)
-        modifyButton.isHidden = true
     }
     
     @IBAction func touchUpRetrospectiveTab(_ sender: Any) {
         guard let indexPath = keywordCollectionView.indexPathsForVisibleItems.first.flatMap({_ in IndexPath(item: 0, section: 1)}), keywordCollectionView.cellForItem(at: indexPath) != nil else { return }
         keywordCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
         changeButtonState(enableButton: retrospectiveTabButton, disableButton: reportTabButton, enableTabBar: retrospectiveTabBar, unableTabBar: reportTabBar)
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "retrospectiveTab"), object: modifyButton)
     }
     
     @IBAction func touchUpLastWeek(_ sender: Any) {
@@ -152,7 +143,6 @@ extension EvaluationVC {
     private func setButtons() {
         setMenuTabButton()
         setCurrentButton()
-        setModifyButton()
         buttonAddTarget()
     }
     
@@ -174,23 +164,12 @@ extension EvaluationVC {
         currentWeekButton.widthAnchor.constraint(equalToConstant: 81).isActive = true
         currentWeekButton.heightAnchor.constraint(equalToConstant: 32).isActive = true
         currentWeekButton.titleLabel?.font = .myMediumSystemFont(ofSize: 16)
-        currentWeekButton.setTitle("이번주", for: .normal)
+        currentWeekButton.setTitle("이번주 >", for: .normal)
         currentWeekButton.titleLabel?.textColor = .white
         currentWeekButton.titleLabel?.textAlignment = .left
         currentWeekButton.layer.cornerRadius = 15
         currentWeekButton.layer.masksToBounds = true
         currentWeekButton.isHidden = true
-    }
-    
-    private func setModifyButton() {
-        view.addSubview(modifyButton)
-        
-        modifyButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 13).isActive = true
-        modifyButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
-        modifyButton.titleLabel?.font = .myRegularSystemFont(ofSize: 16)
-        modifyButton.setTitle("수정", for: .normal)
-        modifyButton.setTitleColor(.mainBlue, for: .normal)
-        modifyButton.isHidden = true
     }
     
     private func setCollectionViewDelegate() {
@@ -210,17 +189,11 @@ extension EvaluationVC {
     
     private func buttonAddTarget() {
         currentWeekButton.addTarget(self, action: #selector(backToCurrentWeek), for: .touchUpInside)
-        modifyButton.addTarget(self, action: #selector(touchUpModify), for: .touchUpInside)
     }
     
     @objc func backToCurrentWeek() {
         setWeek()
         currentWeekButton.isHidden = true
-    }
-    
-    @objc func touchUpModify() {
-        modifyButton.isHidden = true
-        NotificationCenter.default.post(name: Notification.Name("modifyButton"), object: nil)
     }
 }
 
@@ -228,21 +201,19 @@ extension EvaluationVC {
 extension EvaluationVC {
     private func setWeek() {
         dateValue = 0
-        let todayDate = calendar.date(byAdding: .weekOfMonth, value: dateValue, to: Date())!
+        guard let currentDate = Date().containWeek else {return}
+        guard let todayDate = calendar.date(byAdding: .weekOfMonth, value: dateValue, to: currentDate) else {return}
         dateFormatter.dateFormat = "yy년 MM월 W주"
-        dateFormatter.locale = Locale(identifier: "ko")
         weekLabel.text = dateFormatter.string(from: todayDate)
         weekLabel.textColor = .mainOrange
         nextWeekButton.isEnabled = false
     }
     
     private func calculateDate() {
+        guard let currentDate = Date().containWeek else {return}
+        guard let todayDate = calendar.date(byAdding: .weekOfMonth, value: dateValue, to: currentDate) else {return}
         dateFormatter.dateFormat = "yy년 MM월 W주"
-
-        guard let todayDate = calendar.date(byAdding: .weekOfMonth, value: dateValue, to: Date()) else {return}
-        let changeDate = getMonday(myDate: todayDate)
-
-        weekLabel.text = dateFormatter.string(from: changeDate)
+        weekLabel.text = dateFormatter.string(from: todayDate)
         
         if dateValue == 0 {
             nextWeekButton.isEnabled = false
@@ -252,13 +223,6 @@ extension EvaluationVC {
             currentWeekButton.isHidden = false
             weekLabel.textColor = .mainBlack
         }
-    }
-    
-    func getMonday(myDate: Date) -> Date {
-        var weekOfMonday = calendar.dateComponents([.weekOfYear, .yearForWeekOfYear], from: myDate)
-        weekOfMonday.weekday = 2
-        let mondayInWeek = calendar.date(from: weekOfMonday)!
-        return mondayInWeek
     }
 }
 
@@ -272,22 +236,3 @@ extension EvaluationVC: TableViewInsideCollectionViewDelegate {
         self.navigationController?.pushViewController(dvc, animated: true)
     }
 }
-
-extension EvaluationVC: OccurWhenClickModifyButtonDelegate {
-    func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let noAction = UIAlertAction(title: "다음에하기", style: .default)
-        let okAction = UIAlertAction(title: "재설정하기", style: .default)
-        noAction.setValue(UIColor.mainGray, forKey: "titleTextColor")
-        okAction.setValue(UIColor.mainOrange, forKey: "titleTextColor")
-        alert.addAction(noAction)
-        alert.addAction(okAction)
-        present(alert, animated: true)
-    }
-    
-    func changeModifyButton(isActive: Bool) {
-        modifyButton.isHidden = isActive
-    }
-}
-
-

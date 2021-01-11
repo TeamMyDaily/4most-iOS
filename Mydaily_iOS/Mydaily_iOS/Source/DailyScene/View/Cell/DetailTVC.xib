@@ -30,12 +30,12 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOr-r8-eB7">
-                        <rect key="frame" x="75" y="95" width="164.5" height="6"/>
+                        <rect key="frame" x="75" y="95" width="169" height="6"/>
                         <attributedString key="attributedText">
                             <fragment content="Transparent Sizing Label">
                                 <attributes>
                                     <color key="NSColor" red="0.40784313725490196" green="0.40784313725490196" blue="0.40784313725490196" alpha="0.0" colorSpace="calibratedRGB"/>
-                                    <font key="NSFont" size="15" name="NotoSans"/>
+                                    <font key="NSFont" metaFont="system" size="15"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="11" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
@@ -51,7 +51,7 @@
                                     <fragment content="line">
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <font key="NSFont" size="15" name="NotoSans"/>
+                                            <font key="NSFont" metaFont="system" size="15"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="10" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>

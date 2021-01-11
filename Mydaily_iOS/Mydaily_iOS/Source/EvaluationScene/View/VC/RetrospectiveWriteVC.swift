@@ -110,7 +110,7 @@ extension RetrospectiveWriteVC {
     
     private func setButton() {
         saveButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
-        saveButton.setTitle("작성완료", for: .normal)
+        saveButton.setTitle("저장할래요", for: .normal)
         saveButton.setTitleColor(.white, for: .normal)
         saveButton.layer.masksToBounds = true
         saveButton.layer.cornerRadius = 15

@@ -22,7 +22,6 @@ class RetrospectiveWriteTVC: UITableViewCell {
     @IBOutlet weak var goodViewButton: UIButton!
     @IBOutlet weak var badViewButton: UIButton!
     @IBOutlet weak var nextViewButton: UIButton!
-    @IBOutlet weak var saveButton: UIButton!
     
     lazy var goodTextView: UITextView = {
         let goodTextView = UITextView()
@@ -41,8 +40,7 @@ class RetrospectiveWriteTVC: UITableViewCell {
         nextTextView.translatesAutoresizingMaskIntoConstraints = false
         return nextTextView
     }()
-    
-    var buttonDelegate: OccurWhenClickModifyButtonDelegate?
+
     var delegate: TableViewInsideCollectionViewDelegate?
     var tableView: UITableView?
     
@@ -55,11 +53,6 @@ class RetrospectiveWriteTVC: UITableViewCell {
     
     let userDefault = UserDefaults.standard
     
-    var isGoodFilled = false
-    var isBadFilled = false
-    var isNextFilled = false
-    var isSaved = false
-    
     var cellTitles = ["이번주의 잘 한 점", "이번주 아쉬운 점", "다음주에 임하는 마음가짐"]
     var cellPlaceholders = ["이번주, 어떤 내 모습을 칭찬 해주고 싶나요?", "한 주에 아쉬움이 남은 점이 있을까요?", "다음주에는 어떻게 지내고 싶은가요?"]
     var counts: [Int] = [0, 0, 0]
@@ -67,8 +60,6 @@ class RetrospectiveWriteTVC: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setLabel()
-        setNotification()
-        setSaveButton()
         setButtonViews()
         setTextViews()
     }
@@ -110,9 +101,6 @@ extension RetrospectiveWriteTVC {
                 
                 self.cellPlaceholders[0] = text
                 self.counts[0] = textCount
-                self.isGoodFilled = true
-                
-                self.setSaveButton()
             }
         }
         userDefault.setValue(self.cellTitles[0], forKey: "title")
@@ -153,9 +141,6 @@ extension RetrospectiveWriteTVC {
                 
                 self.cellPlaceholders[1] = text
                 self.counts[1] = textCount
-                self.isBadFilled = true
-                
-                self.setSaveButton()
             }
         }
         userDefault.setValue(self.cellTitles[1], forKey: "title")
@@ -196,9 +181,6 @@ extension RetrospectiveWriteTVC {
                 
                 self.cellPlaceholders[2] = text
                 self.counts[2] = textCount
-                self.isNextFilled = true
-                
-                self.setSaveButton()
             }
         }
         userDefault.setValue(self.cellTitles[2], forKey: "title")
@@ -207,21 +189,6 @@ extension RetrospectiveWriteTVC {
         userDefault.setValue(2, forKey: "cellNum")
         
         delegate?.cellTapedRetrospective(dvc: dvc)
-    }
-    
-    @IBAction func touchUpSave(_ sender: Any) {
-        buttonDelegate?.changeModifyButton(isActive: false)
-        buttonDelegate?.showAlert(title: "목표를 재설정 하시겠어요?", message: "한주의 회고를 다 마치셨군요!\n 목표를 달성하셨다면 새로운 목표로 재설정 하시겠어요?")
-        
-        tableView?.rowHeight -= 50
-        self.tableView?.beginUpdates()
-        self.tableView?.endUpdates()
-        
-        saveButton.isHidden = true
-        isSaved = true
-        goodViewButton.isUserInteractionEnabled = false
-        badViewButton.isUserInteractionEnabled = false
-        nextViewButton.isUserInteractionEnabled = false
     }
 }
 
@@ -273,59 +240,8 @@ extension RetrospectiveWriteTVC {
     }
 }
 
-//MARK: Notification
-extension RetrospectiveWriteTVC {
-    private func setNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(hiddenSaveButton), name: Notification.Name(rawValue: "modifyButton"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(selectRetrospectiveTab(_:)), name: Notification.Name(rawValue: "retrospectiveTab"), object: nil)
-    }
-    
-    @objc func hiddenSaveButton() {
-        tableView?.rowHeight += 50
-        self.tableView?.beginUpdates()
-        self.tableView?.endUpdates()
-        
-        saveButton.layer.isHidden = false
-        isSaved = false
-        goodViewButton.isUserInteractionEnabled = true
-        badViewButton.isUserInteractionEnabled = true
-        nextViewButton.isUserInteractionEnabled = true
-    }
-    
-    @objc func selectRetrospectiveTab(_ notification: NSNotification) {
-        let getButton = notification.object as! UIButton
-        if isSaved {
-            getButton.isHidden = false
-        } else {
-            getButton.isHidden = true
-        }
-    }
-}
-
 //MARK: Button
 extension RetrospectiveWriteTVC {
-    private func setSaveButton() {
-        if !isSaved {
-            if isGoodFilled && isBadFilled && isNextFilled {
-                saveButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
-                saveButton.setTitle("회고완료!", for: .normal)
-                saveButton.setTitleColor(.white, for: .normal)
-                saveButton.backgroundColor = .mainOrange
-                saveButton.layer.masksToBounds = true
-                saveButton.layer.cornerRadius = 15
-                saveButton.isEnabled = true
-            } else {
-                saveButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
-                saveButton.setTitle("회고완료!", for: .normal)
-                saveButton.setTitleColor(.white, for: .normal)
-                saveButton.backgroundColor = .mainGray
-                saveButton.layer.masksToBounds = true
-                saveButton.layer.cornerRadius = 15
-                saveButton.isEnabled = false
-            }
-        }
-    }
-    
     private func setButtonViews() {
         setGoodButtonView()
         setBadButtonView()
@@ -430,8 +346,6 @@ extension RetrospectiveWriteTVC {
         badTextView.spellCheckingType = .no
         badTextView.isUserInteractionEnabled = false
         badTextView.isEditable = false
-        
-        
     }
     
     private func setNextTextView() {

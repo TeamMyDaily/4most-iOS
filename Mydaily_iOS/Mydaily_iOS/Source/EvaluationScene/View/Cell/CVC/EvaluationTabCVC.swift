@@ -129,7 +129,7 @@ extension EvaluationTabCVC {
             createKeywordButton.heightAnchor.constraint(equalToConstant: 32).isActive = true
             createKeywordButton.widthAnchor.constraint(equalToConstant: 114).isActive = true
             createKeywordButton.titleLabel?.font = .myMediumSystemFont(ofSize: 16)
-            createKeywordButton.setTitle("키워드 생성", for: .normal)
+            createKeywordButton.setTitle("키워드 생성 >", for: .normal)
             createKeywordButton.titleLabel?.textAlignment = .left
             createKeywordButton.titleLabel?.textColor = .white
             createKeywordButton.backgroundColor = .mainOrange
