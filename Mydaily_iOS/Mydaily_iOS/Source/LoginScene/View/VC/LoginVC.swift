@@ -57,7 +57,7 @@ extension LoginVC {
         pwTextField.setLeftPaddingPoints(15)
         
         loginButton.layer.cornerRadius = 15
-        loginButton.backgroundColor = .mainOrange
+        loginButton.backgroundColor = .mainGray
         loginButton.setTitle("포모스트 입장!", for: .normal)
         loginButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
         loginButton.setTitleColor(.white, for: .normal)
@@ -68,6 +68,8 @@ extension LoginVC {
         findIDButton.titleLabel?.font = .myMediumSystemFont(ofSize: 12)
         findPWButton.setTitleColor(.mainGray, for: .normal)
         findPWButton.titleLabel?.font = .myMediumSystemFont(ofSize: 12)
+        
+        addObserver()
     }
     
 //    func setupNavigationBar(_ color: UIColor) {
@@ -78,6 +80,22 @@ extension LoginVC {
 //        navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
 //        navigationBar.shadowImage = UIImage()
 //    }
+    
+    func addObserver(){
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadUI), name: .registerVC, object: nil)
+    }
+    
+    @objc
+    func reloadUI(_ notification: NSNotification) {
+        guard let userEmail = notification.userInfo?["username"] as? String else { return }
+        guard let userPW = notification.userInfo?["userpw"] as? String else { return }
+        
+        idTextField.text = userEmail
+        pwTextField.text = userPW
+        
+        loginButton.isEnabled = true
+        loginButton.backgroundColor = .mainOrange
+    }
 }
 
 // MARK: - TextField,Button
@@ -110,9 +128,11 @@ extension LoginVC {
         
         if !(idTextField.text!.isEmpty) && !(pwTextField.text!.isEmpty){
             loginButton.isEnabled = true
+            loginButton.backgroundColor = .mainOrange
         }
         else{
             loginButton.isEnabled = false
+            loginButton.backgroundColor = .mainGray
         }
     }
 }
@@ -125,7 +145,6 @@ extension LoginVC {
                 case .success(let result):
                     do {
                         self.token = try result.map(SigninModel.self)
-                        print("~~\(self.token)")
                     } catch(let err) {
                         print(err.localizedDescription)
                     }

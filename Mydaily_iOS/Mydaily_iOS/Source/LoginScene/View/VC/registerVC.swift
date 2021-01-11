@@ -8,6 +8,10 @@
 import UIKit
 import Moya
 
+extension Notification.Name {
+    static let registerVC = Notification.Name("registerVC")
+}
+
 class RegisterVC: UIViewController {
     
     private let authProvider = MoyaProvider<LoginServices>(plugins: [NetworkLoggerPlugin(verbose: true)])
@@ -299,7 +303,7 @@ extension RegisterVC {
                 case .success(let result):
                     do {
                         self.userData = try result.map(SignupModel.self)
-                        
+                        NotificationCenter.default.post(name: .registerVC, object: nil, userInfo: ["username": self.emailTextField.text ?? "", "userpw": self.pwTextField.text ?? ""])
                     } catch(let err) {
                         print(err.localizedDescription)
                     }
