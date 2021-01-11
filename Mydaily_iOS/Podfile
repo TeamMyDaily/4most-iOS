@@ -6,6 +6,7 @@ target 'Mydaily_iOS' do
   use_frameworks!
 
 pod 'Moya', '~> 14.0'
+pod 'Alamofire', '~> 5.2'
 
   # Pods for Mydaily_iOS
 
