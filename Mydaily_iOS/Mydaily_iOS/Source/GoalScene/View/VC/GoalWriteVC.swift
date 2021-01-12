@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import Moya
 
 class GoalWriteVC: UIViewController {
-
+    private let authProvider = MoyaProvider<GoalService>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var textViewCount: UILabel!
@@ -22,6 +24,7 @@ class GoalWriteVC: UIViewController {
         
     }
     @IBAction func saveButton(_ sender: Any) {
+        writeGoal()
         self.navigationController?.popViewController(animated: true)
     }
 }
@@ -134,6 +137,24 @@ extension GoalWriteVC: UITextViewDelegate{
             saveButton.backgroundColor = .mainOrange
             saveButton.setTitle("작성완료", for: .normal)
             saveButton.setTitleColor(.white, for: .normal)
+        }
+    }
+}
+
+// MARK: - 통신
+extension GoalWriteVC{
+    func writeGoal(){
+        let param = GoalWriteRequest.init(1610031600000, 1, self.textView.text!)
+        authProvider.request(.goalwrite(param: param)) { response in
+            switch response {
+                case .success(let result):
+                    do {
+                    } catch(let err) {
+                        print(err.localizedDescription)
+                    }
+                case .failure(let err):
+                    print(err.localizedDescription)
+            }
         }
     }
 }

@@ -54,6 +54,8 @@
 		AE80787425ADF72600B5E1E6 /* GoalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80787325ADF72600B5E1E6 /* GoalService.swift */; };
 		AE80787725AE097600B5E1E6 /* GoalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80787625AE097600B5E1E6 /* GoalModel.swift */; };
 		AE80787A25AE09CD00B5E1E6 /* GoalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80787925AE09CD00B5E1E6 /* GoalRequest.swift */; };
+		AE80787D25AE0FD000B5E1E6 /* GoalWriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80787C25AE0FD000B5E1E6 /* GoalWriteModel.swift */; };
+		AE80788025AE109600B5E1E6 /* GoalWriteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80787F25AE109600B5E1E6 /* GoalWriteRequest.swift */; };
 		AE9F294525A1719600904FD9 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9F294425A1719600904FD9 /* LoginVC.swift */; };
 		AE9F294A25A1A69400904FD9 /* registerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9F294925A1A69400904FD9 /* registerVC.swift */; };
 		AE9F294D25A1BF1500904FD9 /* RegisterEntryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9F294C25A1BF1500904FD9 /* RegisterEntryVC.swift */; };
@@ -158,6 +160,8 @@
 		AE80787325ADF72600B5E1E6 /* GoalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalService.swift; sourceTree = "<group>"; };
 		AE80787625AE097600B5E1E6 /* GoalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalModel.swift; sourceTree = "<group>"; };
 		AE80787925AE09CD00B5E1E6 /* GoalRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalRequest.swift; sourceTree = "<group>"; };
+		AE80787C25AE0FD000B5E1E6 /* GoalWriteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalWriteModel.swift; sourceTree = "<group>"; };
+		AE80787F25AE109600B5E1E6 /* GoalWriteRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalWriteRequest.swift; sourceTree = "<group>"; };
 		AE9F294425A1719600904FD9 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		AE9F294925A1A69400904FD9 /* registerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerVC.swift; sourceTree = "<group>"; };
 		AE9F294C25A1BF1500904FD9 /* RegisterEntryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEntryVC.swift; sourceTree = "<group>"; };
@@ -497,6 +501,7 @@
 			isa = PBXGroup;
 			children = (
 				AE80787625AE097600B5E1E6 /* GoalModel.swift */,
+				AE80787C25AE0FD000B5E1E6 /* GoalWriteModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -505,6 +510,7 @@
 			isa = PBXGroup;
 			children = (
 				AE80787925AE09CD00B5E1E6 /* GoalRequest.swift */,
+				AE80787F25AE109600B5E1E6 /* GoalWriteRequest.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -876,6 +882,7 @@
 				EDC1642925A4617600CD65B0 /* RetrospectiveWriteVC.swift in Sources */,
 				AE76C03E259B1A6D007B3901 /* AppDelegate.swift in Sources */,
 				AE46FA2325AC13B50051D667 /* LoginService.swift in Sources */,
+				AE80788025AE109600B5E1E6 /* GoalWriteRequest.swift in Sources */,
 				AED84DF325A558B30050D861 /* Extensions+UIView.swift in Sources */,
 				AE53FBBC25A733E900D62AA7 /* GoalWriteVC.swift in Sources */,
 				EDAAFA2E25A8535400424BF9 /* SettingVersionTVC.swift in Sources */,
@@ -899,6 +906,7 @@
 				EDAAFA3425A8787100424BF9 /* MypageWithdrawalVC.swift in Sources */,
 				AED84DEF25A558B30050D861 /* Extensions+UIColor.swift in Sources */,
 				EDAAFA2425A82E0400424BF9 /* MypageSettingVC.swift in Sources */,
+				AE80787D25AE0FD000B5E1E6 /* GoalWriteModel.swift in Sources */,
 				AE53FB9925A5B6F300D62AA7 /* DailyWriteVC.swift in Sources */,
 				AEFB21F9259C5CB900A3228C /* TabbarController.swift in Sources */,
 				EDBF739B25A18BF100ECDEB9 /* DetailRecordLayout.swift in Sources */,

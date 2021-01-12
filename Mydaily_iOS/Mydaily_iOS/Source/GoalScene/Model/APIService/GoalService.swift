@@ -10,6 +10,7 @@ import Moya
 
 enum GoalService {
     case goalinquiry(param: GoalRequest)
+    case goalwrite(param: GoalWriteRequest)
 }
 
 extension GoalService: TargetType {
@@ -24,6 +25,8 @@ extension GoalService: TargetType {
     var path: String {
         switch self {
         case .goalinquiry:
+            return "/goals"
+        case .goalwrite:
             return "/goals"
         }
     }
@@ -41,6 +44,8 @@ extension GoalService: TargetType {
         switch self {
         case .goalinquiry:
             return .get
+        case .goalwrite:
+            return .post
         }
     }
     
@@ -52,6 +57,8 @@ extension GoalService: TargetType {
         switch self {
         case .goalinquiry(let param):
             return .requestParameters(parameters: try! param.asDictionary(), encoding: URLEncoding.default)
+        case .goalwrite(let param):
+            return .requestJSONEncodable(param)
         }
     }
     
