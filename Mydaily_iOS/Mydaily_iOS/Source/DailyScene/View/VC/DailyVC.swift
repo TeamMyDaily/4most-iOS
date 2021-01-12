@@ -144,6 +144,13 @@ extension DailyVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let VC = self.storyboard?.instantiateViewController(identifier: "DailyWriteVC") as? DailyWriteVC else {return}
+        VC.taskID = self.dailyModel?.data.result[indexPath.row].priority
+        VC.taskTitle = self.dailyModel?.data.result[indexPath.row].name
+        self.navigationController?.pushViewController(VC, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: DetailTVC.reuseIdentifier, for: indexPath) as! DetailTVC
 
