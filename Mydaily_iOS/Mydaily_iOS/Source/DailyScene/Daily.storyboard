@@ -271,10 +271,16 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWd-WA-izW">
-                                <rect key="frame" x="164" y="548" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWd-WA-izW">
+                                <rect key="frame" x="23.5" y="438" width="328" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="328" id="3Xi-Tw-Lrg"/>
+                                    <constraint firstAttribute="height" constant="60" id="qEY-X7-mYg"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="saveButton:" destination="azC-0r-meV" eventType="touchUpInside" id="34f-eX-eLj"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JYQ-Da-hyh"/>
@@ -292,11 +298,13 @@
                             <constraint firstItem="9zh-Ga-c0O" firstAttribute="top" secondItem="VPN-o4-WmW" secondAttribute="bottom" constant="8" id="B9o-HL-9a0"/>
                             <constraint firstItem="CGn-8r-6vN" firstAttribute="leading" secondItem="JYQ-Da-hyh" secondAttribute="leading" constant="16" id="BzQ-gg-LKW"/>
                             <constraint firstItem="VPN-o4-WmW" firstAttribute="leading" secondItem="JYQ-Da-hyh" secondAttribute="leading" constant="16" id="Esw-Q9-a34"/>
+                            <constraint firstItem="hWd-WA-izW" firstAttribute="top" secondItem="QQQ-RI-K9C" secondAttribute="bottom" constant="32" id="F7k-1S-6Ku"/>
                             <constraint firstItem="QQQ-RI-K9C" firstAttribute="top" secondItem="CGn-8r-6vN" secondAttribute="bottom" constant="31" id="FSJ-Ue-nb3"/>
                             <constraint firstItem="CGn-8r-6vN" firstAttribute="top" secondItem="VPN-o4-WmW" secondAttribute="bottom" constant="35" id="MTa-ZF-2Cp"/>
                             <constraint firstItem="VPN-o4-WmW" firstAttribute="top" secondItem="cSF-hQ-BbA" secondAttribute="bottom" constant="24" id="RgJ-UI-Pha"/>
                             <constraint firstItem="cSF-hQ-BbA" firstAttribute="leading" secondItem="JYQ-Da-hyh" secondAttribute="leading" constant="16" id="UIR-sH-mOq"/>
                             <constraint firstItem="BX7-AA-D0G" firstAttribute="top" secondItem="QQQ-RI-K9C" secondAttribute="bottom" constant="32" id="Uqq-6u-g9K"/>
+                            <constraint firstItem="hWd-WA-izW" firstAttribute="centerX" secondItem="JYQ-Da-hyh" secondAttribute="centerX" id="VV5-fQ-3um"/>
                             <constraint firstItem="Kpa-XO-vVL" firstAttribute="centerY" secondItem="cSF-hQ-BbA" secondAttribute="centerY" id="YRh-ZN-41P"/>
                             <constraint firstItem="hlI-bI-2kl" firstAttribute="centerX" secondItem="JYQ-Da-hyh" secondAttribute="centerX" id="Yza-fY-QUM"/>
                             <constraint firstItem="Bwu-DT-VSK" firstAttribute="centerY" secondItem="CGn-8r-6vN" secondAttribute="centerY" id="bMz-mR-Pp0"/>
@@ -336,6 +344,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qoc-jH-dR0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1448.8" y="98.50074962518741"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Y65-i6-OoD">
+            <objects>
+                <viewController id="b7z-Ki-AXy" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CQd-1T-UIT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="afu-MN-FML"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="3eV-LV-z6u"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3E0-Jc-CRu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2105" y="99"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gyu-GP-rK0">

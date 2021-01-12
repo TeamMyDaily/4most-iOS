@@ -28,35 +28,6 @@ class DailyWriteVC: UIViewController {
     var taskID: Int?
     var taskTitle: String?
     
-    let modifyRightButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "수정", style: .done, target: self, action: #selector(changeModify))
-        button.setTitleTextAttributes([
-                                        NSAttributedString.Key.font: UIFont.myRegularSystemFont(ofSize: 17),
-                                        NSAttributedString.Key.foregroundColor: UIColor.mainOrange], for: .normal)
-        button.setTitleTextAttributes([
-                                        NSAttributedString.Key.font: UIFont.myRegularSystemFont(ofSize: 17),
-                                        NSAttributedString.Key.foregroundColor: UIColor.mainOrange], for: .selected)
-        
-        return button
-    }()
-    let deleteRightButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "삭제", style: .done, target: self, action: #selector(deleteTask))
-        button.setTitleTextAttributes([
-                                        NSAttributedString.Key.font: UIFont.myRegularSystemFont(ofSize: 17),
-                                        NSAttributedString.Key.foregroundColor: UIColor.mainOrange], for: .normal)
-        button.setTitleTextAttributes([
-                                        NSAttributedString.Key.font: UIFont.myRegularSystemFont(ofSize: 17),
-                                        NSAttributedString.Key.foregroundColor: UIColor.mainOrange], for: .selected)
-        
-        return button
-    }()
-    
-    @objc func changeModify(){
-        self.navigationItem.rightBarButtonItem = deleteRightButton
-        postingButton.isHidden = true
-        saveButton.isHidden = false
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         setupNavigationBar()
         setUI()
@@ -92,6 +63,10 @@ class DailyWriteVC: UIViewController {
             sliderIndex[i].layer.backgroundColor = UIColor.mainGray.cgColor
         }
     }
+    @IBAction func saveButton(_ sender: Any) {
+        postingTask()
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 extension DailyWriteVC {
@@ -105,23 +80,46 @@ extension DailyWriteVC {
         navigationBar.shadowImage = UIImage()
         self.navigationItem.title = "기록"
         
-        //        let leftButton: UIBarButtonItem = {
-        //            let button = UIBarButtonItem(image: UIImage(named: "backArrowIc"), style: .plain, target: self, action: #selector(dismissVC))
-        //            return button
-        //        }()
+        let leftButton: UIBarButtonItem = {
+            let button = UIBarButtonItem(title: "뒤", style: .plain, target: self, action: #selector(dismissVC))
+//            let button = UIBarButtonItem(image: UIImage(named: "backArrowIc"), style: .plain, target: self, action: #selector(dismissVC))
+            return button
+        }()
         
-//        navigationItem.leftBarButtonItem = leftButton
+        navigationItem.leftBarButtonItem = leftButton
+        let modifyRightButton: UIBarButtonItem = {
+            let button = UIBarButtonItem(title: "수정", style: .done, target: self, action: #selector(changeModify))
+            button.setTitleTextAttributes([
+                                            NSAttributedString.Key.font: UIFont.myRegularSystemFont(ofSize: 17),
+                                            NSAttributedString.Key.foregroundColor: UIColor.mainOrange], for: .normal)
+            button.setTitleTextAttributes([
+                                            NSAttributedString.Key.font: UIFont.myRegularSystemFont(ofSize: 17),
+                                            NSAttributedString.Key.foregroundColor: UIColor.mainOrange], for: .selected)
+            
+            return button
+        }()
         
         if dailyTask?.data != nil{
             navigationItem.rightBarButtonItem = modifyRightButton
         }
         
     }
-    
-    @objc func post(){
-//        posting()
-//        modify()
-//        delete()
+    @objc func changeModify(){
+        let deleteRightButton: UIBarButtonItem = {
+            let button = UIBarButtonItem(title: "삭제", style: .done, target: self, action: #selector(deleteButton))
+            button.setTitleTextAttributes([
+                                            NSAttributedString.Key.font: UIFont.myRegularSystemFont(ofSize: 17),
+                                            NSAttributedString.Key.foregroundColor: UIColor.mainOrange], for: .normal)
+            button.setTitleTextAttributes([
+                                            NSAttributedString.Key.font: UIFont.myRegularSystemFont(ofSize: 17),
+                                            NSAttributedString.Key.foregroundColor: UIColor.mainOrange], for: .selected)
+            
+            return button
+        }()
+        print("??")
+        self.navigationItem.rightBarButtonItem = deleteRightButton
+        postingButton.isHidden = true
+        saveButton.isHidden = false
     }
     
     func setUI(){
@@ -142,6 +140,20 @@ extension DailyWriteVC {
         todayTextView.delegate = self
         todayTitle.addTarget(self, action: #selector(textFieldDidChange), for: UIControl.Event.editingChanged)
         
+        postingButton.backgroundColor = UIColor.mainGray
+        postingButton.layer.cornerRadius = 15
+        postingButton.setTitle("저장할래요", for: .normal)
+        postingButton.setTitleColor(.white, for: .normal)
+        postingButton.titleLabel?.font = .myBlackSystemFont(ofSize: 18)
+        postingButton.isEnabled = false
+        
+        saveButton.backgroundColor = UIColor.mainGray
+        saveButton.layer.cornerRadius = 15
+        saveButton.setTitle("작성완료", for: .normal)
+        saveButton.setTitleColor(.white, for: .normal)
+        saveButton.titleLabel?.font = .myBlackSystemFont(ofSize: 18)
+        saveButton.isEnabled = false
+        
         setTextViewUI()
     }
     
@@ -160,6 +172,8 @@ extension DailyWriteVC {
             todayTitle.font = .myRegularSystemFont(ofSize: 16)
             todayTitle.textColor = .mainBlack
             todayTitle.placeholder = "오늘 하루 무슨일이 있었나요?"
+            postingButton.isHidden = true
+            saveButton.isHidden = false
         }
         else{ //이미 작성정보 있을시
             todayTextView.borderWidth = 1
@@ -171,6 +185,8 @@ extension DailyWriteVC {
             todayScore.text = String(dailyTask?.data.satisfaction ?? 0)
             labelCount.text = String(dailyTask?.data.title.count ?? 0)
             textViewCount.text = String(dailyTask?.data.detail.count ?? 0)
+            postingButton.isHidden = false
+            saveButton.isHidden = true
         }
     }
 }
@@ -232,6 +248,48 @@ extension DailyWriteVC: UITextViewDelegate {
     }
 }
 
+//MARK:: - selector
+extension DailyWriteVC {
+    @objc func cancelAlertaction() {
+        let alert = UIAlertController(
+            title: "주의!",
+            message: "작성중인 글을 취소하시겠습니까?\n취소할 시, 작성된 글은 저장되지 않습니다.",
+            preferredStyle: UIAlertController.Style.alert
+        )
+        let cancel = UIAlertAction(title: "작성취소", style: .destructive) {
+            _ in
+            self.navigationController?.popViewController(animated: true)
+        }
+        let okAction = UIAlertAction(title: "닫기", style: .default)
+        alert.addAction(cancel)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func deleteButton() {
+        let alert = UIAlertController(
+            title: "이 기록을 삭제하시겠어요?!",
+            message: nil,
+            preferredStyle: UIAlertController.Style.alert
+        )
+        let cancel = UIAlertAction(title: "삭제하기", style: .destructive) {_ in
+            self.deleteTask()
+            self.dismiss(animated: true, completion: nil)
+        }
+        let okAction = UIAlertAction(title: "닫기", style: .default)
+        alert.addAction(cancel)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func dismissVC(){
+        if textViewCount.text == "0" && labelCount.text == "0"{
+            self.navigationController?.popViewController(animated: true)
+        }
+        cancelAlertaction()
+        self.navigationController?.popViewController(animated: true)
+    }
+}
 
 //MARK:: - Network
 extension DailyWriteVC {
@@ -239,16 +297,16 @@ extension DailyWriteVC {
         authProvider.request(.dailytask(1)) { [weak self] result in
             guard let self = self else { return }
             switch result {
-                case .success(let response):
-                    do {
-                        let data = try response.map(DailyTaskModel.self)
-                        print("&&")
-                        self.dailyTask = data
-                    } catch(let err) {
-                        print(err.localizedDescription)
-                    }
-                case .failure(let err):
+            case .success(let response):
+                do {
+                    let data = try response.map(DailyTaskModel.self)
+                    print("&&")
+                    self.dailyTask = data
+                } catch(let err) {
                     print(err.localizedDescription)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
             }
         }
     }
@@ -257,14 +315,14 @@ extension DailyWriteVC {
         let param = DailyWriteRequest.init("\(taskID ?? 1)", self.todayTitle.text!, todayTextView.text!, Int(scoreSlider.value))
         authProvider.request(.dailyWrite(param: param)) { response in
             switch response {
-                case .success(let result):
-                    do {
-                        self.dailyTask = try result.map(DailyTaskModel.self)
-                    } catch(let err) {
-                        print(err.localizedDescription)
-                    }
-                case .failure(let err):
+            case .success(let result):
+                do {
+                    self.dailyTask = try result.map(DailyTaskModel.self)
+                } catch(let err) {
                     print(err.localizedDescription)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
             }
         }
     }
@@ -273,14 +331,14 @@ extension DailyWriteVC {
         let param = DailyModifyRequest.init(self.todayTitle.text!, todayTextView.text!, Int(scoreSlider.value))
         authProvider.request(.dailyModify(param: param)) { response in
             switch response {
-                case .success(let result):
-                    do {
-                        self.dailyModify = try result.map(DailyModifyModel.self)
-                    } catch(let err) {
-                        print(err.localizedDescription)
-                    }
-                case .failure(let err):
+            case .success(let result):
+                do {
+                    self.dailyModify = try result.map(DailyModifyModel.self)
+                } catch(let err) {
                     print(err.localizedDescription)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
             }
         }
     }
@@ -289,14 +347,14 @@ extension DailyWriteVC {
         authProvider.request(.dailyDelete(taskID!)) { [weak self] result in
             guard let self = self else { return }
             switch result {
-                case .success(let response):
-                    do {
-                        self.dailyModify = try response.map(DailyModifyModel.self)
-                    } catch(let err) {
-                        print(err.localizedDescription)
-                    }
-                case .failure(let err):
+            case .success(let response):
+                do {
+                    self.dailyModify = try response.map(DailyModifyModel.self)
+                } catch(let err) {
                     print(err.localizedDescription)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
             }
         }
     }
