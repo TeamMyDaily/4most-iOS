@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import Moya
 
 class RetrospectiveWriteVC: UIViewController {
     static let identifier = "RetrospectiveWriteVC"
+    
+    private let authProvider = MoyaProvider<ReportServices>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    var writingData: RegistRetrospectiveModel?
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var questionLabel: UILabel!
@@ -212,5 +216,31 @@ extension RetrospectiveWriteVC {
     
     @objc func dismissGestureKeyboard() {
         view.endEditing(true)
+    }
+}
+
+//MARK: Network
+extension RetrospectiveWriteVC {
+    func signup(){
+        guard let start = (Date().startOfWeek)?.timeIntervalSince1970 else { return }
+        guard let end = (Date().endOfWeek)?.timeIntervalSince1970 else { return }
+        guard let current = (Date().todayOfWeek)?.timeIntervalSince1970 else { return }
+        let startInt = Int(start)
+        let endInt = Int(end)
+        let currentInt = Int(current)
+        let param = RegistRetrospectiveRequest.init(startInt, endInt, currentInt, self.cellNum, self.writeTextView.text)
+        print(param)
+        authProvider.request(.registRetrospective(param: param)) { response in
+            switch response {
+                case .success(let result):
+                    do {
+                        self.writingData = try result.map(RegistRetrospectiveModel.self)
+                    } catch(let err) {
+                        print(err.localizedDescription)
+                    }
+                case .failure(let err):
+                    print(err.localizedDescription)
+            }
+        }
     }
 }

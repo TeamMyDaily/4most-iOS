@@ -60,6 +60,9 @@
                                     <constraint firstAttribute="width" constant="315" id="Cpa-oI-qJb"/>
                                 </constraints>
                                 <state key="normal" title="포모스트 입장"/>
+                                <connections>
+                                    <action selector="loginButton:" destination="Kua-T3-ck5" eventType="touchUpInside" id="9DJ-ug-A6T"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGl-Gj-2PA">
                                 <rect key="frame" x="84" y="473" width="52" height="30"/>

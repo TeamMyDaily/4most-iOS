@@ -53,6 +53,12 @@ extension Date {
         }
     }
     
+    var todayOfWeek: Date? {
+        let gregorian = Calendar(identifier: .gregorian)
+        guard let today = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) else { return nil }
+        return gregorian.date(byAdding: .day, value: 0, to: today)
+    }
+    
     var containWeek: Date? {
         let gregorian = Calendar(identifier: .gregorian)
         let startOfMonth = gregorian.date(from: gregorian.dateComponents([.year, .month], from: self))

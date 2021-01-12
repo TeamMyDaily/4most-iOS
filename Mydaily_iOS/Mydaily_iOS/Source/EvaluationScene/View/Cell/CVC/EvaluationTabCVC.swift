@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Moya
 
 class EvaluationTabCVC: UICollectionViewCell {
     static let identifier = "EvaluationTabCVC"

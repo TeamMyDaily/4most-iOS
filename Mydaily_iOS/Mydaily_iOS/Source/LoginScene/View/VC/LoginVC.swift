@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import Moya
 
 class LoginVC: UIViewController {
 
+    private let authProvider = MoyaProvider<LoginServices>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    var token: SigninModel?
+    
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var pwTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
@@ -31,6 +35,9 @@ class LoginVC: UIViewController {
         self.navigationController?.pushViewController(dvc, animated: true)
     }
     
+    @IBAction func loginButton(_ sender: Any) {
+        signin()
+    }
 }
 
 //MARK: - UI
@@ -50,7 +57,7 @@ extension LoginVC {
         pwTextField.setLeftPaddingPoints(15)
         
         loginButton.layer.cornerRadius = 15
-        loginButton.backgroundColor = .mainOrange
+        loginButton.backgroundColor = .mainGray
         loginButton.setTitle("포모스트 입장!", for: .normal)
         loginButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
         loginButton.setTitleColor(.white, for: .normal)
@@ -61,6 +68,8 @@ extension LoginVC {
         findIDButton.titleLabel?.font = .myMediumSystemFont(ofSize: 12)
         findPWButton.setTitleColor(.mainGray, for: .normal)
         findPWButton.titleLabel?.font = .myMediumSystemFont(ofSize: 12)
+        
+        addObserver()
     }
     
 //    func setupNavigationBar(_ color: UIColor) {
@@ -71,6 +80,22 @@ extension LoginVC {
 //        navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
 //        navigationBar.shadowImage = UIImage()
 //    }
+    
+    func addObserver(){
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadUI), name: .registerVC, object: nil)
+    }
+    
+    @objc
+    func reloadUI(_ notification: NSNotification) {
+        guard let userEmail = notification.userInfo?["username"] as? String else { return }
+        guard let userPW = notification.userInfo?["userpw"] as? String else { return }
+        
+        idTextField.text = userEmail
+        pwTextField.text = userPW
+        
+        loginButton.isEnabled = true
+        loginButton.backgroundColor = .mainOrange
+    }
 }
 
 // MARK: - TextField,Button
@@ -103,9 +128,38 @@ extension LoginVC {
         
         if !(idTextField.text!.isEmpty) && !(pwTextField.text!.isEmpty){
             loginButton.isEnabled = true
+            loginButton.backgroundColor = .mainOrange
         }
         else{
             loginButton.isEnabled = false
+            loginButton.backgroundColor = .mainGray
+        }
+    }
+}
+
+extension LoginVC {
+    func signin(){
+        let param = SigninRequest.init(self.idTextField.text!, self.pwTextField.text!)
+        authProvider.request(.signIn(param: param)) { response in
+            switch response {
+                case .success(let result):
+                    do {
+                        self.token = try result.map(SigninModel.self)
+                        if self.token?.status == 400{
+                            if self.token?.message == "존재하지 않는 이메일 입니다."{
+                                
+                            }else{
+                                
+                            }
+                        }
+                    } catch(let err) {
+                        print(err.localizedDescription)
+                    }
+                case .failure(let err):
+//                    self.token = try err.map(SigninModel.self)
+//                    print("@\(self.token)")
+                    print(err.localizedDescription)
+            }
         }
     }
 }
