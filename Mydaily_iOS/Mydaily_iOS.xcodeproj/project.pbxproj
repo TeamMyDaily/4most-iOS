@@ -16,12 +16,13 @@
 		3C71FE3925AB7226007BC463 /* RecordKeywordTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C71FE3725AB7226007BC463 /* RecordKeywordTVC.xib */; };
 		3C71FE4225AB7BA6007BC463 /* UserKeywordTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71FE4025AB7BA6007BC463 /* UserKeywordTVC.swift */; };
 		3C71FE4325AB7BA6007BC463 /* UserKeywordTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C71FE4125AB7BA6007BC463 /* UserKeywordTVC.xib */; };
+		3C7F9D3725AD8A4800F004E0 /* DetailTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C7F9D3525AD8A4800F004E0 /* DetailTVC.xib */; };
+		3C7F9D3825AD8A4800F004E0 /* DetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7F9D3625AD8A4800F004E0 /* DetailTVC.swift */; };
 		3CB1214D25A778CB0080E60F /* KeywordDefineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB1214C25A778CB0080E60F /* KeywordDefineVC.swift */; };
 		3CC86426259CAFCB0043421A /* Keyword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CC86425259CAFCB0043421A /* Keyword.storyboard */; };
 		3CC8642C259CAFEE0043421A /* KeywordPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC8642B259CAFEE0043421A /* KeywordPopUpVC.swift */; };
 		3CC86433259CCCB00043421A /* ContentCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC86431259CCCB00043421A /* ContentCVC.swift */; };
 		3CC86434259CCCB00043421A /* ContentCVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CC86432259CCCB00043421A /* ContentCVC.xib */; };
-		AE46FA1225ABF8820051D667 /* DetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA1125ABF8820051D667 /* DetailTVC.swift */; };
 		AE46FA2325AC13B50051D667 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA2225AC13B50051D667 /* LoginService.swift */; };
 		AE46FA2625AC13CE0051D667 /* GeneralAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA2525AC13CE0051D667 /* GeneralAPI.swift */; };
 		AE46FA2A25AC16090051D667 /* SignupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA2925AC16090051D667 /* SignupRequest.swift */; };
@@ -41,7 +42,6 @@
 		AE53FBB825A7206000D62AA7 /* GoalTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FBB625A7206000D62AA7 /* GoalTVC.swift */; };
 		AE53FBB925A7206000D62AA7 /* GoalTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE53FBB725A7206000D62AA7 /* GoalTVC.xib */; };
 		AE53FBBC25A733E900D62AA7 /* GoalWriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FBBB25A733E900D62AA7 /* GoalWriteVC.swift */; };
-		AE53FBC225A8590D00D62AA7 /* DetailTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE53FBC025A8590D00D62AA7 /* DetailTVC.xib */; };
 		AE53FBCB25AAFA6300D62AA7 /* GoalDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FBCA25AAFA6200D62AA7 /* GoalDetailVC.swift */; };
 		AE53FBCE25AB02E000D62AA7 /* GoalModifyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FBCD25AB02E000D62AA7 /* GoalModifyVC.swift */; };
 		AE76C03E259B1A6D007B3901 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE76C03D259B1A6D007B3901 /* AppDelegate.swift */; };
@@ -109,6 +109,8 @@
 		3C71FE3725AB7226007BC463 /* RecordKeywordTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordKeywordTVC.xib; sourceTree = "<group>"; };
 		3C71FE4025AB7BA6007BC463 /* UserKeywordTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserKeywordTVC.swift; sourceTree = "<group>"; };
 		3C71FE4125AB7BA6007BC463 /* UserKeywordTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserKeywordTVC.xib; sourceTree = "<group>"; };
+		3C7F9D3525AD8A4800F004E0 /* DetailTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailTVC.xib; sourceTree = "<group>"; };
+		3C7F9D3625AD8A4800F004E0 /* DetailTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTVC.swift; sourceTree = "<group>"; };
 		3CB1214C25A778CB0080E60F /* KeywordDefineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordDefineVC.swift; sourceTree = "<group>"; };
 		3CC86425259CAFCB0043421A /* Keyword.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Keyword.storyboard; sourceTree = "<group>"; };
 		3CC8642B259CAFEE0043421A /* KeywordPopUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeywordPopUpVC.swift; sourceTree = "<group>"; };
@@ -117,7 +119,6 @@
 		5956CC336820D9D74ADEB069 /* Pods-Mydaily_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mydaily_iOS.debug.xcconfig"; path = "Target Support Files/Pods-Mydaily_iOS/Pods-Mydaily_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6DAD6BD77FE2A877525BCC6C /* Pods_Mydaily_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mydaily_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9828837A31425EF64043B250 /* Pods-Mydaily_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mydaily_iOS.release.xcconfig"; path = "Target Support Files/Pods-Mydaily_iOS/Pods-Mydaily_iOS.release.xcconfig"; sourceTree = "<group>"; };
-		AE46FA1125ABF8820051D667 /* DetailTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTVC.swift; sourceTree = "<group>"; };
 		AE46FA2225AC13B50051D667 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		AE46FA2525AC13CE0051D667 /* GeneralAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralAPI.swift; sourceTree = "<group>"; };
 		AE46FA2925AC16090051D667 /* SignupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRequest.swift; sourceTree = "<group>"; };
@@ -137,7 +138,6 @@
 		AE53FBB625A7206000D62AA7 /* GoalTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTVC.swift; sourceTree = "<group>"; };
 		AE53FBB725A7206000D62AA7 /* GoalTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoalTVC.xib; sourceTree = "<group>"; };
 		AE53FBBB25A733E900D62AA7 /* GoalWriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalWriteVC.swift; sourceTree = "<group>"; };
-		AE53FBC025A8590D00D62AA7 /* DetailTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTVC.xib; sourceTree = "<group>"; };
 		AE53FBCA25AAFA6200D62AA7 /* GoalDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailVC.swift; sourceTree = "<group>"; };
 		AE53FBCD25AB02E000D62AA7 /* GoalModifyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalModifyVC.swift; sourceTree = "<group>"; };
 		AE76C03A259B1A6D007B3901 /* Mydaily_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mydaily_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -454,8 +454,8 @@
 		AED84DC425A456810050D861 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				AE53FBC025A8590D00D62AA7 /* DetailTVC.xib */,
-				AE46FA1125ABF8820051D667 /* DetailTVC.swift */,
+				3C7F9D3625AD8A4800F004E0 /* DetailTVC.swift */,
+				3C7F9D3525AD8A4800F004E0 /* DetailTVC.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -546,7 +546,6 @@
 				AED84DDC25A4930C0050D861 /* DetailVC.swift */,
 				AEFB220F259C6C6900A3228C /* DailyVC.swift */,
 				AE53FB9825A5B6F300D62AA7 /* DailyWriteVC.swift */,
-				AED84DD925A492F70050D861 /* DetailTVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -720,7 +719,6 @@
 				AE53FBB025A6E97400D62AA7 /* NotoSansKR-Medium.otf in Resources */,
 				AEFB2205259C66FC00A3228C /* Mypage.storyboard in Resources */,
 				AE53FBB125A6E97400D62AA7 /* NotoSansKR-Regular.otf in Resources */,
-				AE53FBC225A8590D00D62AA7 /* DetailTVC.xib in Resources */,
 				AEFB222325A02CBC00A3228C /* Login.storyboard in Resources */,
 				AE53FBAC25A6E97400D62AA7 /* NotoSansKR-Bold.otf in Resources */,
 				AE53FBAF25A6E97400D62AA7 /* NotoSansKR-Black.otf in Resources */,
@@ -731,6 +729,7 @@
 				3CC86426259CAFCB0043421A /* Keyword.storyboard in Resources */,
 				AE53FBAE25A6E97400D62AA7 /* OFL.txt in Resources */,
 				3C71FE3925AB7226007BC463 /* RecordKeywordTVC.xib in Resources */,
+				3C7F9D3725AD8A4800F004E0 /* DetailTVC.xib in Resources */,
 				AE76C04A259B1A6E007B3901 /* LaunchScreen.storyboard in Resources */,
 				AE53FBAB25A6E97400D62AA7 /* NotoSansKR-Light.otf in Resources */,
 				AE53FBB925A7206000D62AA7 /* GoalTVC.xib in Resources */,
@@ -823,7 +822,6 @@
 				AE53FBCE25AB02E000D62AA7 /* GoalModifyVC.swift in Sources */,
 				AED84DF125A558B30050D861 /* Extensions+Encodable.swift in Sources */,
 				AEFB2213259C6E2D00A3228C /* EvaluationVC.swift in Sources */,
-				AE46FA1225ABF8820051D667 /* DetailTVC.swift in Sources */,
 				3CB1214D25A778CB0080E60F /* KeywordDefineVC.swift in Sources */,
 				DEC98B8A25A486DC00CC522C /* KeywordPriorityTVC.swift in Sources */,
 				3CC86433259CCCB00043421A /* ContentCVC.swift in Sources */,
@@ -848,6 +846,7 @@
 				EDA9CA8425A1A74D00BF46C1 /* DetailRecordContentTVC.swift in Sources */,
 				AED84DF625A558B30050D861 /* UIView+Animation.swift in Sources */,
 				AED84DED25A558B30050D861 /* Extensions+UIApplication.swift in Sources */,
+				3C7F9D3825AD8A4800F004E0 /* DetailTVC.swift in Sources */,
 				AE46FA3025AC1ADE0051D667 /* NetworkLoggerPlugin.swift in Sources */,
 				AE46FA2D25AC178C0051D667 /* SignupModel.swift in Sources */,
 				AED84DEC25A558B30050D861 /* Extensions+String.swift in Sources */,

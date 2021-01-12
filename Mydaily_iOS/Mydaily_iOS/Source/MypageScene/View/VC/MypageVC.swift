@@ -303,10 +303,6 @@ extension MypageVC{
         
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-           return .lightContent
-       }
-
     
     func setTitleLabel(){
         UIApplication.shared.statusBarStyle = .lightContent
