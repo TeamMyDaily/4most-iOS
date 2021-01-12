@@ -161,7 +161,7 @@ extension DailyWriteVC {
             todayTitle.textColor = .mainBlack
             todayTitle.placeholder = "오늘 하루 무슨일이 있었나요?"
         }
-        else{
+        else{ //이미 작성정보 있을시
             todayTextView.borderWidth = 1
             todayTextView.backgroundColor = .white
             todayTextView.borderColor = .mainOrange
