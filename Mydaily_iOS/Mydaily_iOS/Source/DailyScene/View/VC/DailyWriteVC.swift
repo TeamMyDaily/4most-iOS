@@ -223,11 +223,11 @@ extension DailyWriteVC: UITextViewDelegate {
     }
     // TextView Place Holder
     func textViewDidBeginEditing(_ textView: UITextView) {
-        textView.text = ""
-        if textView.textColor == UIColor.mainGray {
+        if textView.textColor == UIColor.lightGray {
             textView.text = nil
             textView.textColor = UIColor.mainBlack
         }
+        
     }
     // TextView Place Holder
     func textViewDidEndEditing(_ textView: UITextView) {
