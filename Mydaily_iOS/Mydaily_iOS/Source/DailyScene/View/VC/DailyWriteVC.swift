@@ -27,6 +27,7 @@ class DailyWriteVC: UIViewController {
     
     var taskID: Int?
     var taskTitle: String?
+    var modify = false
     
     override func viewWillAppear(_ animated: Bool) {
         setupNavigationBar()
@@ -123,6 +124,7 @@ extension DailyWriteVC {
     }
     
     func setUI(){
+        scoreSlider.addTarget(self, action: #selector(textFieldDidChange), for: .allEvents)
         textLabel.sizeToFit()
         textLabel.text = "\(taskTitle ?? "")으로 채운\n하루에 대해 알려주세요"
         textLabel.numberOfLines = 2
@@ -132,13 +134,17 @@ extension DailyWriteVC {
         let attributedStr = NSMutableAttributedString(string: textLabel.text ?? "")
         attributedStr.addAttribute(NSAttributedString.Key(rawValue: kCTFontAttributeName as String), value: fontSize, range: (textLabel.text! as NSString).range(of: "\(taskTitle ?? "")"))
         textLabel.attributedText = attributedStr
-        
         labelCount.font = .myRegularSystemFont(ofSize: 12)
         labelCount.textColor = .mainOrange
         textViewCount.textColor = .mainOrange
         
+        todayTitle.setLeftPaddingPoints(3)
+        todayTitle.layer.addBorder([.bottom], color: .mainOrange, width: 1, move: 5)
+        todayTitle.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        
         todayTextView.delegate = self
-        todayTitle.addTarget(self, action: #selector(textFieldDidChange), for: UIControl.Event.editingChanged)
+        todayTextView.layer.cornerRadius = 15
+        todayTextView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         
         postingButton.backgroundColor = UIColor.mainGray
         postingButton.layer.cornerRadius = 15
@@ -158,17 +164,25 @@ extension DailyWriteVC {
     }
     
     @objc func textFieldDidChange(textField : UITextField){
+        self.modify = true
         labelCount.text = "\(todayTitle.text?.count ?? 0)"
+        postingButton.backgroundColor = .mainOrange
+        postingButton.isEnabled = true
+        
+        if !(todayTitle.text!.isEmpty) && !(todayTextView.text.isEmpty) && self.todayScore.text != "0점"{
+            saveButton.backgroundColor = .mainOrange
+            saveButton.isEnabled = true
+        }
+        else{
+            saveButton.backgroundColor = .mainGray
+            saveButton.isEnabled = false
+        }
     }
     
     func setTextViewUI(){
         if dailyTask?.data == nil { //초기작성
             placeholderSetting()
             todayTextView.backgroundColor = .mainLightGray2
-            todayTextView.layer.cornerRadius = 15
-            
-            todayTitle.setLeftPaddingPoints(3)
-            todayTitle.layer.addBorder([.bottom], color: .mainOrange, width: 1, move: 5)
             todayTitle.font = .myRegularSystemFont(ofSize: 16)
             todayTitle.textColor = .mainBlack
             todayTitle.placeholder = "오늘 하루 무슨일이 있었나요?"
@@ -219,7 +233,6 @@ extension DailyWriteVC: UITextViewDelegate {
         todayTextView.font = .myRegularSystemFont(ofSize: 15)
         todayTextView.text = "조금 더 자세한 내용을 알려주세요!"
         todayTextView.textColor = UIColor.lightGray
-        todayTextView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
     }
     // TextView Place Holder
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -227,6 +240,7 @@ extension DailyWriteVC: UITextViewDelegate {
             textView.text = nil
             textView.textColor = UIColor.mainBlack
         }
+        
         
     }
     // TextView Place Holder
@@ -245,6 +259,18 @@ extension DailyWriteVC: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         textViewCount.text = "\(textView.text.count)"
+        self.modify = true
+        postingButton.backgroundColor = .mainOrange
+        postingButton.isEnabled = true
+        
+        if !(todayTitle.text!.isEmpty) && textViewCount.text != "0" && self.todayScore.text != "0점"{
+            saveButton.backgroundColor = .mainOrange
+            saveButton.isEnabled = true
+        }
+        else{
+            saveButton.backgroundColor = .mainGray
+            saveButton.isEnabled = false
+        }
     }
 }
 
@@ -283,11 +309,19 @@ extension DailyWriteVC {
     }
     
     @objc func dismissVC(){
-        if textViewCount.text == "0" && labelCount.text == "0"{
+        if dailyTask?.data != nil{
+            if modify {
+                cancelAlertaction()
+            }
             self.navigationController?.popViewController(animated: true)
         }
-        cancelAlertaction()
-        self.navigationController?.popViewController(animated: true)
+        else{
+            if textViewCount.text == "0" && labelCount.text == "0"{
+                self.navigationController?.popViewController(animated: true)
+            }
+            cancelAlertaction()
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 }
 
