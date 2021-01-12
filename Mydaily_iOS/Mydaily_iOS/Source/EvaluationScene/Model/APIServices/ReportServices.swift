@@ -9,7 +9,8 @@ import Foundation
 import Moya
 
 enum ReportServices {
-    case viewRetrospective
+    case viewReport(param: ViewRequest)
+    case viewRetrospective(param: ViewRequest)
     case registRetrospective(param: RegistRetrospectiveRequest)
     case viewDetailReport(param: ViewDetailReportRequest)
 }
@@ -20,21 +21,31 @@ extension ReportServices: TargetType {
   }
   
   var path: String {
-    guard let start = Date().startOfWeek?.millisecondsSince1970 else {return "\(Date())"}
-    guard let end = Date().endOfWeek?.millisecondsSince1970 else {return "\(Date())"}
     switch self {
-    case .viewRetrospective:
-        return "/reviews?start=\(start)&end=\(end)"
+    case .viewReport(let time):
+        return "/reports"
+    case .viewRetrospective(let time):
+        return "/reviews"
     case .registRetrospective:
         return "/reviews"
-    case .viewDetailReport:
-        return "/reports/detail?start=\(start)&end=\(end)"
+    case .viewDetailReport(let time):
+        return "/reports/detail"
     }
   }
+    
+    var parameterEncoding: ParameterEncoding {
+        switch self {
+        case .viewRetrospective:
+            return URLEncoding.default
+        default:
+            return JSONEncoding.default
+        }
+    }
   
   var method: Moya.Method {
     switch self {
-    case .viewRetrospective:
+    case .viewReport,
+         .viewRetrospective:
         return .get
     case .registRetrospective,
          .viewDetailReport:
@@ -48,8 +59,10 @@ extension ReportServices: TargetType {
   
   var task: Task {
     switch self {
-    case .viewRetrospective:
-        return .requestPlain
+    case .viewReport(let param):
+        return .requestParameters(parameters: try! param.asDictionary(), encoding: URLEncoding.default)
+    case .viewRetrospective(let param):
+        return .requestParameters(parameters: try! param.asDictionary(), encoding: URLEncoding.default)
     case .registRetrospective(let param):
         return .requestJSONEncodable(param)
     case .viewDetailReport(let param):
@@ -61,7 +74,7 @@ extension ReportServices: TargetType {
     switch self {
     default:
       return ["Content-Type": "application/json",
-              "jwt" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwibmFtZSI6IuyLoOycpOyVhCIsImVtYWlsIjoidGxzZGJzZGswNTI1MEBnbWFpbC5jb20iLCJpYXQiOjE2MTAzNjcwMDQsImV4cCI6MTYxMDk3MTgwNCwiaXNzIjoiY3lqIn0.wAXvkP0ivT4aQ7uQ-hBxOGUEEsnLhOaa6sqDHJSghVo"]
+              "jwt" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6InFxIiwiZW1haWwiOiJxcUBxcS5xcSIsImlhdCI6MTYxMDMzMzQ0MywiZXhwIjoxNjEyOTI1NDQzLCJpc3MiOiJjeWoifQ.k3HAJg9K_NMVscJWafGBdCB4Odj6qua9VUL2N3_siYo"]
     }
   }
 }

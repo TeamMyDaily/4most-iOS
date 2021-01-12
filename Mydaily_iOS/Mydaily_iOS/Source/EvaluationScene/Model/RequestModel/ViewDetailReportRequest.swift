@@ -9,8 +9,12 @@ import Foundation
 
 struct ViewDetailReportRequest: Codable {
     let totalKeywordID: String
+    let start: String?
+    let end: String?
 
-    init(_ keywordID: String) {
+    init(_ keywordID: String, _ start: String, _ end: String) {
         self.totalKeywordID = keywordID
+        self.start = start
+        self.end = end
     }
 }

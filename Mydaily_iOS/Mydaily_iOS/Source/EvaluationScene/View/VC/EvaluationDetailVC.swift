@@ -133,7 +133,7 @@ extension EvaluationDetailVC {
 extension EvaluationDetailVC {
     func getKeywordDetail(){
         let pathToString = "\(cellNum)"
-        let param = ViewDetailReportRequest.init(pathToString)
+        let param = ViewDetailReportRequest.init(pathToString, "1610290800000", "1610982000000")
         print(param)
         authProvider.request(.viewDetailReport(param: param)) { response in
             switch response {

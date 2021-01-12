@@ -63,6 +63,7 @@ class RetrospectiveWriteTVC: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        getText()
         setLabel()
         setButtonViews()
         setTextViews()
@@ -379,15 +380,24 @@ extension RetrospectiveWriteTVC {
 //MARK: Network
 extension RetrospectiveWriteTVC {
     func getText(){
-        authProvider.request(.viewRetrospective) { response in
+        let param = ViewRequest.init("1610290800000", "1610982000000")
+        authProvider.request(.viewRetrospective(param: param)) { response in
             switch response {
                 case .success(let result):
                     do {
                         self.textData = try result.map(ViewRetrospectiveModel.self)
                         if self.textData?.data.isWritten == false {
-                            
+                            // 현재와 동일 있으면 써주기
                         } else {
-                            
+                            if self.textData?.data.review.good != nil {
+                                self.goodTextView.text = self.textData?.data.review.good
+                            }
+                            if self.textData?.data.review.bad != nil {
+                                self.badTextView.text = self.textData?.data.review.bad
+                            }
+                            if self.textData?.data.review.next != nil {
+                                self.nextTextView.text = self.textData?.data.review.next
+                            }
                         }
                     } catch(let err) {
                         print(err.localizedDescription)

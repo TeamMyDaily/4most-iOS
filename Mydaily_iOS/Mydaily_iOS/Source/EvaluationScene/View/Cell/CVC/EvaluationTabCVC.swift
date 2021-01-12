@@ -11,6 +11,9 @@ import Moya
 class EvaluationTabCVC: UICollectionViewCell {
     static let identifier = "EvaluationTabCVC"
     
+    private let authProvider = MoyaProvider<ReportServices>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    var textData: ViewReportModel?
+    
     @IBOutlet weak var keywordTableView: UITableView!
     @IBOutlet weak var noDataView: UIView!
     
@@ -31,10 +34,11 @@ class EvaluationTabCVC: UICollectionViewCell {
     var weekText: String? = nil
     var dateValue = 0
     
-    var keywords = ["아웃풋", "열정", "경청", "선한영향력", "진정성", "자신감", "노력"]
-    var goals = ["블로그에 1개 이상 퍼블리싱 하기", "열정 만수르 유노윤호의 영상보고 감상문 5장 이상 쓰기", "PM님 말씀하실 때 가위춤추지 않기", "거짓말 치지 않고 선하게 살기", "열정 만수르 유노윤호의 영상보고 감상문 5장 이상 쓰기", "PM님 말씀하실 때 가위춤추지 않기", "거짓말 치지 않고 선하게 살기"]
-    var rates = [2.6, 4.2, nil, 3.4, 4.2, 1.5, 3.4]
-    var counts = [3, 3, 2, 1, 6, 6, 7]
+    var totalKeywordId: [Int] = []
+    var keywords: [String] = []
+    var goals: [String] = []
+    var rates: [String] = []
+    var counts: [Int] = []
     var removeIndex: [Int] = []
     
     override func awakeFromNib() {
@@ -76,7 +80,7 @@ extension EvaluationTabCVC: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: EvaluationKeywordTVC.identifier) as? EvaluationKeywordTVC else {
             return UITableViewCell()
         }
-        cell.setCellInsideData(keyword: keywords[indexPath.item] ?? "", goal: goals[indexPath.item] ?? "", index: indexPath.item, rate: rates[indexPath.item] ?? 0, count: Int(counts[indexPath.item] ?? 0))
+        cell.setCellInsideData(keyword: keywords[indexPath.item] ?? "", goal: goals[indexPath.item] ?? "", index: indexPath.item, rate: rates[indexPath.item] ?? "0", count: Int(counts[indexPath.item] ?? 0))
         cell.selectionStyle = .none
         return cell
     }
@@ -153,14 +157,6 @@ extension EvaluationTabCVC {
     private func setViewWithoutTableView() {
         setNoDataView()
         setViewByDateValue()
-        
-        if keywords[0] == nil {
-            keywordTableView.isHidden = true
-            noDataView.isHidden = false
-        } else {
-            keywordTableView.isHidden = false
-            noDataView.isHidden = true
-        }
     }
 }
 
@@ -221,5 +217,36 @@ extension EvaluationTabCVC {
 
 //MARK: Network
 extension EvaluationTabCVC {
-    
+    func getText(){
+        let param = ViewRequest.init("1610290800000", "1610982000000")
+        authProvider.request(.viewReport(param: param)) { response in
+            switch response {
+                case .success(let result):
+                    do {
+                        self.textData = try result.map(ViewReportModel.self)
+                        if self.textData?.data.keywordsExist == false {
+                            self.keywordTableView.isHidden = true
+                            self.noDataView.isHidden = false
+                        } else {
+                            self.keywordTableView.isHidden = false
+                            self.noDataView.isHidden = true
+                            
+                            if self.textData?.data.result.count != 0 {
+                                for i in 0...(self.textData?.data.result.count ?? 0)-1 {
+                                    self.totalKeywordId.append(self.textData?.data.result[i].totalKeywordID ?? 0)
+                                    self.keywords.append(self.textData?.data.result[i].keyword ?? "")
+                                    self.counts.append(self.textData?.data.result[i].taskCnt ?? 0)
+                                    self.goals.append(self.textData?.data.result[i].weekGoal ?? "")
+                                    self.rates.append(self.textData?.data.result[i].taskSatisAvg ?? "")
+                                }
+                            }
+                        }
+                    } catch(let err) {
+                        print(err.localizedDescription)
+                    }
+                case .failure(let err):
+                    print(err.localizedDescription)
+            }
+        }
+    }
 }
