@@ -138,7 +138,11 @@ extension DailyVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myArray.count
+        if dailyModel?.data.keywordsExist != true{
+            return 4
+        }else{
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -172,23 +176,6 @@ extension DailyVC {
 
 extension DailyVC {
     func getDaily(){
-//        authProvider.request(.dailyinquiry("?date=1610333510000")) { [weak self] result in
-//            guard let self = self else { return }
-//            switch result {
-//                case .success(let response):
-//                    do {
-//                        let data = try response.map(DailyModel.self)
-//                        print(data)
-//                        self.dailyModel = data
-////                        print(self.dailyModel)
-//                        self.tableView.reloadData()
-//                    } catch(let err) {
-//                        print(err.localizedDescription)
-//                    }
-//                case .failure(let err):
-//                    print(err.localizedDescription)
-//            }
-//        }
         let param = DailyRequest.init("1610333510000")
         authProvider.request(.dailyinquiry(param: param)) { response in
             switch response {
