@@ -189,8 +189,8 @@ extension DailyVC {
 //                    print(err.localizedDescription)
 //            }
 //        }
-        
-        authProvider.request(.dailyinquiry("?date=1610333510000")) { response in
+        let param = DailyRequest.init("1610333510000")
+        authProvider.request(.dailyinquiry(param: param)) { response in
             switch response {
                 case .success(let result):
                     do {

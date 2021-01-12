@@ -9,7 +9,7 @@ import Foundation
 import Moya
 
 enum DailyService {
-    case dailyinquiry(String)
+    case dailyinquiry(param: DailyRequest)
     case dailytask(Int)
     case dailyWrite(param: DailyWriteRequest)
     case dailyModify(param: DailyModifyRequest)
@@ -17,14 +17,18 @@ enum DailyService {
 }
 
 extension DailyService: TargetType {
+    
     public var baseURL: URL {
-        return URL(string: GeneralAPI.baseURL)!
+        switch self {
+        default:
+            return URL(string: GeneralAPI.baseURL)!
+        }
     }
     
     var path: String {
         switch self {
-        case .dailyinquiry(let date):
-            return "/tasks" + date
+        case .dailyinquiry:
+            return "/tasks"
         case .dailytask(let id):
             return "/tasks/\(id)"
         case .dailyWrite:
@@ -33,6 +37,15 @@ extension DailyService: TargetType {
             return "/tasks/\(id)"
         case .dailyDelete(let id):
             return "/tasks/\(id)"
+        }
+    }
+  
+    var parameterEncoding: ParameterEncoding {
+        switch self {
+        case .dailyinquiry:
+            return URLEncoding.default
+        default:
+            return JSONEncoding.default
         }
     }
     
@@ -56,8 +69,9 @@ extension DailyService: TargetType {
     
     var task: Task {
         switch self {
-        case .dailyinquiry,
-             .dailytask,
+        case .dailyinquiry(let param):
+            return .requestParameters(parameters: try! param.asDictionary(), encoding: URLEncoding.default)
+        case .dailytask,
              .dailyDelete:
             return .requestPlain
         case .dailyWrite(let param):

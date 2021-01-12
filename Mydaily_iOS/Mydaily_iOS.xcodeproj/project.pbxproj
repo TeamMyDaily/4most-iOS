@@ -31,6 +31,7 @@
 		AE46FA4F25ACB56C0051D667 /* DailyWriteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA4E25ACB56C0051D667 /* DailyWriteRequest.swift */; };
 		AE46FA5325ACBA2B0051D667 /* DailyModifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA5225ACBA2B0051D667 /* DailyModifyModel.swift */; };
 		AE46FA5625ACBA8F0051D667 /* DailyModifyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA5525ACBA8F0051D667 /* DailyModifyRequest.swift */; };
+		AE46FA5925AD414E0051D667 /* DailyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE46FA5825AD414E0051D667 /* DailyRequest.swift */; };
 		AE53FB9925A5B6F300D62AA7 /* DailyWriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FB9825A5B6F300D62AA7 /* DailyWriteVC.swift */; };
 		AE53FB9E25A6B1E600D62AA7 /* GoalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53FB9D25A6B1E600D62AA7 /* GoalVC.swift */; };
 		AE53FBAB25A6E97400D62AA7 /* NotoSansKR-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = AE53FBA425A6E97400D62AA7 /* NotoSansKR-Light.otf */; };
@@ -129,6 +130,7 @@
 		AE46FA4E25ACB56C0051D667 /* DailyWriteRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWriteRequest.swift; sourceTree = "<group>"; };
 		AE46FA5225ACBA2B0051D667 /* DailyModifyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyModifyModel.swift; sourceTree = "<group>"; };
 		AE46FA5525ACBA8F0051D667 /* DailyModifyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyModifyRequest.swift; sourceTree = "<group>"; };
+		AE46FA5825AD414E0051D667 /* DailyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRequest.swift; sourceTree = "<group>"; };
 		AE53FB9825A5B6F300D62AA7 /* DailyWriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWriteVC.swift; sourceTree = "<group>"; };
 		AE53FB9D25A6B1E600D62AA7 /* GoalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalVC.swift; sourceTree = "<group>"; };
 		AE53FBA425A6E97400D62AA7 /* NotoSansKR-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Light.otf"; sourceTree = "<group>"; };
@@ -365,6 +367,7 @@
 			children = (
 				AE46FA4E25ACB56C0051D667 /* DailyWriteRequest.swift */,
 				AE46FA5525ACBA8F0051D667 /* DailyModifyRequest.swift */,
+				AE46FA5825AD414E0051D667 /* DailyRequest.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -842,6 +845,7 @@
 				AE53FBB825A7206000D62AA7 /* GoalTVC.swift in Sources */,
 				3C4CBF9625A386E90007A6FF /* NextKeywordVC.swift in Sources */,
 				3CC8642C259CAFEE0043421A /* KeywordPopUpVC.swift in Sources */,
+				AE46FA5925AD414E0051D667 /* DailyRequest.swift in Sources */,
 				3C429769259F16D10061483E /* KeywordSettingTVC.swift in Sources */,
 				EDAAEB7D25A01B550024E3E4 /* EvaluationDetailVC.swift in Sources */,
 				AED84DDD25A4930C0050D861 /* DetailVC.swift in Sources */,
