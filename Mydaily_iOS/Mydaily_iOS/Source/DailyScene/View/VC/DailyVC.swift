@@ -44,20 +44,19 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
         setupNavigationBar(.clear, titlelabel: "")
         floatingButton()
         setUI()
-        
-        for _ in 1...4 {
-            
-            let n = arc4random_uniform(6) + 4
-            var str = ""
-            for i in 1..<n {
-                str += "Line \(i)\n"
-            }
-            myArray.append(str)
-            
-        }
-        print(myArray)
     }
     
+    func setDropData(){
+        for outterIndex in 0...3 {
+            var str = ""
+            for i in 0..<(dailyModel?.data.result[outterIndex].tasks.count)! {
+                str += "\(String(describing: dailyModel?.data.result[outterIndex].tasks[i]))\n"
+            }
+            myArray.append(str)
+        }
+        print(myArray)
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -138,7 +137,7 @@ extension DailyVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if dailyModel?.data.keywordsExist != true{
+        if dailyModel?.data.keywordsExist == true{
             return 4
         }else{
             return 0
@@ -152,7 +151,14 @@ extension DailyVC: UITableViewDelegate, UITableViewDataSource {
         
         let str = myArray[indexPath.row]
         cell.labelBody?.textColor = .white
-        cell.myInit(theTitle: "아웃풋", theBody: str)
+        cell.labelNum.font = .myBoldSystemFont(ofSize: 62)
+        cell.labelNum.text = "0\(indexPath.row + 1)"
+        cell.labelSubTitle.text = "\(dailyModel?.data.result[indexPath.row].tasks.count ?? 0)개의 기록이 당신을 기다리고 있어요."
+        cell.myInit(theTitle: " \((dailyModel?.data.result[indexPath.row].name) ?? "")", theBody: str)
+       
+        let attributedString = NSMutableAttributedString(string: cell.labelSubTitle.text ?? "")
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.mainOrange, range: (cell.labelSubTitle.text! as NSString).range(of:"\(dailyModel?.data.result[indexPath.row].tasks.count ?? 0)개의 기록"))
+        cell.labelSubTitle.attributedText = attributedString
         
         cell.delegate = self
         
@@ -183,13 +189,12 @@ extension DailyVC {
                     do {
                         let data = try result.map(DailyModel.self)
                         self.dailyModel = data
-                        print(self.dailyModel)
+                        self.setDropData()
+                        self.tableView.reloadData()
                     } catch(let err) {
                         print(err.localizedDescription)
                     }
                 case .failure(let err):
-//                    self.token = try err.map(SigninModel.self)
-//                    print("@\(self.token)")
                     print(err.localizedDescription)
             }
         }

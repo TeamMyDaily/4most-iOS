@@ -82,19 +82,11 @@ class DetailTVC: UITableViewCell {
 
 extension DetailTVC {
     func setUI(){
-        //서버연결시 변경
-        labelNum.text = "01"
         labelNum.font = .myBoldSystemFont(ofSize: 62)
         labelTitle.font = .myBoldSystemFont(ofSize: 28)
         labelTitle.sizeToFit()
         labelTitle.textColor = UIColor.mainBlack
-        labelSubTitle.text = "4개의 기록이 당신을 기다리고 있어요."
         labelSubTitle.font = .myRegularSystemFont(ofSize: 12)
         labelSubTitle.textColor = UIColor.mainGray
-        
-        let attributedString = NSMutableAttributedString(string: labelSubTitle.text ?? "")
-        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.mainOrange, range: (labelSubTitle.text! as NSString).range(of:"4개의 기록"))
-        labelSubTitle.attributedText = attributedString
-
     }
 }

@@ -96,9 +96,9 @@ extension DailyWriteVC {
     }
     
     @objc func post(){
-//        posting()
+        posting()
 //        modify()
-        delete()
+//        delete()
     }
     
     func setUI(){
