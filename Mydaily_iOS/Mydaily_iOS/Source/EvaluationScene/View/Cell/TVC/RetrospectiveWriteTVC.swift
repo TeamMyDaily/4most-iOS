@@ -10,6 +10,9 @@ import Moya
 
 class RetrospectiveWriteTVC: UITableViewCell {
     static let identifier = "RetrospectiveWriteTVC"
+    
+    private let authProvider = MoyaProvider<ReportServices>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    var textData: ViewRetrospectiveModel?
 
     @IBOutlet weak var goodTitleLabel: UILabel!
     @IBOutlet weak var badTitleLabel: UILabel!
@@ -370,5 +373,28 @@ extension RetrospectiveWriteTVC {
         nextTextView.spellCheckingType = .no
         nextTextView.isUserInteractionEnabled = false
         nextTextView.isEditable = false
+    }
+}
+
+//MARK: Network
+extension RetrospectiveWriteTVC {
+    func getText(){
+        authProvider.request(.viewRetrospective) { response in
+            switch response {
+                case .success(let result):
+                    do {
+                        self.textData = try result.map(ViewRetrospectiveModel.self)
+                        if self.textData?.data.isWritten == false {
+                            
+                        } else {
+                            
+                        }
+                    } catch(let err) {
+                        print(err.localizedDescription)
+                    }
+                case .failure(let err):
+                    print(err.localizedDescription)
+            }
+        }
     }
 }

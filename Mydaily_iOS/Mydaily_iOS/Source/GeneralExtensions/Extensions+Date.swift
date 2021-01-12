@@ -59,6 +59,10 @@ extension Date {
         return gregorian.date(byAdding: .day, value: 0, to: today)
     }
     
+    var millisecondsSince1970: Int64 {
+        return Int64(self.timeIntervalSince1970 * 1000)
+    }
+    
     var containWeek: Date? {
         let gregorian = Calendar(identifier: .gregorian)
         let startOfMonth = gregorian.date(from: gregorian.dateComponents([.year, .month], from: self))

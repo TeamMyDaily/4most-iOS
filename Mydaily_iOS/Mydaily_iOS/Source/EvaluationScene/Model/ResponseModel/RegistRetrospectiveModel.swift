@@ -17,5 +17,5 @@ struct RegistRetrospectiveModel: Codable {
 
 // MARK: - RegistRetrospectiveResponse
 struct RegistRetrospectiveResponse: Codable {
-    let good, bad, next: String
+    let good, bad, next: String?
 }

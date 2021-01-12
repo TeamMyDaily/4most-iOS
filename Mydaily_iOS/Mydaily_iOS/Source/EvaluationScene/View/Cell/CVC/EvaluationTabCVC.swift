@@ -28,6 +28,7 @@ class EvaluationTabCVC: UICollectionViewCell {
     
     var delegate: TableViewInsideCollectionViewDelegate?
     
+    var weekText: String? = nil
     var dateValue = 0
     
     var keywords = ["아웃풋", "열정", "경청", "선한영향력", "진정성", "자신감", "노력"]
@@ -95,6 +96,8 @@ extension EvaluationTabCVC: UITableViewDelegate {
                 guard let dvc = UIStoryboard(name: "Evaluation", bundle: nil).instantiateViewController(identifier: "EvaluationDetailVC") as? EvaluationDetailVC else {
                     return
                 }
+                dvc.weekText = weekText
+                dvc.cellNum = indexPath.row + 1
                 self.delegate?.cellTapedEvaluation(dvc: dvc)
             }
         }
@@ -214,4 +217,9 @@ extension EvaluationTabCVC {
         noDataView.setNeedsLayout()
         noDataView.layoutIfNeeded()
     }
+}
+
+//MARK: Network
+extension EvaluationTabCVC {
+    
 }

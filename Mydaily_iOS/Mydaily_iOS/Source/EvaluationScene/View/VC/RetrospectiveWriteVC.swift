@@ -52,7 +52,8 @@ class RetrospectiveWriteVC: UIViewController {
 extension RetrospectiveWriteVC {
     @IBAction func touchUpSave(_ sender: Any) {
         guard let text: String = writeTextView.text else {return}
-        saveContent?(text, counter)
+        saveContent?(text, counter) // 네트워크 연결되면 지워야 할 수도
+        saveText()
         
         tabBarController?.tabBar.isHidden = false
         extendedLayoutIncludesOpaqueBars = false
@@ -221,14 +222,14 @@ extension RetrospectiveWriteVC {
 
 //MARK: Network
 extension RetrospectiveWriteVC {
-    func signup(){
-        guard let start = (Date().startOfWeek)?.timeIntervalSince1970 else { return }
-        guard let end = (Date().endOfWeek)?.timeIntervalSince1970 else { return }
-        guard let current = (Date().todayOfWeek)?.timeIntervalSince1970 else { return }
+    func saveText(){
+        guard let start = (Date().startOfWeek)?.timeIntervalSince(Date()) else { return }
+        guard let end = (Date().endOfWeek)?.timeIntervalSince(Date()) else { return }
+        guard let current = (Date().todayOfWeek)?.timeIntervalSince(Date()) else { return }
         let startInt = Int(start)
         let endInt = Int(end)
         let currentInt = Int(current)
-        let param = RegistRetrospectiveRequest.init(startInt, endInt, currentInt, self.cellNum, self.writeTextView.text)
+        let param = RegistRetrospectiveRequest.init(startInt, endInt, currentInt, self.cellNum + 1, self.writeTextView.text)
         print(param)
         authProvider.request(.registRetrospective(param: param)) { response in
             switch response {

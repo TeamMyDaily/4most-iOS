@@ -8,22 +8,22 @@
 import Foundation
 
 // MARK: - ViewDetailRetrospectiveModel
-struct ViewDetailRetrospectiveModel: Codable {
+struct ViewDetailReportModel: Codable {
     let status: Int
     let success: Bool
     let message: String
-    let data: ViewDetailRetrospectiveResponse
+    let data: ViewDetailReportResponse
 }
 
 // MARK: - ViewDetailRetrospectiveResponse
-struct ViewDetailRetrospectiveResponse: Codable {
+struct ViewDetailReportResponse: Codable {
     let keywordName, goal: String
     let isGoalCompleted: Bool
-    let tasks: [Task]
+    let tasks: [Tasks]
 }
 
 // MARK: - Task
-struct Task: Codable {
+struct Tasks: Codable {
     let taskID: Int
     let title, date: String
     let satisfaction: Int

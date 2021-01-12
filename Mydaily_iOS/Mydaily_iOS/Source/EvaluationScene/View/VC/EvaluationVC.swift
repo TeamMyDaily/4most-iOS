@@ -28,6 +28,7 @@ class EvaluationVC: UIViewController {
     var calendar = Calendar.current
     var dateFormatter = DateFormatter()
     var dateValue = 0
+    var weekText: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +55,7 @@ extension EvaluationVC: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EvaluationTabCVC.identifier, for: indexPath) as? EvaluationTabCVC else {
                 return UICollectionViewCell()
             }
+            cell.weekText = weekText
             cell.delegate = self
             return cell
         }
@@ -204,6 +206,7 @@ extension EvaluationVC {
         guard let currentDate = Date().containWeek else {return}
         guard let todayDate = calendar.date(byAdding: .weekOfMonth, value: dateValue, to: currentDate) else {return}
         dateFormatter.dateFormat = "yy년 MM월 W주"
+        weekText = dateFormatter.string(from: todayDate)
         weekLabel.text = dateFormatter.string(from: todayDate)
         weekLabel.textColor = .mainOrange
         nextWeekButton.isEnabled = false
@@ -213,6 +216,7 @@ extension EvaluationVC {
         guard let currentDate = Date().containWeek else {return}
         guard let todayDate = calendar.date(byAdding: .weekOfMonth, value: dateValue, to: currentDate) else {return}
         dateFormatter.dateFormat = "yy년 MM월 W주"
+        weekText = dateFormatter.string(from: todayDate)
         weekLabel.text = dateFormatter.string(from: todayDate)
         
         if dateValue == 0 {

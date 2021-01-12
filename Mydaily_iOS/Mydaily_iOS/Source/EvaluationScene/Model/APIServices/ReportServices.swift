@@ -9,7 +9,6 @@ import Foundation
 import Moya
 
 enum ReportServices {
-//    case viewReport
     case viewRetrospective
     case registRetrospective(param: RegistRetrospectiveRequest)
     case viewDetailReport(param: ViewDetailReportRequest)
@@ -21,13 +20,15 @@ extension ReportServices: TargetType {
   }
   
   var path: String {
+    guard let start = Date().startOfWeek?.millisecondsSince1970 else {return "\(Date())"}
+    guard let end = Date().endOfWeek?.millisecondsSince1970 else {return "\(Date())"}
     switch self {
     case .viewRetrospective:
-        return "/reviews?start=\(String(describing: Date().startOfWeek))&end=\(String(describing: Date().endOfWeek))"
+        return "/reviews?start=\(start)&end=\(end)"
     case .registRetrospective:
         return "/reviews"
     case .viewDetailReport:
-        return "/reports/detail?start=\(String(describing: Date().startOfWeek))&end=\(String(describing: Date().endOfWeek))"
+        return "/reports/detail?start=\(start)&end=\(end)"
     }
   }
   

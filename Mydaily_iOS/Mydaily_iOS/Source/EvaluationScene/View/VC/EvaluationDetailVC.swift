@@ -6,17 +6,28 @@
 //
 
 import UIKit
+import Moya
 
 class EvaluationDetailVC: UIViewController {
+    private let authProvider = MoyaProvider<ReportServices>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    var keywordData: ViewDetailReportModel?
+    
     @IBOutlet weak var navigationTitleLabel: UILabel!
     @IBOutlet weak var keywordLabel: UILabel!
     @IBOutlet weak var weekLabel: UILabel!
     @IBOutlet weak var keywordDetailTableView: UITableView!
     
+    var goal: String = ""
+    var isGoalCompleted = false
+    var weekText: String? = nil
     var listCount = 0
+    var cellNum = 0
+    
+    var task: [Tasks] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        getKeywordDetail()
         setNavigationBar()
         setTableView()
         setLabel()
@@ -38,20 +49,22 @@ extension EvaluationDetailVC: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailGoalTVC.identifier) as? DetailGoalTVC else {
                 return UITableViewCell()
             }
+            cell.setData(goal: goal, isGoalCompleted: isGoalCompleted)
             cell.selectionStyle = .none
             return cell
         } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailRecordTVC.identifier) as? DetailRecordTVC else {
                 return UITableViewCell()
             }
+            cell.setData(count: listCount)
             cell.selectionStyle = .none
             return cell
         }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailRecordContentTVC.identifier) as? DetailRecordContentTVC else {
             return UITableViewCell()
         }
+        cell.setList(task: task)
         cell.selectionStyle = .none
-        listCount = cell.list.count
         return cell
     }
 }
@@ -88,6 +101,10 @@ extension EvaluationDetailVC {
 
 //MARK: UI
 extension EvaluationDetailVC {
+    func setData() {
+        
+    }
+    
     private func setNavigationBar() {
         navigationTitleLabel.text = "회고"
         navigationTitleLabel.textColor = .mainBlack
@@ -104,11 +121,43 @@ extension EvaluationDetailVC {
     
     private func setLabel() {
         keywordLabel.font = .myBoldSystemFont(ofSize: 32)
-        keywordLabel.text = "아웃풋"
         keywordLabel.textColor = .mainBlack
         
         weekLabel.font = .myRegularSystemFont(ofSize: 12)
-        weekLabel.text = "20년 12월 3주"
+        weekLabel.text = weekText
         weekLabel.textColor = .mainGray
+    }
+}
+
+//MARK: Network
+extension EvaluationDetailVC {
+    func getKeywordDetail(){
+        let pathToString = "\(cellNum)"
+        let param = ViewDetailReportRequest.init(pathToString)
+        print(param)
+        authProvider.request(.viewDetailReport(param: param)) { response in
+            switch response {
+                case .success(let result):
+                    do {
+                        self.keywordData = try result.map(ViewDetailReportModel.self)
+                        //EvaluationDetailVC
+                        self.keywordLabel.text = self.keywordData?.data.keywordName
+                        // DetailGoalTVC
+                        self.goal = self.keywordData?.data.goal ?? ""
+                        self.isGoalCompleted = ((self.keywordData?.data.isGoalCompleted) != nil)
+                        //DetailRecordTVC, DetailRecordContent
+                        self.listCount = self.keywordData?.data.tasks.count ?? 0
+                        for i in 0...self.listCount-1 {
+                            guard let tasks = self.keywordData?.data.tasks[i] else {return}
+                            print(tasks)
+                            self.task.append(tasks)
+                        }
+                    } catch(let err) {
+                        print(err.localizedDescription)
+                    }
+                case .failure(let err):
+                    print(err.localizedDescription)
+            }
+        }
     }
 }
