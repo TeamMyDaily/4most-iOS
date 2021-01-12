@@ -146,8 +146,12 @@ extension DailyVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let VC = self.storyboard?.instantiateViewController(identifier: "DailyWriteVC") as? DailyWriteVC else {return}
-        VC.taskID = self.dailyModel?.data.result[indexPath.row].priority
+        VC.keywordID = self.dailyModel?.data.result[indexPath.row].totalKeywordID
         VC.taskTitle = self.dailyModel?.data.result[indexPath.row].name
+        
+        if self.dailyModel?.data.result[indexPath.row].tasks.count != 0{
+            VC.taskID = self.dailyModel?.data.result[indexPath.row].tasks[0].id
+        }
         self.navigationController?.pushViewController(VC, animated: true)
     }
     

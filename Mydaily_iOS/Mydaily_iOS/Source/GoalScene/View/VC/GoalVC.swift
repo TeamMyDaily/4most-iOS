@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import Moya
 
 class GoalVC: UIViewController {
-
+    private let authProvider = MoyaProvider<GoalService>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    var goalData: GoalModel?
+    
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var defaultLabel: UILabel!
     @IBOutlet weak var goalCountLabel: UILabel!
@@ -25,6 +28,9 @@ class GoalVC: UIViewController {
                 return $0
             }(UIButton(frame: .zero))
     
+    override func viewWillAppear(_ animated: Bool) {
+        getGoal()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -112,6 +118,26 @@ extension GoalVC: UITableViewDataSource{
         else{
             guard let VC = self.storyboard?.instantiateViewController(identifier: "GoalDetailVC") as? GoalDetailVC else {return}
             self.navigationController?.pushViewController(VC, animated: true)
+        }
+    }
+}
+
+// MARK: - 통신
+extension GoalVC{
+    func getGoal(){
+        let param = GoalRequest.init("1610290800000","1610982000000")
+        authProvider.request(.goalinquiry(param: param)) { response in
+            switch response {
+                case .success(let result):
+                    do {
+                        let data = try result.map(GoalModel.self)
+                        self.goalData = data
+                    } catch(let err) {
+                        print(err.localizedDescription)
+                    }
+                case .failure(let err):
+                    print(err.localizedDescription)
+            }
         }
     }
 }

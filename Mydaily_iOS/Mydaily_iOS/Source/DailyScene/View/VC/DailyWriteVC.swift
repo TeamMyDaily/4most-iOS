@@ -25,11 +25,13 @@ class DailyWriteVC: UIViewController {
     @IBOutlet weak var postingButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     
+    var keywordID: Int?
     var taskID: Int?
     var taskTitle: String?
     var modify = false
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setupNavigationBar()
         setUI()
         getDailyTask()
@@ -40,7 +42,6 @@ class DailyWriteVC: UIViewController {
         todayTitle.delegate = self
         setSliderUI()
     }
-    
     func setSliderUI(){
         for i in 0...4{
             sliderIndex[i].layer.cornerRadius = sliderIndex[i].frame.height/2
@@ -139,7 +140,7 @@ extension DailyWriteVC {
         textViewCount.textColor = .mainOrange
         
         todayTitle.setLeftPaddingPoints(3)
-        todayTitle.layer.addBorder([.bottom], color: .mainOrange, width: 1, move: 5)
+        
         todayTitle.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         
         todayTextView.delegate = self
@@ -188,6 +189,7 @@ extension DailyWriteVC {
             todayTitle.placeholder = "오늘 하루 무슨일이 있었나요?"
             postingButton.isHidden = true
             saveButton.isHidden = false
+            todayTitle.layer.addBorder([.bottom], color: .mainOrange, width: 1, move: 5)
         }
         else{ //이미 작성정보 있을시
             todayTextView.borderWidth = 1
@@ -201,6 +203,7 @@ extension DailyWriteVC {
             textViewCount.text = String(dailyTask?.data.detail.count ?? 0)
             postingButton.isHidden = false
             saveButton.isHidden = true
+//            todayTitle.layer.addBorder([.bottom], color: .mainOrange, width: 1, move: 5)
         }
     }
 }
@@ -328,14 +331,15 @@ extension DailyWriteVC {
 //MARK:: - Network
 extension DailyWriteVC {
     func getDailyTask(){
-        authProvider.request(.dailytask(1)) { [weak self] result in
+        authProvider.request(.dailytask(self.taskID ?? 17)) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let response):
                 do {
                     let data = try response.map(DailyTaskModel.self)
-                    print("&&")
                     self.dailyTask = data
+                    self.setUI()
+                    self.setupNavigationBar()
                 } catch(let err) {
                     print(err.localizedDescription)
                 }
@@ -346,12 +350,14 @@ extension DailyWriteVC {
     }
     
     func postingTask(){
-        let param = DailyWriteRequest.init("\(taskID ?? 1)", self.todayTitle.text!, todayTextView.text!, Int(scoreSlider.value))
+        let param = DailyWriteRequest.init(self.keywordID!, self.todayTitle.text!, todayTextView.text!, Int(scoreSlider.value))
         authProvider.request(.dailyWrite(param: param)) { response in
             switch response {
             case .success(let result):
                 do {
+                    print(self.taskID!)
                     self.dailyTask = try result.map(DailyTaskModel.self)
+                    
                 } catch(let err) {
                     print(err.localizedDescription)
                 }
@@ -378,7 +384,7 @@ extension DailyWriteVC {
     }
     
     @objc func deleteTask(){
-        authProvider.request(.dailyDelete(taskID!)) { [weak self] result in
+        authProvider.request(.dailyDelete(self.taskID!)) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let response):

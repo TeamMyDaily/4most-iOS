@@ -8,12 +8,12 @@
 import Foundation
 
 struct DailyWriteRequest: Codable {
-    var totalKeywordId: String
+    var totalKeywordId: Int
     var title: String
     var detail: String
     var satisfaction: Int
     
-    init(_ id: String, _ title: String, _ detail: String, _ satis: Int) {
+    init(_ id: Int, _ title: String, _ detail: String, _ satis: Int) {
         self.totalKeywordId = id
         self.title = title
         self.detail = detail

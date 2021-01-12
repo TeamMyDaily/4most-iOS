@@ -52,6 +52,8 @@
 		AE76C047259B1A6E007B3901 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE76C046259B1A6E007B3901 /* Assets.xcassets */; };
 		AE76C04A259B1A6E007B3901 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE76C048259B1A6E007B3901 /* LaunchScreen.storyboard */; };
 		AE80787425ADF72600B5E1E6 /* GoalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80787325ADF72600B5E1E6 /* GoalService.swift */; };
+		AE80787725AE097600B5E1E6 /* GoalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80787625AE097600B5E1E6 /* GoalModel.swift */; };
+		AE80787A25AE09CD00B5E1E6 /* GoalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80787925AE09CD00B5E1E6 /* GoalRequest.swift */; };
 		AE9F294525A1719600904FD9 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9F294425A1719600904FD9 /* LoginVC.swift */; };
 		AE9F294A25A1A69400904FD9 /* registerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9F294925A1A69400904FD9 /* registerVC.swift */; };
 		AE9F294D25A1BF1500904FD9 /* RegisterEntryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9F294C25A1BF1500904FD9 /* RegisterEntryVC.swift */; };
@@ -154,6 +156,8 @@
 		AE76C049259B1A6E007B3901 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE76C04B259B1A6E007B3901 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE80787325ADF72600B5E1E6 /* GoalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalService.swift; sourceTree = "<group>"; };
+		AE80787625AE097600B5E1E6 /* GoalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalModel.swift; sourceTree = "<group>"; };
+		AE80787925AE09CD00B5E1E6 /* GoalRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalRequest.swift; sourceTree = "<group>"; };
 		AE9F294425A1719600904FD9 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		AE9F294925A1A69400904FD9 /* registerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerVC.swift; sourceTree = "<group>"; };
 		AE9F294C25A1BF1500904FD9 /* RegisterEntryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEntryVC.swift; sourceTree = "<group>"; };
@@ -492,6 +496,7 @@
 		AE80787025ADF70700B5E1E6 /* ResponseModel */ = {
 			isa = PBXGroup;
 			children = (
+				AE80787625AE097600B5E1E6 /* GoalModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -499,6 +504,7 @@
 		AE80787125ADF70F00B5E1E6 /* RequestModel */ = {
 			isa = PBXGroup;
 			children = (
+				AE80787925AE09CD00B5E1E6 /* GoalRequest.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -866,6 +872,7 @@
 				3C5D94DD259D8B2700BF8DC9 /* KeywordSettingVC.swift in Sources */,
 				DEC98B8625A483C300CC522C /* KeywordPriorityVC.swift in Sources */,
 				AE46FA4825ACA32B0051D667 /* DailyModel.swift in Sources */,
+				AE80787A25AE09CD00B5E1E6 /* GoalRequest.swift in Sources */,
 				EDC1642925A4617600CD65B0 /* RetrospectiveWriteVC.swift in Sources */,
 				AE76C03E259B1A6D007B3901 /* AppDelegate.swift in Sources */,
 				AE46FA2325AC13B50051D667 /* LoginService.swift in Sources */,
@@ -919,6 +926,7 @@
 				EDC0FEC625A72DE200D69379 /* OccurWhenClickModifyButtonDelegate.swift in Sources */,
 				EDAAFA3125A873F500424BF9 /* MypageIdentityVerificationVC.swift in Sources */,
 				AED84DEE25A558B30050D861 /* Extensions+UIFont.swift in Sources */,
+				AE80787725AE097600B5E1E6 /* GoalModel.swift in Sources */,
 				ED266029259EF02E00A376C0 /* EvaluationTabCVC.swift in Sources */,
 				DE91346025A309500045BDCE /* AddUserKeywordVC.swift in Sources */,
 				EDAAFA2825A83B7000424BF9 /* SettingSecurityTVC.swift in Sources */,
