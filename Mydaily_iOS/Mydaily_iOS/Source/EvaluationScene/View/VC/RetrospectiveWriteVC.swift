@@ -222,14 +222,8 @@ extension RetrospectiveWriteVC {
 
 //MARK: Network
 extension RetrospectiveWriteVC {
-    func saveText(){
-        guard let start = (Date().startOfWeek)?.timeIntervalSince(Date()) else { return }
-        guard let end = (Date().endOfWeek)?.timeIntervalSince(Date()) else { return }
-        guard let current = (Date().todayOfWeek)?.timeIntervalSince(Date()) else { return }
-        let startInt = Int(start)
-        let endInt = Int(end)
-        let currentInt = Int(current)
-        let param = RegistRetrospectiveRequest.init(startInt, endInt, currentInt, self.cellNum + 1, self.writeTextView.text)
+    func saveText() {
+        let param = RegistRetrospectiveRequest.init(1610290800000, 1610982000000, 1610290800000, self.cellNum + 1, self.writeTextView.text)
         print(param)
         authProvider.request(.registRetrospective(param: param)) { response in
             switch response {

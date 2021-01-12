@@ -17,11 +17,11 @@ struct ViewReportModel: Codable {
 // MARK: - DataClass
 struct DataClass: Codable {
     let keywordsExist: Bool
-    let result: [Result]
+    let result: [Results]
 }
 
 // MARK: - Result
-struct Result: Codable {
+struct Results: Codable {
     let totalKeywordID: Int
     let keyword: String
     let weekGoal: String?

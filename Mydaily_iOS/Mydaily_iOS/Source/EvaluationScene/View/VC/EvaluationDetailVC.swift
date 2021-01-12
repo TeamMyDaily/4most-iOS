@@ -131,7 +131,7 @@ extension EvaluationDetailVC {
 
 //MARK: Network
 extension EvaluationDetailVC {
-    func getKeywordDetail(){
+    func getKeywordDetail() {
         let pathToString = "\(cellNum)"
         let param = ViewDetailReportRequest.init(pathToString, "1610290800000", "1610982000000")
         print(param)

@@ -43,6 +43,7 @@ class EvaluationTabCVC: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        getText()
         setTableView()
         setViewWithoutTableView()
         setNotification()
@@ -101,7 +102,7 @@ extension EvaluationTabCVC: UITableViewDelegate {
                     return
                 }
                 dvc.weekText = weekText
-                dvc.cellNum = indexPath.row + 1
+                dvc.cellNum = totalKeywordId[indexPath.row]
                 self.delegate?.cellTapedEvaluation(dvc: dvc)
             }
         }
@@ -196,8 +197,13 @@ extension EvaluationTabCVC {
 //MARK: Notification
 extension EvaluationTabCVC {
     private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(getReport), name: NSNotification.Name("reloadReport"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(sendBeforeWeek), name: NSNotification.Name(rawValue: "LastWeek"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(sendAfterWeek), name: NSNotification.Name(rawValue: "NextWeek"), object: nil)
+    }
+    
+    @objc func getReport() {
+        getText()
     }
     
     @objc func sendBeforeWeek() {
@@ -230,8 +236,12 @@ extension EvaluationTabCVC {
                         } else {
                             self.keywordTableView.isHidden = false
                             self.noDataView.isHidden = true
-                            
                             if self.textData?.data.result.count != 0 {
+                                self.totalKeywordId.removeAll()
+                                self.keywords.removeAll()
+                                self.counts.removeAll()
+                                self.goals.removeAll()
+                                self.rates.removeAll()
                                 for i in 0...(self.textData?.data.result.count ?? 0)-1 {
                                     self.totalKeywordId.append(self.textData?.data.result[i].totalKeywordID ?? 0)
                                     self.keywords.append(self.textData?.data.result[i].keyword ?? "")
@@ -240,6 +250,7 @@ extension EvaluationTabCVC {
                                     self.rates.append(self.textData?.data.result[i].taskSatisAvg ?? "")
                                 }
                             }
+                            self.keywordTableView.reloadData()
                         }
                     } catch(let err) {
                         print(err.localizedDescription)

@@ -29,6 +29,11 @@ class EvaluationVC: UIViewController {
     var dateFormatter = DateFormatter()
     var dateValue = 0
     var weekText: String?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.post(name: NSNotification.Name("reloadReport"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name("reloadRetrospective"), object: nil)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

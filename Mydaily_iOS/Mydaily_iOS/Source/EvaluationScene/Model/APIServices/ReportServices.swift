@@ -22,13 +22,13 @@ extension ReportServices: TargetType {
   
   var path: String {
     switch self {
-    case .viewReport(let time):
+    case .viewReport( _):
         return "/reports"
-    case .viewRetrospective(let time):
+    case .viewRetrospective( _):
         return "/reviews"
     case .registRetrospective:
         return "/reviews"
-    case .viewDetailReport(let time):
+    case .viewDetailReport( _):
         return "/reports/detail"
     }
   }

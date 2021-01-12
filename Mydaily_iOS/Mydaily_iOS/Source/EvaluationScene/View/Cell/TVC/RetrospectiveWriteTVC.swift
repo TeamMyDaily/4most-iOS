@@ -64,6 +64,7 @@ class RetrospectiveWriteTVC: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         getText()
+        setNotification()
         setLabel()
         setButtonViews()
         setTextViews()
@@ -194,6 +195,17 @@ extension RetrospectiveWriteTVC {
         userDefault.setValue(2, forKey: "cellNum")
         
         delegate?.cellTapedRetrospective(dvc: dvc)
+    }
+}
+
+//MARK: Notification
+extension RetrospectiveWriteTVC {
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(getRetrospective), name: NSNotification.Name("reloadRetrospective"), object: nil)
+    }
+    
+    @objc func getRetrospective() {
+        getText()
     }
 }
 
