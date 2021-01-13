@@ -34,7 +34,8 @@ extension Date {
 
 extension Date {
     var startOfWeek: Date? {
-        let gregorian = Calendar(identifier: .gregorian)
+        var gregorian = Calendar(identifier: .gregorian)
+        gregorian.timeZone = TimeZone(secondsFromGMT: 0)!
         guard let monday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) else { return nil }
         if Calendar.current.component(.weekday, from: self) == 1{ //일요일일때
             return gregorian.date(byAdding: .day, value: -5, to: monday)

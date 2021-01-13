@@ -69,6 +69,10 @@ class DailyWriteVC: UIViewController {
         postingTask()
         self.navigationController?.popViewController(animated: true)
     }
+    @IBAction func modifyButton(_ sender: Any) {
+        modifyTask()
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 extension DailyWriteVC {
@@ -118,10 +122,9 @@ extension DailyWriteVC {
             
             return button
         }()
-        print("??")
         self.navigationItem.rightBarButtonItem = deleteRightButton
-        postingButton.isHidden = true
-        saveButton.isHidden = false
+        postingButton.isHidden = false
+        saveButton.isHidden = true
     }
     
     func setUI(){
@@ -201,8 +204,9 @@ extension DailyWriteVC {
             todayScore.text = String(dailyTask?.data.satisfaction ?? 0)
             labelCount.text = String(dailyTask?.data.title.count ?? 0)
             textViewCount.text = String(dailyTask?.data.detail.count ?? 0)
-            postingButton.isHidden = false
+            postingButton.isHidden = true
             saveButton.isHidden = true
+            
 //            todayTitle.layer.addBorder([.bottom], color: .mainOrange, width: 1, move: 5)
         }
     }
@@ -303,7 +307,7 @@ extension DailyWriteVC {
         )
         let cancel = UIAlertAction(title: "삭제하기", style: .destructive) {_ in
             self.deleteTask()
-            self.dismiss(animated: true, completion: nil)
+            self.navigationController?.popViewController(animated: true)
         }
         let okAction = UIAlertAction(title: "닫기", style: .default)
         alert.addAction(cancel)
@@ -355,7 +359,6 @@ extension DailyWriteVC {
             switch response {
             case .success(let result):
                 do {
-                    print(self.taskID!)
                     self.dailyTask = try result.map(DailyTaskModel.self)
                     
                 } catch(let err) {
@@ -369,7 +372,7 @@ extension DailyWriteVC {
     
     @objc func modifyTask(){
         let param = DailyModifyRequest.init(self.todayTitle.text!, todayTextView.text!, Int(scoreSlider.value))
-        authProvider.request(.dailyModify(param: param)) { response in
+        authProvider.request(.dailyModify(id: (self.dailyTask?.data.id)!, param: param)) { response in
             switch response {
             case .success(let result):
                 do {

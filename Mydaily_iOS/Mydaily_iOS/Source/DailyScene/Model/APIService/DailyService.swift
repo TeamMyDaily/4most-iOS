@@ -12,7 +12,7 @@ enum DailyService {
     case dailyinquiry(param: DailyRequest)
     case dailytask(Int)
     case dailyWrite(param: DailyWriteRequest)
-    case dailyModify(param: DailyModifyRequest)
+    case dailyModify(id: Int, param: DailyModifyRequest)
     case dailyDelete(Int)
 }
 
@@ -33,7 +33,7 @@ extension DailyService: TargetType {
             return "/tasks/\(id)"
         case .dailyWrite:
             return "/tasks"
-        case .dailyModify(let id):
+        case .dailyModify(let id, _):
             return "/tasks/\(id)"
         case .dailyDelete(let id):
             return "/tasks/\(id)"
@@ -76,8 +76,9 @@ extension DailyService: TargetType {
             return .requestPlain
         case .dailyWrite(let param):
             return .requestJSONEncodable(param)
-        case .dailyModify(let param):
-            return .requestJSONEncodable(param)
+        case .dailyModify(let ID, let param):
+            let encoded = try! JSONEncoder().encode(param)
+            return .requestCompositeData(bodyData: encoded, urlParameters: ["taskId": ID])
         }
     }
     

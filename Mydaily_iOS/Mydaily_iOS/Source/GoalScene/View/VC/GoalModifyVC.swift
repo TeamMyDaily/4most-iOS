@@ -157,8 +157,8 @@ extension GoalModifyVC: UITextViewDelegate {
 // MARK: - 통신
 extension GoalModifyVC{
     func modifyGoal(){
-        let param = GoalModifyRequest.init("gg")
-        authProvider.request(.goalmodify(param: param)) { response in
+        let param = GoalModifyRequest.init("\(self.goalTextView.text ?? "")")
+        authProvider.request(.goalmodify(ID: self.KeywordDate?.weekGoalID ?? 0, param: param)) { response in
             switch response {
                 case .success(let result):
                     do {

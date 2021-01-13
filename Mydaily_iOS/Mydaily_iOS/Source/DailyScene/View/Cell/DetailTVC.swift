@@ -45,11 +45,10 @@ class DetailTVC: UITableViewCell {
     }
     
     @IBAction func addButton(_ sender: Any) {
-//        guard let dvc = UIStoryboard(name: "Daily", bundle: nil).instantiateViewController(withIdentifier: "DailyWriteVC") as? DailyWriteVC else {
-//            return
-//        }
-//        UIApplication.topViewController()?.navigationController?.pushViewController(dvc, animated: true)
-//        self.navigationController?.pushViewController(dvc, animated: true)
+        guard let dvc = UIStoryboard(name: "Daily", bundle: nil).instantiateViewController(withIdentifier: "DailyWriteVC") as? DailyWriteVC else {
+            return
+        }
+        UIApplication.topViewController()?.navigationController?.pushViewController(dvc, animated: true)
     }
     
     public func myInit(theTitle: String, theBody: String) {

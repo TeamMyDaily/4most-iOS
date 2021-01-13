@@ -37,28 +37,18 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
     }(UIButton(frame: .zero))
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        getDaily()
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         
-        getDaily()
+        super.viewDidLoad()
         setTableVC()
         setupNavigationBar(.clear, titlelabel: "")
         floatingButton()
         setUI()
     }
     
-    func setDropData(){
-//        for outterIndex in 0...3 {
-//            var str = ""
-//            for i in 0..<(dailyModel?.data?.result[outterIndex]?.tasks.count)! {
-//                str += "\(String(describing: dailyModel?.data?.result[outterIndex]?.tasks[i]))\n"
-//            }
-//            myArray.append(str)
-//        }
-    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -73,11 +63,7 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yy년 MM월 W주"
-//        print("&\(datePicker.date.startOfWeek!)")
-//        print("&\(datePicker.date.endOfWeek!)")
-//        print("@\(dateFormatter.string(from: datePicker.date.containWeek!))")
-//
-        print("변경!")
+        
         getDaily()
     }
 }
@@ -156,8 +142,8 @@ extension DailyVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if dailyModel?.data?.keywordsExist == true{
-            return 4
+        if self.dailyModel?.data?.keywordsExist == true {
+            return (self.dailyModel?.data?.result.count)!
         }else{
             return 0
         }
@@ -179,10 +165,8 @@ extension DailyVC: UITableViewDelegate, UITableViewDataSource {
 
         cell.selectionStyle = .none
         
-//        print("&&\(String(describing: dailyModel?.data?.result[outterIndex]?.tasks[i]))")myArray = []
         myArray = []
-        for outterIndex in 0...3 {
-            
+        for outterIndex in 0...(self.dailyModel?.data?.result.count)! - 1 {
             str = ""
             for i in 0..<(dailyModel?.data?.result[outterIndex]?.tasks.count)! {
                 str += "\(String(describing: dailyModel?.data?.result[outterIndex]?.tasks[i]?.title ?? ""))\n"
@@ -190,15 +174,12 @@ extension DailyVC: UITableViewDelegate, UITableViewDataSource {
             
             myArray.append(str)
         }
-
-        print(myArray)
         str = myArray[indexPath.row]
 
         cell.labelBody?.textColor = .white
         cell.labelNum.font = .myBoldSystemFont(ofSize: 62)
         cell.labelNum.text = "0\(indexPath.row + 1)"
         cell.labelSubTitle.text = "\(dailyModel?.data?.result[indexPath.row]?.tasks.count ?? 0)개의 기록이 당신을 기다리고 있어요."
-        print(str)
         cell.myInit(theTitle: " \((dailyModel?.data?.result[indexPath.row]?.name) ?? "")", theBody: str)
        
         let attributedString = NSMutableAttributedString(string: cell.labelSubTitle.text ?? "")
@@ -235,7 +216,6 @@ extension DailyVC {
                     do {
                         let data = try result.map(DailyModel.self)
                         self.dailyModel = data
-                        self.setDropData()
                         self.tableView.reloadData()
                         
                     } catch(let err) {

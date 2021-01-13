@@ -12,7 +12,7 @@ enum GoalService {
     case goalinquiry(param: GoalRequest)
     case goalwrite(param: GoalWriteRequest)
     case goalcomplete(Int)
-    case goalmodify(param: GoalModifyRequest)
+    case goalmodify(ID: Int, param: GoalModifyRequest)
     case goaldelete(Int)
 }
 
@@ -33,7 +33,7 @@ extension GoalService: TargetType {
             return "/goals"
         case .goalcomplete(let goalID):
             return "/goals/completion/\(goalID)"
-        case .goalmodify(let goalID):
+        case .goalmodify(let goalID, _):
             return "/goals/\(goalID)"
         case .goaldelete(let goalID):
             return "/goals/\(goalID)"
@@ -76,8 +76,9 @@ extension GoalService: TargetType {
         case .goalcomplete,
              .goaldelete:
             return .requestPlain
-        case .goalmodify(let param):
-            return .requestJSONEncodable(param)
+        case .goalmodify(let goalID, let param):
+            let encoded = try! JSONEncoder().encode(param)
+            return .requestCompositeData(bodyData: encoded, urlParameters: ["GoalId": goalID])
         }
     }
     

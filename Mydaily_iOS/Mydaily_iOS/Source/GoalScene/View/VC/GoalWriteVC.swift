@@ -11,6 +11,7 @@ import Moya
 class GoalWriteVC: UIViewController {
     private let authProvider = MoyaProvider<GoalService>(plugins: [NetworkLoggerPlugin(verbose: true)])
     var write = false
+    var date = Date()
     
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
@@ -21,7 +22,7 @@ class GoalWriteVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupNavigationBar()
         setUI()
         placeholderSetting()
@@ -74,6 +75,11 @@ extension GoalWriteVC {
             return button
         }()
         navigationItem.leftBarButtonItem = leftButton
+    }
+    
+    func DateInMilliSeconds()-> Int
+    {
+        return Int(date.startOfWeek!.timeIntervalSince1970 * 1000)
     }
     
     @objc func dismissVC(){
@@ -156,7 +162,7 @@ extension GoalWriteVC: UITextViewDelegate{
 // MARK: - 통신
 extension GoalWriteVC{
     func writeGoal(){
-        let param = GoalWriteRequest.init(1610031600000, self.goalDataKeywordID!, self.textView.text!)
+        let param = GoalWriteRequest.init(DateInMilliSeconds(), self.goalDataKeywordID!, self.textView.text!)
         authProvider.request(.goalwrite(param: param)) { response in
             switch response {
                 case .success(let result):
