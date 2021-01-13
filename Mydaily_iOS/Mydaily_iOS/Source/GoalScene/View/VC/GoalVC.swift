@@ -134,7 +134,7 @@ extension GoalVC: UITableViewDataSource{
         if self.goalData?.data.result.keywords[indexPath.row].isGoalCompleted == true{
             cell.outterView.borderColor = .mainOrange
             cell.achieveLabel.backgroundColor = .mainOrange
-            cell.achieveLabel.text = "달성"
+            cell.achieveLabel.text = "달성" //**달성딱지는 이미지로 바꾸는게 좋을듯
         }
         else{
             cell.outterView.borderColor = .mainGray
@@ -151,12 +151,15 @@ extension GoalVC: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if indexPath.row == 0{
+        if self.goalData?.data.result.keywords[indexPath.row].isGoalCreated == false {
             guard let VC = self.storyboard?.instantiateViewController(identifier: "GoalWriteVC") as? GoalWriteVC else {return}
+            VC.goalDataKeywordID = self.goalData?.data.result.keywords[indexPath.row].totalKeywordID
+            VC.goalKeywordName = self.goalData?.data.result.keywords[indexPath.row].name
             self.navigationController?.pushViewController(VC, animated: true)
         }
         else{
             guard let VC = self.storyboard?.instantiateViewController(identifier: "GoalDetailVC") as? GoalDetailVC else {return}
+            VC.goalPassDate = self.goalData
             self.navigationController?.pushViewController(VC, animated: true)
         }
     }

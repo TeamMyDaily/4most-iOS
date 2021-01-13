@@ -15,6 +15,9 @@ class GoalWriteVC: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var textViewCount: UILabel!
     @IBOutlet weak var saveButton: UIButton!
+    var goalDataKeywordID: Int?
+    var goalKeywordName: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,7 +34,7 @@ class GoalWriteVC: UIViewController {
 
 extension GoalWriteVC {
     func setUI(){
-        textLabel.text = "아웃풋에\n가까워 지기 위한 목표"
+        textLabel.text = "\(goalKeywordName ?? "")에\n가까워 지기 위한 목표"
         textLabel.numberOfLines = 2
         textLabel.font = .myMediumSystemFont(ofSize: 25)
         textLabel.textColor = .mainBlack
@@ -39,7 +42,7 @@ extension GoalWriteVC {
         
         let fontSize = UIFont.myBlackSystemFont(ofSize: 25)
         let attributedStr = NSMutableAttributedString(string: textLabel.text ?? "")
-        attributedStr.addAttribute(NSAttributedString.Key(rawValue: kCTFontAttributeName as String), value: fontSize, range: (textLabel.text! as NSString).range(of: "아웃풋"))
+        attributedStr.addAttribute(NSAttributedString.Key(rawValue: kCTFontAttributeName as String), value: fontSize, range: (textLabel.text! as NSString).range(of: "\(goalKeywordName ?? "")"))
         textLabel.attributedText = attributedStr
         
         textView.backgroundColor = .gray30
@@ -65,10 +68,10 @@ extension GoalWriteVC {
         
         self.navigationItem.title = "목표"
         
-                let leftButton: UIBarButtonItem = {
-                    let button = UIBarButtonItem(image: UIImage(named: "backArrowIc"), style: .plain, target: self, action: #selector(cancelAlertaction))
-                    return button
-                }()
+        let leftButton: UIBarButtonItem = {
+            let button = UIBarButtonItem(title: "뒤", style: .plain, target: self, action: #selector(cancelAlertaction))
+            return button
+        }()
         navigationItem.leftBarButtonItem = leftButton
     }
     
@@ -82,7 +85,7 @@ extension GoalWriteVC {
         )
         let cancel = UIAlertAction(title: "작성취소", style: .destructive) {
             _ in
-            self.navigationController?.dismiss(animated: true, completion: nil)
+            self.navigationController?.popViewController(animated: true)
         }
         let okAction = UIAlertAction(title: "닫기", style: .default)
         alert.addAction(cancel)
@@ -144,7 +147,7 @@ extension GoalWriteVC: UITextViewDelegate{
 // MARK: - 통신
 extension GoalWriteVC{
     func writeGoal(){
-        let param = GoalWriteRequest.init(1610031600000, 1, self.textView.text!)
+        let param = GoalWriteRequest.init(1610031600000, self.goalDataKeywordID!, self.textView.text!)
         authProvider.request(.goalwrite(param: param)) { response in
             switch response {
                 case .success(let result):

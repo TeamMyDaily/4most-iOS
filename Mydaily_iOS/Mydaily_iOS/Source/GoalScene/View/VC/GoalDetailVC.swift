@@ -16,6 +16,7 @@ class GoalDetailVC: UIViewController {
     @IBOutlet weak var checkLabel: UILabel!
     @IBOutlet weak var goalButton: UIButton!
     var goal = false
+    var goalPassDate: GoalModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
