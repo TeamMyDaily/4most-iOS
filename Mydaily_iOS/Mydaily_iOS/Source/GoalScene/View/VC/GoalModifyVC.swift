@@ -48,7 +48,7 @@ extension GoalModifyVC {
                 }()
         
         let rightButton: UIBarButtonItem = {
-            let button = UIBarButtonItem(title: "삭제", style: .done, target: self, action: #selector(deleteGoal))
+            let button = UIBarButtonItem(title: "삭제", style: .done, target: self, action: #selector(deleteAlert))
             button.setTitleTextAttributes([
                                             NSAttributedString.Key.font: UIFont.myRegularSystemFont(ofSize: 17),
                                             NSAttributedString.Key.foregroundColor: UIColor.mainOrange], for: .normal)
@@ -80,11 +80,12 @@ extension GoalModifyVC {
         present(alert, animated: true, completion: nil)
     }
     
-    @objc func deleteGoal(){
+    @objc func deleteAlert(){
         let alertViewController = UIAlertController(title: "목표를 삭제 하시겠어요?", message: nil, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "취소하기", style: .cancel, handler : nil)
         let deleteAction = UIAlertAction(title: "삭제하기", style: .destructive) { (action) in
         //Implement action
+            self.deleteGoal()
         }
         
         alertViewController.addAction(alertAction)
@@ -158,6 +159,22 @@ extension GoalModifyVC{
     func modifyGoal(){
         let param = GoalModifyRequest.init("gg")
         authProvider.request(.goalmodify(param: param)) { response in
+            switch response {
+                case .success(let result):
+                    do {
+                    } catch(let err) {
+                        print(err.localizedDescription)
+                    }
+                case .failure(let err):
+                    print(err.localizedDescription)
+            }
+        }
+    }
+}
+
+extension GoalModifyVC{
+    func deleteGoal(){
+        authProvider.request(.goaldelete(self.KeywordDate?.weekGoalID ?? 0)) { response in
             switch response {
                 case .success(let result):
                     do {
