@@ -23,6 +23,7 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
     var myArray = [String]()
     var currentDate = Date()
     var since1970: Double?
+    var str = ""
     
     let dateButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -50,15 +51,13 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
     }
     
     func setDropData(){
-        for outterIndex in 0...3 {
-            var str = ""
-            for i in 0..<(dailyModel?.data.result[outterIndex].tasks.count)! {
-                str += "\(String(describing: dailyModel?.data.result[outterIndex].tasks[i]))\n"
-            }
-            myArray.append(str)
-        }
-        print(myArray)
-        
+//        for outterIndex in 0...3 {
+//            var str = ""
+//            for i in 0..<(dailyModel?.data?.result[outterIndex]?.tasks.count)! {
+//                str += "\(String(describing: dailyModel?.data?.result[outterIndex]?.tasks[i]))\n"
+//            }
+//            myArray.append(str)
+//        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -157,7 +156,7 @@ extension DailyVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if dailyModel?.data.keywordsExist == true{
+        if dailyModel?.data?.keywordsExist == true{
             return 4
         }else{
             return 0
@@ -166,11 +165,11 @@ extension DailyVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let VC = self.storyboard?.instantiateViewController(identifier: "DailyWriteVC") as? DailyWriteVC else {return}
-        VC.keywordID = self.dailyModel?.data.result[indexPath.row].totalKeywordID
-        VC.taskTitle = self.dailyModel?.data.result[indexPath.row].name
+        VC.keywordID = self.dailyModel?.data?.result[indexPath.row]?.totalKeywordID
+        VC.taskTitle = self.dailyModel?.data?.result[indexPath.row]?.name
         
-        if self.dailyModel?.data.result[indexPath.row].tasks.count != 0{
-            VC.taskID = self.dailyModel?.data.result[indexPath.row].tasks[0].id
+        if self.dailyModel?.data?.result[indexPath.row]?.tasks.count != 0{
+            VC.taskID = self.dailyModel?.data?.result[indexPath.row]?.tasks[0]?.id
         }
         self.navigationController?.pushViewController(VC, animated: true)
     }
@@ -180,16 +179,32 @@ extension DailyVC: UITableViewDelegate, UITableViewDataSource {
 
         cell.selectionStyle = .none
         
-        let str = myArray[indexPath.row]
+//        print("&&\(String(describing: dailyModel?.data?.result[outterIndex]?.tasks[i]))")myArray = []
+        myArray = []
+        for outterIndex in 0...3 {
+            
+            str = ""
+            for i in 0..<(dailyModel?.data?.result[outterIndex]?.tasks.count)! {
+                str += "\(String(describing: dailyModel?.data?.result[outterIndex]?.tasks[i]?.title ?? ""))\n"
+            }
+            
+            myArray.append(str)
+        }
+
+        print(myArray)
+        str = myArray[indexPath.row]
+
         cell.labelBody?.textColor = .white
         cell.labelNum.font = .myBoldSystemFont(ofSize: 62)
         cell.labelNum.text = "0\(indexPath.row + 1)"
-        cell.labelSubTitle.text = "\(dailyModel?.data.result[indexPath.row].tasks.count ?? 0)개의 기록이 당신을 기다리고 있어요."
-        cell.myInit(theTitle: " \((dailyModel?.data.result[indexPath.row].name) ?? "")", theBody: str)
+        cell.labelSubTitle.text = "\(dailyModel?.data?.result[indexPath.row]?.tasks.count ?? 0)개의 기록이 당신을 기다리고 있어요."
+        print(str)
+        cell.myInit(theTitle: " \((dailyModel?.data?.result[indexPath.row]?.name) ?? "")", theBody: str)
        
         let attributedString = NSMutableAttributedString(string: cell.labelSubTitle.text ?? "")
-        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.mainOrange, range: (cell.labelSubTitle.text! as NSString).range(of:"\(dailyModel?.data.result[indexPath.row].tasks.count ?? 0)개의 기록"))
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.mainOrange, range: (cell.labelSubTitle.text! as NSString).range(of:"\(dailyModel?.data?.result[indexPath.row]?.tasks.count ?? 0)개의 기록"))
         cell.labelSubTitle.attributedText = attributedString
+        
         
         cell.delegate = self
         
@@ -222,7 +237,7 @@ extension DailyVC {
                         self.dailyModel = data
                         self.setDropData()
                         self.tableView.reloadData()
-                        print("self.tableView.reloadData()")
+                        
                     } catch(let err) {
                         print(err.localizedDescription)
                     }

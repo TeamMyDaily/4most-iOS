@@ -331,7 +331,7 @@ extension DailyWriteVC {
 //MARK:: - Network
 extension DailyWriteVC {
     func getDailyTask(){
-        authProvider.request(.dailytask(self.taskID ?? 17)) { [weak self] result in
+        authProvider.request(.dailytask(self.taskID ?? 0)) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let response):
