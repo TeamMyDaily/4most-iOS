@@ -159,7 +159,7 @@ extension GoalVC: UITableViewDataSource{
         }
         else{
             guard let VC = self.storyboard?.instantiateViewController(identifier: "GoalDetailVC") as? GoalDetailVC else {return}
-            VC.goalPassDate = self.goalData
+            VC.KeywordDate = self.goalData?.data.result.keywords[indexPath.row]
             self.navigationController?.pushViewController(VC, animated: true)
         }
     }

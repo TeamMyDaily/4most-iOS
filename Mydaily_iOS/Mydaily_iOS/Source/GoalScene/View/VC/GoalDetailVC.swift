@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import Moya
 
 class GoalDetailVC: UIViewController {
-
+    private let authProvider = MoyaProvider<GoalService>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    
     @IBOutlet weak var weekLabel: UILabel!
     @IBOutlet weak var keywordLabel: UILabel!
     @IBOutlet weak var goalLabel: UILabel!
@@ -16,15 +18,16 @@ class GoalDetailVC: UIViewController {
     @IBOutlet weak var checkLabel: UILabel!
     @IBOutlet weak var goalButton: UIButton!
     var goal = false
-    var goalPassDate: GoalModel?
+    var KeywordDate: GoalKeyword?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        goal = false // 서버연결시 !!
+        goal = self.KeywordDate?.isGoalCompleted ?? false
         setupNavigationBar()
         setUI()
     }
+    
     @IBAction func checkButton(_ sender: Any) {
         if goal == false {
             checkLabel.text = "목표 달성시 체크"
@@ -40,6 +43,9 @@ class GoalDetailVC: UIViewController {
         }
     }
     
+    @IBAction func completeButton(_ sender: Any) {
+        completeGoal()
+    }
 }
 
 extension GoalDetailVC {
@@ -88,11 +94,11 @@ extension GoalDetailVC {
         weekLabel.font = .myBoldSystemFont(ofSize: 12)
         weekLabel.textColor = .mainGray
         
-        keywordLabel.text = "아웃풋에 가까워지기 위한 목표"
+        keywordLabel.text = "\(self.KeywordDate?.name ?? "")에 가까워지기 위한 목표"
         keywordLabel.font = .myMediumSystemFont(ofSize: 15)
         keywordLabel.textColor = .mainBlack
         
-        goalLabel.text = "블로그에 1개이상 퍼블리싱하기"
+        goalLabel.text = "\(self.KeywordDate?.weekGoal ?? "")"
         goalLabel.numberOfLines = 2
         goalLabel.font = .myBlackSystemFont(ofSize: 32)
         goalLabel.textColor = .mainBlack
@@ -112,6 +118,10 @@ extension GoalDetailVC {
         checkButton.addTarget(self, action: #selector(enabledButton), for: .allEvents)
     }
     
+    func updateUI(){
+        
+    }
+    
     @objc func enabledButton() {
         if goal == true {
             goalButton.backgroundColor = .mainOrange
@@ -120,6 +130,22 @@ extension GoalDetailVC {
         else{
             goalButton.backgroundColor = .mainGray
             goalButton.isEnabled = false
+        }
+    }
+}
+// MARK: - 통신
+extension GoalDetailVC{
+    func completeGoal(){
+        authProvider.request(.goalcomplete((self.KeywordDate?.weekGoalID)!)) { response in
+            switch response {
+                case .success(let result):
+                    do {
+                    } catch(let err) {
+                        print(err.localizedDescription)
+                    }
+                case .failure(let err):
+                    print(err.localizedDescription)
+            }
         }
     }
 }

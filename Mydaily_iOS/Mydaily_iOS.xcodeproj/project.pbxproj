@@ -56,6 +56,8 @@
 		AE80787A25AE09CD00B5E1E6 /* GoalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80787925AE09CD00B5E1E6 /* GoalRequest.swift */; };
 		AE80787D25AE0FD000B5E1E6 /* GoalWriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80787C25AE0FD000B5E1E6 /* GoalWriteModel.swift */; };
 		AE80788025AE109600B5E1E6 /* GoalWriteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80787F25AE109600B5E1E6 /* GoalWriteRequest.swift */; };
+		AE80788725AEE07C00B5E1E6 /* GoalCompleteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80788625AEE07C00B5E1E6 /* GoalCompleteModel.swift */; };
+		AE80788A25AEE31C00B5E1E6 /* GoalCompleteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80788925AEE31C00B5E1E6 /* GoalCompleteRequest.swift */; };
 		AE9F294525A1719600904FD9 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9F294425A1719600904FD9 /* LoginVC.swift */; };
 		AE9F294A25A1A69400904FD9 /* registerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9F294925A1A69400904FD9 /* registerVC.swift */; };
 		AE9F294D25A1BF1500904FD9 /* RegisterEntryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9F294C25A1BF1500904FD9 /* RegisterEntryVC.swift */; };
@@ -162,6 +164,8 @@
 		AE80787925AE09CD00B5E1E6 /* GoalRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalRequest.swift; sourceTree = "<group>"; };
 		AE80787C25AE0FD000B5E1E6 /* GoalWriteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalWriteModel.swift; sourceTree = "<group>"; };
 		AE80787F25AE109600B5E1E6 /* GoalWriteRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalWriteRequest.swift; sourceTree = "<group>"; };
+		AE80788625AEE07C00B5E1E6 /* GoalCompleteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCompleteModel.swift; sourceTree = "<group>"; };
+		AE80788925AEE31C00B5E1E6 /* GoalCompleteRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCompleteRequest.swift; sourceTree = "<group>"; };
 		AE9F294425A1719600904FD9 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		AE9F294925A1A69400904FD9 /* registerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerVC.swift; sourceTree = "<group>"; };
 		AE9F294C25A1BF1500904FD9 /* RegisterEntryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEntryVC.swift; sourceTree = "<group>"; };
@@ -502,6 +506,7 @@
 			children = (
 				AE80787625AE097600B5E1E6 /* GoalModel.swift */,
 				AE80787C25AE0FD000B5E1E6 /* GoalWriteModel.swift */,
+				AE80788625AEE07C00B5E1E6 /* GoalCompleteModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -511,6 +516,7 @@
 			children = (
 				AE80787925AE09CD00B5E1E6 /* GoalRequest.swift */,
 				AE80787F25AE109600B5E1E6 /* GoalWriteRequest.swift */,
+				AE80788925AEE31C00B5E1E6 /* GoalCompleteRequest.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -927,6 +933,7 @@
 				DEC98B8125A4435300CC522C /* KeywordDecideVC.swift in Sources */,
 				AE9F294525A1719600904FD9 /* LoginVC.swift in Sources */,
 				AE53FB9E25A6B1E600D62AA7 /* GoalVC.swift in Sources */,
+				AE80788A25AEE31C00B5E1E6 /* GoalCompleteRequest.swift in Sources */,
 				AE46FA5625ACBA8F0051D667 /* DailyModifyRequest.swift in Sources */,
 				ED266036259F032000A376C0 /* EvaluationKeywordTVC.swift in Sources */,
 				ED266030259EFAB200A376C0 /* RetrospectiveTabCVC.swift in Sources */,
@@ -934,6 +941,7 @@
 				EDC0FEC625A72DE200D69379 /* OccurWhenClickModifyButtonDelegate.swift in Sources */,
 				EDAAFA3125A873F500424BF9 /* MypageIdentityVerificationVC.swift in Sources */,
 				AED84DEE25A558B30050D861 /* Extensions+UIFont.swift in Sources */,
+				AE80788725AEE07C00B5E1E6 /* GoalCompleteModel.swift in Sources */,
 				AE80787725AE097600B5E1E6 /* GoalModel.swift in Sources */,
 				ED266029259EF02E00A376C0 /* EvaluationTabCVC.swift in Sources */,
 				DE91346025A309500045BDCE /* AddUserKeywordVC.swift in Sources */,

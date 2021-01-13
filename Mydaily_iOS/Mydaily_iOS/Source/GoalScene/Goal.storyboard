@@ -204,6 +204,9 @@
                                     <constraint firstAttribute="height" constant="60" id="uVm-Ui-cid"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="completeButton:" destination="GLo-Y0-TaA" eventType="touchUpInside" id="8Dd-Ly-wWX"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wky-lq-RmS">
                                 <rect key="frame" x="16" y="81" width="42" height="21"/>
