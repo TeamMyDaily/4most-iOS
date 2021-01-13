@@ -29,7 +29,7 @@ struct GoalResult: Codable {
 
 // MARK: - Keyword
 struct GoalKeyword: Codable {
-    let totalKeywordID, priority: Int
+    let totalKeywordID, priority: Int?
     let name: String
     let isGoalCreated: Bool
     let weekGoalID: Int?

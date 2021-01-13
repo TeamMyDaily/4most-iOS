@@ -26,7 +26,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tkB-8b-hPp">
-                                <rect key="frame" x="24" y="50" width="42" height="21"/>
+                                <rect key="frame" x="24" y="47" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -47,7 +47,7 @@
                             <constraint firstItem="x1I-He-5dO" firstAttribute="leading" secondItem="y7h-k3-fDc" secondAttribute="trailing" constant="16" id="86f-05-FfW"/>
                             <constraint firstItem="y7h-k3-fDc" firstAttribute="leading" secondItem="dfR-R4-rWs" secondAttribute="leading" constant="24" id="W0Z-ci-Jlp"/>
                             <constraint firstItem="y7h-k3-fDc" firstAttribute="top" secondItem="dfR-R4-rWs" secondAttribute="top" constant="13" id="cqv-Yr-L4l"/>
-                            <constraint firstItem="tkB-8b-hPp" firstAttribute="top" secondItem="y7h-k3-fDc" secondAttribute="bottom" constant="16" id="pnX-nY-oz6"/>
+                            <constraint firstAttribute="bottom" secondItem="tkB-8b-hPp" secondAttribute="bottom" constant="16" id="dw4-qP-cWv"/>
                             <constraint firstItem="x1I-He-5dO" firstAttribute="centerY" secondItem="y7h-k3-fDc" secondAttribute="centerY" id="zVR-iL-ucM"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>

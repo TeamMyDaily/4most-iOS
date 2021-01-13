@@ -77,10 +77,16 @@ extension GoalVC {
     
     func updateUI(){
         if goalData?.data.keywordsExist == false{
-            defaultLabel.text = "키워드에 따른\n목표를 설정해주세요!"
+            //empty view
+            
         }
         else{
-            defaultLabel.text = "키워드에 따른\n기록을 설정해주세요!"
+            if goalData?.data.result.notSetGoalCount == 0{
+                defaultLabel.text = "키워드에 따른\n목표를 설정해주세요!"
+            }
+            else{
+                defaultLabel.text = "키워드에 따른\n기록을 설정해주세요!"
+            }
             goalCountLabel.text = "\(goalData?.data.result.notSetGoalCount ?? 0)개의 목표가 미설정 되었어요!"
         }
     }
@@ -109,6 +115,32 @@ extension GoalVC: UITableViewDataSource{
         let bgColorView = UIView()
         bgColorView.backgroundColor = UIColor.white
         cell.selectedBackgroundView = bgColorView
+        
+        cell.keywordName.text = "\(self.goalData?.data.result.keywords[indexPath.row].name ?? "")"
+        
+        if self.goalData?.data.result.keywords[indexPath.row].isGoalCreated == true{
+            cell.keywordDetail.text = "\(self.goalData?.data.result.keywords[indexPath.row].weekGoal ?? "")"
+            cell.keywordName.textColor = .mainBlack
+            cell.keywordDetail.textColor = .mainBlack
+            //**버튼이미지 설정
+        }
+        else{
+            cell.keywordDetail.text = "목표를 세워주세요."
+            //**버튼이미지 설정
+            cell.keywordName.textColor = .mainGray
+            cell.keywordDetail.textColor = .mainGray
+        }
+        
+        if self.goalData?.data.result.keywords[indexPath.row].isGoalCompleted == true{
+            cell.outterView.borderColor = .mainOrange
+            cell.achieveLabel.backgroundColor = .mainOrange
+            cell.achieveLabel.text = "달성"
+        }
+        else{
+            cell.outterView.borderColor = .mainGray
+            cell.achieveLabel.backgroundColor = .mainGray
+            cell.achieveLabel.text = "미달성"
+        }
 
         return cell
     }
@@ -141,6 +173,7 @@ extension GoalVC{
                         let data = try result.map(GoalModel.self)
                         self.goalData = data
                         self.updateUI()
+                        self.goalTableView.reloadData()
                     } catch(let err) {
                         print(err.localizedDescription)
                     }
