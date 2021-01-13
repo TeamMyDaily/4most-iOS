@@ -21,20 +21,25 @@ struct GoalData: Codable {
     let result: GoalResult
 }
 
-// MARK: - GoalResult
+// MARK: - Result
 struct GoalResult: Codable {
     let count, notSetGoalCount: Int
     let keywords: [GoalKeyword]
 }
 
-// MARK: - GoalKeyword
+// MARK: - Keyword
 struct GoalKeyword: Codable {
     let totalKeywordID, priority: Int
     let name: String
     let isGoalCreated: Bool
+    let weekGoalID: Int?
+    let weekGoal: String?
+    let isGoalCompleted: Bool?
 
     enum CodingKeys: String, CodingKey {
         case totalKeywordID = "totalKeywordId"
         case priority, name, isGoalCreated
+        case weekGoalID = "weekGoalId"
+        case weekGoal, isGoalCompleted
     }
 }

@@ -55,13 +55,11 @@ extension GoalVC {
     }
     
     func setUI(){
-        defaultLabel.text = "키워드에 따른\n목표를 설정해주세요!"
         defaultLabel.font = .myBlackSystemFont(ofSize: 25)
         defaultLabel.textColor = .mainBlack
         defaultLabel.numberOfLines = 2
         defaultLabel.sizeToFit()
         
-        goalCountLabel.text = "4개의 목표가 미설정 되었어요!"
         goalCountLabel.font = .myRegularSystemFont(ofSize: 12)
         goalCountLabel.textColor = .mainOrange
         goalCountLabel.sizeToFit()
@@ -74,7 +72,17 @@ extension GoalVC {
             dateButton.widthAnchor.constraint(equalToConstant: 66),
             dateButton.heightAnchor.constraint(equalToConstant: 32)
         ])
-        
+        updateUI()
+    }
+    
+    func updateUI(){
+        if goalData?.data.keywordsExist == false{
+            defaultLabel.text = "키워드에 따른\n목표를 설정해주세요!"
+        }
+        else{
+            defaultLabel.text = "키워드에 따른\n기록을 설정해주세요!"
+            goalCountLabel.text = "\(goalData?.data.result.notSetGoalCount ?? 0)개의 목표가 미설정 되었어요!"
+        }
     }
 }
 
@@ -125,13 +133,14 @@ extension GoalVC: UITableViewDataSource{
 // MARK: - 통신
 extension GoalVC{
     func getGoal(){
-        let param = GoalRequest.init("1610290800000","1610982000000")
+        let param = GoalRequest.init("1609815600000","1610420400000")
         authProvider.request(.goalinquiry(param: param)) { response in
             switch response {
                 case .success(let result):
                     do {
                         let data = try result.map(GoalModel.self)
                         self.goalData = data
+                        self.updateUI()
                     } catch(let err) {
                         print(err.localizedDescription)
                     }
