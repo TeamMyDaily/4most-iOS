@@ -21,12 +21,14 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     var myArray = [String]()
+    var currentDate = Date()
+    var since1970: Double?
     
     let dateButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.setTitle("오늘 >", for: .normal)
+        $0.setTitle("오늘", for: .normal)
         $0.layer.cornerRadius = 20
-        $0.backgroundColor = .mainBlack
+        $0.backgroundColor = .mainGray
         $0.titleLabel?.font = .myMediumSystemFont(ofSize: 16)
         $0.setTitleColor(.white, for: .normal)
         $0.addTarget(self, action: #selector(setToday), for: .allTouchEvents)
@@ -34,12 +36,13 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
     }(UIButton(frame: .zero))
     
     override func viewWillAppear(_ animated: Bool) {
-        getDaily()
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            
+        
+        getDaily()
         setTableVC()
         setupNavigationBar(.clear, titlelabel: "")
         floatingButton()
@@ -71,9 +74,12 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yy년 MM월 W주"
-        print("&\(datePicker.date.startOfWeek!)")
-        print("&\(datePicker.date.endOfWeek!)")
-        print("@\(dateFormatter.string(from: datePicker.date.containWeek!))")
+//        print("&\(datePicker.date.startOfWeek!)")
+//        print("&\(datePicker.date.endOfWeek!)")
+//        print("@\(dateFormatter.string(from: datePicker.date.containWeek!))")
+//
+        print("변경!")
+        getDaily()
     }
 }
 
@@ -128,6 +134,20 @@ extension DailyVC {
     @objc func setToday(sender: UIButton!) {
         datePicker.date = Date()
         setDate()
+        getDaily()
+    }
+    
+    func DateInMilliSeconds()-> Int
+    {
+        if datePicker.date == Date(){
+            currentDate = Date()
+        }
+        else{
+            currentDate = self.datePicker.date
+        }
+        since1970 = currentDate.timeIntervalSince1970
+        
+        return Int(since1970! * 1000)
     }
 }
 
@@ -193,7 +213,7 @@ extension DailyVC {
 
 extension DailyVC {
     func getDaily(){
-        let param = DailyRequest.init("1610333510000")
+        let param = DailyRequest.init("\(String(describing: DateInMilliSeconds()))")
         authProvider.request(.dailyinquiry(param: param)) { response in
             switch response {
                 case .success(let result):
@@ -202,6 +222,7 @@ extension DailyVC {
                         self.dailyModel = data
                         self.setDropData()
                         self.tableView.reloadData()
+                        print("self.tableView.reloadData()")
                     } catch(let err) {
                         print(err.localizedDescription)
                     }
