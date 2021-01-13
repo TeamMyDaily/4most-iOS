@@ -11,6 +11,8 @@ import Moya
 enum KeywordServices{
     case addKeyword(param: AddKeywordRequest)
     case selectedKeywords(param: SelectedKeywordsRequest)
+    case priorityKeyword(param: PriorityKeywordRequest)
+    case keywordDefinition(param: KeywordDefinitionRequest)
 }
 
 extension KeywordServices: TargetType{
@@ -25,13 +27,19 @@ extension KeywordServices: TargetType{
             return "/keywords/new"
         case .selectedKeywords:
             return "/keywords"
+        case .priorityKeyword:
+            return "/keywords/priority"
+        case .keywordDefinition:
+            return "/keywords/definition"
         }
     }
     
     var method: Moya.Method {
         switch self {
         case .addKeyword,
-             .selectedKeywords:
+             .selectedKeywords,
+             .priorityKeyword,
+             .keywordDefinition:
             return .post
         }
     }
@@ -45,6 +53,10 @@ extension KeywordServices: TargetType{
         case .addKeyword(let param):
             return .requestJSONEncodable(param)
         case .selectedKeywords(let param):
+            return .requestJSONEncodable(param)
+        case .priorityKeyword(let param):
+            return .requestJSONEncodable(param)
+        case .keywordDefinition(let param):
             return .requestJSONEncodable(param)
         }
     }

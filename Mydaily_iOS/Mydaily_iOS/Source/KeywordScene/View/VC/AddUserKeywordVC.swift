@@ -45,6 +45,10 @@ class AddUserKeywordVC: UIViewController {
         keywordArray = list
     }
     
+    func isFirstSettingPage(check: Bool){
+        isFirst = check
+    }
+    
     @IBAction func addUserKeyword(_ sender: UIButton) {
         userKeyword = keywordTextField.text ?? ""
         
@@ -71,10 +75,11 @@ class AddUserKeywordVC: UIViewController {
                 
                 }else{ // 마이페이지에서 왔을 때
                     addUserKeywordInServer()
-                    let endIndex = self.navigationController?.viewControllers.count ?? 2
-                    guard let pvc = self.navigationController?.viewControllers[endIndex-2] as? KeywordSettingVC  else {
-                       return
-                    }
+                    self.navigationController?.popViewController(animated: true)
+//                    let endIndex = self.navigationController?.viewControllers.count ?? 2
+//                    guard let pvc = self.navigationController?.viewControllers[endIndex-2] as? KeywordSettingVC  else {
+//                       return
+//                    }
                    
                 }
                

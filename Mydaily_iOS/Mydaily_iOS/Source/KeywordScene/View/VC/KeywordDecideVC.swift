@@ -11,8 +11,8 @@ class KeywordDecideVC: UIViewController {
     static let identifier = "KeywordDecideVC"
     
     @IBOutlet var keywordUIButtonList: [UIButton]!
-    
     @IBOutlet var numberLabelList: [UILabel]!
+    @IBOutlet var barLineView: [UIView]!
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var completeButton: UIButton!
@@ -29,7 +29,7 @@ class KeywordDecideVC: UIViewController {
         setCompleteButton()
         setSkipButton()
         setNavigationBar()
-        setKeywordButton()
+        setContent()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,11 +41,6 @@ class KeywordDecideVC: UIViewController {
                 keywordUIButtonList[i].setTitleColor(UIColor.mainBlack, for: .normal)
                 numberLabelList[i].textColor = UIColor.mainLightOrange
                 count += 1
-            }
-            
-            for (key, value) in keywordAndDefinition[i]{
-                
-                print(" \(i) key = \(key), value = \(value)")
             }
             i += 1
         }
@@ -76,7 +71,7 @@ class KeywordDecideVC: UIViewController {
         
         let selectedKeyword = sender.titleLabel?.text ?? ""
         
-        for i in 0..<4{
+        for i in 0..<keywordList.count{
             for (key, value) in keywordAndDefinition[i]{
                 if key == selectedKeyword{
                     dvc.setKeywordAndDefinition(key: key, value: value)
@@ -84,14 +79,12 @@ class KeywordDecideVC: UIViewController {
                 }
             }
         }
-        
         self.navigationController?.pushViewController(dvc, animated: true)
-        
     }
   
     func setReceivedKeywordList(list: [String]){
         keywordList = list
-        for i in 0..<4{
+        for i in 0..<keywordList.count{
             keywordAndDefinition.append([list[i] : ""])
         }
        
@@ -99,7 +92,7 @@ class KeywordDecideVC: UIViewController {
     
     func setKeywordDefinition(key: String, value: String){
 
-        for i in 0..<4{
+        for i in 0..<keywordList.count{
             if keywordAndDefinition[i][key] != nil{
                 keywordAndDefinition[i].updateValue(value, forKey: key)
             }
@@ -132,6 +125,20 @@ extension KeywordDecideVC{
         titleLabel.text = "회고 키워드에 대한\n나만의 정의를 작성해보세요!"
     }
     
+    func setContent(){
+        
+        for i in 0..<4{
+            if i < keywordList.count{
+                keywordUIButtonList[i].setTitle(keywordList[i], for: .normal)
+            }else{
+                keywordUIButtonList[i].isHidden = true
+                numberLabelList[i].isHidden = true
+                barLineView[i].isHidden = true
+            }
+            
+        }
+    }
+    
     func setCompleteButton(){
         completeButton.titleLabel?.font =  UIFont.myBoldSystemFont(ofSize: 18)
         completeButton.layer.cornerRadius = 15
@@ -153,15 +160,7 @@ extension KeywordDecideVC{
         skipButton.layer.cornerRadius = 15
 
     }
-    
-    func setKeywordButton(){
-        for i in 0..<4{
-            print("index = \(i)")
-            keywordUIButtonList[i].setTitle(keywordList[i], for: .normal)
-        }
-        
-    }
-    
+
     
     func setNavigationBar(){
         guard let navigationBar = self.navigationController?.navigationBar else { return }

@@ -31,7 +31,6 @@ class NextKeywordVC: UIViewController {
         setNavigationBar()
     }
     
-    
     func setTitleLabel(){
         titleLabel.numberOfLines = 0
         titleLabel.text = "8가지를 고르셨군요!\n조금만 더 고민해 볼까요?"
@@ -48,12 +47,12 @@ class NextKeywordVC: UIViewController {
     
     @IBAction func submitKeyword(_ sender: UIButton) {
         
-        sendingSelectedKeyword()
+        postSelectedKeyword()
         guard let dvc = self.storyboard?.instantiateViewController(identifier: KeywordPriorityVC.identifier) as? KeywordPriorityVC else{
             return
         }
         
-        dvc.setReceivedKeywordList(list: self.selectedKeywordList)
+        dvc.setReceivedKeywordList(list: selectedKeywordList)
         self.navigationController?.pushViewController(dvc, animated: true)
 
     }
@@ -171,8 +170,7 @@ class NextKeywordVC: UIViewController {
     }
     
     func setButtonActive(){
-        if selectedKeywordList.count == 4 {
-            print("4개 눌림!!! 버튼 활성화")
+        if selectedKeywordList.count > 0 && selectedKeywordList.count < 5 {
             completeButton.backgroundColor = UIColor.mainOrange
             completeButton.isEnabled = true
         }else{
@@ -225,7 +223,7 @@ class NextKeywordVC: UIViewController {
 
 // MARK: - Network
 extension NextKeywordVC{
-    func sendingSelectedKeyword(){
+    func postSelectedKeyword(){
         let param = SelectedKeywordsRequest(list: selectedKeywordList)
         authProvider.request(.selectedKeywords(param: param)){ responds in
             switch responds {
