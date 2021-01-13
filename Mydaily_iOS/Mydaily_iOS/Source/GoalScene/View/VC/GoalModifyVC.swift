@@ -6,14 +6,17 @@
 //
 
 import UIKit
+import Moya
 
 class GoalModifyVC: UIViewController {
-
+    private let authProvider = MoyaProvider<GoalService>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var keywordLabel: UILabel!
     @IBOutlet weak var goalTextView: UITextView!
     @IBOutlet weak var textViewCount: UILabel!
     @IBOutlet weak var saveButton: UIButton!
+    var KeywordDate: GoalKeyword?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +26,8 @@ class GoalModifyVC: UIViewController {
     }
     
     @IBAction func saveButton(_ sender: Any) {
+        modifyGoal()
+        self.navigationController?.popViewController(animated: true)
     }
 }
 
@@ -38,7 +43,7 @@ extension GoalModifyVC {
         self.navigationItem.title = "목표"
         
                 let leftButton: UIBarButtonItem = {
-                    let button = UIBarButtonItem(image: UIImage(named: "backArrowIc"), style: .plain, target: self, action: #selector(cancelAlertaction))
+                    let button = UIBarButtonItem(title: "뒤", style: .plain, target: self, action: #selector(cancelAlertaction))
                     return button
                 }()
         
@@ -94,7 +99,7 @@ extension GoalModifyVC {
         dateLabel.font = .boldSystemFont(ofSize: 12)
         dateLabel.textColor = .mainGray
     
-        keywordLabel.text = "아웃풋에\n가까워 지기 위한 목표"
+        keywordLabel.text = "\(self.KeywordDate?.name ?? "")에\n가까워 지기 위한 목표"
         keywordLabel.numberOfLines = 2
         keywordLabel.font = .myMediumSystemFont(ofSize: 25)
         keywordLabel.textColor = .mainBlack
@@ -102,11 +107,12 @@ extension GoalModifyVC {
         
         let fontSize = UIFont.myBlackSystemFont(ofSize: 25)
         let attributedStr = NSMutableAttributedString(string: keywordLabel.text ?? "")
-        attributedStr.addAttribute(NSAttributedString.Key(rawValue: kCTFontAttributeName as String), value: fontSize, range: (keywordLabel.text! as NSString).range(of: "아웃풋"))
+        attributedStr.addAttribute(NSAttributedString.Key(rawValue: kCTFontAttributeName as String), value: fontSize, range: (keywordLabel.text! as NSString).range(of: "\(self.KeywordDate?.name ?? "")"))
         keywordLabel.attributedText = attributedStr
         
         goalTextView.backgroundColor = .gray30
         goalTextView.layer.cornerRadius = 15
+        goalTextView.text = "\(self.KeywordDate?.weekGoal ?? "")"
         
         textViewCount.textColor = .mainOrange
         textViewCount.font = .myRegularSystemFont(ofSize: 12)
@@ -143,6 +149,24 @@ extension GoalModifyVC: UITextViewDelegate {
             saveButton.backgroundColor = .mainOrange
             saveButton.setTitle("저장할래요", for: .normal)
             saveButton.setTitleColor(.white, for: .normal)
+        }
+    }
+}
+
+// MARK: - 통신
+extension GoalModifyVC{
+    func modifyGoal(){
+        let param = GoalModifyRequest.init("gg")
+        authProvider.request(.goalmodify(param: param)) { response in
+            switch response {
+                case .success(let result):
+                    do {
+                    } catch(let err) {
+                        print(err.localizedDescription)
+                    }
+                case .failure(let err):
+                    print(err.localizedDescription)
+            }
         }
     }
 }

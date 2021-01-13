@@ -86,6 +86,7 @@ extension GoalDetailVC {
     
     @objc func modify(){
         guard let VC = self.storyboard?.instantiateViewController(identifier: "GoalModifyVC") as? GoalModifyVC else {return}
+        VC.KeywordDate = self.KeywordDate
         self.navigationController?.pushViewController(VC, animated: true)
     }
     
