@@ -307,9 +307,6 @@ extension MypageVC{
     func setTitleLabel(){
         UIApplication.shared.statusBarStyle = .lightContent
         UIApplication.shared.setStatusBarStyle(.lightContent, animated: true)
-       // UIApplication.shared.statusBarStyle = .default
-       // UIApplication.shared.statusBarView?.backgroundColor = UIColor.mainOrange
-        //UIApplication.shared.statusBarView?.tintColor = .white
         titleLabel.text = "\(userName)님의"
     }
     

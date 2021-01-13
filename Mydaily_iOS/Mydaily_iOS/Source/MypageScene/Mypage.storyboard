@@ -75,6 +75,14 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Azj-K7-o02">
+                                        <rect key="frame" x="276" y="8" width="69" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="키워드 설정"/>
+                                        <connections>
+                                            <action selector="goToSettingKeywordView:" destination="ILK-Us-olm" eventType="touchUpInside" id="rGr-ow-fMC"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.45882352941176469" blue="0.33725490196078434" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -162,6 +170,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="1Ij-uT-3So"/>
                     <connections>
+                        <outlet property="keywordSettingButton" destination="Azj-K7-o02" id="VeO-SU-wyT"/>
                         <outlet property="keywordTableView" destination="p57-Sa-qvc" id="mmc-1B-9Io"/>
                         <outlet property="recordKeywordBarView" destination="jkt-Ec-RQn" id="A1A-Fo-8s7"/>
                         <outlet property="recordKeywordButton" destination="ds0-dQ-MBI" id="tj7-vk-cEG"/>
@@ -256,20 +265,20 @@
                                                 </constraints>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingSecurityTVC" id="dpY-H5-LD8" customClass="SettingSecurityTVC" customModule="Mydaily_iOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="28" width="375" height="45"/>
+                                                        <rect key="frame" x="0.0" y="28" width="375" height="45.5"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dpY-H5-LD8" id="fsO-nf-TNi">
-                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="45.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lyt-jT-gjE">
-                                                                    <rect key="frame" x="16" y="12" width="42" height="21"/>
+                                                                    <rect key="frame" x="16" y="12" width="42" height="21.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6L7-iR-rJW">
-                                                                    <rect key="frame" x="346" y="11.5" width="13" height="22"/>
+                                                                    <rect key="frame" x="346" y="12" width="13" height="22"/>
                                                                     <color key="tintColor" red="0.76862745098039209" green="0.76862745098039209" blue="0.76862745098039209" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
                                                                     <state key="normal" image="chevron.right" catalog="system"/>
                                                                 </button>
@@ -287,7 +296,7 @@
                                                         </connections>
                                                     </tableViewCell>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingVersionTVC" id="PDS-mv-fuc" customClass="SettingVersionTVC" customModule="Mydaily_iOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="73" width="375" height="43.5"/>
+                                                        <rect key="frame" x="0.0" y="73.5" width="375" height="43.5"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PDS-mv-fuc" id="x6B-n7-hby">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>

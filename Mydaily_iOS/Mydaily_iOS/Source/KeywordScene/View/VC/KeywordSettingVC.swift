@@ -552,10 +552,10 @@ extension KeywordSettingVC: SelectKeywordDelegate{
     func alertKeyword(){
         let txt = "키워드를 많이 선택 하셨어요.\n키워드는 8개 까지 선택이 가능합니다.\n좀 더 고민해서 하나를 제외 해 주세요!"
         let alert = UIAlertController(title: "8개까지 선택 가능해요!", message: txt, preferredStyle: UIAlertController.Style.alert)
-        let okAction = UIAlertAction(title: "확인", style: .default) { (action) in}
+        let okAction = UIAlertAction(title: "확인했어요", style: .default) { (action) in}
        
         alert.addAction(okAction)
-        
+        self.present(alert, animated: true, completion: nil)
     }
     
 }

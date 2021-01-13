@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import Moya
 
 class NextKeywordVC: UIViewController {
     static let identifier = "NextKeywordVC"
+    
+    private let authProvider = MoyaProvider<KeywordServices>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    var responseToken : SelectedKeywordsModel?
     
     var keywordList: [[String]] = []
     
@@ -44,14 +48,14 @@ class NextKeywordVC: UIViewController {
     
     @IBAction func submitKeyword(_ sender: UIButton) {
         
+        sendingSelectedKeyword()
         guard let dvc = self.storyboard?.instantiateViewController(identifier: KeywordPriorityVC.identifier) as? KeywordPriorityVC else{
             return
         }
         
-        dvc.setReceivedKeywordList(list: selectedKeywordList)
-        
+        dvc.setReceivedKeywordList(list: self.selectedKeywordList)
         self.navigationController?.pushViewController(dvc, animated: true)
-        
+
     }
     
     func setkeywordContentView(){
@@ -101,7 +105,6 @@ class NextKeywordVC: UIViewController {
             }
             
         }
-        
         keywordContentView.addSubview(content)
         
     }
@@ -161,7 +164,7 @@ class NextKeywordVC: UIViewController {
     func alertKeyword(){
         let txt = "키워드를 많이 선택 하셨어요.\n키워드는 4개 까지 선택이 가능합니다.\n좀 더 고민해서 하나를 제외 해 주세요!"
         let alert = UIAlertController(title: "최종 키워드 4개를 선택해주세요", message: txt, preferredStyle: UIAlertController.Style.alert)
-        let okAction = UIAlertAction(title: "확인", style: .default) { (action) in}
+        let okAction = UIAlertAction(title: "확인했어요", style: .default) { (action) in}
        
         alert.addAction(okAction)
         present(alert, animated: false, completion: nil)
@@ -202,7 +205,6 @@ class NextKeywordVC: UIViewController {
              return button
            }()
            navigationItem.leftBarButtonItem = leftButton
-        
     }
 
     
@@ -219,6 +221,30 @@ class NextKeywordVC: UIViewController {
         self.present(dvc, animated: true, completion: nil)
     }
 
-    
-    
+}
+
+// MARK: - Network
+extension NextKeywordVC{
+    func sendingSelectedKeyword(){
+        let param = SelectedKeywordsRequest(list: selectedKeywordList)
+        authProvider.request(.selectedKeywords(param: param)){ responds in
+            switch responds {
+            case .success(let result):
+                do {
+                    self.responseToken = try result.map(SelectedKeywordsModel.self)
+                    guard let dvc = self.storyboard?.instantiateViewController(identifier: KeywordPriorityVC.identifier) as? KeywordPriorityVC else{
+                        return
+                    }
+                    
+                    dvc.setReceivedKeywordList(list: self.selectedKeywordList)
+                    self.navigationController?.pushViewController(dvc, animated: true)
+
+                } catch(let err){
+                    print(err.localizedDescription)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
+    }
 }

@@ -12,12 +12,17 @@
 		3C42976A259F16D10061483E /* KeywordSettingTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C429768259F16D10061483E /* KeywordSettingTVC.xib */; };
 		3C4CBF9625A386E90007A6FF /* NextKeywordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4CBF9525A386E90007A6FF /* NextKeywordVC.swift */; };
 		3C5D94DD259D8B2700BF8DC9 /* KeywordSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5D94DC259D8B2700BF8DC9 /* KeywordSettingVC.swift */; };
+		3C61A51A25ADFBBC002DAA3E /* SelectedKeywordsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C61A51925ADFBBC002DAA3E /* SelectedKeywordsRequest.swift */; };
+		3C61A51E25ADFC73002DAA3E /* SelectedKeywordsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C61A51D25ADFC73002DAA3E /* SelectedKeywordsModel.swift */; };
 		3C71FE3825AB7226007BC463 /* RecordKeywordTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71FE3625AB7226007BC463 /* RecordKeywordTVC.swift */; };
 		3C71FE3925AB7226007BC463 /* RecordKeywordTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C71FE3725AB7226007BC463 /* RecordKeywordTVC.xib */; };
 		3C71FE4225AB7BA6007BC463 /* UserKeywordTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71FE4025AB7BA6007BC463 /* UserKeywordTVC.swift */; };
 		3C71FE4325AB7BA6007BC463 /* UserKeywordTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C71FE4125AB7BA6007BC463 /* UserKeywordTVC.xib */; };
 		3C7F9D3725AD8A4800F004E0 /* DetailTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C7F9D3525AD8A4800F004E0 /* DetailTVC.xib */; };
 		3C7F9D3825AD8A4800F004E0 /* DetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7F9D3625AD8A4800F004E0 /* DetailTVC.swift */; };
+		3C7F9D3F25AD970000F004E0 /* AddKeywordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7F9D3E25AD970000F004E0 /* AddKeywordRequest.swift */; };
+		3C7F9D4325AD993400F004E0 /* AddKeywordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7F9D4225AD993400F004E0 /* AddKeywordModel.swift */; };
+		3C7F9D4625AD9A7900F004E0 /* KeywordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7F9D4525AD9A7900F004E0 /* KeywordService.swift */; };
 		3CB1214D25A778CB0080E60F /* KeywordDefineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB1214C25A778CB0080E60F /* KeywordDefineVC.swift */; };
 		3CC86426259CAFCB0043421A /* Keyword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CC86425259CAFCB0043421A /* Keyword.storyboard */; };
 		3CC8642C259CAFEE0043421A /* KeywordPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC8642B259CAFEE0043421A /* KeywordPopUpVC.swift */; };
@@ -105,12 +110,17 @@
 		3C429768259F16D10061483E /* KeywordSettingTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeywordSettingTVC.xib; sourceTree = "<group>"; };
 		3C4CBF9525A386E90007A6FF /* NextKeywordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextKeywordVC.swift; sourceTree = "<group>"; };
 		3C5D94DC259D8B2700BF8DC9 /* KeywordSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordSettingVC.swift; sourceTree = "<group>"; };
+		3C61A51925ADFBBC002DAA3E /* SelectedKeywordsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedKeywordsRequest.swift; sourceTree = "<group>"; };
+		3C61A51D25ADFC73002DAA3E /* SelectedKeywordsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedKeywordsModel.swift; sourceTree = "<group>"; };
 		3C71FE3625AB7226007BC463 /* RecordKeywordTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordKeywordTVC.swift; sourceTree = "<group>"; };
 		3C71FE3725AB7226007BC463 /* RecordKeywordTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordKeywordTVC.xib; sourceTree = "<group>"; };
 		3C71FE4025AB7BA6007BC463 /* UserKeywordTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserKeywordTVC.swift; sourceTree = "<group>"; };
 		3C71FE4125AB7BA6007BC463 /* UserKeywordTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserKeywordTVC.xib; sourceTree = "<group>"; };
 		3C7F9D3525AD8A4800F004E0 /* DetailTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailTVC.xib; sourceTree = "<group>"; };
 		3C7F9D3625AD8A4800F004E0 /* DetailTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTVC.swift; sourceTree = "<group>"; };
+		3C7F9D3E25AD970000F004E0 /* AddKeywordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddKeywordRequest.swift; sourceTree = "<group>"; };
+		3C7F9D4225AD993400F004E0 /* AddKeywordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddKeywordModel.swift; sourceTree = "<group>"; };
+		3C7F9D4525AD9A7900F004E0 /* KeywordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordService.swift; sourceTree = "<group>"; };
 		3CB1214C25A778CB0080E60F /* KeywordDefineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordDefineVC.swift; sourceTree = "<group>"; };
 		3CC86425259CAFCB0043421A /* Keyword.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Keyword.storyboard; sourceTree = "<group>"; };
 		3CC8642B259CAFEE0043421A /* KeywordPopUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeywordPopUpVC.swift; sourceTree = "<group>"; };
@@ -210,9 +220,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C7F9D3A25AD962D00F004E0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3C7F9D3D25AD965400F004E0 /* ResponseMadel */,
+				3C7F9D3C25AD964800F004E0 /* RequestModel */,
+				3C7F9D3B25AD963800F004E0 /* APIServices */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3C7F9D3B25AD963800F004E0 /* APIServices */ = {
+			isa = PBXGroup;
+			children = (
+				3C7F9D4525AD9A7900F004E0 /* KeywordService.swift */,
+			);
+			path = APIServices;
+			sourceTree = "<group>";
+		};
+		3C7F9D3C25AD964800F004E0 /* RequestModel */ = {
+			isa = PBXGroup;
+			children = (
+				3C7F9D3E25AD970000F004E0 /* AddKeywordRequest.swift */,
+				3C61A51925ADFBBC002DAA3E /* SelectedKeywordsRequest.swift */,
+			);
+			path = RequestModel;
+			sourceTree = "<group>";
+		};
+		3C7F9D3D25AD965400F004E0 /* ResponseMadel */ = {
+			isa = PBXGroup;
+			children = (
+				3C7F9D4225AD993400F004E0 /* AddKeywordModel.swift */,
+				3C61A51D25ADFC73002DAA3E /* SelectedKeywordsModel.swift */,
+			);
+			path = ResponseMadel;
+			sourceTree = "<group>";
+		};
 		3CC86422259CAF8F0043421A /* KeywordScene */ = {
 			isa = PBXGroup;
 			children = (
+				3C7F9D3A25AD962D00F004E0 /* Model */,
 				3CC86425259CAFCB0043421A /* Keyword.storyboard */,
 				3CC8642E259CB0850043421A /* View */,
 			);
@@ -803,6 +850,7 @@
 				AE9F294A25A1A69400904FD9 /* registerVC.swift in Sources */,
 				AE53FBB825A7206000D62AA7 /* GoalTVC.swift in Sources */,
 				3C4CBF9625A386E90007A6FF /* NextKeywordVC.swift in Sources */,
+				3C61A51A25ADFBBC002DAA3E /* SelectedKeywordsRequest.swift in Sources */,
 				3CC8642C259CAFEE0043421A /* KeywordPopUpVC.swift in Sources */,
 				3C429769259F16D10061483E /* KeywordSettingTVC.swift in Sources */,
 				EDAAEB7D25A01B550024E3E4 /* EvaluationDetailVC.swift in Sources */,
@@ -811,6 +859,7 @@
 				AED84DF025A558B30050D861 /* Extensions+UITextField.swift in Sources */,
 				EDDC038D25A9E025007162CD /* DetailRecordLayoutDelegate.swift in Sources */,
 				EDBF739325A1636300ECDEB9 /* DetailRecordTVC.swift in Sources */,
+				3C7F9D4325AD993400F004E0 /* AddKeywordModel.swift in Sources */,
 				EDAAFA3425A8787100424BF9 /* MypageWithdrawalVC.swift in Sources */,
 				AED84DEF25A558B30050D861 /* Extensions+UIColor.swift in Sources */,
 				EDAAFA2425A82E0400424BF9 /* MypageSettingVC.swift in Sources */,
@@ -825,6 +874,7 @@
 				3CB1214D25A778CB0080E60F /* KeywordDefineVC.swift in Sources */,
 				DEC98B8A25A486DC00CC522C /* KeywordPriorityTVC.swift in Sources */,
 				3CC86433259CCCB00043421A /* ContentCVC.swift in Sources */,
+				3C7F9D4625AD9A7900F004E0 /* KeywordService.swift in Sources */,
 				AE46FA2A25AC16090051D667 /* SignupRequest.swift in Sources */,
 				3C71FE3825AB7226007BC463 /* RecordKeywordTVC.swift in Sources */,
 				AE76C040259B1A6D007B3901 /* SceneDelegate.swift in Sources */,
@@ -842,10 +892,12 @@
 				ED266029259EF02E00A376C0 /* EvaluationTabCVC.swift in Sources */,
 				DE91346025A309500045BDCE /* AddUserKeywordVC.swift in Sources */,
 				EDAAFA2825A83B7000424BF9 /* SettingSecurityTVC.swift in Sources */,
+				3C7F9D3F25AD970000F004E0 /* AddKeywordRequest.swift in Sources */,
 				AE53FBCB25AAFA6300D62AA7 /* GoalDetailVC.swift in Sources */,
 				EDA9CA8425A1A74D00BF46C1 /* DetailRecordContentTVC.swift in Sources */,
 				AED84DF625A558B30050D861 /* UIView+Animation.swift in Sources */,
 				AED84DED25A558B30050D861 /* Extensions+UIApplication.swift in Sources */,
+				3C61A51E25ADFC73002DAA3E /* SelectedKeywordsModel.swift in Sources */,
 				3C7F9D3825AD8A4800F004E0 /* DetailTVC.swift in Sources */,
 				AE46FA3025AC1ADE0051D667 /* NetworkLoggerPlugin.swift in Sources */,
 				AE46FA2D25AC178C0051D667 /* SignupModel.swift in Sources */,
