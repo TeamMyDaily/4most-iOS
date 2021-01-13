@@ -10,6 +10,7 @@ import Moya
 
 class GoalWriteVC: UIViewController {
     private let authProvider = MoyaProvider<GoalService>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    var write = false
     
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
@@ -69,10 +70,17 @@ extension GoalWriteVC {
         self.navigationItem.title = "목표"
         
         let leftButton: UIBarButtonItem = {
-            let button = UIBarButtonItem(title: "뒤", style: .plain, target: self, action: #selector(cancelAlertaction))
+            let button = UIBarButtonItem(title: "뒤", style: .plain, target: self, action: #selector(dismissVC))
             return button
         }()
         navigationItem.leftBarButtonItem = leftButton
+    }
+    
+    @objc func dismissVC(){
+        if write {
+            cancelAlertaction()
+        }
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc
@@ -125,6 +133,7 @@ extension GoalWriteVC: UITextViewDelegate{
     }
 
     func textViewDidChange(_ textView: UITextView) {
+        write = true
         textViewCount.text = "\(textView.text.count)"
         if textView.text.count == 0 {
             saveButton.isEnabled = false
