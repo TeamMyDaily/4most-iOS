@@ -64,7 +64,9 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yy년 MM월 W주"
         
-        getDaily()
+        print(datePicker.date.startOfWeek ?? 0)
+        print(datePicker.date.endOfWeek ?? 0)
+//        getDaily()
     }
 }
 

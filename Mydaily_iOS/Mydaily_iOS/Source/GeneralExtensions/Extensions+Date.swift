@@ -37,21 +37,23 @@ extension Date {
         var gregorian = Calendar(identifier: .gregorian)
         gregorian.timeZone = TimeZone(secondsFromGMT: 0)!
         guard let monday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) else { return nil }
-        if Calendar.current.component(.weekday, from: self) == 1{ //일요일일때
-            return gregorian.date(byAdding: .day, value: -5, to: monday)
+        if Calendar.current.component(.weekday, from: monday) == 1{ //일요일일때
+            return gregorian.date(byAdding: .day, value: 1, to: monday)
         }else{
             return gregorian.date(byAdding: .day, value: 2, to: monday)
         }
     }
     var endOfWeek: Date? {
-        let gregorian = Calendar(identifier: .gregorian)
+        var gregorian = Calendar(identifier: .gregorian)
+        gregorian.timeZone = TimeZone(secondsFromGMT: 0)!
         guard let sunday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) else { return nil }
         if Calendar.current.component(.weekday, from: self) == 1{ //일요일일때
-            return gregorian.date(byAdding: .day, value: 1, to: sunday)
+            return gregorian.date(byAdding: .day, value: 2, to: sunday)
         }else{
-            return gregorian.date(byAdding: .day, value: 8, to: sunday)
+            return gregorian.date(byAdding: .day, value: 9, to: sunday)
         }
     }
+    
     
     var containWeek: Date? {
         let gregorian = Calendar(identifier: .gregorian)

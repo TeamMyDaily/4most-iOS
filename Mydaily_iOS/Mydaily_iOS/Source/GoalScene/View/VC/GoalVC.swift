@@ -16,7 +16,7 @@ class GoalVC: UIViewController {
     @IBOutlet weak var defaultLabel: UILabel!
     @IBOutlet weak var goalCountLabel: UILabel!
     @IBOutlet weak var goalTableView: UITableView!
-    
+    var date = Date()
     let dateButton: UIButton = {
                 $0.translatesAutoresizingMaskIntoConstraints = false
                 $0.setTitle("오늘 >", for: .normal)
@@ -45,6 +45,13 @@ class GoalVC: UIViewController {
 }
 
 extension GoalVC {
+    func DateInMilliSeconds(date: Date)-> Int
+    {
+        print(Int(date.startOfWeek!.timeIntervalSince1970 * 1000))
+        print(Int(date.endOfWeek!.timeIntervalSince1970 * 1000))
+        return Int(date.startOfWeek!.timeIntervalSince1970 * 1000)
+    }
+    
     func setDateLabel(){
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yy년 MM월 W주"
@@ -168,7 +175,8 @@ extension GoalVC: UITableViewDataSource{
 // MARK: - 통신
 extension GoalVC{
     func getGoal(){
-        let param = GoalRequest.init("1609815600000","1610420400000")
+        let param = GoalRequest.init("\(DateInMilliSeconds(date: self.date.startOfWeek!))","\(DateInMilliSeconds(date: self.date.endOfWeek!))")
+        //"1609815600000","1610420400000"
         authProvider.request(.goalinquiry(param: param)) { response in
             switch response {
                 case .success(let result):
