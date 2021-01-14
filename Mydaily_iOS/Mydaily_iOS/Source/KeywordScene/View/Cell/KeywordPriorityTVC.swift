@@ -23,7 +23,7 @@ class KeywordPriorityTVC: UITableViewCell {
     
     func setKeywordLabel(text: String){
         keywordLabel.text = text
-        botomView.backgroundColor = UIColor.mainGray
+        botomView.backgroundColor = UIColor.mainOrange
     }
     
 }

@@ -13,8 +13,9 @@ class KeywordPopUpVC: UIViewController {
     @IBOutlet var contentPageContol: UIPageControl!
     @IBOutlet var contentCollectionView: UICollectionView!
     
-    
+    @IBOutlet var helpLabel: UILabel!
     @IBOutlet var skipButton: UIButton!
+
     
     var isOnBoard = false
     var onBoardText:[String] = ["내 삶의 지향점이 될\n가치관을 정해보세요",
@@ -39,6 +40,11 @@ class KeywordPopUpVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegate()
+        if isOnBoard{
+            helpLabel.isHidden = true
+        }else{
+            helpLabel.isHidden = false
+        }
     }
     
     func setDelegate(){

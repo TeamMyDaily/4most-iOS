@@ -14,6 +14,7 @@ class ContentCVC: UICollectionViewCell {
     @IBOutlet var questionLabel: UILabel!
     @IBOutlet var mainImageView: UIImageView!
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -30,6 +31,7 @@ class ContentCVC: UICollectionViewCell {
         
         if answer == ""{
             answerLabel.isHidden = true
+        
         }else{
             answerLabel.text = answer
         }

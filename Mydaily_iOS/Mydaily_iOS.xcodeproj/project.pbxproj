@@ -35,7 +35,7 @@
 		3CAED02225AED33F004F67C9 /* MypageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAED02125AED33F004F67C9 /* MypageService.swift */; };
 		3CAED02625AEE073004F67C9 /* MypageKeywordListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAED02525AEE073004F67C9 /* MypageKeywordListModel.swift */; };
 		3CAED02925AF091A004F67C9 /* KeywordDefinitionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAED02825AF091A004F67C9 /* KeywordDefinitionRequest.swift */; };
-		3CAED02C25AF0B28004F67C9 /* BasicResponseMadel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAED02B25AF0B28004F67C9 /* BasicResponseMadel.swift */; };
+		3CAED02C25AF0B28004F67C9 /* BasicResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAED02B25AF0B28004F67C9 /* BasicResponseModel.swift */; };
 		3CB1214D25A778CB0080E60F /* KeywordDefineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB1214C25A778CB0080E60F /* KeywordDefineVC.swift */; };
 		3CC86426259CAFCB0043421A /* Keyword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CC86425259CAFCB0043421A /* Keyword.storyboard */; };
 		3CC8642C259CAFEE0043421A /* KeywordPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC8642B259CAFEE0043421A /* KeywordPopUpVC.swift */; };
@@ -153,7 +153,7 @@
 		3CAED02125AED33F004F67C9 /* MypageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageService.swift; sourceTree = "<group>"; };
 		3CAED02525AEE073004F67C9 /* MypageKeywordListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageKeywordListModel.swift; sourceTree = "<group>"; };
 		3CAED02825AF091A004F67C9 /* KeywordDefinitionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordDefinitionRequest.swift; sourceTree = "<group>"; };
-		3CAED02B25AF0B28004F67C9 /* BasicResponseMadel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BasicResponseMadel.swift; path = ../../../../../../../../../../../Applications/BasicResponseMadel.swift; sourceTree = "<group>"; };
+		3CAED02B25AF0B28004F67C9 /* BasicResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BasicResponseModel.swift; path = ../../../../../../../../../../../Applications/BasicResponseModel.swift; sourceTree = "<group>"; };
 		3CB1214C25A778CB0080E60F /* KeywordDefineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordDefineVC.swift; sourceTree = "<group>"; };
 		3CC86425259CAFCB0043421A /* Keyword.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Keyword.storyboard; sourceTree = "<group>"; };
 		3CC8642B259CAFEE0043421A /* KeywordPopUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeywordPopUpVC.swift; sourceTree = "<group>"; };
@@ -328,7 +328,7 @@
 				3C7F9D4225AD993400F004E0 /* AddKeywordModel.swift */,
 				3C61A51D25ADFC73002DAA3E /* SelectedKeywordsModel.swift */,
 				3CAED01425AEB1C1004F67C9 /* PriorityKeywordModel.swift */,
-				3CAED02B25AF0B28004F67C9 /* BasicResponseMadel.swift */,
+				3CAED02B25AF0B28004F67C9 /* BasicResponseModel.swift */,
 			);
 			path = ResponseMadel;
 			sourceTree = "<group>";
@@ -1033,7 +1033,7 @@
 				AEFB21F9259C5CB900A3228C /* TabbarController.swift in Sources */,
 				EDBF739B25A18BF100ECDEB9 /* DetailRecordLayout.swift in Sources */,
 				AE46FA2625AC13CE0051D667 /* GeneralAPI.swift in Sources */,
-				3CAED02C25AF0B28004F67C9 /* BasicResponseMadel.swift in Sources */,
+				3CAED02C25AF0B28004F67C9 /* BasicResponseModel.swift in Sources */,
 				AEFB2216259C6E6700A3228C /* MypageVC.swift in Sources */,
 				AE53FBCE25AB02E000D62AA7 /* GoalModifyVC.swift in Sources */,
 				AED84DF125A558B30050D861 /* Extensions+Encodable.swift in Sources */,

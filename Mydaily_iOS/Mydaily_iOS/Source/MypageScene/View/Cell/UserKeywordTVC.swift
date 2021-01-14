@@ -23,7 +23,6 @@ class UserKeywordTVC: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -33,7 +32,9 @@ class UserKeywordTVC: UITableViewCell {
     
     func setContent(selected: Bool, keyword: String){
         if selected {
-            fixClipButton.setBackgroundImage(UIImage(systemName: "paperclip.circle.fill"), for: .normal)
+            fixClipButton.setBackgroundImage(UIImage(named: "btn_selected_pin_l"), for: .normal)
+        }else{
+            fixClipButton.setBackgroundImage(UIImage(named: "btn_unselected_pin_l"), for: .normal)
         }
         keywordLabel.text = keyword
     }
@@ -41,9 +42,6 @@ class UserKeywordTVC: UITableViewCell {
     @IBAction func alertKeywordMenu(_ sender: UIButton){
         print("메뉴바 눌림")
         cellDelegate?.alertKeywordMenu(self, keyword: keywordLabel.text ?? "")
-        
-        
-        
         
     }
     
