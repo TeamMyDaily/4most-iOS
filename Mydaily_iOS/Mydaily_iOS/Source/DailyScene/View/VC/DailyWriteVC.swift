@@ -94,7 +94,8 @@ extension DailyWriteVC {
         
         navigationItem.leftBarButtonItem = leftButton
         let modifyRightButton: UIBarButtonItem = {
-            let button = UIBarButtonItem(title: "수정", style: .done, target: self, action: #selector(changeModify))
+            let button = UIBarButtonItem(image: UIImage(named: "btn_edit"), style: .plain, target: self, action: #selector(changeModify))
+            button.tintColor = .mainOrange
             button.setTitleTextAttributes([
                                             NSAttributedString.Key.font: UIFont.myRegularSystemFont(ofSize: 17),
                                             NSAttributedString.Key.foregroundColor: UIColor.mainOrange], for: .normal)
@@ -112,7 +113,8 @@ extension DailyWriteVC {
     }
     @objc func changeModify(){
         let deleteRightButton: UIBarButtonItem = {
-            let button = UIBarButtonItem(title: "삭제", style: .done, target: self, action: #selector(deleteButton))
+            let button = UIBarButtonItem(image: UIImage(named: "btn_trash"), style: .plain, target: self, action: #selector(deleteButton))
+            button.tintColor = .mainOrange
             button.setTitleTextAttributes([
                                             NSAttributedString.Key.font: UIFont.myRegularSystemFont(ofSize: 17),
                                             NSAttributedString.Key.foregroundColor: UIColor.mainOrange], for: .normal)
@@ -123,7 +125,11 @@ extension DailyWriteVC {
             return button
         }()
         self.navigationItem.rightBarButtonItem = deleteRightButton
+        todayTitle.isEnabled = true
+        todayTextView.isEditable = true
         postingButton.isHidden = false
+        todayTextView.backgroundColor = .mainLightGray2
+        todayTextView.borderWidth = 0
         saveButton.isHidden = true
     }
     
@@ -195,13 +201,20 @@ extension DailyWriteVC {
             todayTitle.layer.addBorder([.bottom], color: .mainOrange, width: 1, move: 5)
         }
         else{ //이미 작성정보 있을시
+            todayTextView.isEditable = false
+            todayTitle.isEnabled = false
             todayTextView.borderWidth = 1
             todayTextView.backgroundColor = .white
             todayTextView.borderColor = .mainOrange
             todayTextView.text = dailyTask?.data.detail
+            todayTextView.textColor = .mainBlack
             todayTitle.text = dailyTask?.data.title
             scoreSlider.value = Float(dailyTask?.data.satisfaction ?? 0)
-            todayScore.text = String(dailyTask?.data.satisfaction ?? 0)
+            scoreSlider.thumbTintColor = .mainOrange
+            for i in 0..<Int(dailyTask?.data.satisfaction ?? 0){
+                sliderIndex[i].layer.backgroundColor = UIColor.mainOrange.cgColor
+            }
+            todayScore.text = "\(dailyTask?.data.satisfaction ?? 0)점"
             labelCount.text = String(dailyTask?.data.title.count ?? 0)
             textViewCount.text = String(dailyTask?.data.detail.count ?? 0)
             postingButton.isHidden = true
@@ -301,15 +314,15 @@ extension DailyWriteVC {
     
     @objc func deleteButton() {
         let alert = UIAlertController(
-            title: "이 기록을 삭제하시겠어요?!",
+            title: "기록을 삭제 하시겠어요?",
             message: nil,
             preferredStyle: UIAlertController.Style.alert
         )
-        let cancel = UIAlertAction(title: "삭제하기", style: .destructive) {_ in
+        let cancel = UIAlertAction(title: "삭제하기", style: .default) {_ in
             self.deleteTask()
             self.navigationController?.popViewController(animated: true)
         }
-        let okAction = UIAlertAction(title: "닫기", style: .default)
+        let okAction = UIAlertAction(title: "취소하기", style: .default)
         alert.addAction(cancel)
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)

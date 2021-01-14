@@ -25,19 +25,24 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AQl-HE-drX">
-                                        <rect key="frame" x="352" y="20" width="0.0" height="0.0"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AQl-HE-drX">
+                                        <rect key="frame" x="345.5" y="14" width="6.5" height="12"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btnCalendar" translatesAutoresizingMaskIntoConstraints="NO" id="isa-7r-xay">
+                                        <rect key="frame" x="313.5" y="8" width="24" height="24"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="AQl-HE-drX" secondAttribute="trailing" constant="23" id="1a7-9E-kW0"/>
                                     <constraint firstItem="QBE-yQ-let" firstAttribute="top" secondItem="Qjx-FC-Tzw" secondAttribute="top" constant="8" id="6ca-EA-QCL"/>
+                                    <constraint firstItem="AQl-HE-drX" firstAttribute="leading" secondItem="isa-7r-xay" secondAttribute="trailing" constant="8" id="LTh-OT-wAa"/>
                                     <constraint firstAttribute="height" constant="40" id="N7H-D7-Ung"/>
                                     <constraint firstItem="AQl-HE-drX" firstAttribute="centerY" secondItem="QBE-yQ-let" secondAttribute="centerY" id="TgH-6E-kUE"/>
+                                    <constraint firstItem="isa-7r-xay" firstAttribute="centerY" secondItem="AQl-HE-drX" secondAttribute="centerY" id="dOM-wP-c5n"/>
                                     <constraint firstAttribute="bottom" secondItem="QBE-yQ-let" secondAttribute="bottom" constant="8" id="hbc-Ff-cGZ"/>
                                     <constraint firstItem="QBE-yQ-let" firstAttribute="leading" secondItem="Qjx-FC-Tzw" secondAttribute="leading" constant="16" id="vqF-vB-ozk"/>
                                 </constraints>
@@ -368,6 +373,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="btnCalendar" width="24" height="24"/>
         <image name="image_main" width="222" height="131"/>
         <image name="img_logotype_dark" width="106" height="21.5"/>
         <systemColor name="labelColor">
