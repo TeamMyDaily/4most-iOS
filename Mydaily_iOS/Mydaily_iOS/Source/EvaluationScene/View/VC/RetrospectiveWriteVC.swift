@@ -52,7 +52,7 @@ class RetrospectiveWriteVC: UIViewController {
 extension RetrospectiveWriteVC {
     @IBAction func touchUpSave(_ sender: Any) {
         guard let text: String = writeTextView.text else {return}
-        saveContent?(text, counter) // 네트워크 연결되면 지워야 할 수도
+        saveContent?(text, counter)
         saveText()
         
         tabBarController?.tabBar.isHidden = false
@@ -223,7 +223,10 @@ extension RetrospectiveWriteVC {
 //MARK: Network
 extension RetrospectiveWriteVC {
     func saveText() {
-        let param = RegistRetrospectiveRequest.init(1610290800000, 1610982000000, 1610290800000, self.cellNum + 1, self.writeTextView.text)
+        guard let start = Date().startOfWeek?.millisecondsSince1970 else {return}
+        guard let end = Date().endOfWeek?.millisecondsSince1970 else {return}
+        guard let current = Date().todayOfWeek?.millisecondsSince1970 else {return}
+        let param = RegistRetrospectiveRequest.init(start, end, current, self.cellNum + 1, self.writeTextView.text)
         print(param)
         authProvider.request(.registRetrospective(param: param)) { response in
             switch response {

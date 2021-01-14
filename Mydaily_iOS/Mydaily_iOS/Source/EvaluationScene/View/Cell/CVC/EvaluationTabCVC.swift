@@ -30,9 +30,13 @@ class EvaluationTabCVC: UICollectionViewCell {
     }()
     
     var delegate: TableViewInsideCollectionViewDelegate?
+    var collectionView: UICollectionView?
     
     var weekText: String? = nil
+    var start: Date?
+    var end: Date?
     var dateValue = 0
+    let changeDateValue = 86400 * 7
     
     var totalKeywordId: [Int] = []
     var keywords: [String] = []
@@ -43,6 +47,7 @@ class EvaluationTabCVC: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setDate()
         getText()
         setTableView()
         setViewWithoutTableView()
@@ -101,6 +106,7 @@ extension EvaluationTabCVC: UITableViewDelegate {
                 guard let dvc = UIStoryboard(name: "Evaluation", bundle: nil).instantiateViewController(identifier: "EvaluationDetailVC") as? EvaluationDetailVC else {
                     return
                 }
+                dvc.listCount = counts[indexPath.row]
                 dvc.weekText = weekText
                 dvc.cellNum = totalKeywordId[indexPath.row]
                 self.delegate?.cellTapedEvaluation(dvc: dvc)
@@ -194,6 +200,14 @@ extension EvaluationTabCVC {
     }
 }
 
+//MARK: Date
+extension EvaluationTabCVC {
+    private func setDate() {
+        start = Date().startOfWeek
+        end = Date().endOfWeek
+    }
+}
+
 //MARK: Notification
 extension EvaluationTabCVC {
     private func setNotification() {
@@ -207,15 +221,24 @@ extension EvaluationTabCVC {
     }
     
     @objc func sendBeforeWeek() {
-        dateValue -= 1
+        dateValue -= (1 * changeDateValue)
+        start = (Date().startOfWeek ?? Date()) - TimeInterval(dateValue)
+        end = (Date().endOfWeek ?? Date()) - TimeInterval(dateValue)
+        getText()
         setViewByDateValue()
+        // collectionView를 지정 지정 지정
+        collectionView?.reloadData()
         noDataView.setNeedsLayout()
         noDataView.layoutIfNeeded()
     }
     
     @objc func sendAfterWeek() {
-        dateValue += 1
+        dateValue += (1 * changeDateValue)
+        start = (Date().startOfWeek ?? Date()) + TimeInterval(dateValue)
+        end = (Date().endOfWeek ?? Date()) + TimeInterval(dateValue)
+        getText()
         setViewByDateValue()
+        collectionView?.reloadData()
         noDataView.setNeedsLayout()
         noDataView.layoutIfNeeded()
     }
@@ -223,14 +246,19 @@ extension EvaluationTabCVC {
 
 //MARK: Network
 extension EvaluationTabCVC {
-    func getText(){
-        let param = ViewRequest.init("1610290800000", "1610982000000")
+    func getText() {
+        let day = (Date().startOfWeek ?? Date()) - 86400 * 7
+        guard let startDate = start?.millisecondsSince1970 else {return}
+        guard let endDate = end?.millisecondsSince1970 else {return}
+        let startString = "\(startDate)"
+        let endString = "\(endDate)"
+        let param = ViewRequest.init(startString, endString)
         authProvider.request(.viewReport(param: param)) { response in
             switch response {
                 case .success(let result):
                     do {
                         self.textData = try result.map(ViewReportModel.self)
-                        if self.textData?.data.keywordsExist == false {
+                        if self.textData?.data.keywordsExist == false || (self.textData?.data.keywordsExist == true && self.textData?.data.result.isEmpty ?? true) {
                             self.keywordTableView.isHidden = true
                             self.noDataView.isHidden = false
                         } else {

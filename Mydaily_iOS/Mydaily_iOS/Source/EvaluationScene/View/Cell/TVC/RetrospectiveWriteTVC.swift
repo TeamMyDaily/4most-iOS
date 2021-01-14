@@ -107,6 +107,8 @@ extension RetrospectiveWriteTVC {
                 
                 self.cellPlaceholders[0] = text
                 self.counts[0] = textCount
+                
+                self.tableView?.reloadData()
             }
         }
         userDefault.setValue(self.cellTitles[0], forKey: "title")
@@ -128,6 +130,7 @@ extension RetrospectiveWriteTVC {
                 
                 self.badTextView.textColor = .mainGray
             } else {
+                print(text)
                 self.badViewButton.layer.borderWidth = 1
                 self.badViewButton.layer.borderColor = UIColor.mainPaleOrange.cgColor
                 self.badViewButton.backgroundColor = .white
@@ -206,6 +209,7 @@ extension RetrospectiveWriteTVC {
     
     @objc func getRetrospective() {
         getText()
+        tableView?.reloadData()
     }
 }
 
@@ -392,23 +396,89 @@ extension RetrospectiveWriteTVC {
 //MARK: Network
 extension RetrospectiveWriteTVC {
     func getText(){
-        let param = ViewRequest.init("1610290800000", "1610982000000")
+        guard let start = Date().startOfWeek?.millisecondsSince1970 else {return}
+        guard let end = Date().endOfWeek?.millisecondsSince1970 else {return}
+        let startString = "\(start)"
+        let endString = "\(end)"
+        let param = ViewRequest.init(startString, endString)
         authProvider.request(.viewRetrospective(param: param)) { response in
             switch response {
                 case .success(let result):
                     do {
+                        print(param)
                         self.textData = try result.map(ViewRetrospectiveModel.self)
+                        print(self.textData)
                         if self.textData?.data.isWritten == false {
                             // 현재와 동일 있으면 써주기
                         } else {
                             if self.textData?.data.review.good != nil {
                                 self.goodTextView.text = self.textData?.data.review.good
+                                
+                                self.goodViewButton.layer.borderWidth = 1
+                                self.goodViewButton.layer.borderColor = UIColor.mainPaleOrange.cgColor
+                                self.goodViewButton.backgroundColor = .white
+                                
+                                self.goodTextView.isUserInteractionEnabled = true
+                                self.goodTextView.textColor = .mainBlack
+                                
+                                let textCount = self.goodTextView.text.count
+                                self.goodCounterLabel.text = "\(textCount)"
+                                
+                                if self.goodViewHeightConstraint?.constant != 328 {
+                                    self.goodViewHeightConstraint?.constant = 328
+                                    self.tableView?.rowHeight += 224
+                                    self.tableView?.beginUpdates()
+                                    self.tableView?.endUpdates()
+                                }
+                                
+                                self.cellPlaceholders[0] = self.goodTextView.text
+                                self.counts[0] = textCount
                             }
                             if self.textData?.data.review.bad != nil {
                                 self.badTextView.text = self.textData?.data.review.bad
+                                
+                                self.badViewButton.layer.borderWidth = 1
+                                self.badViewButton.layer.borderColor = UIColor.mainPaleOrange.cgColor
+                                self.badViewButton.backgroundColor = .white
+                                
+                                self.badTextView.isUserInteractionEnabled = true
+                                self.badTextView.textColor = .mainBlack
+                                
+                                let textCount = self.badTextView.text.count
+                                self.badCounterLabel.text = "\(textCount)"
+                                
+                                if self.badViewHeightConstraint?.constant != 328 {
+                                    self.badViewHeightConstraint?.constant = 328
+                                    self.tableView?.rowHeight += 224
+                                    self.tableView?.beginUpdates()
+                                    self.tableView?.endUpdates()
+                                }
+                                
+                                self.cellPlaceholders[1] = self.badTextView.text
+                                self.counts[1] = textCount
                             }
                             if self.textData?.data.review.next != nil {
                                 self.nextTextView.text = self.textData?.data.review.next
+                                
+                                self.nextViewButton.layer.borderWidth = 1
+                                self.nextViewButton.layer.borderColor = UIColor.mainPaleOrange.cgColor
+                                self.nextViewButton.backgroundColor = .white
+                                
+                                self.nextTextView.isUserInteractionEnabled = true
+                                self.nextTextView.textColor = .mainBlack
+                                
+                                let textCount = self.nextTextView.text.count
+                                self.nextCounterLabel.text = "\(textCount)"
+                                
+                                if self.nextViewHeightConstraint?.constant != 328 {
+                                    self.nextViewHeightConstraint?.constant = 328
+                                    self.tableView?.rowHeight += 224
+                                    self.tableView?.beginUpdates()
+                                    self.tableView?.endUpdates()
+                                }
+                                
+                                self.cellPlaceholders[2] = self.nextTextView.text
+                                self.counts[2] = textCount
                             }
                         }
                     } catch(let err) {

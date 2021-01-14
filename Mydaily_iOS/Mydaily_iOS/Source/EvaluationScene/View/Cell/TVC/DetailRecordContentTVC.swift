@@ -59,12 +59,22 @@ extension DetailRecordContentTVC: UICollectionViewDelegateFlowLayout {
 extension DetailRecordContentTVC {
     func setList(task: [Tasks]) {
         if !task.isEmpty {
+            print(task)
             for i in 0...task.count-1 {
                 taskTitle.append(task[i].title)
-                taskDate.append(task[i].date)
                 taskSatisfaction.append(task[i].satisfaction)
+                
+                let start = String.Index(encodedOffset: 0)
+                let end = String.Index(encodedOffset: 10)
+                let substring = String(task[i].date[start..<end])
+                let dateString = substring.replacingOccurrences(of: "-", with: ".",
+                                               options: NSString.CompareOptions.literal, range:nil)
+                taskDate.append(dateString)
             }
         }
+        
+        hideViewIfListEmpty()
+        recordCollectionView.reloadData()
     }
     
     private func setNoRecordView() {

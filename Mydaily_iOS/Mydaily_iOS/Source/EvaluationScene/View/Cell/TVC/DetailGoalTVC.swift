@@ -34,6 +34,9 @@ extension DetailGoalTVC {
     func setData(goal: String, isGoalCompleted: Bool) {
         goalLabel.text = goal
         isAchieve = isGoalCompleted
+        print("isAchieve\(isAchieve)")
+        setButton()
+        setColorWhenAchieve()
     }
     
     private func setLabel() {

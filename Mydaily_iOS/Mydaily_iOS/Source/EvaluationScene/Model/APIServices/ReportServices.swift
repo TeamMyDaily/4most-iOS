@@ -35,7 +35,8 @@ extension ReportServices: TargetType {
     
     var parameterEncoding: ParameterEncoding {
         switch self {
-        case .viewRetrospective:
+        case .viewRetrospective,
+             .viewReport:
             return URLEncoding.default
         default:
             return JSONEncoding.default
@@ -74,7 +75,7 @@ extension ReportServices: TargetType {
     switch self {
     default:
       return ["Content-Type": "application/json",
-              "jwt" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6InFxIiwiZW1haWwiOiJxcUBxcS5xcSIsImlhdCI6MTYxMDMzMzQ0MywiZXhwIjoxNjEyOTI1NDQzLCJpc3MiOiJjeWoifQ.k3HAJg9K_NMVscJWafGBdCB4Odj6qua9VUL2N3_siYo"]
+              "jwt" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsIm5hbWUiOiLqsIDsmIHtmJzroLkiLCJlbWFpbCI6ImFhQGFhLmNvbSIsImlhdCI6MTYxMDUyNjQ1MiwiZXhwIjoxNjEzMjA0ODUyLCJpc3MiOiJjeWoifQ.0EOvEkKTfzZZMWkF1gIrNJtdViyaHktHPm3KVQypX4s"]
     }
   }
 }

@@ -18,10 +18,10 @@ class EvaluationDetailVC: UIViewController {
     @IBOutlet weak var keywordDetailTableView: UITableView!
     
     var goal: String = ""
-    var isGoalCompleted = false
     var weekText: String? = nil
     var listCount = 0
     var cellNum = 0
+    var isGoalComplete = false
     
     var task: [Tasks] = []
 
@@ -32,7 +32,6 @@ class EvaluationDetailVC: UIViewController {
         setTableView()
         setLabel()
     }
-    
 }
 
 extension EvaluationDetailVC: UITableViewDataSource {
@@ -49,7 +48,8 @@ extension EvaluationDetailVC: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailGoalTVC.identifier) as? DetailGoalTVC else {
                 return UITableViewCell()
             }
-            cell.setData(goal: goal, isGoalCompleted: isGoalCompleted)
+            cell.setData(goal: goal, isGoalCompleted: isGoalComplete)
+            print("fogofo\(isGoalComplete)")
             cell.selectionStyle = .none
             return cell
         } else if indexPath.section == 1 {
@@ -101,10 +101,6 @@ extension EvaluationDetailVC {
 
 //MARK: UI
 extension EvaluationDetailVC {
-    func setData() {
-        
-    }
-    
     private func setNavigationBar() {
         navigationTitleLabel.text = "회고"
         navigationTitleLabel.textColor = .mainBlack
@@ -132,8 +128,8 @@ extension EvaluationDetailVC {
 //MARK: Network
 extension EvaluationDetailVC {
     func getKeywordDetail() {
-        let pathToString = "\(cellNum)"
-        let param = ViewDetailReportRequest.init(pathToString, "1610290800000", "1610982000000")
+        let path = cellNum
+        let param = ViewDetailReportRequest.init(path, "1610290800000", "1610982000000")
         print(param)
         authProvider.request(.viewDetailReport(param: param)) { response in
             switch response {
@@ -144,14 +140,16 @@ extension EvaluationDetailVC {
                         self.keywordLabel.text = self.keywordData?.data.keywordName
                         // DetailGoalTVC
                         self.goal = self.keywordData?.data.goal ?? ""
-                        self.isGoalCompleted = ((self.keywordData?.data.isGoalCompleted) != nil)
+                        self.isGoalComplete = self.keywordData?.data.isGoalCompleted ?? false
                         //DetailRecordTVC, DetailRecordContent
-                        self.listCount = self.keywordData?.data.tasks.count ?? 0
-                        for i in 0...self.listCount-1 {
-                            guard let tasks = self.keywordData?.data.tasks[i] else {return}
-                            print(tasks)
-                            self.task.append(tasks)
+                        self.task.removeAll()
+                        if self.listCount != 0 {
+                            for i in 0...self.listCount-1 {
+                                guard let tasks = self.keywordData?.data.tasks[i] else {return}
+                                self.task.append(tasks)
+                            }
                         }
+                        self.keywordDetailTableView.reloadData()
                     } catch(let err) {
                         print(err.localizedDescription)
                     }

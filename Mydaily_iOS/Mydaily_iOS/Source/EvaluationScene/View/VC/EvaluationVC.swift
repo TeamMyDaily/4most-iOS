@@ -31,12 +31,13 @@ class EvaluationVC: UIViewController {
     var weekText: String?
     
     override func viewWillAppear(_ animated: Bool) {
-        NotificationCenter.default.post(name: NSNotification.Name("reloadReport"), object: nil)
-        NotificationCenter.default.post(name: NSNotification.Name("reloadRetrospective"), object: nil)
+        setReportNotification()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setReportNotification()
+        setRetrospectiveNotification()
         setNavigationBar()
         setTabBar()
         setWeek()
@@ -61,6 +62,7 @@ extension EvaluationVC: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             cell.weekText = weekText
+            cell.collectionView = keywordCollectionView
             cell.delegate = self
             return cell
         }
@@ -185,6 +187,17 @@ extension EvaluationVC {
     }
 }
 
+//MARK: Notification
+extension EvaluationVC {
+    private func setRetrospectiveNotification() {
+        NotificationCenter.default.post(name: NSNotification.Name("reloadRetrospective"), object: nil)
+    }
+    
+    private func setReportNotification() {
+        NotificationCenter.default.post(name: NSNotification.Name("reloadReport"), object: nil)
+    }
+}
+
 //MARK: Button
 extension EvaluationVC {
     private func changeButtonState(enableButton: UIButton, disableButton: UIButton, enableTabBar: UIView, unableTabBar: UIView) {
@@ -201,6 +214,9 @@ extension EvaluationVC {
     @objc func backToCurrentWeek() {
         setWeek()
         currentWeekButton.isHidden = true
+        setRetrospectiveNotification()
+        setReportNotification()
+        keywordCollectionView.reloadData()
     }
 }
 
