@@ -42,6 +42,7 @@ extension Date {
             return gregorian.date(byAdding: .day, value: 2, to: monday)
         }
     }
+    
     var endOfWeek: Date? {
         let gregorian = Calendar(identifier: .gregorian)
         guard let sunday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) else { return nil }
@@ -50,6 +51,16 @@ extension Date {
         }else{
             return gregorian.date(byAdding: .day, value: 8, to: sunday)
         }
+    }
+    
+    var todayOfWeek: Date? {
+        let gregorian = Calendar(identifier: .gregorian)
+        guard let today = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) else { return nil }
+        return gregorian.date(byAdding: .day, value: 0, to: today)
+    }
+    
+    var millisecondsSince1970: Int64 {
+        return Int64(self.timeIntervalSince1970 * 1000)
     }
     
     var containWeek: Date? {
