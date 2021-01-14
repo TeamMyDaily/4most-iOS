@@ -17,6 +17,6 @@ struct KeywordDefinitionModel: Codable {
 // MARK: - DataClass
 struct KeywordDefinition: Codable {
     let isWritten: Bool
-    let name :String?
-    let definition: String?
+    let name :String
+    let definition: String
 }

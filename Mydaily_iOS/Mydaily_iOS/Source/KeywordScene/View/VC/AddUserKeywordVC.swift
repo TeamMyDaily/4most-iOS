@@ -14,6 +14,8 @@ class AddUserKeywordVC: UIViewController {
     var responseStatus = -1
     var semaphore = DispatchSemaphore(value: 1)
     
+    @IBOutlet var errorCheckButton: UIImageView!
+    
     static let identifier = "AddUserKeywordVC"
     
     @IBOutlet weak var keywordTextField: UITextField!
@@ -37,7 +39,7 @@ class AddUserKeywordVC: UIViewController {
         setContent()
         keywordTextField.delegate = self
         addButton.isEnabled = false
-        
+        errorCheckButton.isHidden = true
     }
     
     
@@ -93,8 +95,9 @@ class AddUserKeywordVC: UIViewController {
 extension AddUserKeywordVC: UITextFieldDelegate{
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         noticeLabel.text = ""
-        if (string == " ") {
+        if (string == " " || string == "\n" || string == "\t"  ) {
             noticeLabel.text = "잠깐! 공백은 입력할 수 없어요!"
+            errorCheckButton.isHidden = false
             return false
         }
         
@@ -102,25 +105,31 @@ extension AddUserKeywordVC: UITextFieldDelegate{
             let validString = CharacterSet(charactersIn: "!@#$%^&*()_+{}[]|\"<>,.~`/:;?-=\\¥'£•¢")
             if string.rangeOfCharacter(from: validString) != nil {
                 noticeLabel.text = "잠깐! 특수문자는 입력할 수 없어요!"
+                errorCheckButton.isHidden = false
                 return false
             }
             
             let englishString = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
             if string.rangeOfCharacter(from: englishString) != nil{
                 noticeLabel.text = "잠깐! 영어는 입력할 수 없어요!"
+                errorCheckButton.isHidden = false
                 return false
             }
             
             let numberString = CharacterSet(charactersIn: "1234567890")
             if string.rangeOfCharacter(from: numberString) != nil{
                 noticeLabel.text = "잠깐! 숫자는 입력할 수 없어요!"
+                errorCheckButton.isHidden = false
                 return false
             }
             
             if keywordArray.contains(string){
-                noticeLabel.text = "잠깐! 이미 있슴"
+                noticeLabel.text = "잠깐! 이미 존재하는 키워드입니다."
+                errorCheckButton.isHidden = false
                 return false
             }
+            
+            errorCheckButton.isHidden = true
             
         }
         
@@ -130,8 +139,9 @@ extension AddUserKeywordVC: UITextFieldDelegate{
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
         
         if updatedText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count > 5{
-            noticeLabel.text = "!!!!최대 5글자의 단어만 입력 가능해요!"
+            noticeLabel.text = "최대 5글자의 단어만 입력 가능해요!"
             addButton.isEnabled = false
+            errorCheckButton.isHidden = false
             addButton.backgroundColor = UIColor.mainGray
         }
         
@@ -145,6 +155,7 @@ extension AddUserKeywordVC: UITextFieldDelegate{
             else {
                 noticeLabel.text = "최대 5글자의 단어만 입력 가능해요!"
                 addButton.isEnabled = false
+                errorCheckButton.isHidden = false
                 addButton.backgroundColor = UIColor.mainGray
                 return false
             }
@@ -181,7 +192,7 @@ extension AddUserKeywordVC{
         self.navigationItem.title = "키워드 추가"
         
         let leftButton: UIBarButtonItem = {
-             let button = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(dismissVC))
+             let button = UIBarButtonItem(image: UIImage(named: "btn_arrow_left"), style: .plain, target: self, action: #selector(dismissVC))
              return button
            }()
            navigationItem.leftBarButtonItem = leftButton
