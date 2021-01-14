@@ -43,11 +43,25 @@ class GoalVC: UIViewController {
         self.date = Calendar.current.date(byAdding: .day, value: -7, to: date)!
         setDateLabel(date: date)
         getGoal()
+        
+        if date == Date(){
+            self.dateLabel.textColor = .mainOrange
+        }
+        else{
+            self.dateLabel.textColor = .mainBlack
+        }
     }
     @IBAction func moveWeekup(_ sender: Any) {
         self.date = Calendar.current.date(byAdding: .day, value: 8, to: date)!
         setDateLabel(date: date)
         getGoal()
+        
+        if date == Date(){
+            self.dateLabel.textColor = .mainOrange
+        }
+        else{
+            self.dateLabel.textColor = .mainBlack
+        }
     }
 }
 
@@ -120,7 +134,11 @@ extension GoalVC: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        if goalData?.data.keywordsExist == true{
+            return goalData?.data.result.count ?? 0
+        }else{
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -147,13 +165,11 @@ extension GoalVC: UITableViewDataSource{
         
         if self.goalData?.data.result.keywords[indexPath.row].isGoalCompleted == true{
             cell.outterView.borderColor = .mainOrange
-            cell.achieveLabel.backgroundColor = .mainOrange
-            cell.achieveLabel.text = "달성" //**달성딱지는 이미지로 바꾸는게 좋을듯
+            cell.achieveImg.image = UIImage(named: "btn_attainment_o")
         }
         else{
-            cell.outterView.borderColor = .mainGray
-            cell.achieveLabel.backgroundColor = .mainGray
-            cell.achieveLabel.text = "미달성"
+            cell.outterView.borderColor = .mainLightGray
+            cell.achieveImg.image = UIImage(named: "btn_not_attainment")
         }
 
         return cell

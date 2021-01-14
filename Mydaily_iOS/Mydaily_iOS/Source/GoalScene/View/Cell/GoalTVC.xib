@@ -31,24 +31,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1I-He-5dO">
-                                <rect key="frame" x="82" y="13.5" width="52" height="20"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZSk-lu-InA">
+                                <rect key="frame" x="82" y="13.5" width="50" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="aW2-DE-wxS"/>
-                                    <constraint firstAttribute="width" constant="52" id="ttd-lA-QKF"/>
+                                    <constraint firstAttribute="height" constant="20" id="ONV-e6-LC6"/>
+                                    <constraint firstAttribute="width" constant="50" id="fCf-gr-WTH"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </imageView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="tkB-8b-hPp" firstAttribute="leading" secondItem="dfR-R4-rWs" secondAttribute="leading" constant="24" id="41h-zO-mNY"/>
-                            <constraint firstItem="x1I-He-5dO" firstAttribute="leading" secondItem="y7h-k3-fDc" secondAttribute="trailing" constant="16" id="86f-05-FfW"/>
+                            <constraint firstItem="ZSk-lu-InA" firstAttribute="leading" secondItem="y7h-k3-fDc" secondAttribute="trailing" constant="16" id="BSm-t2-foC"/>
                             <constraint firstItem="y7h-k3-fDc" firstAttribute="leading" secondItem="dfR-R4-rWs" secondAttribute="leading" constant="24" id="W0Z-ci-Jlp"/>
                             <constraint firstItem="y7h-k3-fDc" firstAttribute="top" secondItem="dfR-R4-rWs" secondAttribute="top" constant="13" id="cqv-Yr-L4l"/>
                             <constraint firstAttribute="bottom" secondItem="tkB-8b-hPp" secondAttribute="bottom" constant="16" id="dw4-qP-cWv"/>
-                            <constraint firstItem="x1I-He-5dO" firstAttribute="centerY" secondItem="y7h-k3-fDc" secondAttribute="centerY" id="zVR-iL-ucM"/>
+                            <constraint firstItem="ZSk-lu-InA" firstAttribute="centerY" secondItem="y7h-k3-fDc" secondAttribute="centerY" id="kDO-UW-6Ra"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -59,9 +56,9 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgK-a0-2Xe">
-                        <rect key="frame" x="281" y="35" width="46" height="30"/>
-                        <state key="normal" title="Button"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgK-a0-2Xe">
+                        <rect key="frame" x="295" y="34" width="32" height="32"/>
+                        <state key="normal" image="btnAddS"/>
                     </button>
                 </subviews>
                 <constraints>
@@ -75,7 +72,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="achieveLabel" destination="x1I-He-5dO" id="hfw-lB-06I"/>
+                <outlet property="achieveImg" destination="ZSk-lu-InA" id="3N7-i3-RJe"/>
                 <outlet property="addButton" destination="kgK-a0-2Xe" id="6hh-1D-9nB"/>
                 <outlet property="keywordDetail" destination="tkB-8b-hPp" id="Dwb-9l-6cc"/>
                 <outlet property="keywordName" destination="y7h-k3-fDc" id="4hE-A9-g5R"/>
@@ -84,4 +81,7 @@
             <point key="canvasLocation" x="169.56521739130437" y="131.91964285714286"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="btnAddS" width="32" height="32"/>
+    </resources>
 </document>

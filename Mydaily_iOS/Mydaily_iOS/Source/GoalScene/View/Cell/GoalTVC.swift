@@ -17,6 +17,7 @@ class GoalTVC: UITableViewCell {
     @IBOutlet weak var keywordDetail: UILabel!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var achieveLabel: UILabel!
+    @IBOutlet weak var achieveImg: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -48,11 +49,5 @@ extension GoalTVC {
 //        keywordDetail.sizeToFit()
         
     
-        achieveLabel.clipsToBounds = true
-        achieveLabel.layer.cornerRadius = 10
-//        achieveLabel.backgroundColor = .mainGray
-        achieveLabel.font = .myRegularSystemFont(ofSize: 12)
-        achieveLabel.textColor = .white
-        achieveLabel.textAlignment = .center
     }
 }
