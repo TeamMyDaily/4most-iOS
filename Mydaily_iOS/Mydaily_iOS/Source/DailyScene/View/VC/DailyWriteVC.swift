@@ -76,7 +76,9 @@ class DailyWriteVC: UIViewController {
 }
 
 extension DailyWriteVC {
-    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+          self.view.endEditing(true)
+    }
     private func setupNavigationBar() {
         guard let navigationBar = self.navigationController?.navigationBar else { return }
         

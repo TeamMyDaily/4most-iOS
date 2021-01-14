@@ -14,8 +14,6 @@ class GoalDetailVC: UIViewController {
     @IBOutlet weak var weekLabel: UILabel!
     @IBOutlet weak var keywordLabel: UILabel!
     @IBOutlet weak var goalLabel: UILabel!
-    @IBOutlet weak var checkButton: UIButton!
-    @IBOutlet weak var checkLabel: UILabel!
     @IBOutlet weak var goalButton: UIButton!
     var goal = false
     var KeywordDate: GoalKeyword?
@@ -29,19 +27,6 @@ class GoalDetailVC: UIViewController {
         goal = self.KeywordDate?.isGoalCompleted ?? false
         setupNavigationBar()
         setUI()
-    }
-    
-    @IBAction func checkButton(_ sender: Any) {
-        if goal == false {
-            checkButton.setImage(UIImage(named: "ic_check_line_active"), for: .normal)
-            checkLabel.textColor = .mainOrange
-            goal = true
-        }
-        else{
-            checkButton.setImage(UIImage(named: "ic_check_line_inactive"), for: .normal)
-            checkLabel.textColor = .mainGray
-            goal = false
-        }
     }
     
     @IBAction func completeButton(_ sender: Any) {
@@ -84,9 +69,7 @@ extension GoalDetailVC {
             return button
         }()
         
-        if completed != true{
-            navigationItem.rightBarButtonItem = rightButton
-        }
+        navigationItem.rightBarButtonItem = rightButton
         navigationItem.leftBarButtonItem = leftButton
     }
     
@@ -102,24 +85,15 @@ extension GoalDetailVC {
     }
     
     func setUI(){
-        checkLabel.text = "목표 달성시 체크"
-        checkLabel.font = .myLightSystemFont(ofSize: 12)
-        
-        goalButton.isEnabled = false
         goalButton.layer.cornerRadius = 15
         goalButton.setTitle("목표 달성", for: .normal)
         goalButton.setTitleColor(.white, for: .normal)
         goalButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
         
         if completed == true{
-            checkButton.setImage(UIImage(named: "ic_check_line_active"), for: .normal)
-            checkButton.isEnabled = false
-            goalButton.isEnabled = false
             goalButton.backgroundColor = .mainOrange
-            checkLabel.textColor = .mainOrange
         }else{
-            checkButton.setImage(UIImage(named: "ic_check_line_inactive"), for: .normal)
-            checkLabel.textColor = .mainGray
+            goalButton.backgroundColor = .mainGray
         }
         weekLabel.text = "\(week ?? "")"
         weekLabel.font = .myBoldSystemFont(ofSize: 12)
@@ -140,8 +114,6 @@ extension GoalDetailVC {
         goalLabel.font = .myBlackSystemFont(ofSize: 32)
         goalLabel.textColor = .mainBlack
         goalLabel.sizeToFit()
-        
-        checkButton.addTarget(self, action: #selector(enabledButton), for: .allEvents)
     }
     
     func updateUI(){
@@ -151,11 +123,9 @@ extension GoalDetailVC {
     @objc func enabledButton() {
         if goal == true {
             goalButton.backgroundColor = .mainOrange
-            goalButton.isEnabled = true
         }
         else{
             goalButton.backgroundColor = .mainGray
-            goalButton.isEnabled = false
         }
     }
 }

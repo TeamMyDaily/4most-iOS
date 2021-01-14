@@ -147,6 +147,9 @@ extension GoalModifyVC {
         saveButton.setTitleColor(.white, for: .normal)
         saveButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
     }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+          self.view.endEditing(true)
+    }
 }
 
 extension GoalModifyVC: UITextViewDelegate {

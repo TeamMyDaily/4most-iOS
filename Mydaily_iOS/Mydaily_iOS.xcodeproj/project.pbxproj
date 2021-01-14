@@ -1119,7 +1119,6 @@
 				EDBF739B25A18BF100ECDEB9 /* DetailRecordLayout.swift in Sources */,
 				AE46FA2625AC13CE0051D667 /* GeneralAPI.swift in Sources */,
 				EDCF4A1925ACB3A500BE094C /* ViewDetailReportModel.swift in Sources */,
-				3CAED02C25AF0B28004F67C9 /* BasicResponseMadel.swift in Sources */,
 				AEFB2216259C6E6700A3228C /* MypageVC.swift in Sources */,
 				AE80787425ADF72600B5E1E6 /* GoalService.swift in Sources */,
 				AE53FBCE25AB02E000D62AA7 /* GoalModifyVC.swift in Sources */,
@@ -1316,6 +1315,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7ZRM9W758F;
 				INFOPLIST_FILE = Mydaily_iOS/Resource/Info.plist;
@@ -1325,6 +1325,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ebadaq.Mydaily-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1336,6 +1337,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7ZRM9W758F;
 				INFOPLIST_FILE = Mydaily_iOS/Resource/Info.plist;
@@ -1345,6 +1347,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ebadaq.Mydaily-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

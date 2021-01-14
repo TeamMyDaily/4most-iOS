@@ -30,7 +30,6 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
 //        $0.setTitle("오늘", for: .normal)
         $0.setImage(UIImage(named: "btn_today"), for: .normal)
         $0.layer.cornerRadius = 20
-        $0.backgroundColor = .mainGray
         $0.titleLabel?.font = .myMediumSystemFont(ofSize: 16)
         $0.setTitleColor(.white, for: .normal)
         $0.addTarget(self, action: #selector(setToday), for: .allTouchEvents)
@@ -73,6 +72,10 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
 
 //MARK: - UI
 extension DailyVC {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+          self.view.endEditing(true)
+    }
+    
     func setUI() {
         headerView.layer.addBorder([.top,.bottom], color: UIColor.gray30, width: 1.0, move: 0)
         datePicker.maximumDate = Date()

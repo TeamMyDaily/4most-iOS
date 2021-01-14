@@ -62,6 +62,10 @@ class LoginVC: UIViewController {
 
 //MARK: - UI
 extension LoginVC {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+         self.view.endEditing(true)
+   }
+
     func setUI() {
         idTextField.delegate = self
         pwTextField.delegate = self

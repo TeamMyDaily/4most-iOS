@@ -232,47 +232,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cu-D5-Ms3">
-                                <rect key="frame" x="48" y="188.5" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8lZ-ap-334">
-                                <rect key="frame" x="16" y="187" width="24" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="24" id="E5T-dT-hV4"/>
-                                    <constraint firstAttribute="height" constant="24" id="y4p-VG-Pfo"/>
-                                </constraints>
-                                <state key="normal" title="Button" image="ic_check_line_inactive"/>
-                                <connections>
-                                    <action selector="checkButton:" destination="GLo-Y0-TaA" eventType="touchUpInside" id="ags-4o-Ttw"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9Ak-eL-kQ1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="xp6-Xy-8e7" firstAttribute="top" secondItem="9Ak-eL-kQ1" secondAttribute="top" constant="10" id="5EB-Lf-Qco"/>
                             <constraint firstItem="B9a-JM-IFz" firstAttribute="top" secondItem="9Ak-eL-kQ1" secondAttribute="top" constant="32" id="69J-AK-eeZ"/>
-                            <constraint firstItem="8lZ-ap-334" firstAttribute="top" secondItem="vTa-74-3RH" secondAttribute="bottom" constant="48" id="6sc-0h-QrB"/>
+                            <constraint firstItem="5Rb-UW-jdC" firstAttribute="top" secondItem="vTa-74-3RH" secondAttribute="bottom" constant="92" id="865-eP-cb4"/>
                             <constraint firstItem="Wky-lq-RmS" firstAttribute="leading" secondItem="9Ak-eL-kQ1" secondAttribute="leading" constant="16" id="GcJ-YV-TFX"/>
                             <constraint firstItem="B9a-JM-IFz" firstAttribute="centerX" secondItem="9Ak-eL-kQ1" secondAttribute="centerX" id="Px6-1R-UnE"/>
-                            <constraint firstItem="5Rb-UW-jdC" firstAttribute="top" secondItem="8lZ-ap-334" secondAttribute="bottom" constant="20" id="Sgs-8O-wHo"/>
                             <constraint firstItem="vTa-74-3RH" firstAttribute="top" secondItem="Wky-lq-RmS" secondAttribute="bottom" constant="16" id="ULa-IB-CeA"/>
                             <constraint firstItem="vTa-74-3RH" firstAttribute="leading" secondItem="Wky-lq-RmS" secondAttribute="leading" id="VPe-hv-Glu"/>
                             <constraint firstItem="B9a-JM-IFz" firstAttribute="centerX" secondItem="5Rb-UW-jdC" secondAttribute="centerX" id="VtQ-q0-zn9"/>
                             <constraint firstItem="9Ak-eL-kQ1" firstAttribute="trailing" secondItem="xp6-Xy-8e7" secondAttribute="trailing" constant="16" id="ade-aR-HyF"/>
                             <constraint firstItem="Wky-lq-RmS" firstAttribute="top" secondItem="B9a-JM-IFz" secondAttribute="bottom" constant="48" id="emU-Tc-2bs"/>
-                            <constraint firstItem="8cu-D5-Ms3" firstAttribute="leading" secondItem="8lZ-ap-334" secondAttribute="trailing" constant="8" id="hjt-Vc-J7b"/>
                             <constraint firstItem="5Rb-UW-jdC" firstAttribute="centerX" secondItem="9Ak-eL-kQ1" secondAttribute="centerX" id="vSQ-ww-M0d"/>
-                            <constraint firstItem="8lZ-ap-334" firstAttribute="leading" secondItem="vTa-74-3RH" secondAttribute="leading" id="wLc-R8-pIm"/>
-                            <constraint firstItem="8cu-D5-Ms3" firstAttribute="centerY" secondItem="8lZ-ap-334" secondAttribute="centerY" id="wpg-ia-v4y"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="checkButton" destination="8lZ-ap-334" id="a50-2Z-Zgc"/>
-                        <outlet property="checkLabel" destination="8cu-D5-Ms3" id="y96-so-Q79"/>
                         <outlet property="goalButton" destination="5Rb-UW-jdC" id="h3l-s2-dRQ"/>
                         <outlet property="goalLabel" destination="vTa-74-3RH" id="WtP-Zg-eWu"/>
                         <outlet property="keywordLabel" destination="Wky-lq-RmS" id="Prx-br-08g"/>
@@ -458,7 +435,6 @@
         <image name="btn_cancel" width="68" height="68"/>
         <image name="btn_chevron_left" width="24" height="24"/>
         <image name="btn_chevron_right" width="24" height="24"/>
-        <image name="ic_check_line_inactive" width="24" height="24"/>
         <image name="img_popup" width="280" height="251"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

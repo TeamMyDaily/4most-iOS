@@ -35,6 +35,9 @@ class GoalWriteVC: UIViewController {
 }
 
 extension GoalWriteVC {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+          self.view.endEditing(true)
+    }
     func setUI(){
         textLabel.text = "\(goalKeywordName ?? "")에\n가까워 지기 위한 목표"
         textLabel.numberOfLines = 2

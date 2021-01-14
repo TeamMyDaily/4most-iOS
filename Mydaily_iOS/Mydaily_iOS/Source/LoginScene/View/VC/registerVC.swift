@@ -160,6 +160,7 @@ extension RegisterVC {
             if !(pwTextField.text == checkpwTextField.text) {
                 checkPWLabel.text = "비밀번호가 서로 맞지 않아요!"
                 setLabelInitUI(label: pwCheckLabel)
+                pwCheckLabel.textColor = .mainGray
             }
             else{
                 checkPWLabel.text = ""
@@ -179,6 +180,7 @@ extension RegisterVC {
         if !(pwTextField.text == checkpwTextField.text) {
             checkPWLabel.text = "비밀번호가 서로 맞지 않아요!"
             setLabelInitUI(label: pwCheckLabel)
+            pwCheckLabel.textColor = .mainGray
         }
         else{
             checkPWLabel.text = ""
@@ -241,6 +243,10 @@ extension RegisterVC {
         attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.mainOrange, range: ((label.text ?? "") as NSString).range(of:"*"))
         label.attributedText = attributedString
     }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+          self.view.endEditing(true)
+    }
+
 }
 
 //MARK: - String

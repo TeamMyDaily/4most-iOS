@@ -18,16 +18,22 @@ class GoalVC: UIViewController {
     @IBOutlet weak var goalTableView: UITableView!
     var date = Date()
     let dateButton: UIButton = {
-                $0.translatesAutoresizingMaskIntoConstraints = false
-                $0.setTitle("오늘 >", for: .normal)
-                $0.layer.cornerRadius = 20
-                $0.backgroundColor = .mainBlack
-                $0.titleLabel?.font = .myMediumSystemFont(ofSize: 16)
-                $0.setTitleColor(.white, for: .normal)
-//                $0.addTarget(self, action: #selector(setToday), for: .allTouchEvents)
-                return $0
-            }(UIButton(frame: .zero))
+        $0.translatesAutoresizingMaskIntoConstraints = false
+//        $0.setTitle("오늘", for: .normal)
+        $0.setImage(UIImage(named: "btn_today"), for: .normal)
+        $0.layer.cornerRadius = 20
+        $0.titleLabel?.font = .myMediumSystemFont(ofSize: 16)
+        $0.setTitleColor(.white, for: .normal)
+        $0.addTarget(self, action: #selector(setWeek), for: .allTouchEvents)
+        return $0
+    }(UIButton(frame: .zero))
     
+    @objc func setWeek(){
+        setDateLabel(date: Date())
+        self.date = Date()
+        getGoal()
+        dateButton.layer.opacity = 0
+    }
     override func viewWillAppear(_ animated: Bool) {
         getGoal()
     }
@@ -44,11 +50,13 @@ class GoalVC: UIViewController {
         setDateLabel(date: date)
         getGoal()
         
-        if date == Date(){
+        if date.containWeek == Date().containWeek{
             self.dateLabel.textColor = .mainOrange
+            dateButton.layer.opacity = 0
         }
         else{
             self.dateLabel.textColor = .mainBlack
+            dateButton.layer.opacity = 100
         }
     }
     @IBAction func moveWeekup(_ sender: Any) {
@@ -56,11 +64,13 @@ class GoalVC: UIViewController {
         setDateLabel(date: date)
         getGoal()
         
-        if date == Date(){
+        if date.containWeek == Date().containWeek{
             self.dateLabel.textColor = .mainOrange
+            dateButton.layer.opacity = 0
         }
         else{
             self.dateLabel.textColor = .mainBlack
+            dateButton.layer.opacity = 100
         }
     }
 }
@@ -83,6 +93,7 @@ extension GoalVC {
     }
     
     func setUI(){
+        dateButton.layer.opacity = 0
         defaultLabel.font = .myBlackSystemFont(ofSize: 25)
         defaultLabel.textColor = .mainBlack
         defaultLabel.numberOfLines = 2
@@ -95,7 +106,7 @@ extension GoalVC {
         self.goalTableView.addSubview(dateButton)
         
         NSLayoutConstraint.activate([
-            dateButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -40),
+            dateButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -100),
             dateButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             dateButton.widthAnchor.constraint(equalToConstant: 66),
             dateButton.heightAnchor.constraint(equalToConstant: 32)
@@ -217,5 +228,24 @@ extension GoalVC{
             }
         }
     }
+    
+//    func gettodayGoal(){
+//        let param = GoalRequest.init("\(DateInMilliSeconds(date: Date().startOfWeek!))","\(DateInMilliSeconds(date: self.Date().endOfWeek!))")
+//        authProvider.request(.goalinquiry(param: param)) { response in
+//            switch response {
+//                case .success(let result):
+//                    do {
+//                        let data = try result.map(GoalModel.self)
+//                        self.goalData = data
+//                        self.updateUI()
+//                        self.goalTableView.reloadData()
+//                    } catch(let err) {
+//                        print(err.localizedDescription)
+//                    }
+//                case .failure(let err):
+//                    print(err.localizedDescription)
+//            }
+//        }
+//    }
 }
 
