@@ -58,6 +58,8 @@
 		AE80788025AE109600B5E1E6 /* GoalWriteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80787F25AE109600B5E1E6 /* GoalWriteRequest.swift */; };
 		AE80788725AEE07C00B5E1E6 /* GoalCompleteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80788625AEE07C00B5E1E6 /* GoalCompleteModel.swift */; };
 		AE80788A25AEE31C00B5E1E6 /* GoalModifyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE80788925AEE31C00B5E1E6 /* GoalModifyRequest.swift */; };
+		AE80789E25B0095500B5E1E6 /* ios_data.json in Resources */ = {isa = PBXBuildFile; fileRef = AE80789D25B0095500B5E1E6 /* ios_data.json */; };
+		AE8078A125B0097600B5E1E6 /* StartLottieVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8078A025B0097600B5E1E6 /* StartLottieVC.swift */; };
 		AE9F294525A1719600904FD9 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9F294425A1719600904FD9 /* LoginVC.swift */; };
 		AE9F294A25A1A69400904FD9 /* registerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9F294925A1A69400904FD9 /* registerVC.swift */; };
 		AE9F294D25A1BF1500904FD9 /* RegisterEntryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9F294C25A1BF1500904FD9 /* RegisterEntryVC.swift */; };
@@ -166,6 +168,8 @@
 		AE80787F25AE109600B5E1E6 /* GoalWriteRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalWriteRequest.swift; sourceTree = "<group>"; };
 		AE80788625AEE07C00B5E1E6 /* GoalCompleteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCompleteModel.swift; sourceTree = "<group>"; };
 		AE80788925AEE31C00B5E1E6 /* GoalModifyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalModifyRequest.swift; sourceTree = "<group>"; };
+		AE80789D25B0095500B5E1E6 /* ios_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ios_data.json; sourceTree = "<group>"; };
+		AE8078A025B0097600B5E1E6 /* StartLottieVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartLottieVC.swift; sourceTree = "<group>"; };
 		AE9F294425A1719600904FD9 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		AE9F294925A1A69400904FD9 /* registerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerVC.swift; sourceTree = "<group>"; };
 		AE9F294C25A1BF1500904FD9 /* RegisterEntryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEntryVC.swift; sourceTree = "<group>"; };
@@ -468,6 +472,7 @@
 			isa = PBXGroup;
 			children = (
 				AE53FBA225A6E8D800D62AA7 /* Font */,
+				AE80789D25B0095500B5E1E6 /* ios_data.json */,
 				AE76C046259B1A6E007B3901 /* Assets.xcassets */,
 				AE76C048259B1A6E007B3901 /* LaunchScreen.storyboard */,
 				AE76C04B259B1A6E007B3901 /* Info.plist */,
@@ -543,6 +548,7 @@
 				AE9F294425A1719600904FD9 /* LoginVC.swift */,
 				AE9F294925A1A69400904FD9 /* registerVC.swift */,
 				AE9F294C25A1BF1500904FD9 /* RegisterEntryVC.swift */,
+				AE8078A025B0097600B5E1E6 /* StartLottieVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -809,6 +815,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEFB2202259C66F400A3228C /* Evaluation.storyboard in Resources */,
+				AE80789E25B0095500B5E1E6 /* ios_data.json in Resources */,
 				AEFB222625A02CC900A3228C /* Goal.storyboard in Resources */,
 				AE53FBB025A6E97400D62AA7 /* NotoSansKR-Medium.otf in Resources */,
 				AEFB2205259C66FC00A3228C /* Mypage.storyboard in Resources */,
@@ -887,6 +894,7 @@
 				AE80787A25AE09CD00B5E1E6 /* GoalRequest.swift in Sources */,
 				EDC1642925A4617600CD65B0 /* RetrospectiveWriteVC.swift in Sources */,
 				AE76C03E259B1A6D007B3901 /* AppDelegate.swift in Sources */,
+				AE8078A125B0097600B5E1E6 /* StartLottieVC.swift in Sources */,
 				AE46FA2325AC13B50051D667 /* LoginService.swift in Sources */,
 				AE80788025AE109600B5E1E6 /* GoalWriteRequest.swift in Sources */,
 				AED84DF325A558B30050D861 /* Extensions+UIView.swift in Sources */,

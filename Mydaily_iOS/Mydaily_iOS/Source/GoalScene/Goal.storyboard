@@ -28,6 +28,9 @@
                                     <constraint firstAttribute="height" constant="24" id="lgE-A8-f59"/>
                                 </constraints>
                                 <state key="normal" title="&lt;"/>
+                                <connections>
+                                    <action selector="moveWeekdown:" destination="4NB-Ou-MRP" eventType="touchUpInside" id="rF4-bz-C4q"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U1r-Uu-NMj">
                                 <rect key="frame" x="343" y="52" width="24" height="24"/>
@@ -36,6 +39,9 @@
                                     <constraint firstAttribute="width" constant="24" id="yyN-al-KkK"/>
                                 </constraints>
                                 <state key="normal" title="&gt;"/>
+                                <connections>
+                                    <action selector="moveWeekup:" destination="4NB-Ou-MRP" eventType="touchUpInside" id="o4H-yb-fLn"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2DW-5W-n0N">
                                 <rect key="frame" x="335" y="64" width="0.0" height="0.0"/>
@@ -127,7 +133,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/25자" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvl-eN-Dfg">
-                                <rect key="frame" x="329.5" y="306" width="29.5" height="17.5"/>
+                                <rect key="frame" x="331" y="306" width="28" height="14"/>
                                 <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="12"/>
                                 <color key="textColor" red="0.75686274509803919" green="0.75686274509803919" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -143,7 +149,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8bv-TY-HnG">
-                                <rect key="frame" x="322.5" y="306" width="7" height="17.5"/>
+                                <rect key="frame" x="324" y="306" width="7" height="14"/>
                                 <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="12"/>
                                 <color key="textColor" red="1" green="0.45882352941176469" blue="0.33725490196078434" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -298,7 +304,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/25자" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uln-1Q-Bxx">
-                                <rect key="frame" x="322" y="235" width="29.5" height="17.5"/>
+                                <rect key="frame" x="323.5" y="235" width="28" height="14"/>
                                 <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="12"/>
                                 <color key="textColor" red="0.75686274509999996" green="0.75686274509999996" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -334,7 +340,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTT-hV-iUJ">
-                                <rect key="frame" x="311" y="233.5" width="11" height="21"/>
+                                <rect key="frame" x="312.5" y="231.5" width="11" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

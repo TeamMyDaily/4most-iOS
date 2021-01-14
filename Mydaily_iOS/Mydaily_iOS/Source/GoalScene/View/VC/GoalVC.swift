@@ -35,12 +35,19 @@ class GoalVC: UIViewController {
         super.viewDidLoad()
 
         setupNavigationBar(.clear, titlelabel: "목표")
-        setDateLabel()
+        setDateLabel(date: date)
         setUI()
         setupTableView()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yy년 MM월 W주"
-        print("\(dateFormatter.string(from: Date().containWeek!))")
+    }
+    @IBAction func moveWeekdown(_ sender: Any) {
+        self.date = Calendar.current.date(byAdding: .day, value: -7, to: date)!
+        setDateLabel(date: date)
+        getGoal()
+    }
+    @IBAction func moveWeekup(_ sender: Any) {
+        self.date = Calendar.current.date(byAdding: .day, value: 8, to: date)!
+        setDateLabel(date: date)
+        getGoal()
     }
 }
 
@@ -52,10 +59,10 @@ extension GoalVC {
         return Int(date.startOfWeek!.timeIntervalSince1970 * 1000)
     }
     
-    func setDateLabel(){
+    func setDateLabel(date: Date){
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yy년 MM월 W주"
-        dateLabel.text = dateFormatter.string(from: Date().containWeek!)
+        dateLabel.text = dateFormatter.string(from: date.containWeek!)
         dateLabel.textColor = .mainOrange
         dateLabel.font = .myBoldSystemFont(ofSize: 12)
         dateLabel.sizeToFit()
