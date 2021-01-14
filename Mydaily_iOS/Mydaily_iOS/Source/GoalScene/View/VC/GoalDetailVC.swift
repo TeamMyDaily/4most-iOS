@@ -19,6 +19,7 @@ class GoalDetailVC: UIViewController {
     @IBOutlet weak var goalButton: UIButton!
     var goal = false
     var KeywordDate: GoalKeyword?
+    var week: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,12 +31,14 @@ class GoalDetailVC: UIViewController {
     
     @IBAction func checkButton(_ sender: Any) {
         if goal == false {
+            checkButton.setImage(UIImage(named: "ic_check_line_active"), for: .normal)
             checkLabel.text = "목표 달성시 체크"
             checkLabel.font = .myLightSystemFont(ofSize: 12)
             checkLabel.textColor = .mainOrange
             goal = true
         }
         else{
+            checkButton.setImage(UIImage(named: "ic_check_line_inactive"), for: .normal)
             checkLabel.text = "목표 달성시 체크"
             checkLabel.font = .myLightSystemFont(ofSize: 12)
             checkLabel.textColor = .mainGray
@@ -59,13 +62,15 @@ extension GoalDetailVC {
         
         self.navigationItem.title = "기록"
         
-        //        let leftButton: UIBarButtonItem = {
-        //            let button = UIBarButtonItem(image: UIImage(named: "backArrowIc"), style: .plain, target: self, action: #selector(dismissVC))
-        //            return button
-        //        }()
+        let leftButton: UIBarButtonItem = {
+            let button = UIBarButtonItem(image: UIImage(named: "btnBack"), style: .plain, target: self, action: #selector(dismissVC))
+            button.tintColor = .mainBlack
+            return button
+        }()
         
         let rightButton: UIBarButtonItem = {
-            let button = UIBarButtonItem(title: "수정", style: .done, target: self, action: #selector(modify))
+            let button = UIBarButtonItem(image: UIImage(named: "btn_edit"), style: .done, target: self, action: #selector(modify))
+            button.tintColor = .mainOrange
             button.setTitleTextAttributes([
                                             NSAttributedString.Key.font: UIFont.myRegularSystemFont(ofSize: 17),
                                             NSAttributedString.Key.foregroundColor: UIColor.mainOrange], for: .normal)
@@ -75,13 +80,12 @@ extension GoalDetailVC {
             
             return button
         }()
-        
-//                let leftButton: UIBarButtonItem = {
-//                    let button = UIBarButtonItem(image: UIImage(named: "backArrowIc"), style: .plain, target: self, action: #selector(dismissVC))
-//                    return button
-//                }()
-//                navigationItem.leftBarButtonItem = leftButton
+        navigationItem.leftBarButtonItem = leftButton
         navigationItem.rightBarButtonItem = rightButton
+    }
+    
+    @objc func dismissVC() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc func modify(){
@@ -91,13 +95,19 @@ extension GoalDetailVC {
     }
     
     func setUI(){
-        weekLabel.text = "20년 12월 3주"
+        weekLabel.text = "\(week ?? "")"
         weekLabel.font = .myBoldSystemFont(ofSize: 12)
         weekLabel.textColor = .mainGray
         
         keywordLabel.text = "\(self.KeywordDate?.name ?? "")에 가까워지기 위한 목표"
         keywordLabel.font = .myMediumSystemFont(ofSize: 15)
         keywordLabel.textColor = .mainBlack
+        
+        let fontSize = UIFont.myBlackSystemFont(ofSize: 15)
+        let attributedStr = NSMutableAttributedString(string: keywordLabel.text ?? "")
+        attributedStr.addAttribute(NSAttributedString.Key(rawValue: kCTFontAttributeName as String), value: fontSize, range: (keywordLabel.text! as NSString).range(of: "\(self.KeywordDate?.name ?? "")"))
+        keywordLabel.attributedText = attributedStr
+        
         
         goalLabel.text = "\(self.KeywordDate?.weekGoal ?? "")"
         goalLabel.numberOfLines = 2

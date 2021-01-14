@@ -154,11 +154,11 @@ extension GoalVC: UITableViewDataSource{
             cell.keywordDetail.text = "\(self.goalData?.data.result.keywords[indexPath.row].weekGoal ?? "")"
             cell.keywordName.textColor = .mainBlack
             cell.keywordDetail.textColor = .mainBlack
-            //**버튼이미지 설정
+            cell.addButton.setImage(UIImage(named: "btnChevronRight"), for: .normal)
         }
         else{
             cell.keywordDetail.text = "목표를 세워주세요."
-            //**버튼이미지 설정
+            cell.addButton.setImage(UIImage(named: "btnAddS"), for: .normal)
             cell.keywordName.textColor = .mainGray
             cell.keywordDetail.textColor = .mainGray
         }
@@ -190,6 +190,7 @@ extension GoalVC: UITableViewDataSource{
         else{
             guard let VC = self.storyboard?.instantiateViewController(identifier: "GoalDetailVC") as? GoalDetailVC else {return}
             VC.KeywordDate = self.goalData?.data.result.keywords[indexPath.row]
+            VC.week = self.dateLabel.text
             self.navigationController?.pushViewController(VC, animated: true)
         }
     }
@@ -199,7 +200,6 @@ extension GoalVC: UITableViewDataSource{
 extension GoalVC{
     func getGoal(){
         let param = GoalRequest.init("\(DateInMilliSeconds(date: self.date.startOfWeek!))","\(DateInMilliSeconds(date: self.date.endOfWeek!))")
-        //"1609815600000","1610420400000"
         authProvider.request(.goalinquiry(param: param)) { response in
             switch response {
                 case .success(let result):

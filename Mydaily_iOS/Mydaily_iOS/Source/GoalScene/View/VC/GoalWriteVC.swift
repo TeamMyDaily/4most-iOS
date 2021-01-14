@@ -71,7 +71,8 @@ extension GoalWriteVC {
         self.navigationItem.title = "목표"
         
         let leftButton: UIBarButtonItem = {
-            let button = UIBarButtonItem(title: "뒤", style: .plain, target: self, action: #selector(dismissVC))
+            let button = UIBarButtonItem(image: UIImage(named: "btnBack"), style: .plain, target: self, action: #selector(dismissVC))
+            button.tintColor = .mainBlack
             return button
         }()
         navigationItem.leftBarButtonItem = leftButton
@@ -93,15 +94,15 @@ extension GoalWriteVC {
     private func cancelAlertaction() {
         
         let alert = UIAlertController(
-            title: "주의!",
-            message: "작성중인 글을 취소하시겠습니까?\n취소할 시, 작성된 글은 저장되지 않습니다.",
+            title: "정말 뒤로 가시겠어요?",
+            message: "뒤로가기를 누르시면 작성 중인 내용이\n삭제되고 이전 페이지로 돌아 갑니다.",
             preferredStyle: UIAlertController.Style.alert
         )
-        let cancel = UIAlertAction(title: "작성취소", style: .destructive) {
+        let cancel = UIAlertAction(title: "뒤로가기", style: .default) {
             _ in
             self.navigationController?.popViewController(animated: true)
         }
-        let okAction = UIAlertAction(title: "닫기", style: .default)
+        let okAction = UIAlertAction(title: "취소하기", style: .default)
         alert.addAction(cancel)
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
@@ -112,7 +113,7 @@ extension GoalWriteVC: UITextViewDelegate{
     func placeholderSetting() {
         textView.delegate = self
         textView.font = .systemFont(ofSize: 15)
-        textView.text = "조금 더 자세한 내용을 알려주세요!"
+        textView.text = "이번에는 어떤 목표를 이루고 싶나요?"
         textView.textColor = UIColor.lightGray
         textView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
     }

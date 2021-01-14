@@ -238,13 +238,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8lZ-ap-334">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8lZ-ap-334">
                                 <rect key="frame" x="16" y="187" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="E5T-dT-hV4"/>
                                     <constraint firstAttribute="height" constant="24" id="y4p-VG-Pfo"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Button" image="ic_check_line_inactive"/>
                                 <connections>
                                     <action selector="checkButton:" destination="GLo-Y0-TaA" eventType="touchUpInside" id="ags-4o-Ttw"/>
                                 </connections>
@@ -402,6 +402,7 @@
     <resources>
         <image name="btn_chevron_left" width="24" height="24"/>
         <image name="btn_chevron_right" width="24" height="24"/>
+        <image name="ic_check_line_inactive" width="24" height="24"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
