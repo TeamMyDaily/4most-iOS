@@ -67,6 +67,26 @@ extension UIViewController {
         self.navigationItem.title = titlelabel
     }
 
+    func setupBackNavigationBar(titlelabel: String) {
+        guard let navigationBar = self.navigationController?.navigationBar else { return }
+        
+        navigationBar.isTranslucent = true
+        navigationBar.backgroundColor = UIColor.white
+        navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationBar.shadowImage = UIImage()
+        
+        self.navigationItem.title = "\(titlelabel)"
+        
+        let leftButton: UIBarButtonItem = {
+            let button = UIBarButtonItem(image: UIImage(named: "btnBack"), style: .plain, target: self, action: #selector(backVC))
+            button.tintColor = .mainBlack
+            return button
+        }()
+        navigationItem.leftBarButtonItem = leftButton
+    }
+    @objc func backVC(){
+        self.navigationController?.popViewController(animated: true)
+    }
     
 //    func _configure(with dataSource: TPDataSource, delegate: TPProgressDelegate? = nil, state: Int, containVC: ContainerViewController) {
 ////        let vc = ContainerViewController()

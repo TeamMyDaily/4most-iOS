@@ -17,5 +17,5 @@ struct SigninModel: Codable {
 
 // MARK: - SigninResponse
 struct SigninResponse: Codable {
-    let accessToken, refreshToken: String
+    let userName, email, accessToken, refreshToken: String
 }

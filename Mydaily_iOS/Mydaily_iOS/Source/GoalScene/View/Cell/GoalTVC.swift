@@ -17,6 +17,7 @@ class GoalTVC: UITableViewCell {
     @IBOutlet weak var keywordDetail: UILabel!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var achieveLabel: UILabel!
+    @IBOutlet weak var achieveImg: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -38,23 +39,15 @@ extension GoalTVC {
         outterView.backgroundColor = .white
         outterView.layer.borderColor = UIColor.mainLightGray2.cgColor
         outterView.layer.borderWidth = 1
-        
-        keywordName.text = "아웃풋"
+    
         keywordName.font = .myBlackSystemFont(ofSize: 18)
-        keywordName.textColor = UIColor.mainGray
+//        keywordName.textColor = UIColor.mainGray
         keywordName.sizeToFit()
         
-        keywordDetail.text = "목표를 세워주세요."
         keywordDetail.font = .myRegularSystemFont(ofSize: 15)
         keywordDetail.textColor = UIColor.mainGray
-        keywordDetail.sizeToFit()
+//        keywordDetail.sizeToFit()
         
-        achieveLabel.text = "미달성"
-        achieveLabel.clipsToBounds = true
-        achieveLabel.layer.cornerRadius = 10
-        achieveLabel.backgroundColor = .mainGray
-        achieveLabel.font = .myRegularSystemFont(ofSize: 12)
-        achieveLabel.textColor = .white
-        achieveLabel.textAlignment = .center
+    
     }
 }

@@ -21,12 +21,16 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     var myArray = [String]()
+    var currentDate = Date()
+    var since1970: Double?
+    var str = ""
     
     let dateButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.setTitle("오늘 >", for: .normal)
+//        $0.setTitle("오늘", for: .normal)
+        $0.setImage(UIImage(named: "btn_today"), for: .normal)
         $0.layer.cornerRadius = 20
-        $0.backgroundColor = .mainBlack
+        $0.backgroundColor = .mainGray
         $0.titleLabel?.font = .myMediumSystemFont(ofSize: 16)
         $0.setTitleColor(.white, for: .normal)
         $0.addTarget(self, action: #selector(setToday), for: .allTouchEvents)
@@ -35,28 +39,17 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         getDaily()
+        setupNavigationBar(.clear, titlelabel: "")
     }
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-            
         setTableVC()
-        setupNavigationBar(.clear, titlelabel: "")
         floatingButton()
         setUI()
     }
     
-    func setDropData(){
-        for outterIndex in 0...3 {
-            var str = ""
-            for i in 0..<(dailyModel?.data.result[outterIndex].tasks.count)! {
-                str += "\(String(describing: dailyModel?.data.result[outterIndex].tasks[i]))\n"
-            }
-            myArray.append(str)
-        }
-        print(myArray)
-        
-    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -71,9 +64,10 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yy년 MM월 W주"
-        print("&\(datePicker.date.startOfWeek!)")
-        print("&\(datePicker.date.endOfWeek!)")
-        print("@\(dateFormatter.string(from: datePicker.date.containWeek!))")
+        
+        print(datePicker.date.startOfWeek ?? 0)
+        print(datePicker.date.endOfWeek ?? 0)
+//        getDaily()
     }
 }
 
@@ -83,12 +77,6 @@ extension DailyVC {
         headerView.layer.addBorder([.top,.bottom], color: UIColor.gray30, width: 1.0, move: 0)
         datePicker.maximumDate = Date()
         setDate()
-        
-        logoLabel.font = .myBoldSystemFont(ofSize: 21)
-        logoLabel.textColor = UIColor.mainOrange
-        logoLabel.sizeToFit()
-        logoLabel.text = "4most"
-        
         //서벼연결시 변경 부분
         userDaily.text = "이주미님의 하루 기록"
         userDaily.font = .myMediumSystemFont(ofSize: 15)
@@ -118,7 +106,7 @@ extension DailyVC {
         self.tableView.addSubview(dateButton)
         
         NSLayoutConstraint.activate([
-            dateButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -72),
+            dateButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -100),
             dateButton.centerXAnchor.constraint(equalTo: self.tableView.centerXAnchor),
             dateButton.widthAnchor.constraint(equalToConstant: 66),
             dateButton.heightAnchor.constraint(equalToConstant: 32)
@@ -128,6 +116,20 @@ extension DailyVC {
     @objc func setToday(sender: UIButton!) {
         datePicker.date = Date()
         setDate()
+        getDaily()
+    }
+    
+    func DateInMilliSeconds()-> Int
+    {
+        if datePicker.date == Date(){
+            currentDate = Date()
+        }
+        else{
+            currentDate = self.datePicker.date
+        }
+        since1970 = currentDate.timeIntervalSince1970
+        
+        return Int(since1970! * 1000)
     }
 }
 
@@ -137,8 +139,8 @@ extension DailyVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if dailyModel?.data.keywordsExist == true{
-            return 4
+        if self.dailyModel?.data?.keywordsExist == true {
+            return (self.dailyModel?.data?.result.count)!
         }else{
             return 0
         }
@@ -146,8 +148,12 @@ extension DailyVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let VC = self.storyboard?.instantiateViewController(identifier: "DailyWriteVC") as? DailyWriteVC else {return}
-        VC.taskID = self.dailyModel?.data.result[indexPath.row].priority
-        VC.taskTitle = self.dailyModel?.data.result[indexPath.row].name
+        VC.keywordID = self.dailyModel?.data?.result[indexPath.row]?.totalKeywordID
+        VC.taskTitle = self.dailyModel?.data?.result[indexPath.row]?.name
+        
+        if self.dailyModel?.data?.result[indexPath.row]?.tasks.count != 0{
+            VC.taskID = self.dailyModel?.data?.result[indexPath.row]?.tasks[0]?.id
+        }
         self.navigationController?.pushViewController(VC, animated: true)
     }
     
@@ -156,16 +162,28 @@ extension DailyVC: UITableViewDelegate, UITableViewDataSource {
 
         cell.selectionStyle = .none
         
-        let str = myArray[indexPath.row]
+        myArray = []
+        for outterIndex in 0...(self.dailyModel?.data?.result.count)! - 1 {
+            str = ""
+            for i in 0..<(dailyModel?.data?.result[outterIndex]?.tasks.count)! {
+                str += "\(String(describing: dailyModel?.data?.result[outterIndex]?.tasks[i]?.title ?? ""))\n"
+            }
+            
+            myArray.append(str)
+        }
+        str = myArray[indexPath.row]
+
+        cell.taskID = dailyModel?.data?.result[indexPath.row]?.totalKeywordID
         cell.labelBody?.textColor = .white
-        cell.labelNum.font = .myBoldSystemFont(ofSize: 62)
-        cell.labelNum.text = "0\(indexPath.row + 1)"
-        cell.labelSubTitle.text = "\(dailyModel?.data.result[indexPath.row].tasks.count ?? 0)개의 기록이 당신을 기다리고 있어요."
-        cell.myInit(theTitle: " \((dailyModel?.data.result[indexPath.row].name) ?? "")", theBody: str)
+        cell.numImg.image = UIImage(named: "image\(indexPath.row + 1)")
+//        cell.numImg.curre
+        cell.labelSubTitle.text = "\(dailyModel?.data?.result[indexPath.row]?.tasks.count ?? 0)개의 기록이 당신을 기다리고 있어요."
+        cell.myInit(theTitle: " \((dailyModel?.data?.result[indexPath.row]?.name) ?? "")", theBody: str)
        
         let attributedString = NSMutableAttributedString(string: cell.labelSubTitle.text ?? "")
-        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.mainOrange, range: (cell.labelSubTitle.text! as NSString).range(of:"\(dailyModel?.data.result[indexPath.row].tasks.count ?? 0)개의 기록"))
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.mainOrange, range: (cell.labelSubTitle.text! as NSString).range(of:"\(dailyModel?.data?.result[indexPath.row]?.tasks.count ?? 0)개의 기록"))
         cell.labelSubTitle.attributedText = attributedString
+        
         
         cell.delegate = self
         
@@ -189,15 +207,15 @@ extension DailyVC {
 
 extension DailyVC {
     func getDaily(){
-        let param = DailyRequest.init("1610333510000")
+        let param = DailyRequest.init("\(String(describing: DateInMilliSeconds()))")
         authProvider.request(.dailyinquiry(param: param)) { response in
             switch response {
                 case .success(let result):
                     do {
                         let data = try result.map(DailyModel.self)
                         self.dailyModel = data
-                        self.setDropData()
                         self.tableView.reloadData()
+                        
                     } catch(let err) {
                         print(err.localizedDescription)
                     }

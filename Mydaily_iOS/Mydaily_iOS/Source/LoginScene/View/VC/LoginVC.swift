@@ -19,6 +19,11 @@ class LoginVC: UIViewController {
     @IBOutlet weak var findIDButton: UIButton!
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var findPWButton: UIButton!
+    @IBOutlet weak var autoLoginButton: UIButton!
+    @IBOutlet weak var autoLoginLabel: UILabel!
+    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var logoImg: UIImageView!
+    var autoLogin = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +31,21 @@ class LoginVC: UIViewController {
         setupNavigationBar(.clear, titlelabel: "")
         changeTextFields()
         setUI()
+    }
+    
+    @IBAction func autoLoginButton(_ sender: Any) {
+        //자동로그인
+        if autoLogin == false{
+            autoLogin = true
+            autoLoginButton.setImage(UIImage(named: "icCheckActive"), for: .normal)
+            autoLoginLabel.textColor = .mainOrange
+        }
+        else{
+            autoLogin = false
+            autoLoginButton.setImage(UIImage(named: "icCheckUnactive"), for: .normal)
+            autoLoginLabel.textColor = .mainGray
+        }
+        
     }
     
     @IBAction func registerButton(_ sender: Any) {
@@ -43,22 +63,30 @@ class LoginVC: UIViewController {
 //MARK: - UI
 extension LoginVC {
     func setUI() {
+        idTextField.delegate = self
+        pwTextField.delegate = self
+        
+        autoLoginLabel.font = .myRegularSystemFont(ofSize: 12)
+        autoLoginLabel.textColor = .mainGray
+        
         loginButton.isEnabled = false
         pwTextField.isSecureTextEntry = true
         
         idTextField.layer.cornerRadius = 15
         idTextField.layer.borderColor = UIColor.mainGray.cgColor
         idTextField.layer.borderWidth = 1
+        idTextField.placeholder = "이메일"
         idTextField.setLeftPaddingPoints(15)
         
         pwTextField.layer.cornerRadius = 15
         pwTextField.layer.borderColor = UIColor.mainGray.cgColor
         pwTextField.layer.borderWidth = 1
+        pwTextField.placeholder = "비밀번호"
         pwTextField.setLeftPaddingPoints(15)
         
         loginButton.layer.cornerRadius = 15
         loginButton.backgroundColor = .mainGray
-        loginButton.setTitle("포모스트 입장!", for: .normal)
+        loginButton.setTitle("로그인", for: .normal)
         loginButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
         loginButton.setTitleColor(.white, for: .normal)
         
@@ -95,6 +123,29 @@ extension LoginVC {
         
         loginButton.isEnabled = true
         loginButton.backgroundColor = .mainOrange
+    }
+    func downanimation(){
+            UIView.animate(withDuration: 0.3, animations: {
+                self.autoLoginButton.frame.origin.y += 80
+                self.autoLoginLabel.frame.origin.y += 80
+                self.pwTextField.frame.origin.y += 80
+                self.idTextField.frame.origin.y += 80
+                self.stackView.frame.origin.y += 80
+                self.loginButton.frame.origin.y += 80
+                self.logoImg.frame.origin.y += 80
+            })
+        }
+    
+    func animation(){
+        UIView.animate(withDuration: 0.1) {
+            self.autoLoginButton.frame.origin.y -= 80
+            self.autoLoginLabel.frame.origin.y -= 80
+            self.pwTextField.frame.origin.y -= 80
+            self.idTextField.frame.origin.y -= 80
+            self.stackView.frame.origin.y -= 80
+            self.loginButton.frame.origin.y -= 80
+            self.logoImg.frame.origin.y -= 80
+        }
     }
 }
 
@@ -162,5 +213,21 @@ extension LoginVC {
                     print(err.localizedDescription)
             }
         }
+    }
+}
+
+extension LoginVC: UITextFieldDelegate{
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        animation()
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        downanimation()
+    }
+    
+  //리턴키
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {   //delegate method
+        textField.resignFirstResponder()
+        return true
     }
 }

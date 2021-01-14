@@ -32,26 +32,39 @@ class RegisterVC: UIViewController {
     @IBOutlet weak var pwLabel: UILabel!
     @IBOutlet weak var pwCheckLabel: UILabel!
     
+    @IBOutlet weak var security1: UIButton!
+    @IBOutlet weak var security2: UIButton!
+    
     var checkValidate = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNavigationBar(.clear, titlelabel: "회원가입")
+        setupBackNavigationBar(titlelabel: "회원가입")
         changeTextFields()
         setUI()
         nextButton.isEnabled = true
     }
     @IBAction func pwButton(_ sender: Any) {
+        if security1.currentImage == UIImage(named: "icVisible"){
+            security1.setImage(UIImage(named: "icInvisible"), for: .normal)
+        }else{
+            security1.setImage(UIImage(named: "icVisible"), for: .normal)
+        }
         securityText(textfield: pwTextField)
     }
     @IBAction func checkpwButton(_ sender: Any) {
+        if security2.currentImage == UIImage(named: "icVisible"){
+            security2.setImage(UIImage(named: "icInvisible"), for: .normal)
+        }else{
+            security2.setImage(UIImage(named: "icVisible"), for: .normal)
+        }
         securityText(textfield: checkpwTextField)
     }
     @IBAction func nextButton(_ sender: Any) {
         signup()
-        let alert = UIAlertController(title: "가입을 축하합니다!", message: "4most회원이 되신걸 진심으로 축하합니다!", preferredStyle: UIAlertController.Style.alert)
-        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+        let alert = UIAlertController(title: "가입을 축하합니다", message: "4most회원이 되신걸 진심으로 축하합니다!\n이상이 일상이 되는 회고,포모스트", preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: "확인했어요", style: .default) { (action) in
             if let viewControllers = self.navigationController?.viewControllers {
                 if viewControllers.count > 2 {
                     self.navigationController?.popToViewController(viewControllers[viewControllers.count - 3], animated: true)
