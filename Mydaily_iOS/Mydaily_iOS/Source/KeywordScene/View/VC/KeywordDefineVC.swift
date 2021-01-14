@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import Moya
 
 class KeywordDefineVC: UIViewController{
     static let identifier = "KeywordDefineVC"
+    
+    private let authProvider = MoyaProvider<KeywordServices>(plugins: [NetworkLoggerPlugin(verbose: true)])
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet weak var subTitleLabel: UILabel!
@@ -27,6 +30,7 @@ class KeywordDefineVC: UIViewController{
     
     var modifiedMode = false
     var definition = ""
+    var totalKeywordId = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +38,7 @@ class KeywordDefineVC: UIViewController{
         contentTextView.delegate = self
         setKeyboardNotification()
         contentViewSize = Int(contentView.frame.height)
-       
     }
-    
     
     func setKeywordAndDefinition(key: String, value: String){
         keyword = key
@@ -55,6 +57,10 @@ class KeywordDefineVC: UIViewController{
         definition = text
     }
     
+    func setTotalKeywordId(keywordId: Int){
+        totalKeywordId = keywordId
+    }
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         contentTextView.resignFirstResponder()
@@ -69,6 +75,7 @@ class KeywordDefineVC: UIViewController{
         }
         
         definition = contentTextView.text
+        postKeywordDefinition()
         
         if modifiedMode{ //수정모드에서 저장하기 버튼 눌림
             completeButton.isHidden = true
@@ -112,7 +119,7 @@ extension KeywordDefineVC: UITextViewDelegate{
         let textLength = textView.text.count
         changedNumberLabel.text = "\(textView.text.count)"
         
-        if textLength <= 0 || textLength >= 20 {
+        if textLength <= 0 || textLength >= 200 {
             changedNumberLabel.textColor = UIColor.mainGray
             numberLabel.textColor = UIColor.mainOrange
             completeButton.isEnabled = false
@@ -160,16 +167,13 @@ extension KeywordDefineVC{
     }
  
     @objc func keyboardWillDisappear(_ sender: NotificationCenter){
-        //contentView.sizeThatFits(CGSize(from: 200))
+        
         contentView.frame.size.height = CGFloat(contentViewSize)
         completeButton.frame.origin.y -= 50
         print( contentView.frame.size.height)
     }
     
 }
-
-
-
 
 //UI관련 사항 setting
 extension KeywordDefineVC{
@@ -283,7 +287,6 @@ extension KeywordDefineVC{
             navigationItem.rightBarButtonItem = rightButton
             navigationItem.rightBarButtonItem?.tintColor = .blue
         }
-        
     }
     
     @objc func dismissVC() {
@@ -336,7 +339,6 @@ extension KeywordDefineVC{
     }
     
     
-    
     @objc func modifyDefinition(_ sender: UIBarButtonItem){
       
         if sender.title == "수정"{
@@ -352,7 +354,27 @@ extension KeywordDefineVC{
             sender.title = ""
         }
     }
-    
    
 }
 
+extension KeywordDefineVC{
+    func postKeywordDefinition(){
+        let param = KeywordDefinitionRequest(name: keyword, definition: definition)
+        authProvider.request(.keywordDefinition(param: param)){ responds in
+            switch responds{
+            case .success(let result):
+                do{
+                    let responseToken = try result.map(BasicResponseModel.self)
+                    print("키워드 정의 response 성공")
+                    print(responseToken.message)
+                    print("-----------------------")
+                }catch(let err){
+                    print(err.localizedDescription)
+                }
+            case .failure(let err):
+                    print(err.localizedDescription)
+            }
+        }
+    }
+    
+}

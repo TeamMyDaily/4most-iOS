@@ -649,19 +649,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acX-rb-Yw6">
-                                <rect key="frame" x="143" y="443" width="89" height="13"/>
+                                <rect key="frame" x="142" y="443" width="91.5" height="13"/>
                                 <attributedString key="attributedText">
                                     <fragment content="*">
                                         <attributes>
                                             <color key="NSColor" red="1" green="0.45882352941176469" blue="0.33725490196078434" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="11" name="NotoSansCJKkr-Regular"/>
+                                            <font key="NSFont" metaFont="smallSystem"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content="항목은 필수 입니다!">
                                         <attributes>
                                             <color key="NSColor" red="0.54509803921568623" green="0.54509803921568623" blue="0.54509803921568623" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="11" name="NotoSansCJKkr-Regular"/>
+                                            <font key="NSFont" metaFont="smallSystem"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>

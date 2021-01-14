@@ -25,13 +25,16 @@ class DetailRecordTVC: UITableViewCell {
 
 //MARK: UI
 extension DetailRecordTVC {
+    func setData(count: Int) {
+        recordCountLabel.text = "총 \(count)개"
+    }
+    
     private func setLabel() {
         titleLabel.font = .myBoldSystemFont(ofSize: 18)
         titleLabel.text = "하루 기록"
         titleLabel.textColor = .mainBlack
         
         recordCountLabel.font = .myRegularSystemFont(ofSize: 12)
-        recordCountLabel.text = "총 5개"
         recordCountLabel.textColor = .mainGray
     }
 }

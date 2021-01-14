@@ -6,15 +6,21 @@
 //
 
 import UIKit
+import Moya
 
 class KeywordPriorityVC: UIViewController {
     static let identifier = "KeywordPriorityVC"
+    
+    private let authProvider = MoyaProvider<KeywordServices>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    var responseToken : PriorityKeywordModel?
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var keywordTableView: UITableView!
     @IBOutlet weak var completeButton: UIButton!
     
     var keywordList: [String] = []
+    var priorityKeywordList: [PriorityKeyword] = []
+    //var resultPriority:
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,12 +55,19 @@ class KeywordPriorityVC: UIViewController {
     
     @IBAction func submitKeyword(_ sender: UIButton) {
         
-        guard let dvc = self.storyboard?.instantiateViewController(identifier: KeywordDecideVC.identifier) as? KeywordDecideVC else{
-            return
+        for i in 0..<keywordList.count{
+            priorityKeywordList.append(PriorityKeyword(name: keywordList[i], priority: i+1))
         }
         
-        dvc.setReceivedKeywordList(list: keywordList)
-        self.navigationController?.pushViewController(dvc, animated: true)
+        postKeywordPriority()
+//        guard let dvc = self.storyboard?.instantiateViewController(identifier: KeywordDecideVC.identifier) as? KeywordDecideVC else{
+//            return
+//        }
+//
+//        dvc.setReceivedKeywordList(list: keywordList)
+//        self.navigationController?.pushViewController(dvc, animated: true)
+//
+        
         
     }
     
@@ -85,7 +98,7 @@ class KeywordPriorityVC: UIViewController {
 
 extension KeywordPriorityVC: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return keywordList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -94,11 +107,8 @@ extension KeywordPriorityVC: UITableViewDataSource{
         }
        
         cell.setKeywordLabel(text: keywordList[indexPath.row])
-        
-        
         return cell
     }
-    
     
     
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
@@ -122,6 +132,35 @@ extension KeywordPriorityVC: UITableViewDelegate{
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         keywordList.swapAt(sourceIndexPath.row, destinationIndexPath.row)
     }
+    
+}
+
+extension KeywordPriorityVC{
+    func postKeywordPriority(){
+        let param = PriorityKeywordRequest(list: priorityKeywordList)
+        authProvider.request(.priorityKeyword(param: param)){ responds in
+            switch responds {
+            case .success(let result):
+                do {
+                    print("와이라노 \(result.statusCode)")
+                    self.responseToken = try result.map(PriorityKeywordModel.self)
+                    
+                    guard let dvc = self.storyboard?.instantiateViewController(identifier: KeywordDecideVC.identifier) as? KeywordDecideVC else{
+                        return
+                    }
+
+                    dvc.setReceivedKeywordList(list: self.keywordList)
+                    self.navigationController?.pushViewController(dvc, animated: true)
+
+                } catch(let err){
+                    print(err.localizedDescription)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
+    }
+    
     
 }
 

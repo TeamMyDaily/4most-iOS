@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import Moya
 
 class RetrospectiveWriteVC: UIViewController {
     static let identifier = "RetrospectiveWriteVC"
+    
+    private let authProvider = MoyaProvider<ReportServices>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    var writingData: RegistRetrospectiveModel?
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var questionLabel: UILabel!
@@ -49,6 +53,7 @@ extension RetrospectiveWriteVC {
     @IBAction func touchUpSave(_ sender: Any) {
         guard let text: String = writeTextView.text else {return}
         saveContent?(text, counter)
+        saveText()
         
         tabBarController?.tabBar.isHidden = false
         extendedLayoutIncludesOpaqueBars = false
@@ -110,7 +115,7 @@ extension RetrospectiveWriteVC {
     
     private func setButton() {
         saveButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
-        saveButton.setTitle("작성완료", for: .normal)
+        saveButton.setTitle("저장할래요", for: .normal)
         saveButton.setTitleColor(.white, for: .normal)
         saveButton.layer.masksToBounds = true
         saveButton.layer.cornerRadius = 15
@@ -212,5 +217,28 @@ extension RetrospectiveWriteVC {
     
     @objc func dismissGestureKeyboard() {
         view.endEditing(true)
+    }
+}
+
+//MARK: Network
+extension RetrospectiveWriteVC {
+    func saveText() {
+        guard let start = Date().startOfWeek?.millisecondsSince1970 else {return}
+        guard let end = Date().endOfWeek?.millisecondsSince1970 else {return}
+        guard let current = Date().todayOfWeek?.millisecondsSince1970 else {return}
+        let param = RegistRetrospectiveRequest.init(start, end, current, self.cellNum + 1, self.writeTextView.text)
+        print(param)
+        authProvider.request(.registRetrospective(param: param)) { response in
+            switch response {
+                case .success(let result):
+                    do {
+                        self.writingData = try result.map(RegistRetrospectiveModel.self)
+                    } catch(let err) {
+                        print(err.localizedDescription)
+                    }
+                case .failure(let err):
+                    print(err.localizedDescription)
+            }
+        }
     }
 }

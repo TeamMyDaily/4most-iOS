@@ -5,8 +5,14 @@
 //  Created by 이유진 and 장혜령 on 2021/01/04.
 
 import UIKit
+import Moya
 
 class AddUserKeywordVC: UIViewController {
+    
+    private let authProvider = MoyaProvider<KeywordServices>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    var responseToken: AddKeywordModel?
+    var responseStatus = -1
+    var semaphore = DispatchSemaphore(value: 1)
     
     static let identifier = "AddUserKeywordVC"
     
@@ -21,6 +27,9 @@ class AddUserKeywordVC: UIViewController {
     let originButtonColor: UIColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1)
    
     var keywordArray:[String] = []
+    var userKeyword = ""
+    
+    var isFirst = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +37,7 @@ class AddUserKeywordVC: UIViewController {
         setContent()
         keywordTextField.delegate = self
         addButton.isEnabled = false
+        
     }
     
     
@@ -35,8 +45,12 @@ class AddUserKeywordVC: UIViewController {
         keywordArray = list
     }
     
+    func isFirstSettingPage(check: Bool){
+        isFirst = check
+    }
+    
     @IBAction func addUserKeyword(_ sender: UIButton) {
-        let userKeyword = keywordTextField.text ?? ""
+        userKeyword = keywordTextField.text ?? ""
         
         if userKeyword.count > 5{
             addButton.isEnabled = false
@@ -49,20 +63,29 @@ class AddUserKeywordVC: UIViewController {
             addButton.backgroundColor = UIColor.mainGray
         }else{
             
-            guard let pvc = self.navigationController?.viewControllers[0] as? KeywordSettingVC else {
-               return
-            }
-           
-            let userKeyword = keywordTextField.text ?? ""
-            
             if userKeyword != ""{
-                pvc.addUserKeyword(text: userKeyword)
-                pvc.checkForUserKeyword(check: true)
-                self.navigationController?.popViewController(animated: true)
+                if isFirst{ // 처음 키워드 설정
+                    let endIndex = self.navigationController?.viewControllers.count ?? 2
+                    guard let pvc = self.navigationController?.viewControllers[endIndex-2] as? KeywordSettingVC  else {
+                       return
+                    }
+                    pvc.addUserKeyword(text: userKeyword)
+                    pvc.checkForUserKeyword(check: true)
+                    self.navigationController?.popViewController(animated: true)
+                
+                }else{ // 마이페이지에서 왔을 때
+                    addUserKeywordInServer()
+                    self.navigationController?.popViewController(animated: true)
+//                    let endIndex = self.navigationController?.viewControllers.count ?? 2
+//                    guard let pvc = self.navigationController?.viewControllers[endIndex-2] as? KeywordSettingVC  else {
+//                       return
+//                    }
+                   
+                }
+               
             }
             
         }
-        
     }
 }
 
@@ -113,7 +136,7 @@ extension AddUserKeywordVC: UITextFieldDelegate{
         }
         
         if !updatedText.isEmpty {
-            if updatedText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count < 6{
+            if updatedText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count <= 6{
                 addButton.isEnabled = true
                 
                 addButton.backgroundColor = UIColor.mainOrange
@@ -135,6 +158,7 @@ extension AddUserKeywordVC: UITextFieldDelegate{
 }
 
 
+// MARK: - UI
 extension AddUserKeywordVC{
   
     func setContent(){
@@ -168,3 +192,32 @@ extension AddUserKeywordVC{
     }
     
 }
+
+
+
+// MARK: - Network
+extension AddUserKeywordVC {
+    
+    func addUserKeywordInServer(){
+       
+        let param = AddKeywordRequest(keyword: userKeyword)
+         authProvider.request(.addKeyword(param: param)){ responds in
+             switch responds {
+             case .success(let result):
+                 do {
+                     self.responseStatus = result.statusCode
+                     self.responseToken = try result.map(AddKeywordModel.self)
+                     self.navigationController?.popViewController(animated: true)
+                 } catch(let err){
+                    self.noticeLabel.text = "이미 존재하는 키워드입니다."
+                    self.addButton.isEnabled = false
+                    self.addButton.backgroundColor = UIColor.mainGray
+                     print(err.localizedDescription)
+                 }
+             case .failure(let err):
+                 print(err.localizedDescription)
+             }
+         }
+    }
+}
+

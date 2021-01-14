@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import Moya
 
 class EvaluationTabCVC: UICollectionViewCell {
     static let identifier = "EvaluationTabCVC"
+    
+    private let authProvider = MoyaProvider<ReportServices>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    var textData: ViewReportModel?
     
     @IBOutlet weak var keywordTableView: UITableView!
     @IBOutlet weak var noDataView: UIView!
@@ -26,17 +30,25 @@ class EvaluationTabCVC: UICollectionViewCell {
     }()
     
     var delegate: TableViewInsideCollectionViewDelegate?
+    var collectionView: UICollectionView?
     
+    var weekText: String? = nil
+    var start: Date?
+    var end: Date?
     var dateValue = 0
+    let changeDateValue = 86400 * 7
     
-    var keywords = ["아웃풋", "열정", "경청", "선한영향력", "진정성", "자신감", "노력"]
-    var goals = ["블로그에 1개 이상 퍼블리싱 하기", "열정 만수르 유노윤호의 영상보고 감상문 5장 이상 쓰기", "PM님 말씀하실 때 가위춤추지 않기", "거짓말 치지 않고 선하게 살기", "열정 만수르 유노윤호의 영상보고 감상문 5장 이상 쓰기", "PM님 말씀하실 때 가위춤추지 않기", "거짓말 치지 않고 선하게 살기"]
-    var rates = [2.6, 4.2, nil, 3.4, 4.2, 1.5, 3.4]
-    var counts = [3, 3, 2, 1, 6, 6, 7]
+    var totalKeywordId: [Int] = []
+    var keywords: [String] = []
+    var goals: [String] = []
+    var rates: [String] = []
+    var counts: [Int] = []
     var removeIndex: [Int] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setDate()
+        getText()
         setTableView()
         setViewWithoutTableView()
         setNotification()
@@ -74,7 +86,7 @@ extension EvaluationTabCVC: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: EvaluationKeywordTVC.identifier) as? EvaluationKeywordTVC else {
             return UITableViewCell()
         }
-        cell.setCellInsideData(keyword: keywords[indexPath.item] ?? "", goal: goals[indexPath.item] ?? "", index: indexPath.item, rate: rates[indexPath.item] ?? 0, count: Int(counts[indexPath.item] ?? 0))
+        cell.setCellInsideData(keyword: keywords[indexPath.item] ?? "", goal: goals[indexPath.item] ?? "", index: indexPath.item, rate: rates[indexPath.item] ?? "0", count: Int(counts[indexPath.item] ?? 0))
         cell.selectionStyle = .none
         return cell
     }
@@ -94,6 +106,9 @@ extension EvaluationTabCVC: UITableViewDelegate {
                 guard let dvc = UIStoryboard(name: "Evaluation", bundle: nil).instantiateViewController(identifier: "EvaluationDetailVC") as? EvaluationDetailVC else {
                     return
                 }
+                dvc.listCount = counts[indexPath.row]
+                dvc.weekText = weekText
+                dvc.cellNum = totalKeywordId[indexPath.row]
                 self.delegate?.cellTapedEvaluation(dvc: dvc)
             }
         }
@@ -129,7 +144,7 @@ extension EvaluationTabCVC {
             createKeywordButton.heightAnchor.constraint(equalToConstant: 32).isActive = true
             createKeywordButton.widthAnchor.constraint(equalToConstant: 114).isActive = true
             createKeywordButton.titleLabel?.font = .myMediumSystemFont(ofSize: 16)
-            createKeywordButton.setTitle("키워드 생성", for: .normal)
+            createKeywordButton.setTitle("키워드 생성 >", for: .normal)
             createKeywordButton.titleLabel?.textAlignment = .left
             createKeywordButton.titleLabel?.textColor = .white
             createKeywordButton.backgroundColor = .mainOrange
@@ -149,14 +164,6 @@ extension EvaluationTabCVC {
     private func setViewWithoutTableView() {
         setNoDataView()
         setViewByDateValue()
-        
-        if keywords[0] == nil {
-            keywordTableView.isHidden = true
-            noDataView.isHidden = false
-        } else {
-            keywordTableView.isHidden = false
-            noDataView.isHidden = true
-        }
     }
 }
 
@@ -193,24 +200,92 @@ extension EvaluationTabCVC {
     }
 }
 
+//MARK: Date
+extension EvaluationTabCVC {
+    private func setDate() {
+        start = Date().startOfWeek
+        end = Date().endOfWeek
+    }
+}
+
 //MARK: Notification
 extension EvaluationTabCVC {
     private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(getReport), name: NSNotification.Name("reloadReport"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(sendBeforeWeek), name: NSNotification.Name(rawValue: "LastWeek"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(sendAfterWeek), name: NSNotification.Name(rawValue: "NextWeek"), object: nil)
     }
     
+    @objc func getReport() {
+        getText()
+    }
+    
     @objc func sendBeforeWeek() {
-        dateValue -= 1
+        dateValue -= (1 * changeDateValue)
+        start = (Date().startOfWeek ?? Date()) - TimeInterval(dateValue)
+        end = (Date().endOfWeek ?? Date()) - TimeInterval(dateValue)
+        getText()
         setViewByDateValue()
+        // collectionView를 지정 지정 지정
+        collectionView?.reloadData()
         noDataView.setNeedsLayout()
         noDataView.layoutIfNeeded()
     }
     
     @objc func sendAfterWeek() {
-        dateValue += 1
+        dateValue += (1 * changeDateValue)
+        start = (Date().startOfWeek ?? Date()) + TimeInterval(dateValue)
+        end = (Date().endOfWeek ?? Date()) + TimeInterval(dateValue)
+        getText()
         setViewByDateValue()
+        collectionView?.reloadData()
         noDataView.setNeedsLayout()
         noDataView.layoutIfNeeded()
+    }
+}
+
+//MARK: Network
+extension EvaluationTabCVC {
+    func getText() {
+        let day = (Date().startOfWeek ?? Date()) - 86400 * 7
+        guard let startDate = start?.millisecondsSince1970 else {return}
+        guard let endDate = end?.millisecondsSince1970 else {return}
+        let startString = "\(startDate)"
+        let endString = "\(endDate)"
+        let param = ViewRequest.init(startString, endString)
+        authProvider.request(.viewReport(param: param)) { response in
+            switch response {
+                case .success(let result):
+                    do {
+                        self.textData = try result.map(ViewReportModel.self)
+                        if self.textData?.data.keywordsExist == false || (self.textData?.data.keywordsExist == true && self.textData?.data.result.isEmpty ?? true) {
+                            self.keywordTableView.isHidden = true
+                            self.noDataView.isHidden = false
+                        } else {
+                            self.keywordTableView.isHidden = false
+                            self.noDataView.isHidden = true
+                            if self.textData?.data.result.count != 0 {
+                                self.totalKeywordId.removeAll()
+                                self.keywords.removeAll()
+                                self.counts.removeAll()
+                                self.goals.removeAll()
+                                self.rates.removeAll()
+                                for i in 0...(self.textData?.data.result.count ?? 0)-1 {
+                                    self.totalKeywordId.append(self.textData?.data.result[i].totalKeywordID ?? 0)
+                                    self.keywords.append(self.textData?.data.result[i].keyword ?? "")
+                                    self.counts.append(self.textData?.data.result[i].taskCnt ?? 0)
+                                    self.goals.append(self.textData?.data.result[i].weekGoal ?? "")
+                                    self.rates.append(self.textData?.data.result[i].taskSatisAvg ?? "")
+                                }
+                            }
+                            self.keywordTableView.reloadData()
+                        }
+                    } catch(let err) {
+                        print(err.localizedDescription)
+                    }
+                case .failure(let err):
+                    print(err.localizedDescription)
+            }
+        }
     }
 }

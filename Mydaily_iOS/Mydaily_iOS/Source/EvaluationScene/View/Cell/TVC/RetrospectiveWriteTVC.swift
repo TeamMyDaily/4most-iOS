@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import Moya
 
 class RetrospectiveWriteTVC: UITableViewCell {
     static let identifier = "RetrospectiveWriteTVC"
+    
+    private let authProvider = MoyaProvider<ReportServices>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    var textData: ViewRetrospectiveModel?
 
     @IBOutlet weak var goodTitleLabel: UILabel!
     @IBOutlet weak var badTitleLabel: UILabel!
@@ -22,7 +26,6 @@ class RetrospectiveWriteTVC: UITableViewCell {
     @IBOutlet weak var goodViewButton: UIButton!
     @IBOutlet weak var badViewButton: UIButton!
     @IBOutlet weak var nextViewButton: UIButton!
-    @IBOutlet weak var saveButton: UIButton!
     
     lazy var goodTextView: UITextView = {
         let goodTextView = UITextView()
@@ -41,8 +44,7 @@ class RetrospectiveWriteTVC: UITableViewCell {
         nextTextView.translatesAutoresizingMaskIntoConstraints = false
         return nextTextView
     }()
-    
-    var buttonDelegate: OccurWhenClickModifyButtonDelegate?
+
     var delegate: TableViewInsideCollectionViewDelegate?
     var tableView: UITableView?
     
@@ -55,20 +57,15 @@ class RetrospectiveWriteTVC: UITableViewCell {
     
     let userDefault = UserDefaults.standard
     
-    var isGoodFilled = false
-    var isBadFilled = false
-    var isNextFilled = false
-    var isSaved = false
-    
     var cellTitles = ["이번주의 잘 한 점", "이번주 아쉬운 점", "다음주에 임하는 마음가짐"]
     var cellPlaceholders = ["이번주, 어떤 내 모습을 칭찬 해주고 싶나요?", "한 주에 아쉬움이 남은 점이 있을까요?", "다음주에는 어떻게 지내고 싶은가요?"]
     var counts: [Int] = [0, 0, 0]
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setLabel()
+        getText()
         setNotification()
-        setSaveButton()
+        setLabel()
         setButtonViews()
         setTextViews()
     }
@@ -110,9 +107,8 @@ extension RetrospectiveWriteTVC {
                 
                 self.cellPlaceholders[0] = text
                 self.counts[0] = textCount
-                self.isGoodFilled = true
                 
-                self.setSaveButton()
+                self.tableView?.reloadData()
             }
         }
         userDefault.setValue(self.cellTitles[0], forKey: "title")
@@ -134,6 +130,7 @@ extension RetrospectiveWriteTVC {
                 
                 self.badTextView.textColor = .mainGray
             } else {
+                print(text)
                 self.badViewButton.layer.borderWidth = 1
                 self.badViewButton.layer.borderColor = UIColor.mainPaleOrange.cgColor
                 self.badViewButton.backgroundColor = .white
@@ -153,9 +150,6 @@ extension RetrospectiveWriteTVC {
                 
                 self.cellPlaceholders[1] = text
                 self.counts[1] = textCount
-                self.isBadFilled = true
-                
-                self.setSaveButton()
             }
         }
         userDefault.setValue(self.cellTitles[1], forKey: "title")
@@ -196,9 +190,6 @@ extension RetrospectiveWriteTVC {
                 
                 self.cellPlaceholders[2] = text
                 self.counts[2] = textCount
-                self.isNextFilled = true
-                
-                self.setSaveButton()
             }
         }
         userDefault.setValue(self.cellTitles[2], forKey: "title")
@@ -208,20 +199,17 @@ extension RetrospectiveWriteTVC {
         
         delegate?.cellTapedRetrospective(dvc: dvc)
     }
+}
+
+//MARK: Notification
+extension RetrospectiveWriteTVC {
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(getRetrospective), name: NSNotification.Name("reloadRetrospective"), object: nil)
+    }
     
-    @IBAction func touchUpSave(_ sender: Any) {
-        buttonDelegate?.changeModifyButton(isActive: false)
-        buttonDelegate?.showAlert(title: "목표를 재설정 하시겠어요?", message: "한주의 회고를 다 마치셨군요!\n 목표를 달성하셨다면 새로운 목표로 재설정 하시겠어요?")
-        
-        tableView?.rowHeight -= 50
-        self.tableView?.beginUpdates()
-        self.tableView?.endUpdates()
-        
-        saveButton.isHidden = true
-        isSaved = true
-        goodViewButton.isUserInteractionEnabled = false
-        badViewButton.isUserInteractionEnabled = false
-        nextViewButton.isUserInteractionEnabled = false
+    @objc func getRetrospective() {
+        getText()
+        tableView?.reloadData()
     }
 }
 
@@ -273,59 +261,8 @@ extension RetrospectiveWriteTVC {
     }
 }
 
-//MARK: Notification
-extension RetrospectiveWriteTVC {
-    private func setNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(hiddenSaveButton), name: Notification.Name(rawValue: "modifyButton"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(selectRetrospectiveTab(_:)), name: Notification.Name(rawValue: "retrospectiveTab"), object: nil)
-    }
-    
-    @objc func hiddenSaveButton() {
-        tableView?.rowHeight += 50
-        self.tableView?.beginUpdates()
-        self.tableView?.endUpdates()
-        
-        saveButton.layer.isHidden = false
-        isSaved = false
-        goodViewButton.isUserInteractionEnabled = true
-        badViewButton.isUserInteractionEnabled = true
-        nextViewButton.isUserInteractionEnabled = true
-    }
-    
-    @objc func selectRetrospectiveTab(_ notification: NSNotification) {
-        let getButton = notification.object as! UIButton
-        if isSaved {
-            getButton.isHidden = false
-        } else {
-            getButton.isHidden = true
-        }
-    }
-}
-
 //MARK: Button
 extension RetrospectiveWriteTVC {
-    private func setSaveButton() {
-        if !isSaved {
-            if isGoodFilled && isBadFilled && isNextFilled {
-                saveButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
-                saveButton.setTitle("회고완료!", for: .normal)
-                saveButton.setTitleColor(.white, for: .normal)
-                saveButton.backgroundColor = .mainOrange
-                saveButton.layer.masksToBounds = true
-                saveButton.layer.cornerRadius = 15
-                saveButton.isEnabled = true
-            } else {
-                saveButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
-                saveButton.setTitle("회고완료!", for: .normal)
-                saveButton.setTitleColor(.white, for: .normal)
-                saveButton.backgroundColor = .mainGray
-                saveButton.layer.masksToBounds = true
-                saveButton.layer.cornerRadius = 15
-                saveButton.isEnabled = false
-            }
-        }
-    }
-    
     private func setButtonViews() {
         setGoodButtonView()
         setBadButtonView()
@@ -430,8 +367,6 @@ extension RetrospectiveWriteTVC {
         badTextView.spellCheckingType = .no
         badTextView.isUserInteractionEnabled = false
         badTextView.isEditable = false
-        
-        
     }
     
     private func setNextTextView() {
@@ -455,5 +390,103 @@ extension RetrospectiveWriteTVC {
         nextTextView.spellCheckingType = .no
         nextTextView.isUserInteractionEnabled = false
         nextTextView.isEditable = false
+    }
+}
+
+//MARK: Network
+extension RetrospectiveWriteTVC {
+    func getText(){
+        guard let start = Date().startOfWeek?.millisecondsSince1970 else {return}
+        guard let end = Date().endOfWeek?.millisecondsSince1970 else {return}
+        let startString = "\(start)"
+        let endString = "\(end)"
+        let param = ViewRequest.init(startString, endString)
+        authProvider.request(.viewRetrospective(param: param)) { response in
+            switch response {
+                case .success(let result):
+                    do {
+                        print(param)
+                        self.textData = try result.map(ViewRetrospectiveModel.self)
+                        print(self.textData)
+                        if self.textData?.data.isWritten == false {
+                            // 현재와 동일 있으면 써주기
+                        } else {
+                            if self.textData?.data.review.good != nil {
+                                self.goodTextView.text = self.textData?.data.review.good
+                                
+                                self.goodViewButton.layer.borderWidth = 1
+                                self.goodViewButton.layer.borderColor = UIColor.mainPaleOrange.cgColor
+                                self.goodViewButton.backgroundColor = .white
+                                
+                                self.goodTextView.isUserInteractionEnabled = true
+                                self.goodTextView.textColor = .mainBlack
+                                
+                                let textCount = self.goodTextView.text.count
+                                self.goodCounterLabel.text = "\(textCount)"
+                                
+                                if self.goodViewHeightConstraint?.constant != 328 {
+                                    self.goodViewHeightConstraint?.constant = 328
+                                    self.tableView?.rowHeight += 224
+                                    self.tableView?.beginUpdates()
+                                    self.tableView?.endUpdates()
+                                }
+                                
+                                self.cellPlaceholders[0] = self.goodTextView.text
+                                self.counts[0] = textCount
+                            }
+                            if self.textData?.data.review.bad != nil {
+                                self.badTextView.text = self.textData?.data.review.bad
+                                
+                                self.badViewButton.layer.borderWidth = 1
+                                self.badViewButton.layer.borderColor = UIColor.mainPaleOrange.cgColor
+                                self.badViewButton.backgroundColor = .white
+                                
+                                self.badTextView.isUserInteractionEnabled = true
+                                self.badTextView.textColor = .mainBlack
+                                
+                                let textCount = self.badTextView.text.count
+                                self.badCounterLabel.text = "\(textCount)"
+                                
+                                if self.badViewHeightConstraint?.constant != 328 {
+                                    self.badViewHeightConstraint?.constant = 328
+                                    self.tableView?.rowHeight += 224
+                                    self.tableView?.beginUpdates()
+                                    self.tableView?.endUpdates()
+                                }
+                                
+                                self.cellPlaceholders[1] = self.badTextView.text
+                                self.counts[1] = textCount
+                            }
+                            if self.textData?.data.review.next != nil {
+                                self.nextTextView.text = self.textData?.data.review.next
+                                
+                                self.nextViewButton.layer.borderWidth = 1
+                                self.nextViewButton.layer.borderColor = UIColor.mainPaleOrange.cgColor
+                                self.nextViewButton.backgroundColor = .white
+                                
+                                self.nextTextView.isUserInteractionEnabled = true
+                                self.nextTextView.textColor = .mainBlack
+                                
+                                let textCount = self.nextTextView.text.count
+                                self.nextCounterLabel.text = "\(textCount)"
+                                
+                                if self.nextViewHeightConstraint?.constant != 328 {
+                                    self.nextViewHeightConstraint?.constant = 328
+                                    self.tableView?.rowHeight += 224
+                                    self.tableView?.beginUpdates()
+                                    self.tableView?.endUpdates()
+                                }
+                                
+                                self.cellPlaceholders[2] = self.nextTextView.text
+                                self.counts[2] = textCount
+                            }
+                        }
+                    } catch(let err) {
+                        print(err.localizedDescription)
+                    }
+                case .failure(let err):
+                    print(err.localizedDescription)
+            }
+        }
     }
 }

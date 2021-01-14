@@ -6,22 +6,32 @@
 //
 
 import UIKit
+import Moya
 
 class EvaluationDetailVC: UIViewController {
+    private let authProvider = MoyaProvider<ReportServices>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    var keywordData: ViewDetailReportModel?
+    
     @IBOutlet weak var navigationTitleLabel: UILabel!
     @IBOutlet weak var keywordLabel: UILabel!
     @IBOutlet weak var weekLabel: UILabel!
     @IBOutlet weak var keywordDetailTableView: UITableView!
     
+    var goal: String = ""
+    var weekText: String? = nil
     var listCount = 0
+    var cellNum = 0
+    var isGoalComplete = false
+    
+    var task: [Tasks] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        getKeywordDetail()
         setNavigationBar()
         setTableView()
         setLabel()
     }
-    
 }
 
 extension EvaluationDetailVC: UITableViewDataSource {
@@ -38,20 +48,23 @@ extension EvaluationDetailVC: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailGoalTVC.identifier) as? DetailGoalTVC else {
                 return UITableViewCell()
             }
+            cell.setData(goal: goal, isGoalCompleted: isGoalComplete)
+            print("fogofo\(isGoalComplete)")
             cell.selectionStyle = .none
             return cell
         } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailRecordTVC.identifier) as? DetailRecordTVC else {
                 return UITableViewCell()
             }
+            cell.setData(count: listCount)
             cell.selectionStyle = .none
             return cell
         }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailRecordContentTVC.identifier) as? DetailRecordContentTVC else {
             return UITableViewCell()
         }
+        cell.setList(task: task)
         cell.selectionStyle = .none
-        listCount = cell.list.count
         return cell
     }
 }
@@ -104,11 +117,45 @@ extension EvaluationDetailVC {
     
     private func setLabel() {
         keywordLabel.font = .myBoldSystemFont(ofSize: 32)
-        keywordLabel.text = "아웃풋"
         keywordLabel.textColor = .mainBlack
         
         weekLabel.font = .myRegularSystemFont(ofSize: 12)
-        weekLabel.text = "20년 12월 3주"
+        weekLabel.text = weekText
         weekLabel.textColor = .mainGray
+    }
+}
+
+//MARK: Network
+extension EvaluationDetailVC {
+    func getKeywordDetail() {
+        let path = cellNum
+        let param = ViewDetailReportRequest.init(path, "1610290800000", "1610982000000")
+        print(param)
+        authProvider.request(.viewDetailReport(param: param)) { response in
+            switch response {
+                case .success(let result):
+                    do {
+                        self.keywordData = try result.map(ViewDetailReportModel.self)
+                        //EvaluationDetailVC
+                        self.keywordLabel.text = self.keywordData?.data.keywordName
+                        // DetailGoalTVC
+                        self.goal = self.keywordData?.data.goal ?? ""
+                        self.isGoalComplete = self.keywordData?.data.isGoalCompleted ?? false
+                        //DetailRecordTVC, DetailRecordContent
+                        self.task.removeAll()
+                        if self.listCount != 0 {
+                            for i in 0...self.listCount-1 {
+                                guard let tasks = self.keywordData?.data.tasks[i] else {return}
+                                self.task.append(tasks)
+                            }
+                        }
+                        self.keywordDetailTableView.reloadData()
+                    } catch(let err) {
+                        print(err.localizedDescription)
+                    }
+                case .failure(let err):
+                    print(err.localizedDescription)
+            }
+        }
     }
 }
