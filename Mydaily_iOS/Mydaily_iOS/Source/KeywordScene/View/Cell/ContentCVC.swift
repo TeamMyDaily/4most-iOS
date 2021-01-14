@@ -12,16 +12,28 @@ class ContentCVC: UICollectionViewCell {
     
     @IBOutlet var answerLabel: UILabel!
     @IBOutlet var questionLabel: UILabel!
+    @IBOutlet var mainImageView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    func setImage(image: UIImage){
+        mainImageView.image = image
     }
     
     func setLabel(question: String, answer: String){
         questionLabel.numberOfLines = 0
         answerLabel.numberOfLines = 0
         questionLabel.text = question
-        answerLabel.text = answer
+        
+        if answer == ""{
+            answerLabel.isHidden = true
+        }else{
+            answerLabel.text = answer
+        }
     }
+    
 
 }

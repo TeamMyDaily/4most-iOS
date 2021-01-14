@@ -31,6 +31,7 @@ class KeywordDefineVC: UIViewController{
     var modifiedMode = false
     var definition = ""
     var totalKeywordId = -1
+    var isFirt = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +44,8 @@ class KeywordDefineVC: UIViewController{
     func setKeywordAndDefinition(key: String, value: String){
         keyword = key
         definition = value
+        print("키워드 정의로 넘겨온 \(keyword), \(definition)")
+        
     }
     
     func setContent(){
@@ -67,7 +70,7 @@ class KeywordDefineVC: UIViewController{
     }
     
     @IBAction func touchUpSaveKeywordDefinition(_ sender: UIButton){
-        
+        print("modify = \(modifiedMode)")
         if checkSaving{
             checkSaving = false
         }else{
@@ -235,7 +238,6 @@ extension KeywordDefineVC{
             }
         }
         
-        
     }
     
     func setModifiedMode(){
@@ -290,29 +292,38 @@ extension KeywordDefineVC{
     }
     
     @objc func dismissVC() {
+        print("modify mode = \(modifiedMode)")
+        print("checkSaving = \(checkSaving)")
+        
         if contentTextView.text == "나만의 정의를 작성해 주세요." || contentTextView.text.count <= 0{
             self.navigationController?.popViewController(animated: true)
         }else{
-           
-            if modifiedMode{
-                checkSaving = completeButton.isHidden
-            }
             
             if checkSaving == true{ // 저장된 상태
-                
-                let endIndex = self.navigationController?.viewControllers.count ?? 0
-                guard let pvc = self.navigationController?.viewControllers[endIndex-2] as? KeywordDecideVC else {
-                   return
+                if isFirt{
+                    let endIndex = self.navigationController?.viewControllers.count ?? 0
+                    guard let pvc = self.navigationController?.viewControllers[endIndex-2] as? KeywordDecideVC else {
+                        print()
+                       return
+                    }
+                        
+                    let definition = contentTextView.text ?? ""
+                    pvc.setKeywordDefinition(key: keyword, value: definition)
+                    isFirt = false
+                    self.navigationController?.popViewController(animated: true)
+                }else{
+                    self.navigationController?.popViewController(animated: true)
                 }
-        
-                let definition = contentTextView.text ?? ""
-                pvc.setKeywordDefinition(key: keyword, value: definition)
-                
-                self.navigationController?.popViewController(animated: true)
-                
             }else{
                 setSavingAlert()
             }
+            
+            if modifiedMode{
+                checkSaving = completeButton.isHidden
+            }
+//            }else{
+//                self.navigationController?.popViewController(animated: true)
+//            }
         }
     }
     
@@ -365,7 +376,11 @@ extension KeywordDefineVC{
             case .success(let result):
                 do{
                     let responseToken = try result.map(BasicResponseModel.self)
-                    print("키워드 정의 response 성공")
+                    if responseToken.status == 200{
+                        if self.modifiedMode != true{
+                            self.dismissVC()
+                        }
+                    }
                     print(responseToken.message)
                     print("-----------------------")
                 }catch(let err){
@@ -376,5 +391,4 @@ extension KeywordDefineVC{
             }
         }
     }
-    
 }

@@ -75,6 +75,7 @@ class KeywordDecideVC: UIViewController {
             for (key, value) in keywordAndDefinition[i]{
                 if key == selectedKeyword{
                     dvc.setKeywordAndDefinition(key: key, value: value)
+                    dvc.isFirt = true
                     break
                 }
             }
@@ -184,3 +185,5 @@ extension KeywordDecideVC{
     }
     
 }
+
+

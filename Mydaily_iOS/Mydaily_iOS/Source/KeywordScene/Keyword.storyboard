@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QE9-Wz-9PD">
-                                <rect key="frame" x="37" y="204" width="301" height="287"/>
+                                <rect key="frame" x="37" y="204" width="301" height="327"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="OAZ-pU-5Cv">
                                     <size key="itemSize" width="157" height="139"/>
@@ -28,7 +28,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ContentCVC" id="4hk-Ny-t2W" customClass="ContentCVC" customModule="Mydaily_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="74" width="157" height="139"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="157" height="139"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" id="YPY-IN-cdE">
                                             <rect key="frame" x="0.0" y="0.0" width="157" height="139"/>
@@ -56,19 +56,31 @@
                                     <action selector="backToKeywordSetting:" destination="J6I-2f-Fec" eventType="touchUpInside" id="JWZ-EX-QNm"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="키워드 선택이 어려우시다고요?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="38X-CW-nXl">
+                                <rect key="frame" x="100" y="144" width="175" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="nge-Sa-v4c"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ffy-gV-HwR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="38X-CW-nXl" firstAttribute="top" secondItem="Wbz-Ty-6GS" secondAttribute="bottom" constant="17" id="4PT-Kt-aRf"/>
                             <constraint firstItem="ffy-gV-HwR" firstAttribute="trailing" secondItem="0xj-b5-PNa" secondAttribute="trailing" constant="31" id="AjV-qf-yVk"/>
-                            <constraint firstItem="QE9-Wz-9PD" firstAttribute="top" secondItem="Wbz-Ty-6GS" secondAttribute="bottom" constant="77" id="Kdq-tc-L5d"/>
+                            <constraint firstItem="38X-CW-nXl" firstAttribute="leading" secondItem="ffy-gV-HwR" secondAttribute="leading" constant="100" id="FiY-Ty-E60"/>
                             <constraint firstItem="0xj-b5-PNa" firstAttribute="leading" secondItem="ffy-gV-HwR" secondAttribute="leading" constant="32" id="QrU-gT-Lwo"/>
                             <constraint firstItem="Wbz-Ty-6GS" firstAttribute="leading" secondItem="ffy-gV-HwR" secondAttribute="leading" constant="88" id="UuH-b6-IPe"/>
                             <constraint firstItem="ffy-gV-HwR" firstAttribute="trailing" secondItem="QE9-Wz-9PD" secondAttribute="trailing" constant="37" id="XpD-5F-6zr"/>
                             <constraint firstItem="ffy-gV-HwR" firstAttribute="bottom" secondItem="0xj-b5-PNa" secondAttribute="bottom" constant="26" id="dEN-Lb-5T5"/>
                             <constraint firstItem="Wbz-Ty-6GS" firstAttribute="top" secondItem="ffy-gV-HwR" secondAttribute="top" constant="99" id="jwa-W8-zrp"/>
-                            <constraint firstItem="0xj-b5-PNa" firstAttribute="top" secondItem="QE9-Wz-9PD" secondAttribute="bottom" constant="90" id="mFp-K4-EpO"/>
+                            <constraint firstItem="0xj-b5-PNa" firstAttribute="top" secondItem="QE9-Wz-9PD" secondAttribute="bottom" constant="50" id="mFp-K4-EpO"/>
+                            <constraint firstItem="ffy-gV-HwR" firstAttribute="trailing" secondItem="38X-CW-nXl" secondAttribute="trailing" constant="100" id="mha-Ee-bW0"/>
                             <constraint firstItem="QE9-Wz-9PD" firstAttribute="leading" secondItem="ffy-gV-HwR" secondAttribute="leading" constant="37" id="pTj-4X-hi0"/>
+                            <constraint firstItem="QE9-Wz-9PD" firstAttribute="top" secondItem="38X-CW-nXl" secondAttribute="bottom" constant="45" id="qUu-v3-ubW"/>
                             <constraint firstItem="ffy-gV-HwR" firstAttribute="trailing" secondItem="Wbz-Ty-6GS" secondAttribute="trailing" constant="87" id="wtl-RI-dhf"/>
                         </constraints>
                     </view>

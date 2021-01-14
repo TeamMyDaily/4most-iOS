@@ -28,6 +28,7 @@ class KeywordPriorityVC: UIViewController {
         setTitleLabel()
         setTableViewDelegate()
         setNavigationBar()
+        keywordTableView.separatorStyle = .none
     }
     
     func setTableViewDelegate(){
@@ -153,6 +154,14 @@ extension KeywordPriorityVC{
                     self.navigationController?.pushViewController(dvc, animated: true)
 
                 } catch(let err){
+                    if result.statusCode == 200{
+                        guard let dvc = self.storyboard?.instantiateViewController(identifier: KeywordDecideVC.identifier) as? KeywordDecideVC else{
+                            return
+                        }
+
+                        dvc.setReceivedKeywordList(list: self.keywordList)
+                        self.navigationController?.pushViewController(dvc, animated: true)
+                    }
                     print(err.localizedDescription)
                 }
             case .failure(let err):

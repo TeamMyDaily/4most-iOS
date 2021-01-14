@@ -327,6 +327,7 @@ extension MypageVC: menuAlertDelegate{
             (action) in
             print("키워드 정의/수정")
             self.getKeywordDefinition(keywordId: cellKeywordId, keyword: cellLabel)
+            
         })
         
         let registetAction = UIAlertAction(title: "기록키워드 등록", style: .default, handler: {
@@ -544,15 +545,15 @@ extension MypageVC{
                         var keywordDefinition = ""
                         var keywordName = ""
                         if responseObject.data.isWritten{
-                            keywordName = responseObject.data.name ?? ""
-                            keywordDefinition = responseObject.data.definition ?? ""
+                            keywordName = responseObject.data.name
+                            keywordDefinition = responseObject.data.definition
                         }
+                        print("누른거 : \(keyword) , 서버에서 가져온 것 \(keyword)")
                         
-                        if keywordName == keyword{
-                            let dvc = self.keywordStoryboard.instantiateViewController(identifier: KeywordDefineVC.identifier) as! KeywordDefineVC
-                            dvc.setKeywordAndDefinition(key: keywordName, value: keywordDefinition)
-                            self.navigationController?.pushViewController(dvc, animated: true)
-                        }
+                        let dvc = self.keywordStoryboard.instantiateViewController(identifier: KeywordDefineVC.identifier) as! KeywordDefineVC
+                        dvc.setKeywordAndDefinition(key: keyword, value: keywordDefinition)
+                        self.navigationController?.pushViewController(dvc, animated: true)
+                        
                         
                         } catch(let err) {
                         print(err.localizedDescription)
