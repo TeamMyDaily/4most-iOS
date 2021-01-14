@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import Moya
 
 class NextKeywordVC: UIViewController {
     static let identifier = "NextKeywordVC"
+    
+    private let authProvider = MoyaProvider<KeywordServices>(plugins: [NetworkLoggerPlugin(verbose: true)])
+    var responseToken : SelectedKeywordsModel?
     
     var keywordList: [[String]] = []
     
@@ -27,7 +31,6 @@ class NextKeywordVC: UIViewController {
         setNavigationBar()
     }
     
-    
     func setTitleLabel(){
         titleLabel.numberOfLines = 0
         titleLabel.text = "8가지를 고르셨군요!\n조금만 더 고민해 볼까요?"
@@ -44,14 +47,14 @@ class NextKeywordVC: UIViewController {
     
     @IBAction func submitKeyword(_ sender: UIButton) {
         
+        postSelectedKeyword()
         guard let dvc = self.storyboard?.instantiateViewController(identifier: KeywordPriorityVC.identifier) as? KeywordPriorityVC else{
             return
         }
         
         dvc.setReceivedKeywordList(list: selectedKeywordList)
-        
         self.navigationController?.pushViewController(dvc, animated: true)
-        
+
     }
     
     func setkeywordContentView(){
@@ -101,7 +104,6 @@ class NextKeywordVC: UIViewController {
             }
             
         }
-        
         keywordContentView.addSubview(content)
         
     }
@@ -161,15 +163,14 @@ class NextKeywordVC: UIViewController {
     func alertKeyword(){
         let txt = "키워드를 많이 선택 하셨어요.\n키워드는 4개 까지 선택이 가능합니다.\n좀 더 고민해서 하나를 제외 해 주세요!"
         let alert = UIAlertController(title: "최종 키워드 4개를 선택해주세요", message: txt, preferredStyle: UIAlertController.Style.alert)
-        let okAction = UIAlertAction(title: "확인", style: .default) { (action) in}
+        let okAction = UIAlertAction(title: "확인했어요", style: .default) { (action) in}
        
         alert.addAction(okAction)
         present(alert, animated: false, completion: nil)
     }
     
     func setButtonActive(){
-        if selectedKeywordList.count == 4 {
-            print("4개 눌림!!! 버튼 활성화")
+        if selectedKeywordList.count > 0 && selectedKeywordList.count < 5 {
             completeButton.backgroundColor = UIColor.mainOrange
             completeButton.isEnabled = true
         }else{
@@ -193,16 +194,15 @@ class NextKeywordVC: UIViewController {
         navigationBar.shadowImage = UIImage()
         
         navigationItem.title = "키워드 설정하기"
-        let questionItem = UIBarButtonItem(image: UIImage(systemName: "questionmark.circle.fill"), style: .plain, target: self, action: #selector(goKeywordPopUp))
+        let questionItem = UIBarButtonItem(image: UIImage(named: "navigation_question_icon"), style: .plain, target: self, action: #selector(goKeywordPopUp))
             
         navigationItem.rightBarButtonItem = questionItem
         
         let leftButton: UIBarButtonItem = {
-             let button = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(dismissVC))
+             let button = UIBarButtonItem(image: UIImage(named: "btn_arrow_left"), style: .plain, target: self, action: #selector(dismissVC))
              return button
            }()
            navigationItem.leftBarButtonItem = leftButton
-        
     }
 
     
@@ -219,6 +219,30 @@ class NextKeywordVC: UIViewController {
         self.present(dvc, animated: true, completion: nil)
     }
 
-    
-    
+}
+
+// MARK: - Network
+extension NextKeywordVC{
+    func postSelectedKeyword(){
+        let param = SelectedKeywordsRequest(list: selectedKeywordList)
+        authProvider.request(.selectedKeywords(param: param)){ responds in
+            switch responds {
+            case .success(let result):
+                do {
+                    self.responseToken = try result.map(SelectedKeywordsModel.self)
+                    guard let dvc = self.storyboard?.instantiateViewController(identifier: KeywordPriorityVC.identifier) as? KeywordPriorityVC else{
+                        return
+                    }
+                    
+                    dvc.setReceivedKeywordList(list: self.selectedKeywordList)
+                    self.navigationController?.pushViewController(dvc, animated: true)
+
+                } catch(let err){
+                    print(err.localizedDescription)
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
+    }
 }

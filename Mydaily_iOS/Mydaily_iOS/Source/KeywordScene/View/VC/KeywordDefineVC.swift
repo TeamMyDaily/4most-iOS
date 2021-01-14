@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import Moya
 
 class KeywordDefineVC: UIViewController{
     static let identifier = "KeywordDefineVC"
+    
+    private let authProvider = MoyaProvider<KeywordServices>(plugins: [NetworkLoggerPlugin(verbose: true)])
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet weak var subTitleLabel: UILabel!
@@ -27,6 +30,8 @@ class KeywordDefineVC: UIViewController{
     
     var modifiedMode = false
     var definition = ""
+    var totalKeywordId = -1
+    var isFirt = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,13 +39,13 @@ class KeywordDefineVC: UIViewController{
         contentTextView.delegate = self
         setKeyboardNotification()
         contentViewSize = Int(contentView.frame.height)
-       
     }
-    
     
     func setKeywordAndDefinition(key: String, value: String){
         keyword = key
         definition = value
+        print("키워드 정의로 넘겨온 \(keyword), \(definition)")
+        
     }
     
     func setContent(){
@@ -55,13 +60,17 @@ class KeywordDefineVC: UIViewController{
         definition = text
     }
     
+    func setTotalKeywordId(keywordId: Int){
+        totalKeywordId = keywordId
+    }
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         contentTextView.resignFirstResponder()
     }
     
     @IBAction func touchUpSaveKeywordDefinition(_ sender: UIButton){
-        
+        print("modify = \(modifiedMode)")
         if checkSaving{
             checkSaving = false
         }else{
@@ -69,6 +78,7 @@ class KeywordDefineVC: UIViewController{
         }
         
         definition = contentTextView.text
+        postKeywordDefinition()
         
         if modifiedMode{ //수정모드에서 저장하기 버튼 눌림
             completeButton.isHidden = true
@@ -112,7 +122,7 @@ extension KeywordDefineVC: UITextViewDelegate{
         let textLength = textView.text.count
         changedNumberLabel.text = "\(textView.text.count)"
         
-        if textLength <= 0 || textLength >= 20 {
+        if textLength <= 0 || textLength >= 200 {
             changedNumberLabel.textColor = UIColor.mainGray
             numberLabel.textColor = UIColor.mainOrange
             completeButton.isEnabled = false
@@ -160,16 +170,13 @@ extension KeywordDefineVC{
     }
  
     @objc func keyboardWillDisappear(_ sender: NotificationCenter){
-        //contentView.sizeThatFits(CGSize(from: 200))
+        
         contentView.frame.size.height = CGFloat(contentViewSize)
         completeButton.frame.origin.y -= 50
         print( contentView.frame.size.height)
     }
     
 }
-
-
-
 
 //UI관련 사항 setting
 extension KeywordDefineVC{
@@ -231,7 +238,6 @@ extension KeywordDefineVC{
             }
         }
         
-        
     }
     
     func setModifiedMode(){
@@ -269,7 +275,7 @@ extension KeywordDefineVC{
         navigationItem.title = "키워드 정의"
       
         let leftButton: UIBarButtonItem = {
-             let button = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(dismissVC))
+             let button = UIBarButtonItem(image: UIImage(named: "btn_arrow_left"), style: .plain, target: self, action: #selector(dismissVC))
              return button
            }()
            navigationItem.leftBarButtonItem = leftButton
@@ -283,33 +289,41 @@ extension KeywordDefineVC{
             navigationItem.rightBarButtonItem = rightButton
             navigationItem.rightBarButtonItem?.tintColor = .blue
         }
-        
     }
     
     @objc func dismissVC() {
+        print("modify mode = \(modifiedMode)")
+        print("checkSaving = \(checkSaving)")
+        
         if contentTextView.text == "나만의 정의를 작성해 주세요." || contentTextView.text.count <= 0{
             self.navigationController?.popViewController(animated: true)
         }else{
-           
-            if modifiedMode{
-                checkSaving = completeButton.isHidden
-            }
             
             if checkSaving == true{ // 저장된 상태
-                
-                let endIndex = self.navigationController?.viewControllers.count ?? 0
-                guard let pvc = self.navigationController?.viewControllers[endIndex-2] as? KeywordDecideVC else {
-                   return
+                if isFirt{
+                    let endIndex = self.navigationController?.viewControllers.count ?? 0
+                    guard let pvc = self.navigationController?.viewControllers[endIndex-2] as? KeywordDecideVC else {
+                        print()
+                       return
+                    }
+                        
+                    let definition = contentTextView.text ?? ""
+                    pvc.setKeywordDefinition(key: keyword, value: definition)
+                    isFirt = false
+                    self.navigationController?.popViewController(animated: true)
+                }else{
+                    self.navigationController?.popViewController(animated: true)
                 }
-        
-                let definition = contentTextView.text ?? ""
-                pvc.setKeywordDefinition(key: keyword, value: definition)
-                
-                self.navigationController?.popViewController(animated: true)
-                
             }else{
                 setSavingAlert()
             }
+            
+            if modifiedMode{
+                checkSaving = completeButton.isHidden
+            }
+//            }else{
+//                self.navigationController?.popViewController(animated: true)
+//            }
         }
     }
     
@@ -336,7 +350,6 @@ extension KeywordDefineVC{
     }
     
     
-    
     @objc func modifyDefinition(_ sender: UIBarButtonItem){
       
         if sender.title == "수정"{
@@ -352,7 +365,30 @@ extension KeywordDefineVC{
             sender.title = ""
         }
     }
-    
    
 }
 
+extension KeywordDefineVC{
+    func postKeywordDefinition(){
+        let param = KeywordDefinitionRequest(name: keyword, definition: definition)
+        authProvider.request(.keywordDefinition(param: param)){ responds in
+            switch responds{
+            case .success(let result):
+                do{
+                    let responseToken = try result.map(BasicResponseModel.self)
+                    if responseToken.status == 200{
+                        if self.modifiedMode != true{
+                            self.dismissVC()
+                        }
+                    }
+                    print(responseToken.message)
+                    print("-----------------------")
+                }catch(let err){
+                    print(err.localizedDescription)
+                }
+            case .failure(let err):
+                    print(err.localizedDescription)
+            }
+        }
+    }
+}

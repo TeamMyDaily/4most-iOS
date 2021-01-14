@@ -31,21 +31,22 @@ class EvaluationKeywordTVC: UITableViewCell {
 
 //MARK: UI
 extension EvaluationKeywordTVC {
-    func setCellInsideData(keyword: String, goal: String, index: Int, rate: Double, count: Int) {
+    func setCellInsideData(keyword: String, goal: String, index: Int, rate: String, count: Int) {
         if keyword != "" {
             keywordLabel.text = keyword
             goalLabel.text = goal
             totalCountLabel.text = "총 \(count)개"
-            rateLabel.text = "\(rate)"
+            rateLabel.text = rate
         } else {
             self.isHidden = true
         }
         
+        let floatRate: Float = Float(rate) ?? 0
         UIView.animate(withDuration: 2, animations:  {() in
             self.rateSlider.setValue(0, animated: true)
                 }, completion:{(Bool)  in
                     UIView.animate(withDuration: 2, animations: {() in
-                        self.rateSlider.setValue(Float(rate), animated: true)
+                        self.rateSlider.setValue(floatRate, animated: true)
             })
         })
     }

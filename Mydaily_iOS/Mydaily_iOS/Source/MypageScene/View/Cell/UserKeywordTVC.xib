@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserKeywordTVC" rowHeight="67" id="KGk-i7-Jjw" customClass="UserKeywordTVC" customModule="Mydaily_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="332" height="67"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="332" height="67"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L2k-Nu-iSu">
+                        <rect key="frame" x="67" y="10" width="44" height="47"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="top" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sBe-cD-ZC6">
+                        <rect key="frame" x="16" y="16" width="35" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="sBe-cD-ZC6" secondAttribute="height" multiplier="1:1" id="CxC-gX-4Bl"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="btn_unselected_pin_l@4x"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZX-oP-5Ok">
+                        <rect key="frame" x="279" y="15" width="37" height="37"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="vZX-oP-5Ok" secondAttribute="height" multiplier="1:1" id="MkD-Al-cCk"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="mypage_menu_point"/>
+                        <connections>
+                            <action selector="alertKeywordMenu:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="vp2-rO-Ueh"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="vZX-oP-5Ok" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="8Iu-dQ-V6f"/>
+                    <constraint firstAttribute="bottom" secondItem="vZX-oP-5Ok" secondAttribute="bottom" constant="15" id="FSa-tm-gjD"/>
+                    <constraint firstItem="sBe-cD-ZC6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="MQm-ek-8m2"/>
+                    <constraint firstAttribute="bottom" secondItem="sBe-cD-ZC6" secondAttribute="bottom" constant="16" id="Wj0-Cy-cKE"/>
+                    <constraint firstItem="L2k-Nu-iSu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="gzg-7S-N5K"/>
+                    <constraint firstAttribute="bottom" secondItem="L2k-Nu-iSu" secondAttribute="bottom" constant="10" id="kVn-z6-2hM"/>
+                    <constraint firstAttribute="trailing" secondItem="vZX-oP-5Ok" secondAttribute="trailing" constant="16" id="lrS-fA-zwD"/>
+                    <constraint firstItem="sBe-cD-ZC6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="sIr-bk-GBF"/>
+                    <constraint firstItem="L2k-Nu-iSu" firstAttribute="leading" secondItem="sBe-cD-ZC6" secondAttribute="trailing" constant="16" id="xlv-Cb-etf"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="fixClipButton" destination="sBe-cD-ZC6" id="TdY-nK-6K8"/>
+                <outlet property="keywordLabel" destination="L2k-Nu-iSu" id="rxi-pT-206"/>
+                <outlet property="menuButton" destination="vZX-oP-5Ok" id="mYF-Be-mhn"/>
+            </connections>
+            <point key="canvasLocation" x="-69.565217391304358" y="91.40625"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="btn_unselected_pin_l@4x" width="96" height="97"/>
+        <image name="mypage_menu_point" width="24" height="25"/>
+    </resources>
+</document>

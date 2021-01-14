@@ -9,7 +9,6 @@ import UIKit
 
 class DetailVC: UITableViewController, ThreePartCellDelegate {
     
-
     var myArray = [String]()
     
     override func viewDidLoad() {

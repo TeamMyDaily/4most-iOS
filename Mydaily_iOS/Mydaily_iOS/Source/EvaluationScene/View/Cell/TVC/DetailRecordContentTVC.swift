@@ -19,7 +19,9 @@ class DetailRecordContentTVC: UITableViewCell {
         return notifyLabel
     }()
     
-    var list: [String] = []
+    var taskTitle: [String] = []
+    var taskDate: [String] = []
+    var taskSatisfaction: [Int] = []
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,12 +38,12 @@ class DetailRecordContentTVC: UITableViewCell {
 
 extension DetailRecordContentTVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return list.count
+        return taskTitle.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailRecordCVC.identifier, for: indexPath as IndexPath) as! DetailRecordCVC
-        cell.setLabelText(content: list[indexPath.item])
+        cell.setLabelText(content: taskTitle[indexPath.item], date: taskDate[indexPath.item], satisfaction: taskSatisfaction[indexPath.item])
         return cell
     }
 }
@@ -55,6 +57,26 @@ extension DetailRecordContentTVC: UICollectionViewDelegateFlowLayout {
 
 //MARK: UI
 extension DetailRecordContentTVC {
+    func setList(task: [Tasks]) {
+        if !task.isEmpty {
+            print(task)
+            for i in 0...task.count-1 {
+                taskTitle.append(task[i].title)
+                taskSatisfaction.append(task[i].satisfaction)
+                
+                let start = String.Index(encodedOffset: 0)
+                let end = String.Index(encodedOffset: 10)
+                let substring = String(task[i].date[start..<end])
+                let dateString = substring.replacingOccurrences(of: "-", with: ".",
+                                               options: NSString.CompareOptions.literal, range:nil)
+                taskDate.append(dateString)
+            }
+        }
+        
+        hideViewIfListEmpty()
+        recordCollectionView.reloadData()
+    }
+    
     private func setNoRecordView() {
         noRecordView.addSubview(notifyLabel)
         
@@ -71,7 +93,7 @@ extension DetailRecordContentTVC {
 //MARK: View
 extension DetailRecordContentTVC {
     private func hideViewIfListEmpty() {
-        if list.isEmpty {
+        if taskTitle.isEmpty {
             recordCollectionView.isHidden = true
             noRecordView.isHidden = false
         } else {
@@ -95,7 +117,7 @@ extension DetailRecordContentTVC: DetailRecordLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, heightForLabelAtIndexPath indexPath: IndexPath) -> CGFloat {
         let width = (collectionView.bounds.size.width - (collectionView.contentInset.left + collectionView.contentInset.right + 16 + 16 + 30)) / 2 - 30
         let label: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
-        label.text = list[indexPath.item]
+        label.text = taskTitle[indexPath.item]
         label.preferredMaxLayoutWidth = width
         label.numberOfLines = 0
         label.lineBreakMode = NSLineBreakMode.byWordWrapping

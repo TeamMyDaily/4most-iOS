@@ -13,7 +13,6 @@ class RetrospectiveTabCVC: UICollectionViewCell {
     @IBOutlet weak var retrospectiveTableView: UITableView!
     
     var delegate: TableViewInsideCollectionViewDelegate?
-    var buttonDelegate: OccurWhenClickModifyButtonDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,7 +30,6 @@ extension RetrospectiveTabCVC: UITableViewDataSource {
             return UITableViewCell()
         }
         cell.delegate = self.delegate
-        cell.buttonDelegate = self.buttonDelegate
         cell.tableView = retrospectiveTableView
         cell.selectionStyle = .none
         return cell
@@ -47,9 +45,9 @@ extension RetrospectiveTabCVC {
         retrospectiveTableView.dataSource = self
         retrospectiveTableView.separatorColor = .clear
         if UIScreen.main.bounds.size.height <= 667 {
-            retrospectiveTableView.rowHeight = UIScreen.main.bounds.size.height - 50
+            retrospectiveTableView.rowHeight = UIScreen.main.bounds.size.height - 150
         } else {
-            retrospectiveTableView.rowHeight = UIScreen.main.bounds.size.height - 180
+            retrospectiveTableView.rowHeight = UIScreen.main.bounds.size.height - 250
         }
     }
 }
