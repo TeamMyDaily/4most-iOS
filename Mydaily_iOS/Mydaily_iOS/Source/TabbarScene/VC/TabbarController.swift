@@ -46,7 +46,7 @@ class TabbarController: UITabBarController {
         
         
         let MypageStoryboard = UIStoryboard.init(name: "Mypage", bundle: nil)
-        let thirdTab = MypageStoryboard.instantiateViewController(identifier: "MypageVC")
+        let thirdTab = MypageStoryboard.instantiateViewController(identifier: "MypageNavigation")
          
         thirdTab.tabBarItem.title = "My"
 //        thirdTab.tabBarItem.image = UIImage(named: "gnbMypage")?.withRenderingMode(.alwaysOriginal)
