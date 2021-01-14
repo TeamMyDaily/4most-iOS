@@ -714,19 +714,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ShU-x4-Asu">
-                                <rect key="frame" x="274" y="214" width="43" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_error_l@4x" translatesAutoresizingMaskIntoConstraints="NO" id="ShU-x4-Asu">
+                                <rect key="frame" x="323" y="227" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="0Oa-OA-FaG"/>
+                                    <constraint firstAttribute="width" constant="24" id="uCU-cv-2AI"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yf4-Me-cbw"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="SnA-IL-rhA" firstAttribute="leading" secondItem="yf4-Me-cbw" secondAttribute="leading" constant="16" id="0rp-XP-chj"/>
+                            <constraint firstItem="ShU-x4-Asu" firstAttribute="centerY" secondItem="PDU-TK-vYO" secondAttribute="centerY" id="6kh-uf-C39"/>
                             <constraint firstItem="jMI-s5-Wel" firstAttribute="leading" secondItem="yf4-Me-cbw" secondAttribute="leading" constant="16" id="9MD-bu-BB6"/>
                             <constraint firstItem="nUq-Hd-nu2" firstAttribute="leading" secondItem="yf4-Me-cbw" secondAttribute="leading" constant="16" id="BGc-V8-891"/>
                             <constraint firstItem="PDU-TK-vYO" firstAttribute="leading" secondItem="yf4-Me-cbw" secondAttribute="leading" constant="16" id="F1o-ip-laE"/>
                             <constraint firstItem="Kvr-Cs-gZi" firstAttribute="top" secondItem="jMI-s5-Wel" secondAttribute="bottom" constant="10" id="GiY-Z3-mMB"/>
+                            <constraint firstItem="yf4-Me-cbw" firstAttribute="trailing" secondItem="ShU-x4-Asu" secondAttribute="trailing" constant="28" id="RLM-RO-820"/>
                             <constraint firstItem="SnA-IL-rhA" firstAttribute="top" secondItem="8af-vz-by5" secondAttribute="bottom" constant="16" id="RfG-3o-4pd"/>
                             <constraint firstAttribute="trailing" secondItem="BeE-XF-7kf" secondAttribute="trailing" constant="16" id="am8-bP-Wio"/>
                             <constraint firstItem="Kvr-Cs-gZi" firstAttribute="leading" secondItem="yf4-Me-cbw" secondAttribute="leading" constant="16" id="bbg-IU-WgG"/>
@@ -743,6 +748,7 @@
                     </view>
                     <connections>
                         <outlet property="addButton" destination="nUq-Hd-nu2" id="u2q-Uh-VDr"/>
+                        <outlet property="errorCheckButton" destination="ShU-x4-Asu" id="2rT-BM-eRQ"/>
                         <outlet property="guideLabel" destination="Kvr-Cs-gZi" id="Tms-fJ-EIu"/>
                         <outlet property="keywordTextField" destination="PDU-TK-vYO" id="bje-BX-nuw"/>
                         <outlet property="noticeLabel" destination="BeE-XF-7kf" id="9OR-bn-LUB"/>
@@ -755,6 +761,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_error_l@4x" width="96" height="96"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
