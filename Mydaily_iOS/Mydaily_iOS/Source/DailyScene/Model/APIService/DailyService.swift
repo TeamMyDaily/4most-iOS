@@ -86,7 +86,7 @@ extension DailyService: TargetType {
         default:
             return [
                 "Content-Type": "application/json",
-                "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTYsIm5hbWUiOiLqsIDsmIHtmJzroLkiLCJlbWFpbCI6ImFhQGFhLmNvbSIsImlhdCI6MTYxMDUyNjQ1MiwiZXhwIjoxNjEzMjA0ODUyLCJpc3MiOiJjeWoifQ.0EOvEkKTfzZZMWkF1gIrNJtdViyaHktHPm3KVQypX4s"
+                "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6InFxIiwiZW1haWwiOiJxcUBxcS5xcSIsImlhdCI6MTYxMDMzMzQ0MywiZXhwIjoxNjEyOTI1NDQzLCJpc3MiOiJjeWoifQ.k3HAJg9K_NMVscJWafGBdCB4Odj6qua9VUL2N3_siYo"
             ]
         }
     }
