@@ -25,13 +25,20 @@ class EvaluationVC: UIViewController {
         return currentWeekButton
     }()
     
+    lazy var currentWeekImage: UIImageView = {
+        let currentWeekImage = UIImageView()
+        currentWeekImage.translatesAutoresizingMaskIntoConstraints = false
+        return currentWeekImage
+    }()
+    
     var calendar = Calendar.current
     var dateFormatter = DateFormatter()
     var dateValue = 0
     var weekText: String?
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        setReportNotification()
+        setRetrospectiveNotification()
     }
     
     override func viewDidLoad() {
@@ -174,12 +181,23 @@ extension EvaluationVC {
         currentWeekButton.widthAnchor.constraint(equalToConstant: 81).isActive = true
         currentWeekButton.heightAnchor.constraint(equalToConstant: 32).isActive = true
         currentWeekButton.titleLabel?.font = .myMediumSystemFont(ofSize: 16)
-        currentWeekButton.setTitle("이번주 >", for: .normal)
+        currentWeekButton.setTitle("이번주   ", for: .normal)
         currentWeekButton.titleLabel?.textColor = .white
         currentWeekButton.titleLabel?.textAlignment = .left
         currentWeekButton.layer.cornerRadius = 15
         currentWeekButton.layer.masksToBounds = true
         currentWeekButton.isHidden = true
+        
+        setCurrentImage()
+    }
+    
+    private func setCurrentImage() {
+        currentWeekButton.addSubview(currentWeekImage)
+        currentWeekImage.image = UIImage(named: "btnChevronRightW")
+        currentWeekImage.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        currentWeekImage.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        currentWeekImage.centerYAnchor.constraint(equalTo: currentWeekButton.centerYAnchor).isActive = true
+        currentWeekImage.trailingAnchor.constraint(equalTo: currentWeekButton.trailingAnchor, constant: 0).isActive = true
     }
     
     private func setCollectionViewDelegate() {
@@ -248,7 +266,7 @@ extension EvaluationVC {
             weekLabel.textColor = .mainOrange
         } else {
             currentWeekButton.isHidden = false
-            weekLabel.textColor = .mainBlack
+            weekLabel.textColor = .lightGray
         }
     }
 }

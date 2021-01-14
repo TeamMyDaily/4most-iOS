@@ -80,6 +80,7 @@ extension DetailGoalTVC {
     
     private func setColorWhenAchieve() {
         if isGoalExisted {
+            rightForwardButton.isHidden = false
             if isAchieve {
                 self.backgroundColor = .mainOrange
                 goalLabel.textColor = .white
