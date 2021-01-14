@@ -17,6 +17,8 @@ class GoalModifyVC: UIViewController {
     @IBOutlet weak var textViewCount: UILabel!
     @IBOutlet weak var saveButton: UIButton!
     var KeywordDate: GoalKeyword?
+    var week:String?
+    var edit = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +29,13 @@ class GoalModifyVC: UIViewController {
     
     @IBAction func saveButton(_ sender: Any) {
         modifyGoal()
-        self.navigationController?.popViewController(animated: true)
+        if let viewControllers = self.navigationController?.viewControllers {
+            if viewControllers.count > 2 {
+                self.navigationController?.popToViewController(viewControllers[viewControllers.count - 3], animated: true)
+            } else {
+                        // fail
+            }
+        }
     }
 }
 
@@ -42,13 +50,15 @@ extension GoalModifyVC {
         
         self.navigationItem.title = "목표"
         
-                let leftButton: UIBarButtonItem = {
-                    let button = UIBarButtonItem(title: "뒤", style: .plain, target: self, action: #selector(cancelAlertaction))
-                    return button
-                }()
+        let leftButton: UIBarButtonItem = {
+            let button = UIBarButtonItem(image: UIImage(named: "btnBack"), style: .plain, target: self, action: #selector(cancelAlertaction))
+            button.tintColor = .mainBlack
+            return button
+        }()
         
         let rightButton: UIBarButtonItem = {
-            let button = UIBarButtonItem(title: "삭제", style: .done, target: self, action: #selector(deleteAlert))
+            let button = UIBarButtonItem(image: UIImage(named: "btn_trash"), style: .plain, target: self, action: #selector(deleteAlert))
+            button.tintColor = .mainOrange
             button.setTitleTextAttributes([
                                             NSAttributedString.Key.font: UIFont.myRegularSystemFont(ofSize: 17),
                                             NSAttributedString.Key.foregroundColor: UIColor.mainOrange], for: .normal)
@@ -64,28 +74,37 @@ extension GoalModifyVC {
     
     @objc
     private func cancelAlertaction() {
-        
-        let alert = UIAlertController(
-            title: "주의!",
-            message: "작성중인 글을 취소하시겠습니까?\n취소할 시, 작성된 글은 저장되지 않습니다.",
-            preferredStyle: UIAlertController.Style.alert
-        )
-        let cancel = UIAlertAction(title: "작성취소", style: .destructive) {
-            _ in
-            self.dismiss(animated: true, completion: nil)
+        if edit == true{
+            let alert = UIAlertController(
+                title: "정말 뒤로 가시겠어요?",
+                message: "뒤로가기를 누르시면 작성 중인 내용이 삭제\n되고 이전 페이지로 돌아 갑니다.",
+                preferredStyle: UIAlertController.Style.alert
+            )
+            let cancel = UIAlertAction(title: "작성취소", style: .destructive) {
+                _ in
+                self.dismiss(animated: true, completion: nil)
+            }
+            let okAction = UIAlertAction(title: "닫기", style: .default)
+            alert.addAction(cancel)
+            alert.addAction(okAction)
+            present(alert, animated: true, completion: nil)
+        }else{
+            self.navigationController?.popViewController(animated: true)
         }
-        let okAction = UIAlertAction(title: "닫기", style: .default)
-        alert.addAction(cancel)
-        alert.addAction(okAction)
-        present(alert, animated: true, completion: nil)
     }
     
     @objc func deleteAlert(){
         let alertViewController = UIAlertController(title: "목표를 삭제 하시겠어요?", message: nil, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "취소하기", style: .cancel, handler : nil)
         let deleteAction = UIAlertAction(title: "삭제하기", style: .destructive) { (action) in
-        //Implement action
             self.deleteGoal()
+            if let viewControllers = self.navigationController?.viewControllers {
+                if viewControllers.count > 2 {
+                    self.navigationController?.popToViewController(viewControllers[viewControllers.count - 3], animated: true)
+                } else {
+                            // fail
+                }
+            }
         }
         
         alertViewController.addAction(alertAction)
@@ -96,7 +115,7 @@ extension GoalModifyVC {
     
     func setUI(){
         goalTextView.delegate = self
-        dateLabel.text = "20년 12월 3주"
+        dateLabel.text = "\(self.week ?? "")"
         dateLabel.font = .boldSystemFont(ofSize: 12)
         dateLabel.textColor = .mainGray
     
@@ -114,6 +133,9 @@ extension GoalModifyVC {
         goalTextView.backgroundColor = .gray30
         goalTextView.layer.cornerRadius = 15
         goalTextView.text = "\(self.KeywordDate?.weekGoal ?? "")"
+        goalTextView.textColor = .mainBlack
+        goalTextView.font = .myRegularSystemFont(ofSize: 16)
+        goalTextView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         
         textViewCount.textColor = .mainOrange
         textViewCount.font = .myRegularSystemFont(ofSize: 12)
@@ -135,6 +157,7 @@ extension GoalModifyVC: UITextViewDelegate {
     }
 
     func textViewDidChange(_ textView: UITextView) {
+        edit = true
         textViewCount.text = "\(textView.text.count)"
         if textView.text.count == 0 {
             saveButton.isEnabled = false

@@ -20,6 +20,8 @@ class GoalDetailVC: UIViewController {
     var goal = false
     var KeywordDate: GoalKeyword?
     var week: String?
+    var completed: Bool?
+    var edit = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,21 +34,22 @@ class GoalDetailVC: UIViewController {
     @IBAction func checkButton(_ sender: Any) {
         if goal == false {
             checkButton.setImage(UIImage(named: "ic_check_line_active"), for: .normal)
-            checkLabel.text = "목표 달성시 체크"
-            checkLabel.font = .myLightSystemFont(ofSize: 12)
             checkLabel.textColor = .mainOrange
             goal = true
         }
         else{
             checkButton.setImage(UIImage(named: "ic_check_line_inactive"), for: .normal)
-            checkLabel.text = "목표 달성시 체크"
-            checkLabel.font = .myLightSystemFont(ofSize: 12)
             checkLabel.textColor = .mainGray
             goal = false
         }
     }
     
     @IBAction func completeButton(_ sender: Any) {
+        let alert = self.storyboard?.instantiateViewController(withIdentifier: "customPopVC") as! customPopVC
+        
+//        self.navigationController?.pushViewController(alert, animated: false)
+        alert.modalPresentationStyle = .overCurrentContext
+        present(alert, animated: false, completion: nil)
         completeGoal()
     }
 }
@@ -60,7 +63,7 @@ extension GoalDetailVC {
         navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationBar.shadowImage = UIImage()
         
-        self.navigationItem.title = "기록"
+        self.navigationItem.title = "목표"
         
         let leftButton: UIBarButtonItem = {
             let button = UIBarButtonItem(image: UIImage(named: "btnBack"), style: .plain, target: self, action: #selector(dismissVC))
@@ -80,8 +83,11 @@ extension GoalDetailVC {
             
             return button
         }()
+        
+        if completed != true{
+            navigationItem.rightBarButtonItem = rightButton
+        }
         navigationItem.leftBarButtonItem = leftButton
-        navigationItem.rightBarButtonItem = rightButton
     }
     
     @objc func dismissVC() {
@@ -91,10 +97,30 @@ extension GoalDetailVC {
     @objc func modify(){
         guard let VC = self.storyboard?.instantiateViewController(identifier: "GoalModifyVC") as? GoalModifyVC else {return}
         VC.KeywordDate = self.KeywordDate
+        VC.week = self.week
         self.navigationController?.pushViewController(VC, animated: true)
     }
     
     func setUI(){
+        checkLabel.text = "목표 달성시 체크"
+        checkLabel.font = .myLightSystemFont(ofSize: 12)
+        
+        goalButton.isEnabled = false
+        goalButton.layer.cornerRadius = 15
+        goalButton.setTitle("목표 달성", for: .normal)
+        goalButton.setTitleColor(.white, for: .normal)
+        goalButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
+        
+        if completed == true{
+            checkButton.setImage(UIImage(named: "ic_check_line_active"), for: .normal)
+            checkButton.isEnabled = false
+            goalButton.isEnabled = false
+            goalButton.backgroundColor = .mainOrange
+            checkLabel.textColor = .mainOrange
+        }else{
+            checkButton.setImage(UIImage(named: "ic_check_line_inactive"), for: .normal)
+            checkLabel.textColor = .mainGray
+        }
         weekLabel.text = "\(week ?? "")"
         weekLabel.font = .myBoldSystemFont(ofSize: 12)
         weekLabel.textColor = .mainGray
@@ -114,17 +140,6 @@ extension GoalDetailVC {
         goalLabel.font = .myBlackSystemFont(ofSize: 32)
         goalLabel.textColor = .mainBlack
         goalLabel.sizeToFit()
-        
-        checkLabel.text = "목표 달성시 체크"
-        checkLabel.font = .myLightSystemFont(ofSize: 12)
-        checkLabel.textColor = .mainGray
-        
-        goalButton.isEnabled = false
-        goalButton.layer.cornerRadius = 15
-        goalButton.backgroundColor = .mainGray
-        goalButton.setTitle("목표 달성", for: .normal)
-        goalButton.setTitleColor(.white, for: .normal)
-        goalButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
         
         checkButton.addTarget(self, action: #selector(enabledButton), for: .allEvents)
     }

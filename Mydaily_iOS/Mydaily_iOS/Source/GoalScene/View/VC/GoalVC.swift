@@ -191,6 +191,7 @@ extension GoalVC: UITableViewDataSource{
             guard let VC = self.storyboard?.instantiateViewController(identifier: "GoalDetailVC") as? GoalDetailVC else {return}
             VC.KeywordDate = self.goalData?.data.result.keywords[indexPath.row]
             VC.week = self.dateLabel.text
+            VC.completed = self.goalData?.data.result.keywords[indexPath.row].isGoalCompleted
             self.navigationController?.pushViewController(VC, animated: true)
         }
     }

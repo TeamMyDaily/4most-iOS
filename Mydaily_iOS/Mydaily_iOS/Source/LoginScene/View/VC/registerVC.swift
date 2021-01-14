@@ -63,8 +63,8 @@ class RegisterVC: UIViewController {
     }
     @IBAction func nextButton(_ sender: Any) {
         signup()
-        let alert = UIAlertController(title: "가입을 축하합니다!", message: "4most회원이 되신걸 진심으로 축하합니다!", preferredStyle: UIAlertController.Style.alert)
-        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+        let alert = UIAlertController(title: "가입을 축하합니다", message: "4most회원이 되신걸 진심으로 축하합니다!\n이상이 일상이 되는 회고,포모스트", preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: "확인했어요", style: .default) { (action) in
             if let viewControllers = self.navigationController?.viewControllers {
                 if viewControllers.count > 2 {
                     self.navigationController?.popToViewController(viewControllers[viewControllers.count - 3], animated: true)

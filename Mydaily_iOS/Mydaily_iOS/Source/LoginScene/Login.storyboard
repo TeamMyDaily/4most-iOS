@@ -187,7 +187,7 @@
                                     <fragment content="약관에는">
                                         <attributes>
                                             <color key="NSColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                            <font key="NSFont" metaFont="cellTitle"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content=" ‘">
@@ -199,7 +199,7 @@
                                     <fragment content="개인정보">
                                         <attributes>
                                             <color key="NSColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                            <font key="NSFont" metaFont="cellTitle"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content=" ">
@@ -211,7 +211,7 @@
                                     <fragment content="수집">
                                         <attributes>
                                             <color key="NSColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                            <font key="NSFont" metaFont="cellTitle"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content=" ">
@@ -223,7 +223,7 @@
                                     <fragment content="목적">
                                         <attributes>
                                             <color key="NSColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                            <font key="NSFont" metaFont="cellTitle"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content=" ">
@@ -235,7 +235,7 @@
                                     <fragment content="및">
                                         <attributes>
                                             <color key="NSColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                            <font key="NSFont" metaFont="cellTitle"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content=" ">
@@ -247,7 +247,7 @@
                                     <fragment content="이용">
                                         <attributes>
                                             <color key="NSColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                            <font key="NSFont" metaFont="cellTitle"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content="’">
@@ -259,7 +259,7 @@
                                     <fragment content="에">
                                         <attributes>
                                             <color key="NSColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                            <font key="NSFont" metaFont="cellTitle"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content=" ">
@@ -271,7 +271,7 @@
                                     <fragment content="관한">
                                         <attributes>
                                             <color key="NSColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                            <font key="NSFont" metaFont="cellTitle"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content=" ">
@@ -283,7 +283,7 @@
                                     <fragment content="중요한">
                                         <attributes>
                                             <color key="NSColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                            <font key="NSFont" metaFont="cellTitle"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content=" ">
@@ -295,7 +295,7 @@
                                     <fragment content="내용이">
                                         <attributes>
                                             <color key="NSColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                            <font key="NSFont" metaFont="cellTitle"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content=" ">
@@ -307,7 +307,7 @@
                                     <fragment content="담겨">
                                         <attributes>
                                             <color key="NSColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                            <font key="NSFont" metaFont="cellTitle"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content=" ">
@@ -319,7 +319,7 @@
                                     <fragment content="있습니다">
                                         <attributes>
                                             <color key="NSColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                            <font key="NSFont" metaFont="cellTitle"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content=". ">
@@ -331,7 +331,7 @@
                                     <fragment content="약관동의">
                                         <attributes>
                                             <color key="NSColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                            <font key="NSFont" metaFont="cellTitle"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content=" ">
@@ -343,7 +343,7 @@
                                     <fragment content="체크는">
                                         <attributes>
                                             <color key="NSColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                            <font key="NSFont" metaFont="cellTitle"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content=" ">
@@ -355,7 +355,7 @@
                                     <fragment content="해당">
                                         <attributes>
                                             <color key="NSColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                            <font key="NSFont" metaFont="cellTitle"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content=" ">
@@ -367,7 +367,7 @@
                                     <fragment content="약관을">
                                         <attributes>
                                             <color key="NSColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                            <font key="NSFont" metaFont="cellTitle"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content=" ">
@@ -379,7 +379,7 @@
                                     <fragment content="모두">
                                         <attributes>
                                             <color key="NSColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                            <font key="NSFont" metaFont="cellTitle"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content=" ">
@@ -391,7 +391,7 @@
                                     <fragment content="숙지하였으며">
                                         <attributes>
                                             <color key="NSColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                            <font key="NSFont" metaFont="cellTitle"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content=", ">
@@ -403,7 +403,7 @@
                                     <fragment content="이에">
                                         <attributes>
                                             <color key="NSColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                            <font key="NSFont" metaFont="cellTitle"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content=" ">
@@ -415,7 +415,7 @@
                                     <fragment content="동의함을">
                                         <attributes>
                                             <color key="NSColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                            <font key="NSFont" metaFont="cellTitle"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content=" ">
@@ -427,7 +427,7 @@
                                     <fragment content="의미합니다">
                                         <attributes>
                                             <color key="NSColor" red="0.78823529411764703" green="0.78823529411764703" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="12" name=".AppleSDGothicNeoI-Regular"/>
+                                            <font key="NSFont" metaFont="cellTitle"/>
                                         </attributes>
                                     </fragment>
                                     <fragment content=".">
