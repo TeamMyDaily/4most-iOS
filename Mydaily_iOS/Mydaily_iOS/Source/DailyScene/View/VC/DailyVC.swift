@@ -27,7 +27,8 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
     
     let dateButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.setTitle("오늘", for: .normal)
+//        $0.setTitle("오늘", for: .normal)
+        $0.setImage(UIImage(named: "btn_today"), for: .normal)
         $0.layer.cornerRadius = 20
         $0.backgroundColor = .mainGray
         $0.titleLabel?.font = .myMediumSystemFont(ofSize: 16)
@@ -38,13 +39,13 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         getDaily()
+        setupNavigationBar(.clear, titlelabel: "")
     }
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         setTableVC()
-        setupNavigationBar(.clear, titlelabel: "")
         floatingButton()
         setUI()
     }
@@ -76,12 +77,6 @@ extension DailyVC {
         headerView.layer.addBorder([.top,.bottom], color: UIColor.gray30, width: 1.0, move: 0)
         datePicker.maximumDate = Date()
         setDate()
-        
-        logoLabel.font = .myBoldSystemFont(ofSize: 21)
-        logoLabel.textColor = UIColor.mainOrange
-        logoLabel.sizeToFit()
-        logoLabel.text = "4most"
-        
         //서벼연결시 변경 부분
         userDaily.text = "이주미님의 하루 기록"
         userDaily.font = .myMediumSystemFont(ofSize: 15)
@@ -111,7 +106,7 @@ extension DailyVC {
         self.tableView.addSubview(dateButton)
         
         NSLayoutConstraint.activate([
-            dateButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -72),
+            dateButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -100),
             dateButton.centerXAnchor.constraint(equalTo: self.tableView.centerXAnchor),
             dateButton.widthAnchor.constraint(equalToConstant: 66),
             dateButton.heightAnchor.constraint(equalToConstant: 32)
@@ -178,9 +173,10 @@ extension DailyVC: UITableViewDelegate, UITableViewDataSource {
         }
         str = myArray[indexPath.row]
 
+        cell.taskID = dailyModel?.data?.result[indexPath.row]?.totalKeywordID
         cell.labelBody?.textColor = .white
-        cell.labelNum.font = .myBoldSystemFont(ofSize: 62)
-        cell.labelNum.text = "0\(indexPath.row + 1)"
+//        cell.numImg.image = UIImage(named: "image\(indexPath.row + 1)")
+//        cell.numImg.curre
         cell.labelSubTitle.text = "\(dailyModel?.data?.result[indexPath.row]?.tasks.count ?? 0)개의 기록이 당신을 기다리고 있어요."
         cell.myInit(theTitle: " \((dailyModel?.data?.result[indexPath.row]?.name) ?? "")", theBody: str)
        

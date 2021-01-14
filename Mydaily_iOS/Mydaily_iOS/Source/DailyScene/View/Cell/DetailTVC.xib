@@ -67,9 +67,9 @@
                             <constraint firstAttribute="bottom" secondItem="Weh-nP-7lN" secondAttribute="bottom" id="dJY-9l-UtG"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FjU-nl-FDV">
-                        <rect key="frame" x="344" y="16" width="46" height="30"/>
-                        <state key="normal" title="Button"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FjU-nl-FDV">
+                        <rect key="frame" x="358" y="16" width="32" height="32"/>
+                        <state key="normal" image="btnAddS"/>
                         <connections>
                             <action selector="addButton:" destination="9YP-w0-aww" eventType="touchUpInside" id="j5o-Bl-qvL"/>
                         </connections>
@@ -81,7 +81,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4VR-ZB-nZJ">
-                        <rect key="frame" x="-16" y="30" width="73.5" height="51"/>
+                        <rect key="frame" x="-16" y="30" width="69" height="51"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="51" id="iX5-Kp-sM8"/>
                         </constraints>
@@ -89,14 +89,13 @@
                         <color key="textColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Q0-Tz-gdR">
-                        <rect key="frame" x="373" y="57" width="25" height="25"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Q0-Tz-gdR">
+                        <rect key="frame" x="373" y="59" width="25" height="25"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="25" id="AzE-sz-aWQ"/>
                             <constraint firstAttribute="height" constant="25" id="PH3-8W-f4x"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <state key="normal" title="Read more...">
+                        <state key="normal" image="btn_chevron_down">
                             <color key="titleColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                         <connections>
@@ -135,4 +134,8 @@
             <point key="canvasLocation" x="914.49275362318849" y="312.38839285714283"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="btnAddS" width="32" height="32"/>
+        <image name="btn_chevron_down" width="24" height="24.5"/>
+    </resources>
 </document>

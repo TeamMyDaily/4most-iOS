@@ -87,8 +87,8 @@ extension DailyWriteVC {
         self.navigationItem.title = "기록"
         
         let leftButton: UIBarButtonItem = {
-            let button = UIBarButtonItem(title: "뒤", style: .plain, target: self, action: #selector(dismissVC))
-//            let button = UIBarButtonItem(image: UIImage(named: "backArrowIc"), style: .plain, target: self, action: #selector(dismissVC))
+            let button = UIBarButtonItem(image: UIImage(named: "btnBack"), style: .plain, target: self, action: #selector(dismissVC))
+            button.tintColor = .mainBlack
             return button
         }()
         
@@ -130,7 +130,7 @@ extension DailyWriteVC {
     func setUI(){
         scoreSlider.addTarget(self, action: #selector(textFieldDidChange), for: .allEvents)
         textLabel.sizeToFit()
-        textLabel.text = "\(taskTitle ?? "")으로 채운\n하루에 대해 알려주세요"
+        textLabel.text = "\(taskTitle ?? "")에 관한\n행동을 기록해주세요"
         textLabel.numberOfLines = 2
         textLabel.font = .myMediumSystemFont(ofSize: 24)
         //내가 적용하고싶은 폰트 사이즈
@@ -207,7 +207,7 @@ extension DailyWriteVC {
             postingButton.isHidden = true
             saveButton.isHidden = true
             
-//            todayTitle.layer.addBorder([.bottom], color: .mainOrange, width: 1, move: 5)
+            //            todayTitle.layer.addBorder([.bottom], color: .mainOrange, width: 1, move: 5)
         }
     }
 }

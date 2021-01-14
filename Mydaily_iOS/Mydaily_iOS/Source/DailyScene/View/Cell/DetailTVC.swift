@@ -19,6 +19,7 @@ class DetailTVC: UITableViewCell {
 
     @IBOutlet weak var labelNum: UILabel!
     @IBOutlet weak var labelTitle: UILabel!
+    @IBOutlet weak var numImg: UIImageView!
     @IBOutlet weak var labelSubTitle: UILabel!
     @IBOutlet weak var labelBody: UILabel!
     @IBOutlet weak var buttonMore: UIButton!
@@ -27,6 +28,8 @@ class DetailTVC: UITableViewCell {
     
     var delegate: ThreePartCellDelegate?
 
+    var taskID: Int?
+    
     var isExpanded: Bool = false
     
     @IBAction func btnMoreTapped(_ sender: Any) {
@@ -38,7 +41,7 @@ class DetailTVC: UITableViewCell {
             labelBody.textColor = isExpanded ? UIColor.mainLightGray3 : UIColor.white
             labelBody.font = .myRegularSystemFont(ofSize: 15)
             sizingLabel.font = .myRegularSystemFont(ofSize: 15)
-            buttonMore.setTitle(isExpanded ? "Read..." : "Read...", for: .normal)
+            buttonMore.setImage(isExpanded ? UIImage(named: "btn_chevron_down"): UIImage(named: "btn_chevron_up"), for: .normal)
             
             delegate?.moreTapped(cell: self)
         }
@@ -48,6 +51,8 @@ class DetailTVC: UITableViewCell {
         guard let dvc = UIStoryboard(name: "Daily", bundle: nil).instantiateViewController(withIdentifier: "DailyWriteVC") as? DailyWriteVC else {
             return
         }
+        dvc.taskTitle = self.labelTitle.text
+        dvc.keywordID = self.taskID
         UIApplication.topViewController()?.navigationController?.pushViewController(dvc, animated: true)
     }
     
@@ -81,7 +86,6 @@ class DetailTVC: UITableViewCell {
 
 extension DetailTVC {
     func setUI(){
-        labelNum.font = .myBoldSystemFont(ofSize: 62)
         labelTitle.font = .myBoldSystemFont(ofSize: 28)
         labelTitle.sizeToFit()
         labelTitle.textColor = UIColor.mainBlack
