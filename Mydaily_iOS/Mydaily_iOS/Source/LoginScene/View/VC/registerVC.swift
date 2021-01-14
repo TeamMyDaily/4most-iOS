@@ -32,20 +32,33 @@ class RegisterVC: UIViewController {
     @IBOutlet weak var pwLabel: UILabel!
     @IBOutlet weak var pwCheckLabel: UILabel!
     
+    @IBOutlet weak var security1: UIButton!
+    @IBOutlet weak var security2: UIButton!
+    
     var checkValidate = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNavigationBar(.clear, titlelabel: "회원가입")
+        setupBackNavigationBar(titlelabel: "회원가입")
         changeTextFields()
         setUI()
         nextButton.isEnabled = true
     }
     @IBAction func pwButton(_ sender: Any) {
+        if security1.currentImage == UIImage(named: "icVisible"){
+            security1.setImage(UIImage(named: "icInvisible"), for: .normal)
+        }else{
+            security1.setImage(UIImage(named: "icVisible"), for: .normal)
+        }
         securityText(textfield: pwTextField)
     }
     @IBAction func checkpwButton(_ sender: Any) {
+        if security2.currentImage == UIImage(named: "icVisible"){
+            security2.setImage(UIImage(named: "icInvisible"), for: .normal)
+        }else{
+            security2.setImage(UIImage(named: "icVisible"), for: .normal)
+        }
         securityText(textfield: checkpwTextField)
     }
     @IBAction func nextButton(_ sender: Any) {

@@ -22,6 +22,7 @@ class LoginVC: UIViewController {
     @IBOutlet weak var autoLoginButton: UIButton!
     @IBOutlet weak var autoLoginLabel: UILabel!
     @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var logoImg: UIImageView!
     var autoLogin = false
     
     override func viewDidLoad() {
@@ -85,7 +86,7 @@ extension LoginVC {
         
         loginButton.layer.cornerRadius = 15
         loginButton.backgroundColor = .mainGray
-        loginButton.setTitle("포모스트 입장!", for: .normal)
+        loginButton.setTitle("로그인", for: .normal)
         loginButton.titleLabel?.font = .myBoldSystemFont(ofSize: 18)
         loginButton.setTitleColor(.white, for: .normal)
         
@@ -131,7 +132,7 @@ extension LoginVC {
                 self.idTextField.frame.origin.y += 80
                 self.stackView.frame.origin.y += 80
                 self.loginButton.frame.origin.y += 80
-                
+                self.logoImg.frame.origin.y += 80
             })
         }
     
@@ -143,6 +144,7 @@ extension LoginVC {
             self.idTextField.frame.origin.y -= 80
             self.stackView.frame.origin.y -= 80
             self.loginButton.frame.origin.y -= 80
+            self.logoImg.frame.origin.y -= 80
         }
     }
 }
