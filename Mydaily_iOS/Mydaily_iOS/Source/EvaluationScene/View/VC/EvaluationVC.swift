@@ -31,9 +31,9 @@ class EvaluationVC: UIViewController {
     var weekText: String?
     
     override func viewWillAppear(_ animated: Bool) {
-        setReportNotification()
+        
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setReportNotification()
@@ -69,6 +69,7 @@ extension EvaluationVC: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RetrospectiveTabCVC.identifier, for: indexPath) as? RetrospectiveTabCVC else {
             return UICollectionViewCell()
         }
+        cell.collectionView = keywordCollectionView
         cell.delegate = self
         return cell
     }
@@ -110,7 +111,7 @@ extension EvaluationVC {
         if dateValue <= 0 {
             nextWeekButton.isEnabled = true
         }
-        dateValue -= 1
+        dateValue -= 7
         calculateDate()
         NotificationCenter.default.post(name: Notification.Name("LastWeek"), object: nil)
     }
@@ -120,7 +121,7 @@ extension EvaluationVC {
             nextWeekButton.isEnabled = false
         } else {
             nextWeekButton.isEnabled = true
-            dateValue += 1
+            dateValue += 7
             calculateDate()
         }
         NotificationCenter.default.post(name: Notification.Name("NextWeek"), object: nil)
@@ -217,6 +218,7 @@ extension EvaluationVC {
         setRetrospectiveNotification()
         setReportNotification()
         keywordCollectionView.reloadData()
+        keywordCollectionView.reloadInputViews()
     }
 }
 
@@ -224,8 +226,8 @@ extension EvaluationVC {
 extension EvaluationVC {
     private func setWeek() {
         dateValue = 0
-        guard let currentDate = Date().containWeek else {return}
-        guard let todayDate = calendar.date(byAdding: .weekOfMonth, value: dateValue, to: currentDate) else {return}
+        guard let date = Date().containWeek else {return}
+        let todayDate = Calendar.current.date(byAdding: .day, value: dateValue, to: date)!
         dateFormatter.dateFormat = "yy년 MM월 W주"
         weekText = dateFormatter.string(from: todayDate)
         weekLabel.text = dateFormatter.string(from: todayDate)
@@ -234,8 +236,8 @@ extension EvaluationVC {
     }
     
     private func calculateDate() {
-        guard let currentDate = Date().containWeek else {return}
-        guard let todayDate = calendar.date(byAdding: .weekOfMonth, value: dateValue, to: currentDate) else {return}
+        guard let date = Date().containWeek else {return}
+        let todayDate = Calendar.current.date(byAdding: .day, value: dateValue, to: date)!
         dateFormatter.dateFormat = "yy년 MM월 W주"
         weekText = dateFormatter.string(from: todayDate)
         weekLabel.text = dateFormatter.string(from: todayDate)

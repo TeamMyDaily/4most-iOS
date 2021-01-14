@@ -16,6 +16,7 @@ class DetailGoalTVC: UITableViewCell {
     @IBOutlet weak var rightForwardButton: UIButton!
     
     var isAchieve = false
+    var isGoalExisted = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,10 +32,10 @@ class DetailGoalTVC: UITableViewCell {
 
 //MARK: UI
 extension DetailGoalTVC {
-    func setData(goal: String, isGoalCompleted: Bool) {
+    func setData(goal: String, isGoalCompleted: Bool, isGoalExist: Bool) {
         goalLabel.text = goal
         isAchieve = isGoalCompleted
-        print("isAchieve\(isAchieve)")
+        isGoalExisted = isGoalExist
         setButton()
         setColorWhenAchieve()
     }
@@ -49,40 +50,54 @@ extension DetailGoalTVC {
     }
     
     private func setButton() {
-        if isAchieve {
-            achieveButton.titleLabel?.font = .myRegularSystemFont(ofSize: 12)
-            achieveButton.setTitle("달성", for: .normal)
-            achieveButton.setTitleColor(.mainOrange, for: .normal)
-            achieveButton.backgroundColor = .white
-            achieveButton.contentEdgeInsets = UIEdgeInsets(top: 1, left: 8, bottom: 1, right: 8)
-            achieveButton.setContentHuggingPriority(.required, for: .horizontal)
-            achieveButton.layer.cornerRadius = 10
-            achieveButton.layer.masksToBounds = true
-            achieveButton.isUserInteractionEnabled = false
+        if isGoalExisted {
+            achieveButton.isHidden = false
+            if isAchieve {
+                achieveButton.titleLabel?.font = .myRegularSystemFont(ofSize: 12)
+                achieveButton.setTitle("달성", for: .normal)
+                achieveButton.setTitleColor(.mainOrange, for: .normal)
+                achieveButton.backgroundColor = .white
+                achieveButton.contentEdgeInsets = UIEdgeInsets(top: 1, left: 8, bottom: 1, right: 8)
+                achieveButton.setContentHuggingPriority(.required, for: .horizontal)
+                achieveButton.layer.cornerRadius = 10
+                achieveButton.layer.masksToBounds = true
+                achieveButton.isUserInteractionEnabled = false
+            } else {
+                achieveButton.titleLabel?.font = .myRegularSystemFont(ofSize: 12)
+                achieveButton.setTitle("미달성", for: .normal)
+                achieveButton.setTitleColor(.white, for: .normal)
+                achieveButton.tintColor = .mainLightGray
+                achieveButton.contentEdgeInsets = UIEdgeInsets(top: 1, left: 8, bottom: 1, right: 8)
+                achieveButton.setContentHuggingPriority(.required, for: .horizontal)
+                achieveButton.layer.cornerRadius = 10
+                achieveButton.layer.masksToBounds = true
+                achieveButton.isUserInteractionEnabled = false
+            }
         } else {
-            achieveButton.titleLabel?.font = .myRegularSystemFont(ofSize: 12)
-            achieveButton.setTitle("미달성", for: .normal)
-            achieveButton.setTitleColor(.white, for: .normal)
-            achieveButton.tintColor = .mainLightGray
-            achieveButton.contentEdgeInsets = UIEdgeInsets(top: 1, left: 8, bottom: 1, right: 8)
-            achieveButton.setContentHuggingPriority(.required, for: .horizontal)
-            achieveButton.layer.cornerRadius = 10
-            achieveButton.layer.masksToBounds = true
-            achieveButton.isUserInteractionEnabled = false
+            achieveButton.isHidden = true
         }
     }
     
     private func setColorWhenAchieve() {
-        if isAchieve {
-            self.backgroundColor = .mainOrange
-            goalLabel.textColor = .white
-            titleLabel.textColor = .white
-            rightForwardButton.tintColor = .white
+        if isGoalExisted {
+            if isAchieve {
+                self.backgroundColor = .mainOrange
+                goalLabel.textColor = .white
+                titleLabel.textColor = .white
+                rightForwardButton.tintColor = .white
+            } else {
+                self.backgroundColor = .white
+                goalLabel.textColor = .mainBlack
+                titleLabel.textColor = .mainBlack
+                rightForwardButton.tintColor = .mainGray
+            }
         } else {
             self.backgroundColor = .white
-            goalLabel.textColor = .mainBlack
+            goalLabel.text = "이번주 작성된 목표가 없어요!"
+            goalLabel.textColor = .mainGray
+            rightForwardButton.isHidden = true
             titleLabel.textColor = .mainBlack
-            rightForwardButton.tintColor = .mainGray
         }
+        
     }
 }

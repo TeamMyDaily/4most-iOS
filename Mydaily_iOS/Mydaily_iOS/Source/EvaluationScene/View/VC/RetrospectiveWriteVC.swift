@@ -30,6 +30,11 @@ class RetrospectiveWriteVC: UIViewController {
     var saveContent: ((String, Int) -> ())?
     var textViewHeightConstraint: NSLayoutConstraint?
     
+    var start: Date?
+    var end: Date?
+    var dateValue = 0
+    let changeDateValue = 86400 * 7
+    
     var contentSaver = ""
     var counter = 0
     var cellNum = 0
@@ -61,9 +66,7 @@ extension RetrospectiveWriteVC {
     }
     
     @IBAction func touchUpCancel(_ sender: Any) {
-        tabBarController?.tabBar.isHidden = false
-        extendedLayoutIncludesOpaqueBars = false
-        navigationController?.popViewController(animated: true)
+        backAlert()
     }
 }
 
@@ -123,11 +126,29 @@ extension RetrospectiveWriteVC {
     }
 }
 
+//MARK: Alert
+extension RetrospectiveWriteVC {
+    private func backAlert() {
+        let alert = UIAlertController(title: "정말 뒤로 가시겠어요?", message: "작성 완료를 누르지 않고 뒤로 가기를 하면 현재 작성중이던 내용도 모두 사라집니다. 정말 뒤로 가시겠어요?", preferredStyle: .alert)
+        let removeAction = UIAlertAction(title: "확인", style: .default) { (action) in
+            self.tabBarController?.tabBar.isHidden = false
+            self.extendedLayoutIncludesOpaqueBars = false
+            self.navigationController?.popViewController(animated: true)
+        }
+        let cancelAction = UIAlertAction(title: "취소", style: .default)
+        cancelAction.setValue(UIColor.mainBlue, forKey: "titleTextColor")
+        removeAction.setValue(UIColor.mainBlue, forKey: "titleTextColor")
+        alert.addAction(cancelAction)
+        alert.addAction(removeAction)
+        present(alert, animated: true)
+    }
+}
+
 //MARK: Button
 extension RetrospectiveWriteVC {
     private func buttonState() {
         guard let text: String = writeTextView.text else {return}
-        if text != "" && text != cellPlaceholders[0] && text != cellPlaceholders[1] && text != cellPlaceholders[2] && text != contentSaver {
+        if text != "" && text != cellPlaceholders[0] && text != cellPlaceholders[1] && text != cellPlaceholders[2] {
             saveButton.backgroundColor = .mainOrange
             saveButton.isEnabled = true
         } else {
@@ -223,10 +244,10 @@ extension RetrospectiveWriteVC {
 //MARK: Network
 extension RetrospectiveWriteVC {
     func saveText() {
-        guard let start = Date().startOfWeek?.millisecondsSince1970 else {return}
-        guard let end = Date().endOfWeek?.millisecondsSince1970 else {return}
-        guard let current = Date().todayOfWeek?.millisecondsSince1970 else {return}
-        let param = RegistRetrospectiveRequest.init(start, end, current, self.cellNum + 1, self.writeTextView.text)
+        guard let startDate = start?.millisecondsSince1970 else {return}
+        guard let endDate = end?.millisecondsSince1970 else {return}
+        let current = Date().millisecondsSince1970
+        let param = RegistRetrospectiveRequest.init(startDate, endDate, current, self.cellNum + 1, self.writeTextView.text)
         print(param)
         authProvider.request(.registRetrospective(param: param)) { response in
             switch response {

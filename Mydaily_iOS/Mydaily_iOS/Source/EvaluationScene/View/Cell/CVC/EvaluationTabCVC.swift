@@ -17,16 +17,16 @@ class EvaluationTabCVC: UICollectionViewCell {
     @IBOutlet weak var keywordTableView: UITableView!
     @IBOutlet weak var noDataView: UIView!
     
+    lazy var notifyImage: UIImageView = {
+        let notifyImage = UIImageView()
+        notifyImage.translatesAutoresizingMaskIntoConstraints = false
+        return notifyImage
+    }()
+    
     lazy var notifyLabel: UILabel = {
         let notifyLabel = UILabel()
         notifyLabel.translatesAutoresizingMaskIntoConstraints = false
         return notifyLabel
-    }()
-    
-    lazy var createKeywordButton: UIButton = {
-        let createKeywordButton = UIButton()
-        createKeywordButton.translatesAutoresizingMaskIntoConstraints = false
-        return createKeywordButton
     }()
     
     var delegate: TableViewInsideCollectionViewDelegate?
@@ -47,11 +47,11 @@ class EvaluationTabCVC: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setNotification()
         setDate()
         getText()
-        setTableView()
         setViewWithoutTableView()
-        setNotification()
+        setTableView()
         makeUpArrayOfData()
     }
 }
@@ -109,6 +109,8 @@ extension EvaluationTabCVC: UITableViewDelegate {
                 dvc.listCount = counts[indexPath.row]
                 dvc.weekText = weekText
                 dvc.cellNum = totalKeywordId[indexPath.row]
+                dvc.start = start
+                dvc.end = end
                 self.delegate?.cellTapedEvaluation(dvc: dvc)
             }
         }
@@ -125,37 +127,21 @@ extension EvaluationTabCVC {
     
     private func setNoDataView() {
         noDataView.addSubview(notifyLabel)
-        noDataView.addSubview(createKeywordButton)
+        noDataView.addSubview(notifyImage)
         
-        notifyLabel.centerYAnchor.constraint(equalTo: noDataView.centerYAnchor).isActive = true
+        notifyLabel.centerYAnchor.constraint(equalTo: noDataView.centerYAnchor, constant: -50).isActive = true
         notifyLabel.centerXAnchor.constraint(equalTo: noDataView.centerXAnchor).isActive = true
         notifyLabel.font = .myRegularSystemFont(ofSize: 12)
         notifyLabel.textColor = .mainGray
         notifyLabel.textAlignment = .center
         notifyLabel.numberOfLines = 0
-    }
-    
-    private func setViewByDateValue() {
-        if dateValue == 0 {
-            notifyLabel.text = "키워드가 존재 하지 않아 목표를 생성 할 수 없어요.😢\n + 버튼을 눌러 키워드를 생성 해 보세요!"
-            
-            createKeywordButton.topAnchor.constraint(equalTo: notifyLabel.bottomAnchor, constant: 47).isActive = true
-            createKeywordButton.centerXAnchor.constraint(equalTo:noDataView.centerXAnchor).isActive = true
-            createKeywordButton.heightAnchor.constraint(equalToConstant: 32).isActive = true
-            createKeywordButton.widthAnchor.constraint(equalToConstant: 114).isActive = true
-            createKeywordButton.titleLabel?.font = .myMediumSystemFont(ofSize: 16)
-            createKeywordButton.setTitle("키워드 생성 >", for: .normal)
-            createKeywordButton.titleLabel?.textAlignment = .left
-            createKeywordButton.titleLabel?.textColor = .white
-            createKeywordButton.backgroundColor = .mainOrange
-            createKeywordButton.layer.cornerRadius = 15
-            createKeywordButton.layer.masksToBounds = true
-            createKeywordButton.isHidden = false
-            createKeywordButtonAddTarget()
-        } else {
-            notifyLabel.text = "이 주에는 키워드와 목표가 없어요.😢"
-            createKeywordButton.isHidden = true
-        }
+        notifyLabel.text = "리포트 내용이 없어요"
+        
+        notifyImage.centerXAnchor.constraint(equalTo: noDataView.centerXAnchor).isActive = true
+        notifyImage.bottomAnchor.constraint(equalTo: notifyLabel.topAnchor, constant: -24).isActive = true
+        notifyImage.widthAnchor.constraint(equalToConstant: 184).isActive = true
+        notifyImage.heightAnchor.constraint(equalToConstant: 132).isActive = true
+        notifyImage.backgroundColor = .mainOrange
     }
 }
 
@@ -163,7 +149,6 @@ extension EvaluationTabCVC {
 extension EvaluationTabCVC {
     private func setViewWithoutTableView() {
         setNoDataView()
-        setViewByDateValue()
     }
 }
 
@@ -189,17 +174,6 @@ extension EvaluationTabCVC {
     }
 }
 
-//MARK: Button
-extension EvaluationTabCVC {
-    private func createKeywordButtonAddTarget() {
-        createKeywordButton.addTarget(self, action: #selector(touchUpCreateKeyword), for: .touchUpInside)
-    }
-    
-    @objc func touchUpCreateKeyword() {
-        print("create")
-    }
-}
-
 //MARK: Date
 extension EvaluationTabCVC {
     private func setDate() {
@@ -217,19 +191,18 @@ extension EvaluationTabCVC {
     }
     
     @objc func getReport() {
+        setDate()
         getText()
+        collectionView?.reloadData()
     }
     
     @objc func sendBeforeWeek() {
         dateValue -= (1 * changeDateValue)
-        start = (Date().startOfWeek ?? Date()) - TimeInterval(dateValue)
-        end = (Date().endOfWeek ?? Date()) - TimeInterval(dateValue)
+        start = (Date().startOfWeek ?? Date()) + TimeInterval(dateValue)
+        end = (Date().endOfWeek ?? Date()) + TimeInterval(dateValue)
         getText()
-        setViewByDateValue()
-        // collectionView를 지정 지정 지정
         collectionView?.reloadData()
-        noDataView.setNeedsLayout()
-        noDataView.layoutIfNeeded()
+        keywordTableView.reloadData()
     }
     
     @objc func sendAfterWeek() {
@@ -237,17 +210,18 @@ extension EvaluationTabCVC {
         start = (Date().startOfWeek ?? Date()) + TimeInterval(dateValue)
         end = (Date().endOfWeek ?? Date()) + TimeInterval(dateValue)
         getText()
-        setViewByDateValue()
         collectionView?.reloadData()
-        noDataView.setNeedsLayout()
-        noDataView.layoutIfNeeded()
+        keywordTableView.reloadData()
     }
 }
 
 //MARK: Network
 extension EvaluationTabCVC {
     func getText() {
-        let day = (Date().startOfWeek ?? Date()) - 86400 * 7
+        let current = Date()
+        print("start: \(start!)")
+        print("end: \(end!)")
+        print("today: \(current)")
         guard let startDate = start?.millisecondsSince1970 else {return}
         guard let endDate = end?.millisecondsSince1970 else {return}
         let startString = "\(startDate)"
@@ -258,24 +232,24 @@ extension EvaluationTabCVC {
                 case .success(let result):
                     do {
                         self.textData = try result.map(ViewReportModel.self)
-                        if self.textData?.data.keywordsExist == false || (self.textData?.data.keywordsExist == true && self.textData?.data.result.isEmpty ?? true) {
+                        if self.textData?.data.keywordsExist == false || (self.textData?.data.keywordsExist == true && self.textData?.data.result?.isEmpty ?? true) {
                             self.keywordTableView.isHidden = true
                             self.noDataView.isHidden = false
                         } else {
                             self.keywordTableView.isHidden = false
                             self.noDataView.isHidden = true
-                            if self.textData?.data.result.count != 0 {
+                            if self.textData?.data.result?.count != 0 {
                                 self.totalKeywordId.removeAll()
                                 self.keywords.removeAll()
                                 self.counts.removeAll()
                                 self.goals.removeAll()
                                 self.rates.removeAll()
-                                for i in 0...(self.textData?.data.result.count ?? 0)-1 {
-                                    self.totalKeywordId.append(self.textData?.data.result[i].totalKeywordID ?? 0)
-                                    self.keywords.append(self.textData?.data.result[i].keyword ?? "")
-                                    self.counts.append(self.textData?.data.result[i].taskCnt ?? 0)
-                                    self.goals.append(self.textData?.data.result[i].weekGoal ?? "")
-                                    self.rates.append(self.textData?.data.result[i].taskSatisAvg ?? "")
+                                for i in 0...(self.textData?.data.result?.count ?? 0)-1 {
+                                    self.totalKeywordId.append(self.textData?.data.result?[i].totalKeywordID ?? 0)
+                                    self.keywords.append(self.textData?.data.result?[i].keyword ?? "")
+                                    self.counts.append(self.textData?.data.result?[i].taskCnt ?? 0)
+                                    self.goals.append(self.textData?.data.result?[i].weekGoal ?? "")
+                                    self.rates.append(self.textData?.data.result?[i].taskSatisAvg ?? "")
                                 }
                             }
                             self.keywordTableView.reloadData()

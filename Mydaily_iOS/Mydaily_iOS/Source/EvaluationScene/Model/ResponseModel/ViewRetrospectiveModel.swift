@@ -18,10 +18,10 @@ struct ViewRetrospectiveModel: Codable {
 // MARK: - ViewRetrospectiveResponse
 struct ViewRetrospectiveResponse: Codable {
     let isWritten: Bool
-    let review: Review
+    let review: Review?
 }
 
 // MARK: - Review
 struct Review: Codable {
-    let good, bad, next: String
+    let good, bad, next: String?
 }
