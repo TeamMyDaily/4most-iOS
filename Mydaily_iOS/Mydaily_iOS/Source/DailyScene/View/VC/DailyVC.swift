@@ -175,7 +175,7 @@ extension DailyVC: UITableViewDelegate, UITableViewDataSource {
 
         cell.taskID = dailyModel?.data?.result[indexPath.row]?.totalKeywordID
         cell.labelBody?.textColor = .white
-//        cell.numImg.image = UIImage(named: "image\(indexPath.row + 1)")
+        cell.numImg.image = UIImage(named: "image\(indexPath.row + 1)")
 //        cell.numImg.curre
         cell.labelSubTitle.text = "\(dailyModel?.data?.result[indexPath.row]?.tasks.count ?? 0)개의 기록이 당신을 기다리고 있어요."
         cell.myInit(theTitle: " \((dailyModel?.data?.result[indexPath.row]?.name) ?? "")", theBody: str)

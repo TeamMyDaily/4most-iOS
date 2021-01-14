@@ -285,17 +285,17 @@ extension DailyWriteVC: UITextViewDelegate {
 extension DailyWriteVC {
     @objc func cancelAlertaction() {
         let alert = UIAlertController(
-            title: "주의!",
-            message: "작성중인 글을 취소하시겠습니까?\n취소할 시, 작성된 글은 저장되지 않습니다.",
+            title: "정말 뒤로 가시겠어요?",
+            message: "뒤로가기를 누르시면 작성 중인 내용이 삭제\n되고 이전 페이지로 돌아 갑니다.",
             preferredStyle: UIAlertController.Style.alert
         )
-        let cancel = UIAlertAction(title: "작성취소", style: .destructive) {
+        let cancel = UIAlertAction(title: "확인", style: .default) {
             _ in
             self.navigationController?.popViewController(animated: true)
         }
-        let okAction = UIAlertAction(title: "닫기", style: .default)
-        alert.addAction(cancel)
+        let okAction = UIAlertAction(title: "취소", style: .default)
         alert.addAction(okAction)
+        alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
     }
     
