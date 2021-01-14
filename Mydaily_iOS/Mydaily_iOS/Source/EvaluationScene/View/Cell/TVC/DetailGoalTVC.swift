@@ -15,7 +15,7 @@ class DetailGoalTVC: UITableViewCell {
     @IBOutlet weak var achieveButton: UIButton!
     @IBOutlet weak var rightForwardButton: UIButton!
     
-    var isAchieve = true
+    var isAchieve = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,13 +31,20 @@ class DetailGoalTVC: UITableViewCell {
 
 //MARK: UI
 extension DetailGoalTVC {
+    func setData(goal: String, isGoalCompleted: Bool) {
+        goalLabel.text = goal
+        isAchieve = isGoalCompleted
+        print("isAchieve\(isAchieve)")
+        setButton()
+        setColorWhenAchieve()
+    }
+    
     private func setLabel() {
         titleLabel.font = .myBoldSystemFont(ofSize: 18)
         titleLabel.text = "목표"
         titleLabel.textColor = .mainBlack
         
         goalLabel.font = .myRegularSystemFont(ofSize: 12)
-        goalLabel.text = "블로그에 1개이상 퍼블리싱 하기"
         goalLabel.textColor = .mainBlack
     }
     

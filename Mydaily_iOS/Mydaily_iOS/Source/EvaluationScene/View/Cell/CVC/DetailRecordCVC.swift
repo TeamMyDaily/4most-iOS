@@ -25,10 +25,10 @@ class DetailRecordCVC: UICollectionViewCell {
 
 //MARK: UI
 extension DetailRecordCVC {
-    func setLabelText(content: String) {
+    func setLabelText(content: String, date: String, satisfaction: Int) {
         contentLabel.text = content
-        satisfactionLabel.text = "테스크 만족도: 3점"
-        dateLabel.text = "2020. 12. 18"
+        satisfactionLabel.text = "테스크 만족도: \(satisfaction)점"
+        dateLabel.text = date
     }
     
     private func setViewLayer() {
