@@ -21,8 +21,7 @@ class GoalVC: UIViewController {
     var date = Date()
     let dateButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-//        $0.setTitle("오늘", for: .normal)
-        $0.setImage(UIImage(named: "btn_today"), for: .normal)
+        $0.setImage(UIImage(named: "btn_week"), for: .normal)
         $0.layer.cornerRadius = 20
         $0.titleLabel?.font = .myMediumSystemFont(ofSize: 16)
         $0.setTitleColor(.white, for: .normal)
@@ -35,6 +34,8 @@ class GoalVC: UIViewController {
         self.date = Date()
         getGoal()
         setEmpty()
+        emptyImg.isHidden = true
+        emptyLabel.isHidden = true
         dateButton.layer.opacity = 0
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -61,6 +62,7 @@ class GoalVC: UIViewController {
             self.dateLabel.textColor = .mainBlack
             dateButton.layer.opacity = 100
         }
+        setEmpty()
     }
     @IBAction func moveWeekup(_ sender: Any) {
         self.date = Calendar.current.date(byAdding: .day, value: 8, to: date)!
@@ -75,14 +77,13 @@ class GoalVC: UIViewController {
             self.dateLabel.textColor = .mainBlack
             dateButton.layer.opacity = 100
         }
+        setEmpty()
     }
 }
 
 extension GoalVC {
     func DateInMilliSeconds(date: Date)-> Int
     {
-        print(Int(date.startOfWeek!.timeIntervalSince1970 * 1000))
-        print(Int(date.endOfWeek!.timeIntervalSince1970 * 1000))
         return Int(date.startOfWeek!.timeIntervalSince1970 * 1000)
     }
     
@@ -101,14 +102,11 @@ extension GoalVC {
             goalTableView.separatorStyle = .none
             emptyImg.isHidden = false
             emptyImg.image = UIImage(named: "image_rest")
+            emptyLabel.isHidden = false
             emptyLabel.text = "이 날에는 기록이 없어요.😢"
             emptyLabel.font = .myRegularSystemFont(ofSize: 12)
             emptyLabel.textColor = .lightGray
         }else{
-            goalTableView.separatorStyle = .singleLine
-            goalTableView.separatorInset.right = 16
-            goalTableView.separatorInset.left = 16
-            emptyImg.image = UIImage(named: "image_rest")
             emptyImg.isHidden = true
             emptyLabel.text = ""
         }
@@ -140,15 +138,17 @@ extension GoalVC {
     func updateUI(){
         if goalData?.data.keywordsExist == false{
             setEmpty()
+            goalCountLabel.text = ""
+            defaultLabel.text = ""
         }
         else{
-            if goalData?.data.result.notSetGoalCount == 0{
+            if goalData?.data.result?.notSetGoalCount == 0{
                 defaultLabel.text = "키워드에 따른\n목표를 설정해주세요!"
             }
             else{
                 defaultLabel.text = "키워드에 따른\n기록을 설정해주세요!"
             }
-            goalCountLabel.text = "\(goalData?.data.result.notSetGoalCount ?? 0)개의 목표가 미설정 되었어요!"
+            goalCountLabel.text = "\(goalData?.data.result?.notSetGoalCount ?? 0)개의 목표가 미설정 되었어요!"
         }
     }
 }
@@ -168,7 +168,7 @@ extension GoalVC: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if goalData?.data.keywordsExist == true{
-            return goalData?.data.result.count ?? 0
+            return goalData?.data.result?.count ?? 0
         }else{
             return 0
         }
@@ -181,10 +181,10 @@ extension GoalVC: UITableViewDataSource{
         bgColorView.backgroundColor = UIColor.white
         cell.selectedBackgroundView = bgColorView
         
-        cell.keywordName.text = "\(self.goalData?.data.result.keywords[indexPath.row].name ?? "")"
+        cell.keywordName.text = "\(self.goalData?.data.result?.keywords![indexPath.row].name ?? "")"
         
-        if self.goalData?.data.result.keywords[indexPath.row].isGoalCreated == true{
-            cell.keywordDetail.text = "\(self.goalData?.data.result.keywords[indexPath.row].weekGoal ?? "")"
+        if self.goalData?.data.result?.keywords![indexPath.row].isGoalCreated == true{
+            cell.keywordDetail.text = "\(self.goalData?.data.result?.keywords![indexPath.row].weekGoal ?? "")"
             cell.keywordName.textColor = .mainBlack
             cell.keywordDetail.textColor = .mainBlack
             cell.addButton.setImage(UIImage(named: "btnChevronRight"), for: .normal)
@@ -196,7 +196,7 @@ extension GoalVC: UITableViewDataSource{
             cell.keywordDetail.textColor = .mainGray
         }
         
-        if self.goalData?.data.result.keywords[indexPath.row].isGoalCompleted == true{
+        if self.goalData?.data.result?.keywords![indexPath.row].isGoalCompleted == true{
             cell.outterView.borderColor = .mainOrange
             cell.achieveImg.image = UIImage(named: "btn_attainment_o")
         }
@@ -214,17 +214,17 @@ extension GoalVC: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if self.goalData?.data.result.keywords[indexPath.row].isGoalCreated == false {
+        if self.goalData?.data.result?.keywords![indexPath.row].isGoalCreated == false {
             guard let VC = self.storyboard?.instantiateViewController(identifier: "GoalWriteVC") as? GoalWriteVC else {return}
-            VC.goalDataKeywordID = self.goalData?.data.result.keywords[indexPath.row].totalKeywordID
-            VC.goalKeywordName = self.goalData?.data.result.keywords[indexPath.row].name
+            VC.goalDataKeywordID = self.goalData?.data.result?.keywords![indexPath.row].totalKeywordID
+            VC.goalKeywordName = self.goalData?.data.result?.keywords![indexPath.row].name
             self.navigationController?.pushViewController(VC, animated: true)
         }
         else{
             guard let VC = self.storyboard?.instantiateViewController(identifier: "GoalDetailVC") as? GoalDetailVC else {return}
-            VC.KeywordDate = self.goalData?.data.result.keywords[indexPath.row]
+            VC.KeywordDate = self.goalData?.data.result?.keywords![indexPath.row]
             VC.week = self.dateLabel.text
-            VC.completed = self.goalData?.data.result.keywords[indexPath.row].isGoalCompleted
+            VC.completed = self.goalData?.data.result?.keywords![indexPath.row].isGoalCompleted
             self.navigationController?.pushViewController(VC, animated: true)
         }
     }
@@ -250,24 +250,5 @@ extension GoalVC{
             }
         }
     }
-    
-//    func gettodayGoal(){
-//        let param = GoalRequest.init("\(DateInMilliSeconds(date: Date().startOfWeek!))","\(DateInMilliSeconds(date: self.Date().endOfWeek!))")
-//        authProvider.request(.goalinquiry(param: param)) { response in
-//            switch response {
-//                case .success(let result):
-//                    do {
-//                        let data = try result.map(GoalModel.self)
-//                        self.goalData = data
-//                        self.updateUI()
-//                        self.goalTableView.reloadData()
-//                    } catch(let err) {
-//                        print(err.localizedDescription)
-//                    }
-//                case .failure(let err):
-//                    print(err.localizedDescription)
-//            }
-//        }
-//    }
 }
 

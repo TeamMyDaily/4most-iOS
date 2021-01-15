@@ -18,13 +18,13 @@ struct GoalModel: Codable {
 // MARK: - GoalData
 struct GoalData: Codable {
     let keywordsExist: Bool
-    let result: GoalResult
+    let result: GoalResult?
 }
 
 // MARK: - Result
 struct GoalResult: Codable {
     let count, notSetGoalCount: Int
-    let keywords: [GoalKeyword]
+    let keywords: [GoalKeyword]?
 }
 
 // MARK: - Keyword
