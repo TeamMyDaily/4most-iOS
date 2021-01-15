@@ -3,7 +3,7 @@
 <br/>
 <img height="250" src="https://user-images.githubusercontent.com/55099365/103762567-d8887680-505b-11eb-9a76-83b8da83104c.jpeg"></img>
 
-> **이상이 일상이 되는 회고, 4most***
+> **이상이 일상이 되는 회고, 4most**
 
 <br/>
 
