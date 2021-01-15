@@ -78,7 +78,9 @@ class KeywordSettingVC: UIViewController {
         navigationBar.shadowImage = UIImage()
       
         navigationItem.title = "키워드 설정하기"
-        let questionItem = UIBarButtonItem(image: UIImage(named: "navigation_question_icon"), style: .plain, target: self, action: #selector(goKeywordPopUp))
+        let systemQuestionMark = UIImage(systemName: "questionmark.circle")
+        //let questionMark = UIImage(named: "navigation_question_icon" )
+        let questionItem = UIBarButtonItem(image: systemQuestionMark, style: .plain, target: self, action: #selector(goKeywordPopUp))
         questionItem.tintColor = UIColor.mainOrange
         navigationItem.rightBarButtonItem = questionItem
     }
@@ -110,9 +112,9 @@ class KeywordSettingVC: UIViewController {
     }
     
     func setCompleteButton(){
-        completeButton.setTitle("선택완료!", for: .normal)
+        completeButton.setTitle("키워드 선택하기", for: .normal)
         completeButton.setTitleColor(.white, for: .normal)
-        completeButton.titleLabel?.font =  UIFont(name: "System-Bold", size: 18.0)
+        completeButton.titleLabel?.font =  UIFont.myMediumSystemFont(ofSize: 18)
         completeButton.layer.cornerRadius = 15
         completeButton.isEnabled = false
     }
@@ -482,7 +484,6 @@ extension KeywordSettingVC: UITableViewDelegate{
             
         }
         keywordPlusButton.removeFromSuperview()
-        
         
         for btn in userKeywordButtonList{
             userKeywordLine = 0

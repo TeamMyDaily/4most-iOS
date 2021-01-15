@@ -190,6 +190,7 @@ extension KeywordDefineVC{
        
         completeButton.setTitleColor(.white, for: .normal)
         completeButton.layer.cornerRadius = 15
+        completeButton.titleLabel?.font = UIFont.myMediumSystemFont(ofSize: 18)
         completeButton.isEnabled = false
     }
     
