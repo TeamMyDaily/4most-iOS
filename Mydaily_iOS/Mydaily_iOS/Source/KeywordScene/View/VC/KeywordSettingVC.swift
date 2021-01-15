@@ -540,8 +540,6 @@ extension KeywordSettingVC: SelectKeywordDelegate{
             }else{
                 selectedKeywordList[0].append(selectedText)
             }
-            
-            print2DKeyword()
             selectedKeywordCount += 1
             setButtonActive()
             return true
@@ -560,10 +558,6 @@ extension KeywordSettingVC: SelectKeywordDelegate{
                 setButtonActive()
             }
         }
-        
-        print("\(selectedText) 삭제됨")
-        print2DKeyword()
-      
     }
     
     func alertKeyword(){
