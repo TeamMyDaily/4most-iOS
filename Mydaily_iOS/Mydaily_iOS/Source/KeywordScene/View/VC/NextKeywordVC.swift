@@ -194,8 +194,8 @@ class NextKeywordVC: UIViewController {
         navigationBar.shadowImage = UIImage()
         
         navigationItem.title = "키워드 설정하기"
-        let systemQuestionMark = UIImage(systemName: "questionmark.circle")
-        let questionItem = UIBarButtonItem(image: systemQuestionMark, style: .plain, target: self, action: #selector(goKeywordPopUp))
+        let questionMark = UIImage(named: "btn_question" )
+        let questionItem = UIBarButtonItem(image: questionMark, style: .plain, target: self, action: #selector(goKeywordPopUp))
         questionItem.tintColor = UIColor.mainOrange
         navigationItem.rightBarButtonItem = questionItem
         
