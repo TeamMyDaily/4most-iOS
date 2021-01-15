@@ -30,7 +30,7 @@ class KeywordPriorityVC: UIViewController {
         setNavigationBar()
         setTableViewHeight()
         keywordTableView.estimatedRowHeight = 50
-        keywordTableView.rowHeight = UITableView.automaticDimension
+       //keywordTableView.rowHeight = UITableView.automaticDimension
         //keywordTableView.backgroundColor = .red
         //keywordTableView.separatorStyle = .none
     }
@@ -44,17 +44,20 @@ class KeywordPriorityVC: UIViewController {
     }
     
     func setTableViewHeight(){
-        var tableHeight = keywordList.count * 10
-        keywordTableView.frame.size.height = CGFloat(tableHeight)
+        keywordTableView.estimatedRowHeight = 50
+        keywordTableView.rowHeight = UITableView.automaticDimension
+//        var tableHeight = keywordList.count * 10
+//        keywordTableView.frame.size.height = CGFloat(tableHeight)
     }
     
     func setTitleLabel(){
         titleLabel.numberOfLines = 0
         titleLabel.text = "키워드에 대한\n우선순위를 세워보세요!"
+        titleLabel.font = UIFont.myBlackSystemFont(ofSize: 25)
     }
     
     func setCompleteButton(){
-        completeButton.titleLabel?.font =  UIFont(name: "System-Bold", size: 18.0)
+        completeButton.titleLabel?.font = UIFont.myMediumSystemFont(ofSize: 18)
         completeButton.layer.cornerRadius = 15
         completeButton.backgroundColor = UIColor.mainOrange
     }
@@ -92,7 +95,8 @@ class KeywordPriorityVC: UIViewController {
         navigationItem.title = "키워드 우선순위"
       
         let leftButton: UIBarButtonItem = {
-             let button = UIBarButtonItem(image: UIImage(named: "btn_arrow_left"), style: .plain, target: self, action: #selector(dismissVC))
+             let button = UIBarButtonItem(image: UIImage(named: "btnBack"), style: .plain, target: self, action: #selector(dismissVC))
+            button.tintColor = UIColor.mainBlack
              return button
            }()
            navigationItem.leftBarButtonItem = leftButton

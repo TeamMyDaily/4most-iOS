@@ -37,6 +37,7 @@ class UserKeywordTVC: UITableViewCell {
             fixClipButton.setBackgroundImage(UIImage(named: "btn_unselected_pin_l"), for: .normal)
         }
         keywordLabel.text = keyword
+        keywordLabel.font = UIFont.myMediumSystemFont(ofSize: 18)
     }
     
     @IBAction func alertKeywordMenu(_ sender: UIButton){
@@ -44,7 +45,5 @@ class UserKeywordTVC: UITableViewCell {
         cellDelegate?.alertKeywordMenu(self, keyword: keywordLabel.text ?? "")
         
     }
-    
-    
     
 }

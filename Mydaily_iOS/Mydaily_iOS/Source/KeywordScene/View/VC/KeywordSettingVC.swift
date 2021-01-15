@@ -78,14 +78,19 @@ class KeywordSettingVC: UIViewController {
         navigationBar.shadowImage = UIImage()
       
         navigationItem.title = "키워드 설정하기"
-        let questionItem = UIBarButtonItem(image: UIImage(named: "navigation_question_icon"), style: .plain, target: self, action: #selector(goKeywordPopUp))
+        let systemQuestionMark = UIImage(systemName: "questionmark.circle")
+        //let questionMark = UIImage(named: "navigation_question_icon" )
+        let questionItem = UIBarButtonItem(image: systemQuestionMark, style: .plain, target: self, action: #selector(goKeywordPopUp))
+        questionItem.tintColor = UIColor.mainOrange
         navigationItem.rightBarButtonItem = questionItem
     }
     
     @objc func goKeywordPopUp(){
-        guard let dvc = self.storyboard?.instantiateViewController(identifier: "KeywordPopUpVC") else {
+        guard let dvc = self.storyboard?.instantiateViewController(identifier: "KeywordPopUpVC") as? KeywordPopUpVC else{
             return
         }
+        
+        dvc.checkOnBoard(check: false)
         dvc.modalPresentationStyle = .fullScreen
         self.present(dvc, animated: true, completion: nil)
     }
@@ -107,9 +112,9 @@ class KeywordSettingVC: UIViewController {
     }
     
     func setCompleteButton(){
-        completeButton.setTitle("선택완료!", for: .normal)
+        completeButton.setTitle("키워드 선택하기", for: .normal)
         completeButton.setTitleColor(.white, for: .normal)
-        completeButton.titleLabel?.font =  UIFont(name: "System-Bold", size: 18.0)
+        completeButton.titleLabel?.font =  UIFont.myMediumSystemFont(ofSize: 18)
         completeButton.layer.cornerRadius = 15
         completeButton.isEnabled = false
     }
@@ -221,6 +226,8 @@ extension KeywordSettingVC: UITableViewDelegate{
         
         let sectionTitleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 30))
         
+        
+        
         var title: String = ""
         
         if(section == 0){
@@ -255,18 +262,18 @@ extension KeywordSettingVC: UITableViewDelegate{
         
         userKeywordTitleLabel = UILabel(frame: CGRect(x: 16, y: 0, width: view.frame.size.width - 150, height: 30))
         userKeywordTitleLabel.text = "찾고 있는 가치(단어)가 없으세요?"
-        userKeywordTitleLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.regular)
+        userKeywordTitleLabel.font = UIFont.myRegularSystemFont(ofSize: 16)
         
         keywordPlusButton = UIButton(frame: CGRect(x: 16, y: 35, width: 32, height: 32))
-        keywordPlusButton.setBackgroundImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
-        keywordPlusButton.tintColor = UIColor.mainGray
+        keywordPlusButton.setBackgroundImage(UIImage(named: "keyword_btn_plus"), for: .normal)
+        //keywordPlusButton.tintColor = UIColor.mainLightGray
         keywordPlusButton.addTarget(self, action: #selector(goToAddUserKeyword), for: .touchUpInside)
         
         KeywordEditButton = UIButton(frame: CGRect(x: view.frame.size.width - 66 , y: 0, width: 50, height: 30))
         
         KeywordEditButton.setTitle("", for: .normal)
-        KeywordEditButton.setTitleColor(.blue, for: .normal)
-        KeywordEditButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.regular)
+        KeywordEditButton.setTitleColor(UIColor.mainBlue, for: .normal)
+        KeywordEditButton.titleLabel?.font = UIFont.myRegularSystemFont(ofSize: 16)
         KeywordEditButton.addTarget(self, action: #selector(editUserKeyword), for: .touchUpInside)
        
         footer.addSubview(userKeywordTitleLabel)
@@ -283,7 +290,6 @@ extension KeywordSettingVC: UITableViewDelegate{
         }
         
         let currentKeywordList = attitudeOfLife + attitudeOfWork + userKeywordList
-        
         dvc.setKeywordArray(list: currentKeywordList)
         
         self.navigationController?.pushViewController(dvc, animated: true)
@@ -296,14 +302,15 @@ extension KeywordSettingVC: UITableViewDelegate{
     
     
     func addUserKeyword(){
-        
         //title label 바꾸기
         if userKeywordList.count > 0{
-            userKeywordTitleLabel.text = "내가 추가한 키워드"
+            userKeywordTitleLabel.text = "내가 추가한 단어"
             userKeywordTitleLabel.textColor = UIColor.mainOrange
-            userKeywordTitleLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.bold)
+            userKeywordTitleLabel.font = UIFont.myBoldSystemFont(ofSize: 16)
             
             KeywordEditButton.setTitle("수정", for: .normal)
+            KeywordEditButton.titleLabel?.font = UIFont.myRegularSystemFont(ofSize: 16)
+            KeywordEditButton.setTitleColor(UIColor.mainBlue, for: .normal)
         }
         
         let lastIndex = userKeywordList.count - 1
@@ -478,7 +485,6 @@ extension KeywordSettingVC: UITableViewDelegate{
         }
         keywordPlusButton.removeFromSuperview()
         
-        
         for btn in userKeywordButtonList{
             userKeywordLine = 0
             let btnTitleText = btn.title(for: .normal) ?? ""
@@ -534,8 +540,6 @@ extension KeywordSettingVC: SelectKeywordDelegate{
             }else{
                 selectedKeywordList[0].append(selectedText)
             }
-            
-            print2DKeyword()
             selectedKeywordCount += 1
             setButtonActive()
             return true
@@ -554,10 +558,6 @@ extension KeywordSettingVC: SelectKeywordDelegate{
                 setButtonActive()
             }
         }
-        
-        print("\(selectedText) 삭제됨")
-        print2DKeyword()
-      
     }
     
     func alertKeyword(){

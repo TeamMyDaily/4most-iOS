@@ -27,7 +27,7 @@ class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("로그인으로 넘어옴")
         setupNavigationBar(.clear, titlelabel: "")
         changeTextFields()
         setUI()
@@ -52,6 +52,8 @@ class LoginVC: UIViewController {
         guard let dvc = self.storyboard?.instantiateViewController(identifier: "RegisterEntryVC") as? RegisterEntryVC else {
             return
         }
+        
+        
         self.navigationController?.pushViewController(dvc, animated: true)
     }
     
@@ -65,6 +67,8 @@ class LoginVC: UIViewController {
         signin()
     }
 }
+
+
 
 //MARK: - UI
 extension LoginVC {

@@ -11,6 +11,8 @@ import Moya
 class GoalDetailVC: UIViewController {
     private let authProvider = MoyaProvider<GoalService>(plugins: [NetworkLoggerPlugin(verbose: true)])
     
+    var backToEvaluationDetail: (() -> ())?
+    
     @IBOutlet weak var weekLabel: UILabel!
     @IBOutlet weak var keywordLabel: UILabel!
     @IBOutlet weak var goalLabel: UILabel!
@@ -20,10 +22,11 @@ class GoalDetailVC: UIViewController {
     var week: String?
     var completed: Bool?
     var edit = false
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        navigationController?.isNavigationBarHidden = false
         goal = self.KeywordDate?.isGoalCompleted ?? false
         setupNavigationBar()
         setUI()
@@ -81,6 +84,7 @@ extension GoalDetailVC {
     }
     
     @objc func dismissVC() {
+        backToEvaluationDetail?()
         self.navigationController?.popViewController(animated: true)
     }
     

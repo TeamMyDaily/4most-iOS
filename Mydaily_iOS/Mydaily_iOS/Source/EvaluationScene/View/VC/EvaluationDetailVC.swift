@@ -17,6 +17,8 @@ class EvaluationDetailVC: UIViewController {
     @IBOutlet weak var weekLabel: UILabel!
     @IBOutlet weak var keywordDetailTableView: UITableView!
     
+    var keyword = ""
+    var weekGoalID = 0
     var goal: String = ""
     var weekText: String? = nil
     var listCount = 0
@@ -65,8 +67,9 @@ extension EvaluationDetailVC: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailRecordContentTVC.identifier) as? DetailRecordContentTVC else {
             return UITableViewCell()
         }
+        cell.delegate = self
+        cell.keywordId = keywordData?.data.totalKeywordId
         cell.setList(task: task)
-        print(task)
         cell.selectionStyle = .none
         return cell
     }
@@ -94,11 +97,22 @@ extension EvaluationDetailVC: UITableViewDelegate {
         return calculateHeight
     }
     
-    //MARK: 유진아 여기야 여기야
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             if isGoalExist {
-                // ### isGoalExist면 선택했을 때 이동
+                guard let dvc = UIStoryboard(name: "Goal", bundle: nil).instantiateViewController(withIdentifier: "GoalDetailVC") as? GoalDetailVC else {
+                    return
+                }
+                dvc.backToEvaluationDetail = {
+                    self.navigationController?.isNavigationBarHidden = true
+                }
+                dvc.KeywordDate?.weekGoalID = weekGoalID
+                dvc.KeywordDate?.weekGoal = goal
+                dvc.KeywordDate?.name = keyword
+                dvc.week = self.weekText
+                dvc.completed = self.isGoalComplete
+                navigationItem.setHidesBackButton(true, animated: true)
+                UIApplication.topViewController()?.navigationController?.pushViewController(dvc, animated: true)
             }
         }
     }
@@ -137,6 +151,17 @@ extension EvaluationDetailVC {
     }
 }
 
+//MARK: Delegate
+extension EvaluationDetailVC: RecordToDailyDelegate {
+    func cellTapedDaily(dvc: DailyWriteVC) {
+        navigationItem.setHidesBackButton(true, animated: true)
+        dvc.backToDetailRecordContent = {
+            self.navigationController?.isNavigationBarHidden = true
+        }
+        UIApplication.topViewController()?.navigationController?.pushViewController(dvc, animated: true)
+    }
+}
+
 //MARK: Network
 extension EvaluationDetailVC {
     func getKeywordDetail() {
@@ -153,6 +178,7 @@ extension EvaluationDetailVC {
                     do {
                         self.keywordData = try result.map(ViewDetailReportModel.self)
                         //EvaluationDetailVC
+                        self.keyword = self.keywordData?.data.keywordName ?? ""
                         self.keywordLabel.text = self.keywordData?.data.keywordName
                         // DetailGoalTVC
                         self.goal = self.keywordData?.data.goal ?? ""
@@ -166,6 +192,7 @@ extension EvaluationDetailVC {
                                 self.task.append(tasks)
                             }
                         }
+                        self.weekGoalID = self.keywordData?.data.weekGoalId ?? 0
                         self.keywordDetailTableView.reloadData()
                     } catch(let err) {
                         print(err.localizedDescription)
