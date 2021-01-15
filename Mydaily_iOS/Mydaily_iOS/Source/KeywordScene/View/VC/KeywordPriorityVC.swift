@@ -73,15 +73,6 @@ class KeywordPriorityVC: UIViewController {
         }
         
         postKeywordPriority()
-//        guard let dvc = self.storyboard?.instantiateViewController(identifier: KeywordDecideVC.identifier) as? KeywordDecideVC else{
-//            return
-//        }
-//
-//        dvc.setReceivedKeywordList(list: keywordList)
-//        self.navigationController?.pushViewController(dvc, animated: true)
-//
-        
-        
     }
     
     
@@ -124,6 +115,25 @@ extension KeywordPriorityVC: UITableViewDataSource{
         return cell
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 2))
+        headerView.backgroundColor = .mainGray
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 2))
+        footerView.backgroundColor = .mainGray
+        return footerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+       return 2
+    }
     
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false
@@ -133,6 +143,7 @@ extension KeywordPriorityVC: UITableViewDataSource{
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .none
     }
+    
     
 }
 
