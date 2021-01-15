@@ -283,7 +283,7 @@ extension KeywordDefineVC{
         
         if modifiedMode{
             let rightButton : UIBarButtonItem = {
-                let button = UIBarButtonItem(image: UIImage(named: "btn_edit"), style: .plain, target: self, action: #selector(dismissVC))
+                let button = UIBarButtonItem(image: UIImage(named: "btn_edit"), style: .plain, target: self, action: #selector(modifyDefinition))
                button.tintColor = UIColor.mainOrange
                 return button
             }()

@@ -64,7 +64,8 @@ extension KeywordServices: TargetType{
     var headers: [String : String]? {
         switch self {
         default:
-            return ["Content-Type": "application/json", "jwt": GeneralAPI.token]
+            let accessToken = UserDefaultStorage.accessToken
+            return ["Content-Type": "application/json", "jwt": accessToken]
         }
     }
     

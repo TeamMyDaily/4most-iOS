@@ -22,6 +22,7 @@ class GoalDetailVC: UIViewController {
     var week: String?
     var completed: Bool?
     var edit = false
+    var isSend = false
  
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,7 @@ class GoalDetailVC: UIViewController {
         goal = self.KeywordDate?.isGoalCompleted ?? false
         setupNavigationBar()
         setUI()
+        setData()
     }
     
     @IBAction func completeButton(_ sender: Any) {
@@ -129,6 +131,25 @@ extension GoalDetailVC {
     
     func updateUI(){
         
+    }
+    
+    func setData() {
+        if isSend {
+            let userDefault = UserDefaults.standard
+            
+            if let name = userDefault.string(forKey: "name") {
+                print(name)
+                keywordLabel.text = "\(name)에 가까워지기 위한 목표"
+            }
+            
+            if let goal = userDefault.string(forKey: "goal") {
+                goalLabel.text = goal
+            }
+            
+            KeywordDate?.weekGoalID = userDefault.integer(forKey: "weekGoalId")
+            
+            print(KeywordDate?.name)
+        }
     }
 }
 // MARK: - 통신

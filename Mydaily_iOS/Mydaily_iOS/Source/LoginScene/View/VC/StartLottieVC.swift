@@ -20,11 +20,21 @@ class StartLottieVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { [self] in
-            print("GeneralAPI.isFirstConnect \(GeneralAPI.isFirstConnect)")
-            if GeneralAPI.isFirstConnect == true{
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: { [self] in
+//            goOnBoardPopUp()
+            if Login.shared.isLogin() {
+                let storyboard = UIStoryboard(name: "Tabbar", bundle: nil)
+                let dvc = storyboard.instantiateViewController(identifier: "TabbarController")
+                dvc.modalPresentationStyle = .fullScreen
+                self.present(dvc, animated: true, completion: nil)
+            } else {
                 goOnBoardPopUp()
+//                let storyboard = UIStoryboard(name: "Login", bundle: nil)
+//                let dvc = storyboard.instantiateViewController(identifier: "LoginNaviController")
+//                dvc.modalPresentationStyle = .fullScreen
+//                self.present(dvc, animated: true, completion: nil)
             }
+//            goOnBoardPopUp()
         })
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -58,7 +68,8 @@ class StartLottieVC: UIViewController {
         print("goOnBoardPopUp 시작")
 //        let keywordStoryboard = UIStoryboard(name: "Keyword", bundle: nil)
 //        print(keywordStoryboard)
-        let dvc = self.storyboard?.instantiateViewController(identifier: OnBoardPopUpVC.identifier) as! OnBoardPopUpVC
+        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+        let dvc = storyboard.instantiateViewController(identifier: "OnBoardPopUpVC") as! OnBoardPopUpVC
         print(dvc)
        
         dvc.checkOnBoard(check: true)

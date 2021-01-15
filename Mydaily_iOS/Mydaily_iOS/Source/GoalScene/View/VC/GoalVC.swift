@@ -36,8 +36,10 @@ class GoalVC: UIViewController {
         dateButton.layer.opacity = 0
     }
     override func viewWillAppear(_ animated: Bool) {
-        getGoal()
         goalTableView.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: { [self] in
+            self.getGoal()
+        })
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +48,7 @@ class GoalVC: UIViewController {
         setDateLabel(date: date)
         setUI()
         setupTableView()
+        getGoal()
     }
     @IBAction func moveWeekdown(_ sender: Any) {
         self.date = Calendar.current.date(byAdding: .day, value: -7, to: date)!
@@ -80,6 +83,18 @@ class GoalVC: UIViewController {
 }
 
 extension GoalVC {
+    func nextViewController() {
+            let vc = storyboard?.instantiateViewController(withIdentifier: "GoalWriteVC") as! GoalWriteVC
+            vc.weakClosure = { [weak self] in
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { [self] in
+                    self?.getGoal()
+                })
+                
+                print("2")
+            }
+        }
+    
     func DateInMilliSeconds(date: Date)-> Int
     {
         return Int(date.startOfWeek!.timeIntervalSince1970 * 1000)
@@ -231,8 +246,20 @@ extension GoalVC: UITableViewDataSource{
 // MARK: - 통신
 extension GoalVC{
     func getGoal(){
-        let param = GoalRequest.init("\(DateInMilliSeconds(date: self.date.startOfWeek!))","\(DateInMilliSeconds(date: self.date.endOfWeek!))")
-        authProvider.request(.goalinquiry(param: param)) { response in
+        let UTCDate = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.timeZone = TimeZone(secondsFromGMT:0)
+        let defaultTimeZoneStr = formatter.string(from: UTCDate)
+        let today = formatter.string(from: Date())
+        
+        var param: GoalRequest?
+        if today == defaultTimeZoneStr{
+            param = GoalRequest.init("\(DateInMilliSeconds(date: Date().startOfWeek!))","\(DateInMilliSeconds(date: Date().endOfWeek!))")
+        }else{
+            param = GoalRequest.init("\(DateInMilliSeconds(date: self.date.startOfWeek!))","\(DateInMilliSeconds(date: self.date.endOfWeek!))")
+        }
+        authProvider.request(.goalinquiry(param: param!)) { response in
             switch response {
                 case .success(let result):
                     do {
@@ -240,6 +267,7 @@ extension GoalVC{
                         self.goalData = data
                         self.updateUI()
                         self.goalTableView.reloadData()
+                        print("리로드")
                     } catch(let err) {
                         print(err.localizedDescription)
                     }

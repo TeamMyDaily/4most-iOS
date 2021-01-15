@@ -10,12 +10,15 @@ import UIKit
 class customPopVC: UIViewController {
 
     @IBOutlet weak var dismissButton: UILabel!
+    @IBOutlet weak var label: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setUI()
-        
+        label.text = "목표를 달성했어요!"
+        label.font = .myBoldSystemFont(ofSize: 18)
+        label.textColor = .white
     }
 
     func setUI(){

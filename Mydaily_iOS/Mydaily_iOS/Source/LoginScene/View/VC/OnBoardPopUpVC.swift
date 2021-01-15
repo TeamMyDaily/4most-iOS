@@ -69,7 +69,7 @@ class OnBoardPopUpVC: UIViewController{
         
         let vc = UIStoryboard.init(name: "Login", bundle: nil).instantiateViewController(identifier: "LoginNaviController")
         vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: false, completion: nil)
+        self.present(vc, animated: true, completion: nil)
 
     }
    
@@ -130,7 +130,7 @@ extension OnBoardPopUpVC{
         if(currentPage == 2){
             
             if isOnBoard{
-                skipButton.setTitle("모포스트 시작하기", for: .normal)
+                skipButton.setTitle("포모스트 시작하기", for: .normal)
             }else{
                 skipButton.setTitle("돌아가기", for: .normal)
             }

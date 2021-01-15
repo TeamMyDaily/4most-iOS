@@ -314,6 +314,12 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j2F-Cy-5ga">
+                                <rect key="frame" x="166.5" y="194" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wRl-zM-K0G"/>
                         <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -321,13 +327,16 @@
                             <constraint firstItem="20P-Oi-MN8" firstAttribute="centerX" secondItem="wRl-zM-K0G" secondAttribute="centerX" id="1Cf-Bk-99q"/>
                             <constraint firstItem="20P-Oi-MN8" firstAttribute="top" secondItem="wRl-zM-K0G" secondAttribute="top" constant="170" id="HDz-54-4jW"/>
                             <constraint firstItem="rMQ-qn-KeG" firstAttribute="top" secondItem="4pX-Wm-JRq" secondAttribute="bottom" constant="5" id="J1x-2E-8vJ"/>
+                            <constraint firstItem="j2F-Cy-5ga" firstAttribute="top" secondItem="20P-Oi-MN8" secondAttribute="top" constant="24" id="QQf-7p-RWx"/>
                             <constraint firstItem="4pX-Wm-JRq" firstAttribute="top" secondItem="20P-Oi-MN8" secondAttribute="bottom" constant="80" id="cMI-HO-2eQ"/>
+                            <constraint firstItem="j2F-Cy-5ga" firstAttribute="centerX" secondItem="20P-Oi-MN8" secondAttribute="centerX" id="fv6-02-gX1"/>
                             <constraint firstItem="4pX-Wm-JRq" firstAttribute="centerX" secondItem="20P-Oi-MN8" secondAttribute="centerX" id="tHq-Zt-pHD"/>
                             <constraint firstItem="rMQ-qn-KeG" firstAttribute="centerX" secondItem="4pX-Wm-JRq" secondAttribute="centerX" id="vgq-Q7-p3l"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="dismissButton" destination="rMQ-qn-KeG" id="PVL-6P-nlf"/>
+                        <outlet property="label" destination="j2F-Cy-5ga" id="wyA-LN-qhR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2m3-F3-5NW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

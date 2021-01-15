@@ -17,7 +17,7 @@ class MypageSettingVC: UIViewController {
     @IBOutlet weak var settingTableView: UITableView!
     
     var securityTitles: [String] = ["본인인증", "계정 비밀번호 변경"]
-    var policyTitles: [String] = ["포모스트 이용약관", "개인정보 처리 방침", "서비스 이용약관", "오픈소스라이선스", "회원 탈퇴"]
+    var policyTitles: [String] = ["포모스트 이용약관", "개인정보 처리 방침", "서비스 이용약관", "로그아웃", "회원 탈퇴"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,6 +114,8 @@ extension MypageSettingVC: UITableViewDelegate {
                 return
             }
             present(dvc, animated: true, completion: nil)
+        } else if indexPath.section == 1 && indexPath.row == 3 {
+            Login.shared.setLoginOut()
         }
     }
 }
