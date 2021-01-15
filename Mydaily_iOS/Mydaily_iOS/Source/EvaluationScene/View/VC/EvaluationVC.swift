@@ -37,7 +37,7 @@ class EvaluationVC: UIViewController {
     var weekText: String?
     
     override func viewWillAppear(_ animated: Bool) {
-        setReportNotification()
+        keywordCollectionView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -247,20 +247,16 @@ extension EvaluationVC {
         dateValue = 0
         self.date = Date()
         dateFormatter.dateFormat = "yy년 MM월 W주"
-        weekText = dateFormatter.string(from: date.containWeek!)
-        weekLabel.text = dateFormatter.string(from: date.containWeek!)
+        weekText = dateFormatter.string(from: date.startOfWeek!.containWeek!)
+        weekLabel.text = dateFormatter.string(from: date.startOfWeek!.containWeek!)
         weekLabel.textColor = .mainOrange
         nextWeekButton.isEnabled = false
-        
-        print(date)
     }
     
     private func calculateDate() {
         dateFormatter.dateFormat = "yy년 MM월 W주"
-        weekText = dateFormatter.string(from: date.containWeek!)
-        weekLabel.text = dateFormatter.string(from: date.containWeek!)
-        
-        print(date)
+        weekText = dateFormatter.string(from: date.startOfWeek!.containWeek!)
+        weekLabel.text = dateFormatter.string(from: date.startOfWeek!.containWeek!)
         
         if dateValue == 0 {
             nextWeekButton.isEnabled = false
@@ -268,7 +264,7 @@ extension EvaluationVC {
             weekLabel.textColor = .mainOrange
         } else {
             currentWeekButton.isHidden = false
-            weekLabel.textColor = .lightGray
+            weekLabel.textColor = .mainBlack
         }
     }
 }

@@ -17,11 +17,14 @@ class EvaluationKeywordTVC: UITableViewCell {
     @IBOutlet weak var goalLabel: UILabel!
     @IBOutlet weak var totalCountLabel: UILabel!
     
+    var rate: Float? = nil
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setKeywordView()
         setLabel()
         setSlider()
+        setRate()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -37,16 +40,18 @@ extension EvaluationKeywordTVC {
             goalLabel.text = goal
             totalCountLabel.text = "총 \(count)개"
             rateLabel.text = rate
+            self.rate = Float(rate) ?? 0
         } else {
             self.isHidden = true
         }
-        
-        let floatRate: Float = Float(rate) ?? 0
+    }
+    
+    private func setRate() {
         UIView.animate(withDuration: 2, animations:  {() in
             self.rateSlider.setValue(0, animated: true)
                 }, completion:{(Bool)  in
                     UIView.animate(withDuration: 2, animations: {() in
-                        self.rateSlider.setValue(floatRate, animated: true)
+                        self.rateSlider.setValue(self.rate ?? 0, animated: true)
             })
         })
     }

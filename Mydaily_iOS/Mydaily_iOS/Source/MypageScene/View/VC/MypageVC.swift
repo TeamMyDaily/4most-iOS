@@ -398,6 +398,16 @@ extension MypageVC: menuAlertDelegate{
         present(actionsheetController, animated: true, completion: nil)
     }
     
+    func printKeywordList(){
+        for i in 0..<userKeywordList.count{
+            print(userKeywordList[i])
+        }
+        
+        for i in 0..<recordKeywordList.count{
+            print(recordKeywordList[i])
+        }
+    }
+    
 }
 
 //MARK: UI
@@ -447,6 +457,8 @@ extension MypageVC{
     
 }
 
+
+//네트워크
 extension MypageVC{
     func getRecordKeywords(){
         print("getRecordKeywords")
@@ -456,7 +468,9 @@ extension MypageVC{
                 case .success(let response):
                     do {
                         let data = try response.map(MypageRecordKeywordModel.self)
+                        self.recordKeywordList = []
                         self.recordKeywordList = data.data.keywords
+                        self.keywordTableView.reloadData()
                     } catch(let err) {
                         print(err.localizedDescription)
                     }
@@ -475,6 +489,7 @@ extension MypageVC{
                     DispatchQueue.main.async {
                         do {
                             let responseToken = try response.map(MypageKeywordListModel.self)
+                            self.userKeywordList = []
                             self.userKeywordList = responseToken.data
                             self.registerPermission = self.checkRegisterPermission()
                             self.keywordTableView.reloadData()
@@ -521,9 +536,9 @@ extension MypageVC{
                     self.getUserKeywords()
                 }catch(let err){
                     if result.statusCode == 200{
+                        self.getRecordKeywords()
                         self.getUserKeywords()
-//                        self.recordKeywordList.append(RecordKeywordData(totalKeywordId: keywordId, name: keywordName))                    }
-                    print(err.localizedDescription)
+                        print(err.localizedDescription)
                     }
                 }
             case .failure(let err):
@@ -551,8 +566,7 @@ extension MypageVC{
 //                        }
                         self.getUserKeywords()
                         self.keywordTableView.reloadData()
-                       
-                        //self.getRecordKeywords()
+                   
                     }catch(let err){
                         print(err.localizedDescription)
                     }
