@@ -14,28 +14,32 @@ class StartLottieVC: UIViewController {
     
     override func viewDidLoad() {
         setupLottieView()
-        print("dd")
+        
+        guard let dvc = self.storyboard?.instantiateViewController(identifier: "LoginVC") as? LoginVC else {
+            return
+        }
+        self.navigationController?.pushViewController(dvc, animated: true)
+        
     }
     
     func setupLottieView() {
         view.backgroundColor = UIColor.white
-        animationView = .init(name: "lottie")
+        animationView = .init(name: "newios2_data")
         animationView!.frame = CGRect.zero
         animationView!.contentMode = .scaleAspectFit
-        animationView!.loopMode = .loop
+//        animationView!.loopMode = .loop
         animationView!.animationSpeed = 1
         animationView!.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(animationView!)
         
         NSLayoutConstraint.activate([
-            animationView!.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 75),
+            animationView!.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 0),
             animationView!.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             animationView!.widthAnchor.constraint(equalToConstant: 600),
             animationView!.heightAnchor.constraint(equalToConstant: 600),
 
         ])
-        
         animationView!.play()
     }
     

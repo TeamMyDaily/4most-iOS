@@ -74,6 +74,8 @@
 		AE6A0E6F25B17367009D4A93 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6A0E6E25B17367009D4A93 /* Login.swift */; };
 		AE6A0E7225B17FB6009D4A93 /* lottie.json in Resources */ = {isa = PBXBuildFile; fileRef = AE6A0E7125B17FB6009D4A93 /* lottie.json */; };
 		AE6A0E7625B18D4B009D4A93 /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6A0E7525B18D4B009D4A93 /* OnboardingVC.swift */; };
+		AE6A0E7C25B1A014009D4A93 /* animation.json in Resources */ = {isa = PBXBuildFile; fileRef = AE6A0E7B25B1A014009D4A93 /* animation.json */; };
+		AE6A0E7F25B1A04B009D4A93 /* newios2_data.json in Resources */ = {isa = PBXBuildFile; fileRef = AE6A0E7E25B1A04B009D4A93 /* newios2_data.json */; };
 		AE76C03E259B1A6D007B3901 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE76C03D259B1A6D007B3901 /* AppDelegate.swift */; };
 		AE76C047259B1A6E007B3901 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE76C046259B1A6E007B3901 /* Assets.xcassets */; };
 		AE76C04A259B1A6E007B3901 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE76C048259B1A6E007B3901 /* LaunchScreen.storyboard */; };
@@ -215,6 +217,8 @@
 		AE6A0E6E25B17367009D4A93 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		AE6A0E7125B17FB6009D4A93 /* lottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lottie.json; sourceTree = "<group>"; };
 		AE6A0E7525B18D4B009D4A93 /* OnboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
+		AE6A0E7B25B1A014009D4A93 /* animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = animation.json; sourceTree = "<group>"; };
+		AE6A0E7E25B1A04B009D4A93 /* newios2_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = newios2_data.json; sourceTree = "<group>"; };
 		AE76C03A259B1A6D007B3901 /* Mydaily_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mydaily_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE76C03D259B1A6D007B3901 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE76C046259B1A6E007B3901 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -653,7 +657,9 @@
 			children = (
 				AE53FBA225A6E8D800D62AA7 /* Font */,
 				AE6A0E0F25B15835009D4A93 /* loading.json */,
+				AE6A0E7E25B1A04B009D4A93 /* newios2_data.json */,
 				AE6A0E7125B17FB6009D4A93 /* lottie.json */,
+				AE6A0E7B25B1A014009D4A93 /* animation.json */,
 				AE76C046259B1A6E007B3901 /* Assets.xcassets */,
 				AE76C048259B1A6E007B3901 /* LaunchScreen.storyboard */,
 				AE76C04B259B1A6E007B3901 /* Info.plist */,
@@ -1050,6 +1056,7 @@
 				AEFB222325A02CBC00A3228C /* Login.storyboard in Resources */,
 				AE53FBAC25A6E97400D62AA7 /* NotoSansKR-Bold.otf in Resources */,
 				AE53FBAF25A6E97400D62AA7 /* NotoSansKR-Black.otf in Resources */,
+				AE6A0E7F25B1A04B009D4A93 /* newios2_data.json in Resources */,
 				AEFB21F2259C46C500A3228C /* Tabbar.storyboard in Resources */,
 				3C42976A259F16D10061483E /* KeywordSettingTVC.xib in Resources */,
 				3CC86434259CCCB00043421A /* ContentCVC.xib in Resources */,
@@ -1057,6 +1064,7 @@
 				3C71FE4325AB7BA6007BC463 /* UserKeywordTVC.xib in Resources */,
 				3CC86426259CAFCB0043421A /* Keyword.storyboard in Resources */,
 				AE53FBAE25A6E97400D62AA7 /* OFL.txt in Resources */,
+				AE6A0E7C25B1A014009D4A93 /* animation.json in Resources */,
 				AE6A0E1925B15D31009D4A93 /* loading.json in Resources */,
 				3C71FE3925AB7226007BC463 /* RecordKeywordTVC.xib in Resources */,
 				3C7F9D3725AD8A4800F004E0 /* DetailTVC.xib in Resources */,
