@@ -541,7 +541,7 @@
         <!--On Board Pop UpVC-->
         <scene sceneID="Dgu-Hx-W9z">
             <objects>
-                <viewController restorationIdentifier="OnBoardPopUpVC" storyboardIdentifier="OnBoardPopUpVC" id="hns-Oe-8gN" customClass="OnBoardPopUpVC" customModule="Mydaily_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnBoardPopUpVC" id="hns-Oe-8gN" customClass="OnBoardPopUpVC" customModule="Mydaily_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="F3Z-Ys-3lN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

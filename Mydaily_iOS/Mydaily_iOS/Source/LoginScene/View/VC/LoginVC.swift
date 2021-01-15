@@ -230,6 +230,7 @@ extension LoginVC {
                                 self.present(vc, animated: true)
                             }
                         }else{ //자동로그인이 아니라묜
+                            Login.shared.setLogin(name: "\(String(describing: self.user!.data.userName))", token: "\(String(describing: self.user!.data.accessToken))")
                             if self.user?.data.keywordsExist == false{ //키워드 세팅으로
                                 let sb = UIStoryboard.init(name: "Keyword", bundle: nil)
                                 let vc = sb.instantiateViewController(withIdentifier: "KeywordSettingVCNavigation")

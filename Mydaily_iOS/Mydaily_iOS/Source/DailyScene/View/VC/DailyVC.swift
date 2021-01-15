@@ -88,7 +88,7 @@ extension DailyVC {
         setDate()
         //서벼연결시 변경 부분
         let username = UserDefaultStorage.userName
-        userDaily.text = "\(username ?? "")님의 하루 기록"
+        userDaily.text = "\(username)님의 하루 기록"
         userDaily.font = .myMediumSystemFont(ofSize: 15)
         userDaily.textColor = UIColor.mainBlack
         
