@@ -24,7 +24,7 @@ class MypageVC: UIViewController {
     var userKeywordList: [SelectedUserKeyword] = []
     //var userKeywordList2: [String] = ["선한영향력", "경청", "친절함", "대충", "열정" ,"진실성", "존중", "신뢰","연어덮밥"]
     var pageNumber = 0
-    var userName = "엄석준"
+    let username = UserDefaultStorage.userName
     
     let keywordStoryboard = UIStoryboard(name: "Keyword", bundle: nil)
     
