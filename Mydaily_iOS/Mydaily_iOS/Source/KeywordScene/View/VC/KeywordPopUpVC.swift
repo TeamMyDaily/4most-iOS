@@ -33,9 +33,9 @@ class KeywordPopUpVC: UIViewController {
                             "계획한 대로 하루를 분단위로 쪼개서 바쁘게 살았을 때\n 하루를 알차게 보냈다는 뿌듯함에서 오는 자랑스러움\n 그것이 나의 완벽한 하루다",
                             "항상 가식없는 사람, 미담이 가득한 사람이 되고 싶다.\n 어려운 일이라는 것을 알고 누군가를 나를 싫어하는 사람이\n 있을테지만 싫어 할 수가 없는 진정성 있는 사람이 되고싶다"]
 
-    var popUpImageList: [UIImage] = [UIImage(named: "iamge_explain_01")!,
-                                     UIImage(named: "iamge_explain_02")!,
-                                     UIImage(named: "iamge_explain_03")!]
+    var popUpImageList: [UIImage] = [UIImage(named: "image_popup01")!,
+                                     UIImage(named: "image_popup02")!,
+                                     UIImage(named: "image_popup03")!]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,7 +75,7 @@ extension KeywordPopUpVC: UICollectionViewDataSource{
         
         if isOnBoard{
             cell.setImage(image: onBoardImageList[indexPath.row])
-            cell.setLabel(question: question[indexPath.row], answer: "")
+            cell.setLabel(question: onBoardText[indexPath.row], answer: "")
         }else{
             cell.setImage(image: popUpImageList[indexPath.row])
             cell.setLabel(question: question[indexPath.row], answer: answer[indexPath.row])
