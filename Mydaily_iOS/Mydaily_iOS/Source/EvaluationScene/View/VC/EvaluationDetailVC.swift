@@ -17,6 +17,8 @@ class EvaluationDetailVC: UIViewController {
     @IBOutlet weak var weekLabel: UILabel!
     @IBOutlet weak var keywordDetailTableView: UITableView!
     
+    let userDefault = UserDefaults.standard
+    
     var keyword = ""
     var weekGoalID = 0
     var goal: String = ""
@@ -31,7 +33,8 @@ class EvaluationDetailVC: UIViewController {
     var task: [Tasks] = []
     
     override func viewWillAppear(_ animated: Bool) {
-        keywordDetailTableView.reloadData()
+        getKeywordDetail()
+        setNotification()
     }
 
     override func viewDidLoad() {
@@ -71,7 +74,9 @@ extension EvaluationDetailVC: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailRecordContentTVC.identifier) as? DetailRecordContentTVC else {
             return UITableViewCell()
         }
+        cell.recordCollectionView.reloadData()
         cell.delegate = self
+        cell.tableView = keywordDetailTableView
         cell.keywordId = keywordData?.data.totalKeywordId
         cell.setList(task: task)
         cell.selectionStyle = .none
@@ -110,11 +115,12 @@ extension EvaluationDetailVC: UITableViewDelegate {
                 dvc.backToEvaluationDetail = {
                     self.navigationController?.isNavigationBarHidden = true
                     self.keywordDetailTableView.reloadData()
+                    dvc.isSend = false
                 }
-                
-                dvc.KeywordDate?.weekGoalID = weekGoalID
-                dvc.KeywordDate?.weekGoal = goal
-                dvc.KeywordDate?.name = keyword
+                userDefault.setValue(keyword, forKey: "name")
+                userDefault.setValue(goal, forKey: "goal")
+                userDefault.setValue(weekGoalID, forKey: "weekGoalId")
+                dvc.isSend = true
                 dvc.week = self.weekText
                 dvc.completed = self.isGoalComplete
                 navigationItem.setHidesBackButton(true, animated: true)
@@ -154,6 +160,13 @@ extension EvaluationDetailVC {
         weekLabel.font = .myRegularSystemFont(ofSize: 12)
         weekLabel.text = weekText
         weekLabel.textColor = .mainGray
+    }
+}
+
+//MARK: Notification
+extension EvaluationDetailVC {
+    private func setNotification() {
+        NotificationCenter.default.post(name: NSNotification.Name("reloadCollection"), object: nil)
     }
 }
 

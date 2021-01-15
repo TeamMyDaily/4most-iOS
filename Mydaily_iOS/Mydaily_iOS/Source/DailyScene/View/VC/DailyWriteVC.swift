@@ -32,6 +32,10 @@ class DailyWriteVC: UIViewController {
     var taskTitle: String?
     var modify = false
     
+    override func viewWillDisappear(_ animated: Bool) {
+        backToDetailRecordContent?()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar()
@@ -69,12 +73,10 @@ class DailyWriteVC: UIViewController {
     }
     @IBAction func saveButton(_ sender: Any) {
         postingTask()
-        self.backToDetailRecordContent?()
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func modifyButton(_ sender: Any) {
         modifyTask()
-        self.backToDetailRecordContent?()
         self.navigationController?.popViewController(animated: true)
     }
 }
@@ -312,7 +314,6 @@ extension DailyWriteVC {
         )
         let cancel = UIAlertAction(title: "확인", style: .default) {
             _ in
-            self.backToDetailRecordContent?()
             self.navigationController?.popViewController(animated: true)
         }
         let okAction = UIAlertAction(title: "취소", style: .default)
@@ -329,7 +330,6 @@ extension DailyWriteVC {
         )
         let cancel = UIAlertAction(title: "삭제하기", style: .default) {_ in
             self.deleteTask()
-            self.backToDetailRecordContent?()
             self.navigationController?.popViewController(animated: true)
         }
         let okAction = UIAlertAction(title: "취소하기", style: .default)
@@ -343,16 +343,13 @@ extension DailyWriteVC {
             if modify {
                 cancelAlertaction()
             }
-            self.backToDetailRecordContent?()
             self.navigationController?.popViewController(animated: true)
         }
         else{
             if textViewCount.text == "0" && labelCount.text == "0"{
-                self.backToDetailRecordContent?()
                 self.navigationController?.popViewController(animated: true)
             }
             cancelAlertaction()
-            self.backToDetailRecordContent?()
             self.navigationController?.popViewController(animated: true)
         }
     }
