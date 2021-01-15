@@ -29,12 +29,12 @@ struct GoalResult: Codable {
 
 // MARK: - Keyword
 struct GoalKeyword: Codable {
-    let totalKeywordID, priority: Int?
-    let name: String
-    let isGoalCreated: Bool
-    let weekGoalID: Int?
-    let weekGoal: String?
-    let isGoalCompleted: Bool?
+    var totalKeywordID, priority: Int?
+    var name: String
+    var isGoalCreated: Bool
+    var weekGoalID: Int?
+    var weekGoal: String?
+    var isGoalCompleted: Bool?
 
     enum CodingKeys: String, CodingKey {
         case totalKeywordID = "totalKeywordId"

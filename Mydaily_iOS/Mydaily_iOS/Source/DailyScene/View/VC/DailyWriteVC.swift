@@ -14,6 +14,8 @@ class DailyWriteVC: UIViewController {
     var dailyTask: DailyTaskModel?
     var dailyModify: DailyModifyModel?
     
+    var backToDetailRecordContent: (() -> ())?
+    
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var todayTitle: UITextField!
     @IBOutlet weak var labelCount: UILabel!
@@ -80,6 +82,8 @@ extension DailyWriteVC {
           self.view.endEditing(true)
     }
     private func setupNavigationBar() {
+        self.navigationController?.isNavigationBarHidden = false
+        
         guard let navigationBar = self.navigationController?.navigationBar else { return }
         
         navigationBar.isTranslucent = true
@@ -306,6 +310,7 @@ extension DailyWriteVC {
         )
         let cancel = UIAlertAction(title: "확인", style: .default) {
             _ in
+            self.backToDetailRecordContent?()
             self.navigationController?.popViewController(animated: true)
         }
         let okAction = UIAlertAction(title: "취소", style: .default)
@@ -322,6 +327,7 @@ extension DailyWriteVC {
         )
         let cancel = UIAlertAction(title: "삭제하기", style: .default) {_ in
             self.deleteTask()
+            self.backToDetailRecordContent?()
             self.navigationController?.popViewController(animated: true)
         }
         let okAction = UIAlertAction(title: "취소하기", style: .default)
@@ -335,6 +341,7 @@ extension DailyWriteVC {
             if modify {
                 cancelAlertaction()
             }
+            self.backToDetailRecordContent?()
             self.navigationController?.popViewController(animated: true)
         }
         else{
@@ -342,6 +349,7 @@ extension DailyWriteVC {
                 self.navigationController?.popViewController(animated: true)
             }
             cancelAlertaction()
+            self.backToDetailRecordContent?()
             self.navigationController?.popViewController(animated: true)
         }
     }

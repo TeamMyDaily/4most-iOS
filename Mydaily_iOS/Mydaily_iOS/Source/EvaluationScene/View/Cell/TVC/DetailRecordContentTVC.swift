@@ -19,6 +19,9 @@ class DetailRecordContentTVC: UITableViewCell {
         return notifyLabel
     }()
     
+    var delegate: RecordToDailyDelegate?
+    
+    var keywordId: Int? = nil
     var taskId: [Int] = []
     var taskTitle: [String] = []
     var taskDate: [String] = []
@@ -57,9 +60,14 @@ extension DetailRecordContentTVC: UICollectionViewDelegateFlowLayout {
 }
 
 extension DetailRecordContentTVC: UICollectionViewDelegate {
-    //MARK: 유진아 여기야 여기야 -> taskId 배열에 taskId 넣어뒀어.
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        guard let dvc = UIStoryboard(name: "Daily", bundle: nil).instantiateViewController(withIdentifier: "DailyWriteVC") as? DailyWriteVC else {
+            return
+        }
+        dvc.keywordID = keywordId
+        dvc.taskID = taskId[indexPath.item]
+        dvc.taskTitle = taskTitle[indexPath.item]
+        delegate?.cellTapedDaily(dvc: dvc)
     }
 }
 
