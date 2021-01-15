@@ -17,12 +17,12 @@ struct RegisterRecordKeywordModel: Codable {
 
 // MARK: - Datum
 struct RegisterRecordKeyword: Codable {
-    let id, totalKeywordID: Int
+    let id, TotalKeywordId: Int
     let date: String
 
     enum CodingKeys: String, CodingKey {
         case id
-        case totalKeywordID
+        case TotalKeywordId
         case date
     }
 }
