@@ -52,16 +52,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="laj-Tg-s8s">
+                                <rect key="frame" x="0.0" y="111" width="375" height="556"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ym-SC-GbX">
                                 <rect key="frame" x="16" y="91" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="laj-Tg-s8s">
-                                <rect key="frame" x="0.0" y="111" width="375" height="556"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R2f-5Y-asF">
                                 <rect key="frame" x="16" y="82" width="343" height="1"/>
                                 <color key="backgroundColor" red="0.76862745098039209" green="0.76862745098039209" blue="0.76862745098039209" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
@@ -69,8 +69,21 @@
                                     <constraint firstAttribute="height" constant="1" id="eUy-3c-cDL"/>
                                 </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4wr-l0-tw2">
+                                <rect key="frame" x="97" y="283" width="181" height="131"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="181" id="Bkd-w7-Tsm"/>
+                                    <constraint firstAttribute="height" constant="131" id="b0k-aK-XFb"/>
+                                </constraints>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iPB-HC-eRw">
                                 <rect key="frame" x="16" y="99" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gM-Ye-DP6">
+                                <rect key="frame" x="166.5" y="430" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -82,9 +95,11 @@
                             <constraint firstItem="2DW-5W-n0N" firstAttribute="centerY" secondItem="U1r-Uu-NMj" secondAttribute="centerY" id="13A-I9-WVR"/>
                             <constraint firstItem="laj-Tg-s8s" firstAttribute="trailing" secondItem="LcV-4O-zbg" secondAttribute="trailing" id="9fQ-hh-nfL"/>
                             <constraint firstItem="2DW-5W-n0N" firstAttribute="leading" secondItem="dkl-gu-fuE" secondAttribute="trailing" constant="8" id="CvT-ZU-mVZ"/>
+                            <constraint firstItem="9gM-Ye-DP6" firstAttribute="centerX" secondItem="4wr-l0-tw2" secondAttribute="centerX" id="KyH-xY-bhU"/>
                             <constraint firstItem="laj-Tg-s8s" firstAttribute="leading" secondItem="LcV-4O-zbg" secondAttribute="leading" id="L2J-gO-VvI"/>
                             <constraint firstItem="LcV-4O-zbg" firstAttribute="trailing" secondItem="U1r-Uu-NMj" secondAttribute="trailing" constant="8" id="L5P-3t-bMn"/>
                             <constraint firstItem="laj-Tg-s8s" firstAttribute="top" secondItem="iPB-HC-eRw" secondAttribute="bottom" constant="12" id="MJ6-pd-lbh"/>
+                            <constraint firstItem="4wr-l0-tw2" firstAttribute="top" secondItem="R2f-5Y-asF" secondAttribute="bottom" constant="200" id="WZE-sf-2Cc"/>
                             <constraint firstItem="iPB-HC-eRw" firstAttribute="top" secondItem="5Ym-SC-GbX" secondAttribute="bottom" constant="8" id="Wze-7c-qnt"/>
                             <constraint firstItem="5Ym-SC-GbX" firstAttribute="top" secondItem="R2f-5Y-asF" secondAttribute="bottom" constant="8" id="Y63-ob-zge"/>
                             <constraint firstItem="laj-Tg-s8s" firstAttribute="bottom" secondItem="LcV-4O-zbg" secondAttribute="bottom" id="a2i-PH-oIB"/>
@@ -95,6 +110,8 @@
                             <constraint firstItem="dkl-gu-fuE" firstAttribute="top" secondItem="LcV-4O-zbg" secondAttribute="top" constant="8" id="rdP-dy-nya"/>
                             <constraint firstItem="U1r-Uu-NMj" firstAttribute="leading" secondItem="2DW-5W-n0N" secondAttribute="trailing" constant="8" id="wL8-SY-7ut"/>
                             <constraint firstItem="U1r-Uu-NMj" firstAttribute="top" secondItem="LcV-4O-zbg" secondAttribute="top" constant="8" id="wpH-Mj-que"/>
+                            <constraint firstItem="4wr-l0-tw2" firstAttribute="centerX" secondItem="laj-Tg-s8s" secondAttribute="centerX" id="y7P-xR-xQd"/>
+                            <constraint firstItem="9gM-Ye-DP6" firstAttribute="top" secondItem="4wr-l0-tw2" secondAttribute="bottom" constant="16" id="yef-av-RN9"/>
                             <constraint firstAttribute="trailing" secondItem="R2f-5Y-asF" secondAttribute="trailing" constant="16" id="yuH-bC-VAN"/>
                         </constraints>
                     </view>
@@ -102,6 +119,8 @@
                     <connections>
                         <outlet property="dateLabel" destination="2DW-5W-n0N" id="OgP-IB-BOi"/>
                         <outlet property="defaultLabel" destination="5Ym-SC-GbX" id="USn-YA-Wpy"/>
+                        <outlet property="emptyImg" destination="4wr-l0-tw2" id="2q9-2v-zmN"/>
+                        <outlet property="emptyLabel" destination="9gM-Ye-DP6" id="UAC-3u-hck"/>
                         <outlet property="goalCountLabel" destination="iPB-HC-eRw" id="cfT-LH-0Xb"/>
                         <outlet property="goalTableView" destination="laj-Tg-s8s" id="J5T-LS-CCD"/>
                     </connections>

@@ -16,6 +16,8 @@ class GoalVC: UIViewController {
     @IBOutlet weak var defaultLabel: UILabel!
     @IBOutlet weak var goalCountLabel: UILabel!
     @IBOutlet weak var goalTableView: UITableView!
+    @IBOutlet weak var emptyImg: UIImageView!
+    @IBOutlet weak var emptyLabel: UILabel!
     var date = Date()
     let dateButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -32,6 +34,7 @@ class GoalVC: UIViewController {
         setDateLabel(date: Date())
         self.date = Date()
         getGoal()
+        setEmpty()
         dateButton.layer.opacity = 0
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -92,7 +95,27 @@ extension GoalVC {
         dateLabel.sizeToFit()
     }
     
+    func setEmpty(){
+        if goalData?.data.keywordsExist == false{
+            goalTableView.backgroundColor = .white
+            goalTableView.separatorStyle = .none
+            emptyImg.isHidden = false
+            emptyImg.image = UIImage(named: "image_rest")
+            emptyLabel.text = "이 날에는 기록이 없어요.😢"
+            emptyLabel.font = .myRegularSystemFont(ofSize: 12)
+            emptyLabel.textColor = .lightGray
+        }else{
+            goalTableView.separatorStyle = .singleLine
+            goalTableView.separatorInset.right = 16
+            goalTableView.separatorInset.left = 16
+            emptyImg.image = UIImage(named: "image_rest")
+            emptyImg.isHidden = true
+            emptyLabel.text = ""
+        }
+    }
+    
     func setUI(){
+        setEmpty()
         dateButton.layer.opacity = 0
         defaultLabel.font = .myBlackSystemFont(ofSize: 25)
         defaultLabel.textColor = .mainBlack
@@ -116,8 +139,7 @@ extension GoalVC {
     
     func updateUI(){
         if goalData?.data.keywordsExist == false{
-            //empty view
-            
+            setEmpty()
         }
         else{
             if goalData?.data.result.notSetGoalCount == 0{
