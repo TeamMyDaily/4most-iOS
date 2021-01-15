@@ -48,6 +48,7 @@ class MypageVC: UIViewController {
         setupStatusBar(UIColor.mainOrange)
         setNavigationBar()
         setInitTableFooterView()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -202,7 +203,8 @@ extension MypageVC: UITableViewDelegate{
     func setHeaderView(){
         header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50))
         let listDescription = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
-        listDescription.text = "\(userName)님이 추구하는 가치관이에요!"
+        let username = UserDefaultStorage.userName
+        listDescription.text = "\(username)님이 추구하는 가치관이에요!"
         listDescription.textColor = UIColor.mainGray
         
         header.addSubview(listDescription)
@@ -244,6 +246,7 @@ extension MypageVC: UITableViewDelegate{
         changeButton.addTarget(self, action: #selector(setEditingMode), for: .touchUpInside)
         footer.addSubview(subTitle)
         footer.addSubview(changeButton)
+        
     }
     
     
@@ -425,7 +428,8 @@ extension MypageVC{
     }
     
     func setTitleLabel(){
-        titleLabel.text = "\(userName)님의"
+        let username = UserDefaultStorage.userName
+        titleLabel.text = "\(username)님의"
         titleLabel.font = UIFont.myBlackSystemFont(ofSize: 25)
     }
     
@@ -563,13 +567,6 @@ extension MypageVC{
                     do{
                         let token = try result.map(BasicResponseModel.self)
                         print("delete : \(token.message)")
-//                        let tmp = RecordKeywordData(totalKeywordId: keywordId, name: keywordName)
-//
-//                        for i in 0..<self.recordKeywordList.count{
-//                            if self.recordKeywordList[i].totalKeywordId == keywordId{
-//                                self.recordKeywordList.remove(at: i)
-//                            }
-//                        }
                         self.getUserKeywords()
                         self.keywordTableView.reloadData()
                    
@@ -595,12 +592,6 @@ extension MypageVC{
                     do{
                         let token = try result.map(BasicResponseModel.self)
                         print("delete : \(token.message)")
-//
-//                        for i in 0..<self.userKeywordList.count{
-//                            if self.userKeywordList[i].totalKeywordId == KeywordId{
-//                                self.recordKeywordList.remove(at: i)
-//                            }
-//                        }
                         self.getUserKeywords()
                         self.keywordTableView.reloadData()
                     }catch(let err){
