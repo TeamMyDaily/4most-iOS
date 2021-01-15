@@ -39,6 +39,7 @@ class KeywordPopUpVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        helpLabel.font = UIFont.myRegularSystemFont(ofSize: 12)
         setDelegate()
         if isOnBoard{
             helpLabel.isHidden = true

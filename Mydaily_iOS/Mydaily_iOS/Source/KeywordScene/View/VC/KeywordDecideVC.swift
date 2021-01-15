@@ -23,6 +23,8 @@ class KeywordDecideVC: UIViewController {
     var keywordList: [String] = []
     var keywordAndDefinition: [[String:String]] = []
     
+    var numberImageList: [UIImage] = [UIImage(named: "image_one")!,UIImage(named: "image_two")!,UIImage(named: "image_three")!, UIImage(named: "image_four")!]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setTitleLabel()
@@ -39,6 +41,7 @@ class KeywordDecideVC: UIViewController {
         for txt in keywordList{
             if keywordAndDefinition[i][txt] != ""{
                 keywordUIButtonList[i].setTitleColor(UIColor.mainBlack, for: .normal)
+                numberLabelList[i].setIm
                 numberLabelList[i].textColor = UIColor.mainLightOrange
                 count += 1
             }
@@ -57,9 +60,28 @@ class KeywordDecideVC: UIViewController {
     
     @IBAction func skipDefiningKeyword(_ sender: UILabel) {
         alertKeyword()
-        
     }
     
+    func alertKeyword(){
+        let txt = "MY > 나의 현재 키워드 > 키워드 정의에서 설정 할 수 있어요."
+        let alert = UIAlertController(title: "키워드 정의를 건너뛰시겠어요?", message: txt, preferredStyle: UIAlertController.Style.alert)
+        
+        
+        //#goto_main 돌아감으로 됨
+        let okAction = UIAlertAction(title: "확인", style: .default) { (action) in
+            //이부분으로
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel){ (action) in}
+        
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: false, completion: nil)
+    }
+    
+    //#goto_main 돌아감으로 됨
     @IBAction func touchUpCompletedKeyword(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -101,21 +123,7 @@ class KeywordDecideVC: UIViewController {
         
     }
     
-    func alertKeyword(){
-        let txt = "MY > 나의 현재 키워드 > 키워드 정의에서 설정 할 수 있어요."
-        let alert = UIAlertController(title: "키워드 정의를 건너뛰시겠어요?", message: txt, preferredStyle: UIAlertController.Style.alert)
-        
-        let okAction = UIAlertAction(title: "확인", style: .default) { (action) in
-            self.dismiss(animated: true, completion: nil)
-        }
-        
-        let cancelAction = UIAlertAction(title: "취소", style: .cancel){ (action) in}
-        
-        alert.addAction(okAction)
-        alert.addAction(cancelAction)
-        
-        present(alert, animated: false, completion: nil)
-    }
+   
     
 }
 
@@ -173,7 +181,8 @@ extension KeywordDecideVC{
         navigationItem.title = "키워드 정의"
         
         let leftButton: UIBarButtonItem = {
-             let button = UIBarButtonItem(image: UIImage(named: "btn_arrow_left"), style: .plain, target: self, action: #selector(dismissVC))
+             let button = UIBarButtonItem(image: UIImage(named: "btnBack"), style: .plain, target: self, action: #selector(dismissVC))
+            button.tintColor = UIColor.mainBlack
              return button
            }()
            navigationItem.leftBarButtonItem = leftButton

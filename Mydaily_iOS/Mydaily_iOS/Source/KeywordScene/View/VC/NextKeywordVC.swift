@@ -199,7 +199,8 @@ class NextKeywordVC: UIViewController {
         navigationItem.rightBarButtonItem = questionItem
         
         let leftButton: UIBarButtonItem = {
-             let button = UIBarButtonItem(image: UIImage(named: "btn_arrow_left"), style: .plain, target: self, action: #selector(dismissVC))
+             let button = UIBarButtonItem(image: UIImage(named: "btnBack"), style: .plain, target: self, action: #selector(dismissVC))
+            button.tintColor = UIColor.mainBlack
              return button
            }()
            navigationItem.leftBarButtonItem = leftButton

@@ -150,6 +150,8 @@ extension MypageVC: UITableViewDataSource{
                 }
             }
             
+            recordCell.selectionStyle = .none
+            
             return recordCell
             
         }else{
@@ -163,6 +165,7 @@ extension MypageVC: UITableViewDataSource{
             cell.setContent(selected: userKeyword.isSelected, keyword: userKeyword.name)
             //cell.setContent(selected: isSelectedKeyword, keyword: userKeywordList[indexPath.row])
             
+            cell.selectionStyle = .none
             return cell
         }
         
@@ -423,11 +426,14 @@ extension MypageVC{
     
     func setTitleLabel(){
         titleLabel.text = "\(userName)님의"
+        titleLabel.font = UIFont.myBlackSystemFont(ofSize: 25)
     }
     
     func setButton(){
         recordKeywordButton.setTitleColor(UIColor.mainOrange, for: .normal)
         userKeywordButton.setTitleColor(UIColor.mainGray, for: .normal)
+        recordKeywordButton.titleLabel?.font = UIFont.myMediumSystemFont(ofSize: 16)
+        userKeywordButton.titleLabel?.font = UIFont.myMediumSystemFont(ofSize: 16)
         userKeywordBarView.isHidden = true
     }
     
