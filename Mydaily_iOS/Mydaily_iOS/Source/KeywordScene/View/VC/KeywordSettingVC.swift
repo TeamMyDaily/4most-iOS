@@ -89,6 +89,17 @@ class KeywordSettingVC: UIViewController {
         dvc.modalPresentationStyle = .fullScreen
         self.present(dvc, animated: true, completion: nil)
     }
+    
+    @objc func goOnBoardPopUp(){
+        let keywordStoryboard = UIStoryboard(name: "Keyword", bundle: nil)
+        let dvc = keywordStoryboard.instantiateViewController(identifier: "KeywordPopUpVC")  as! KeywordPopUpVC
+        
+        dvc.checkOnBoard(check: true)
+        
+        dvc.modalPresentationStyle = .fullScreen
+        self.present(dvc, animated: true, completion: nil)
+    }
+    
 
     func setMainLabelText(){
         mainLabel.numberOfLines = 0
