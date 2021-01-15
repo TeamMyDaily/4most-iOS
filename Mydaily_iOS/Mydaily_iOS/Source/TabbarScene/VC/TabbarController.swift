@@ -17,13 +17,17 @@ class TabbarController: UITabBarController {
     
     
     func setTabBar(){
+        let myTabbar = self.tabBarController?.tabBar
+        myTabbar?.tintColor = .mainOrange
+        
+        
         let DailyStoryboard = UIStoryboard.init(name: "Daily", bundle: nil)
         let firstTab = DailyStoryboard.instantiateViewController(identifier: "DailyNavi")
 
         
 //        firstTab.tabBarItem.title = "기/록"
 //        firstTab.tabBarItem.image = UIImage(named: "nav_record_unselected")?.withRenderingMode(.automatic)
-        firstTab.tabBarItem = UITabBarItem(title: "기록", image: UIImage(named:"nav_record_unselected"), selectedImage: UIImage(named: "nav_record_selected"))
+        firstTab.tabBarItem = UITabBarItem(title: "", image: UIImage(named:"nav_record_unselected"), selectedImage: UIImage(named: "nav_record_selected"))
         
         
         

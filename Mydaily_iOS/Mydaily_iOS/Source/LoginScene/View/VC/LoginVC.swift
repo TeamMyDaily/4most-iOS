@@ -215,7 +215,9 @@ extension LoginVC {
                         if self.autoLogin == true{
                             UserDefaults.standard.setValue(self.user?.data.accessToken, forKey: "userToken")
                             UserDefaults.standard.setValue(self.user?.data.userName, forKey: "userName")
-                            Login.shared.setLogin(name: "\(String(describing: self.user?.data.userName))", token: "\(String(describing: self.user?.data.accessToken))")
+                            
+                            Login.shared.setLogin(name: "\(String(describing: self.user!.data.userName))", token: "\(String(describing: self.user!.data.accessToken))")
+                            
                             if self.user?.data.keywordsExist == false{ //키워드 세팅으로
                                 let sb = UIStoryboard.init(name: "Keyword", bundle: nil)
                                 let vc = sb.instantiateViewController(withIdentifier: "KeywordSettingVCNavigation")
