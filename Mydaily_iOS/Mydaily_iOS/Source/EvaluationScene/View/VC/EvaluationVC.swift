@@ -31,14 +31,13 @@ class EvaluationVC: UIViewController {
         return currentWeekImage
     }()
     
-    var calendar = Calendar.current
+    var date = Date()
     var dateFormatter = DateFormatter()
     var dateValue = 0
     var weekText: String?
     
     override func viewWillAppear(_ animated: Bool) {
         setReportNotification()
-        setRetrospectiveNotification()
     }
     
     override func viewDidLoad() {
@@ -115,20 +114,22 @@ extension EvaluationVC {
     }
     
     @IBAction func touchUpLastWeek(_ sender: Any) {
-        if dateValue <= 0 {
+        if dateValue <= 1 {
             nextWeekButton.isEnabled = true
         }
-        dateValue -= 7
+        dateValue -= 1
+        self.date = Calendar.current.date(byAdding: .day, value: -7, to: date)!
         calculateDate()
         NotificationCenter.default.post(name: Notification.Name("LastWeek"), object: nil)
     }
     
     @IBAction func touchUpNextWeek(_ sender: Any) {
-        if dateValue >= 0 {
+        if dateValue >= 1 {
             nextWeekButton.isEnabled = false
         } else {
             nextWeekButton.isEnabled = true
-            dateValue += 7
+            dateValue += 1
+            self.date = Calendar.current.date(byAdding: .day, value: 7, to: date)!
             calculateDate()
         }
         NotificationCenter.default.post(name: Notification.Name("NextWeek"), object: nil)
@@ -244,21 +245,22 @@ extension EvaluationVC {
 extension EvaluationVC {
     private func setWeek() {
         dateValue = 0
-        guard let date = Date().containWeek else {return}
-        let todayDate = Calendar.current.date(byAdding: .day, value: dateValue, to: date)!
+        self.date = Date()
         dateFormatter.dateFormat = "yy년 MM월 W주"
-        weekText = dateFormatter.string(from: todayDate)
-        weekLabel.text = dateFormatter.string(from: todayDate)
+        weekText = dateFormatter.string(from: date.containWeek!)
+        weekLabel.text = dateFormatter.string(from: date.containWeek!)
         weekLabel.textColor = .mainOrange
         nextWeekButton.isEnabled = false
+        
+        print(date)
     }
     
     private func calculateDate() {
-        guard let date = Date().containWeek else {return}
-        let todayDate = Calendar.current.date(byAdding: .day, value: dateValue, to: date)!
         dateFormatter.dateFormat = "yy년 MM월 W주"
-        weekText = dateFormatter.string(from: todayDate)
-        weekLabel.text = dateFormatter.string(from: todayDate)
+        weekText = dateFormatter.string(from: date.containWeek!)
+        weekLabel.text = dateFormatter.string(from: date.containWeek!)
+        
+        print(date)
         
         if dateValue == 0 {
             nextWeekButton.isEnabled = false
