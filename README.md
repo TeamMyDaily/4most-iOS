@@ -279,6 +279,7 @@
 ### project foldering
 * Resourse : asset, info.plist, AppDelegate 관리
 * Source : Scene(flow 별로 폴더링) -> Storyboard, VC, Network(API), Model 등 관리
+
   ```
   4Most_iOS
     |── Source
@@ -291,11 +292,12 @@
     │               └── Service
     │               └── Response
     │               └── Resquest
-  	└── Resource 
-        |── Assets.xcassets
-        |── LaunchScreen.storyboard
-        |── AppDelegate.swift
-      |── SceneDelegate.swift
-        └── Info.plist
+    └── Resource 
+       |── Assets.xcassets
+       |── LaunchScreen.storyboard
+       |── AppDelegate.swift
+       |── SceneDelegate.swift
+       └── Info.plist
   
   ```
+

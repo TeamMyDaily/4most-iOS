@@ -32,6 +32,10 @@ class DailyWriteVC: UIViewController {
     var taskTitle: String?
     var modify = false
     
+    override func viewWillDisappear(_ animated: Bool) {
+        backToDetailRecordContent?()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar()
@@ -314,7 +318,6 @@ extension DailyWriteVC {
         )
         let cancel = UIAlertAction(title: "확인", style: .default) {
             _ in
-            self.backToDetailRecordContent?()
             self.navigationController?.popViewController(animated: true)
         }
         let okAction = UIAlertAction(title: "취소", style: .default)
@@ -331,7 +334,6 @@ extension DailyWriteVC {
         )
         let cancel = UIAlertAction(title: "삭제하기", style: .default) {_ in
             self.deleteTask()
-            self.backToDetailRecordContent?()
             self.navigationController?.popViewController(animated: true)
         }
         let okAction = UIAlertAction(title: "취소하기", style: .default)
@@ -345,7 +347,6 @@ extension DailyWriteVC {
             if modify {
                 cancelAlertaction()
             }
-            self.backToDetailRecordContent?()
             self.navigationController?.popViewController(animated: true)
         }
         else{
@@ -353,7 +354,6 @@ extension DailyWriteVC {
                 self.navigationController?.popViewController(animated: true)
             }
             cancelAlertaction()
-            self.backToDetailRecordContent?()
             self.navigationController?.popViewController(animated: true)
         }
     }
