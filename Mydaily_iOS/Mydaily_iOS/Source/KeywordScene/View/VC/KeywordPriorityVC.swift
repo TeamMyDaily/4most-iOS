@@ -28,6 +28,11 @@ class KeywordPriorityVC: UIViewController {
         setTitleLabel()
         setTableViewDelegate()
         setNavigationBar()
+        setTableViewHeight()
+        keywordTableView.estimatedRowHeight = 50
+        keywordTableView.rowHeight = UITableView.automaticDimension
+        //keywordTableView.backgroundColor = .red
+        //keywordTableView.separatorStyle = .none
     }
     
     func setTableViewDelegate(){
@@ -36,6 +41,11 @@ class KeywordPriorityVC: UIViewController {
         keywordTableView.isEditing = true
         keywordTableView.register(UINib(nibName: "KeywordPriorityTVC", bundle: .main), forCellReuseIdentifier: KeywordPriorityTVC.identifier)
         
+    }
+    
+    func setTableViewHeight(){
+        var tableHeight = keywordList.count * 10
+        keywordTableView.frame.size.height = CGFloat(tableHeight)
     }
     
     func setTitleLabel(){
@@ -82,7 +92,7 @@ class KeywordPriorityVC: UIViewController {
         navigationItem.title = "키워드 우선순위"
       
         let leftButton: UIBarButtonItem = {
-             let button = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(dismissVC))
+             let button = UIBarButtonItem(image: UIImage(named: "btn_arrow_left"), style: .plain, target: self, action: #selector(dismissVC))
              return button
            }()
            navigationItem.leftBarButtonItem = leftButton
@@ -133,6 +143,9 @@ extension KeywordPriorityVC: UITableViewDelegate{
         keywordList.swapAt(sourceIndexPath.row, destinationIndexPath.row)
     }
     
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
 }
 
 extension KeywordPriorityVC{
@@ -153,6 +166,14 @@ extension KeywordPriorityVC{
                     self.navigationController?.pushViewController(dvc, animated: true)
 
                 } catch(let err){
+                    if result.statusCode == 200{
+                        guard let dvc = self.storyboard?.instantiateViewController(identifier: KeywordDecideVC.identifier) as? KeywordDecideVC else{
+                            return
+                        }
+
+                        dvc.setReceivedKeywordList(list: self.keywordList)
+                        self.navigationController?.pushViewController(dvc, animated: true)
+                    }
                     print(err.localizedDescription)
                 }
             case .failure(let err):

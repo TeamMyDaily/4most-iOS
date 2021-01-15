@@ -13,6 +13,7 @@ enum MypageService{
     case userKeywordList
     case registerRecordKeywords(param: RegisterRecordKeywordRequest)
     case deleteKeyword(param: KeywordIdRequest)
+    case deleteRegisterKeyword(param: KeywordIdRequest)
     case getKeywordDefinition(param: KeywordIdRequest)
 }
 
@@ -36,6 +37,8 @@ extension MypageService:TargetType{
             return "/keywords"
         case .getKeywordDefinition:
             return "/keywords/definition"
+        case .deleteRegisterKeyword:
+            return "/keywords/taskKeyword"
         }
     }
     
@@ -57,7 +60,8 @@ extension MypageService:TargetType{
             return .get
         case .registerRecordKeywords:
             return .post
-        case .deleteKeyword:
+        case .deleteKeyword,
+             .deleteRegisterKeyword:
             return .delete
         }
     }
@@ -76,6 +80,8 @@ extension MypageService:TargetType{
         case .registerRecordKeywords(let param):
             return .requestJSONEncodable(param)
         case .deleteKeyword(param: let param):
+            return .requestJSONEncodable(param)
+        case .deleteRegisterKeyword(param: let param):
             return .requestJSONEncodable(param)
         }
     }

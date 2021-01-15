@@ -75,6 +75,7 @@ class KeywordDecideVC: UIViewController {
             for (key, value) in keywordAndDefinition[i]{
                 if key == selectedKeyword{
                     dvc.setKeywordAndDefinition(key: key, value: value)
+                    dvc.isFirt = true
                     break
                 }
             }
@@ -172,7 +173,7 @@ extension KeywordDecideVC{
         navigationItem.title = "키워드 정의"
         
         let leftButton: UIBarButtonItem = {
-             let button = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(dismissVC))
+             let button = UIBarButtonItem(image: UIImage(named: "btn_arrow_left"), style: .plain, target: self, action: #selector(dismissVC))
              return button
            }()
            navigationItem.leftBarButtonItem = leftButton
@@ -184,3 +185,5 @@ extension KeywordDecideVC{
     }
     
 }
+
+

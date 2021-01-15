@@ -43,14 +43,11 @@ class MypageVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getRecordKeywords()
-        getUserKeywords()
         setDelegate()
         setButton()
         setupStatusBar(UIColor.mainOrange)
         setNavigationBar()
         setInitTableFooterView()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,16 +56,8 @@ class MypageVC: UIViewController {
         getUserKeywords()
         setTitleLabel()
         registerPermission = checkRegisterPermission()
-        print("----user keyword list-------")
-        for list in userKeywordList{
-            
-            print("\(list.name) \(list.isSelected)")
-        }
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
     
     func checkRegisterPermission() -> Bool{
         var checkCount = 0
@@ -95,6 +84,7 @@ class MypageVC: UIViewController {
     
     @IBAction func touchUpRecordKeyword(_ sender: UIButton){
         if sender.title(for:.normal) == "기록키워드"{
+            getRecordKeywords()
             pageNumber = 0
             recordKeywordButton.setTitleColor(UIColor.mainOrange, for: .normal)
             userKeywordButton.setTitleColor(UIColor.mainGray, for: .normal)
@@ -104,6 +94,7 @@ class MypageVC: UIViewController {
             setRecordFooter()
             deleteHeaderView()
         }else{
+            getUserKeywords()
             pageNumber = 1
             recordKeywordButton.setTitleColor(UIColor.mainGray, for: .normal)
             userKeywordButton.setTitleColor(UIColor.mainOrange, for: .normal)
@@ -114,16 +105,16 @@ class MypageVC: UIViewController {
             setKeywordListFooter()
             setHeaderView()
         }
-        keywordTableView.reloadData()
     }
-    
 }
 
 extension MypageVC: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if pageNumber == 0{
+            print("page 기록 : \(recordKeywordList.count)")
             return recordKeywordList.count
         }else{
+            print("page 전체 : \(userKeywordList.count)")
             return userKeywordList.count
         }
     }
@@ -131,9 +122,21 @@ extension MypageVC: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if pageNumber == 0{
-            let recordCell = (tableView.dequeueReusableCell(withIdentifier: "RecordKeywordTVC") as? RecordKeywordTVC)!
+            if indexPath.row > 4{
+                return UITableViewCell()
+            }
+            let recordCell = tableView.dequeueReusableCell(withIdentifier: "RecordKeywordTVC") as! RecordKeywordTVC
             
-            recordCell.setContent(rank: indexPath.row+1, keyword: recordKeywordList[indexPath.row].name)
+            
+            print("recordKeywordList count = \(recordKeywordList.count)")
+            print("table view = \(indexPath.row)")
+            print("table view = \(recordKeywordList[indexPath.row].name)")
+           
+            let keywordName = recordKeywordList[indexPath.row].name
+            let ranking = indexPath.row+1
+            
+            recordCell.setContent(rank: ranking, keyword: keywordName)
+            
             if subTitle.isHidden == false{ // 우선순위 정하는 중
                
                 recordCell.rankingNumber.isHidden = true
@@ -281,7 +284,7 @@ extension MypageVC: UITableViewDelegate{
         }
         
         plusButton = UIButton(frame: CGRect(x: 0, y: 0, width: footer.frame.height/2, height: footer.frame.height/2))
-        plusButton.setBackgroundImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
+        plusButton.setBackgroundImage(UIImage(named: "btn_add"), for: .normal)
         
         plusButton.center = CGPoint(x: footer.frame.width / 2, y:plusButton.frame.height)
         plusButton.tintColor = UIColor.mainOrange
@@ -327,13 +330,14 @@ extension MypageVC: menuAlertDelegate{
             (action) in
             print("키워드 정의/수정")
             self.getKeywordDefinition(keywordId: cellKeywordId, keyword: cellLabel)
+            
         })
         
         let registetAction = UIAlertAction(title: "기록키워드 등록", style: .default, handler: {
             (action) in
             print("기록키워드 등록")
             print("서버로 기록 키워드 등록하러감")
-            self.postRegisterKeyword(keywordId: cellKeywordId)
+            self.postRegisterKeyword(keywordId: cellKeywordId, keywordName: cellLabel)
         })
         
         let unRegistetAction = UIAlertAction(title: "기록키워드 해제", style: .default, handler: {
@@ -344,7 +348,8 @@ extension MypageVC: menuAlertDelegate{
             let alert = UIAlertController(title: "키워드를 등록 해제 하시겠어요?", message: txt, preferredStyle: UIAlertController.Style.alert)
             let okAction = UIAlertAction(title: "확인했어요", style: .default) { (action) in
                 
-                self.deleteUserKeywrod(KeywordId: cellKeywordId)
+                self.deleteResigsterKeyword(keywordId: cellKeywordId, keywordName: cellLabel)
+                // self.deleteUserKeyword(KeywordId: cellKeywordId, deleteKeyword: cellLabel)
                
             }
             alert.addAction(okAction)
@@ -360,8 +365,7 @@ extension MypageVC: menuAlertDelegate{
             let alert = UIAlertController(title: "키워드를 삭제 하시겠어요?", message: txt, preferredStyle: UIAlertController.Style.alert)
             let okAction = UIAlertAction(title: "확인", style: .default) { (action) in
                 
-                self.deleteUserKeywrod(KeywordId: cellKeywordId)
-                self.keywordTableView.reloadData()
+                self.deleteUserKeyword(KeywordId: cellKeywordId, deleteKeyword: cellLabel)
             }
             
             let cancelAction = UIAlertAction(title: "취소", style: .cancel){ (action) in }
@@ -373,7 +377,7 @@ extension MypageVC: menuAlertDelegate{
            
         })
        
-        let cancelAction = UIAlertAction(title: "닫기취소", style: .cancel, handler: {
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: {
             (action) in
             print("취소")
         })
@@ -424,8 +428,13 @@ extension MypageVC{
         navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationBar.shadowImage = UIImage()
       
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        navigationBar.titleTextAttributes = textAttributes
+        
         navigationItem.title = "마이페이지"
+        //navigationBar.tintColor = .white
         let settingItem = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(goToMypageSetting))
+        settingItem.tintColor = .white
         navigationItem.rightBarButtonItem = settingItem
     }
     
@@ -440,6 +449,7 @@ extension MypageVC{
 
 extension MypageVC{
     func getRecordKeywords(){
+        print("getRecordKeywords")
         mypageAuthProvider.request(.userRecordKeywords){ [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -457,6 +467,7 @@ extension MypageVC{
     }
     
     func getUserKeywords(){
+        print("getUserKeywords")
         mypageAuthProvider.request(.userKeywordList){ [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -478,6 +489,7 @@ extension MypageVC{
     }
     
     func modifyKeywordPriority(){
+        print("modifyKeywordPriority")
         let param = PriorityKeywordRequest(list: priorityKeywordList)
         keywordAuthProvider.request(.priorityKeyword(param: param)){ responds in
             switch responds {
@@ -494,9 +506,11 @@ extension MypageVC{
                 print(err.localizedDescription)
             }
         }
+        
     }
     
-    func postRegisterKeyword(keywordId: Int){
+    func postRegisterKeyword(keywordId: Int, keywordName: String){
+        print("postRegisterKeyword")
         let param = RegisterRecordKeywordRequest(totalKeywordId: keywordId)
         mypageAuthProvider.request(.registerRecordKeywords(param: param)){ responds in
             switch responds {
@@ -504,8 +518,13 @@ extension MypageVC{
                 do{
                     let token = try result.map(RegisterRecordKeywordModel.self)
                     print(token.message)
+                    self.getUserKeywords()
                 }catch(let err){
+                    if result.statusCode == 200{
+                        self.getUserKeywords()
+//                        self.recordKeywordList.append(RecordKeywordData(totalKeywordId: keywordId, name: keywordName))                    }
                     print(err.localizedDescription)
+                    }
                 }
             case .failure(let err):
                 print(err.localizedDescription)
@@ -513,7 +532,41 @@ extension MypageVC{
         }
     }
     
-    func deleteUserKeywrod(KeywordId: Int){
+    func deleteResigsterKeyword(keywordId:Int , keywordName: String){
+        print("deleteResigsterKeyword")
+        let param = KeywordIdRequest(totalKeywordId: keywordId)
+        mypageAuthProvider.request(.deleteRegisterKeyword(param: param)){ responds in
+            switch responds {
+            case .success(let result):
+                DispatchQueue.main.async {
+                    do{
+                        let token = try result.map(BasicResponseModel.self)
+                        print("delete : \(token.message)")
+//                        let tmp = RecordKeywordData(totalKeywordId: keywordId, name: keywordName)
+//
+//                        for i in 0..<self.recordKeywordList.count{
+//                            if self.recordKeywordList[i].totalKeywordId == keywordId{
+//                                self.recordKeywordList.remove(at: i)
+//                            }
+//                        }
+                        self.getUserKeywords()
+                        self.keywordTableView.reloadData()
+                       
+                        //self.getRecordKeywords()
+                    }catch(let err){
+                        print(err.localizedDescription)
+                    }
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+            
+        }
+    }
+    
+    
+    func deleteUserKeyword(KeywordId: Int, deleteKeyword: String){
+        print("deleteUserKeyword")
         let param = KeywordIdRequest(totalKeywordId: KeywordId)
         mypageAuthProvider.request(.deleteKeyword(param: param)){ responds in
             switch responds {
@@ -522,6 +575,13 @@ extension MypageVC{
                     do{
                         let token = try result.map(BasicResponseModel.self)
                         print("delete : \(token.message)")
+//
+//                        for i in 0..<self.userKeywordList.count{
+//                            if self.userKeywordList[i].totalKeywordId == KeywordId{
+//                                self.recordKeywordList.remove(at: i)
+//                            }
+//                        }
+                        self.getUserKeywords()
                         self.keywordTableView.reloadData()
                     }catch(let err){
                         print(err.localizedDescription)
@@ -535,6 +595,7 @@ extension MypageVC{
     }
     
     func getKeywordDefinition(keywordId: Int , keyword: String){
+        print("getKeywordDefinition")
         let param = KeywordIdRequest(totalKeywordId: keywordId)
         mypageAuthProvider.request(.getKeywordDefinition(param: param)){ response in
             switch response {
@@ -542,17 +603,15 @@ extension MypageVC{
                     do {
                         let responseObject = try result.map(KeywordDefinitionModel.self)
                         var keywordDefinition = ""
-                        var keywordName = ""
                         if responseObject.data.isWritten{
-                            keywordName = responseObject.data.name ?? ""
-                            keywordDefinition = responseObject.data.definition ?? ""
+                            keywordDefinition = responseObject.data.definition
                         }
                         
-                        if keywordName == keyword{
-                            let dvc = self.keywordStoryboard.instantiateViewController(identifier: KeywordDefineVC.identifier) as! KeywordDefineVC
-                            dvc.setKeywordAndDefinition(key: keywordName, value: keywordDefinition)
-                            self.navigationController?.pushViewController(dvc, animated: true)
-                        }
+                        print("누른거 : \(keyword) , 서버에서 가져온 것 \(keyword)")
+                        
+                        let dvc = self.keywordStoryboard.instantiateViewController(identifier: KeywordDefineVC.identifier) as! KeywordDefineVC
+                        dvc.setKeywordAndDefinition(key: keyword, value: keywordDefinition)
+                        self.navigationController?.pushViewController(dvc, animated: true)
                         
                         } catch(let err) {
                         print(err.localizedDescription)
