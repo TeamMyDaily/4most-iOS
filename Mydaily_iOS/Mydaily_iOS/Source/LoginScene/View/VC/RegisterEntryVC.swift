@@ -30,6 +30,7 @@ class RegisterEntryVC: UIViewController {
             return
         }
         self.navigationController?.pushViewController(dvc, animated: true)
+        
     }
     
     @IBAction func check1(_ sender: Any) {

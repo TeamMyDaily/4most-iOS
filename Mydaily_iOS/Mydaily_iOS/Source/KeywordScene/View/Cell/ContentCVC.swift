@@ -17,6 +17,10 @@ class ContentCVC: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        questionLabel.font = UIFont.myBoldSystemFont(ofSize: 18)
+        questionLabel.textColor = UIColor.mainBlack
+        answerLabel.font = UIFont.myMediumSystemFont(ofSize: 12)
+        answerLabel.textColor = UIColor.mainGray
         // Initialization code
     }
     

@@ -147,7 +147,6 @@ extension KeywordDefineVC: UITextViewDelegate{
             textView.text = nil
             textView.textColor = UIColor.black
         }
-        
     }
     
 }
@@ -191,6 +190,7 @@ extension KeywordDefineVC{
        
         completeButton.setTitleColor(.white, for: .normal)
         completeButton.layer.cornerRadius = 15
+        completeButton.titleLabel?.font = UIFont.myMediumSystemFont(ofSize: 18)
         completeButton.isEnabled = false
     }
     
@@ -229,7 +229,7 @@ extension KeywordDefineVC{
         
         if modifiedMode{
             titleLabel.text = "\(keyword)에 대한\n나만의 정의에요!"
-            subTitleLabel.text = "정의를 바꾸고 싶다면, 수정 하실 수 있어요!"
+            subTitleLabel.text = "내가 추구하는 가치의 의미에요!"
         }else{
             if checkLastText(text: keyword) {
                 titleLabel.text = "\(keyword)이란?\n나에게 무엇인가요?"
@@ -275,7 +275,8 @@ extension KeywordDefineVC{
         navigationItem.title = "키워드 정의"
       
         let leftButton: UIBarButtonItem = {
-             let button = UIBarButtonItem(image: UIImage(named: "btn_arrow_left"), style: .plain, target: self, action: #selector(dismissVC))
+             let button = UIBarButtonItem(image: UIImage(named: "btnBack"), style: .plain, target: self, action: #selector(dismissVC))
+            button.tintColor = UIColor.mainBlack
              return button
            }()
            navigationItem.leftBarButtonItem = leftButton
@@ -283,11 +284,11 @@ extension KeywordDefineVC{
         if modifiedMode{
             let rightButton : UIBarButtonItem = {
                 let button = UIBarButtonItem(title: "수정", style: .plain, target: self, action: #selector(modifyDefinition))
+                button.tintColor = UIColor.mainBlue
                 return button
             }()
             
             navigationItem.rightBarButtonItem = rightButton
-            navigationItem.rightBarButtonItem?.tintColor = .blue
         }
     }
     
@@ -330,12 +331,12 @@ extension KeywordDefineVC{
     func setSavingAlert(){
         var txt = ""
         if modifiedMode{
-            txt = "수정사항 저장 안할꺼야?"
+            txt = "뒤로가기를 누르면 수정사항이 삭제되고\n이전페이지로 돌아갑니다."
         }else{
             txt = "작성 완료를 하지 않아 작성하신 내용이 저장되지 않습니다."
         }
         
-        let alert = UIAlertController(title: "작성을 종료하시겠습니까?", message: txt, preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "정말 뒤로 가시겠어요?", message: txt, preferredStyle: UIAlertController.Style.alert)
         
         let okAction = UIAlertAction(title: "확인", style: .default) { (action) in
             self.navigationController?.popViewController(animated: true)
@@ -353,7 +354,7 @@ extension KeywordDefineVC{
     @objc func modifyDefinition(_ sender: UIBarButtonItem){
       
         if sender.title == "수정"{
-            sender.tintColor = .blue
+            sender.tintColor = UIColor.mainBlue
             checkSaving = false
             textView.backgroundColor = UIColor.mainLightGray
             textView.borderWidth = 0

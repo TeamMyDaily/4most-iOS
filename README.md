@@ -77,7 +77,47 @@
 1. **핵심 기능 구현 방법**
 
     - 키워드 설정
+     ```swift
+      //tableviewcell 안에 버튼 클릭 delegate
+      protocol SelectKeywordDelegate {
+        func addSelectedKeyword(_ cell: KeywordSettingTVC, selectedText: String) -> Bool
+
+        func cancelSelectedKeyword(_ cell: KeywordSettingTVC, selectedText: String)
+      }
+      
+      extension KeywordSettingVC: SelectKeywordDelegate{
+        func addSelectedKeyword(_ cell: KeywordSettingTVC, selectedText: String) -> Bool{
+            if selectedKeywordCount >= 8{
+                alertKeyword()
+                return false
+            }else{
+                if attitudeOfWork.contains(selectedText){
+                    selectedKeywordList[1].append(selectedText)
+                }else{
+                    selectedKeywordList[0].append(selectedText)
+                }
+                selectedKeywordCount += 1
+                setButtonActive()
+                return true
+            }
+        }
     
+        func cancelSelectedKeyword(_ cell: KeywordSettingTVC, selectedText: String) {
+            var keywordIndex = -1
+
+            for i in 0...2{
+                keywordIndex = selectedKeywordList[i].firstIndex(of: selectedText) ?? -1
+                if keywordIndex != -1{
+                    selectedKeywordList[i].remove(at: keywordIndex)
+                    selectedKeywordCount -= 1
+                    setButtonActive()
+                }
+            }
+        }
+    }
+    
+      ```
+      
     - 기록
     
       ```swift

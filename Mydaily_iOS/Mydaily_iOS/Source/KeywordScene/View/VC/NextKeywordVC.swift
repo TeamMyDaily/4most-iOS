@@ -37,9 +37,9 @@ class NextKeywordVC: UIViewController {
     }
     
     func setCompleteButton(){
-        completeButton.setTitle("선택완료!", for: .normal)
+        completeButton.setTitle("키워드 선택완료", for: .normal)
         completeButton.setTitleColor(.white, for: .normal)
-        completeButton.titleLabel?.font =  UIFont(name: "System-Bold", size: 18.0)
+        completeButton.titleLabel?.font = UIFont.myMediumSystemFont(ofSize: 18)
         completeButton.layer.cornerRadius = 15
         completeButton.isEnabled = false
     }
@@ -194,12 +194,14 @@ class NextKeywordVC: UIViewController {
         navigationBar.shadowImage = UIImage()
         
         navigationItem.title = "키워드 설정하기"
-        let questionItem = UIBarButtonItem(image: UIImage(named: "navigation_question_icon"), style: .plain, target: self, action: #selector(goKeywordPopUp))
-            
+        let systemQuestionMark = UIImage(systemName: "questionmark.circle")
+        let questionItem = UIBarButtonItem(image: systemQuestionMark, style: .plain, target: self, action: #selector(goKeywordPopUp))
+        questionItem.tintColor = UIColor.mainOrange
         navigationItem.rightBarButtonItem = questionItem
         
         let leftButton: UIBarButtonItem = {
-             let button = UIBarButtonItem(image: UIImage(named: "btn_arrow_left"), style: .plain, target: self, action: #selector(dismissVC))
+             let button = UIBarButtonItem(image: UIImage(named: "btnBack"), style: .plain, target: self, action: #selector(dismissVC))
+            button.tintColor = UIColor.mainBlack
              return button
            }()
            navigationItem.leftBarButtonItem = leftButton

@@ -36,7 +36,7 @@
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<string>Splash</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Tabbar</string>
 	<key>UIRequiredDeviceCapabilities</key>
