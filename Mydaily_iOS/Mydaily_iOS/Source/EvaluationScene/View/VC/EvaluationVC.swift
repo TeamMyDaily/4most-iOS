@@ -37,13 +37,11 @@ class EvaluationVC: UIViewController {
     var weekText: String?
     
     override func viewWillAppear(_ animated: Bool) {
-        keywordCollectionView.reloadData()
+        setInitReportNotification()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setReportNotification()
-        setRetrospectiveNotification()
         setNavigationBar()
         setTabBar()
         setWeek()
@@ -215,6 +213,14 @@ extension EvaluationVC {
     
     private func setReportNotification() {
         NotificationCenter.default.post(name: NSNotification.Name("reloadReport"), object: nil)
+    }
+    
+    private func setInitRetrospectiveNotification() {
+        NotificationCenter.default.post(name: NSNotification.Name("reloadInitRetrospective"), object: nil)
+    }
+    
+    private func setInitReportNotification() {
+        NotificationCenter.default.post(name: NSNotification.Name("reloadInitReport"), object: nil)
     }
 }
 

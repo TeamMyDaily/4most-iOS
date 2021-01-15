@@ -42,6 +42,7 @@ extension EvaluationKeywordTVC {
             rateLabel.text = rate
             self.rate = Float(rate) ?? 0
         } else {
+            
             self.isHidden = true
         }
     }
