@@ -284,7 +284,7 @@ extension MypageVC: UITableViewDelegate{
         }
         
         plusButton = UIButton(frame: CGRect(x: 0, y: 0, width: footer.frame.height/2, height: footer.frame.height/2))
-        plusButton.setBackgroundImage(UIImage(named: "btn_keyword_add"), for: .normal)
+        plusButton.setBackgroundImage(UIImage(named: "btn_add"), for: .normal)
         
         plusButton.center = CGPoint(x: footer.frame.width / 2, y:plusButton.frame.height)
         plusButton.tintColor = UIColor.mainOrange

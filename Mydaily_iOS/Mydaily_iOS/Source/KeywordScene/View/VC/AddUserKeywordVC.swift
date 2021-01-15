@@ -40,6 +40,7 @@ class AddUserKeywordVC: UIViewController {
         keywordTextField.delegate = self
         addButton.isEnabled = false
         errorCheckButton.isHidden = true
+        setKeyboardNotification()
     }
     
     
@@ -230,3 +231,27 @@ extension AddUserKeywordVC {
     }
 }
 
+//UI keyboard
+extension AddUserKeywordVC{
+
+    func setKeyboardNotification(){
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear(_:)), name: UIResponder.keyboardWillHideNotification , object: nil)
+    }
+    
+    @objc func keyboardWillAppear(_ sender: NotificationCenter){
+    
+//        contentView.frame.size.height = 100
+//        contentView.updateConstraints()
+//        print( contentView.frame.size.height)
+//
+    }
+ 
+    @objc func keyboardWillDisappear(_ sender: NotificationCenter){
+        
+//        contentView.frame.size.height = CGFloat(contentViewSize)
+//        completeButton.frame.origin.y -= 50
+//        print( contentView.frame.size.height)
+    }
+    
+}
