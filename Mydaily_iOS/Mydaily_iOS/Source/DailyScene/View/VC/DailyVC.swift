@@ -26,6 +26,7 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
     var currentDate = Date()
     var since1970: Double?
     var str = ""
+    var toto = false
     
     let dateButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -52,11 +53,13 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
     }
     
     override func viewDidLoad() {
-        print(Int(Date().timeIntervalSince1970 * 1000))
+        toto = true
         super.viewDidLoad()
         setTableVC()
         floatingButton()
         setUI()
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -71,6 +74,7 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
     @IBAction func changedDate(_ sender: Any) {
         setDate()
 
+        print("djd")
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yy년 MM월 W주"
         getDaily()
@@ -90,7 +94,8 @@ extension DailyVC {
         datePicker.maximumDate = Date()
         setDate()
         //서벼연결시 변경 부분
-        userDaily.text = "이주미님의 하루 기록"
+        let username = UserDefaultStorage.userName
+        userDaily.text = "\(username ?? "")님의 하루 기록"
         userDaily.font = .myMediumSystemFont(ofSize: 15)
         userDaily.textColor = UIColor.mainBlack
         
@@ -99,7 +104,7 @@ extension DailyVC {
     }
     
     func setEmpty(){
-        if dailyModel?.data?.result != nil{
+        if dailyModel?.data?.result?.count == 0{
             tableView.backgroundColor = .white
             tableView.separatorStyle = .none
             emptyImg.isHidden = false
@@ -239,17 +244,26 @@ extension DailyVC {
 
 extension DailyVC {
     func getDaily(){
+        let UTCDate = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.timeZone = TimeZone(secondsFromGMT:0)
+        let defaultTimeZoneStr = formatter.string(from: UTCDate)
+        let today = formatter.string(from: datePicker.date)
+        
         var param: DailyRequest?
-        if datePicker.date == Date(){
+        
+        if today == defaultTimeZoneStr {
+            
             param = DailyRequest.init("\(Int(Date().timeIntervalSince1970 * 1000))")
         }else{
+            print("&\(datePicker.date)")
             param = DailyRequest.init("\(DateInMilliSeconds())")
         }
         authProvider.request(.dailyinquiry(param: param!)) { response in
             switch response {
                 case .success(let result):
                     do {
-                        print("!!!!!!!!!!!\(self.currentDate)")
                         let data = try result.map(DailyModel.self)
                         self.dailyModel = data
                         self.tableView.reloadData()
