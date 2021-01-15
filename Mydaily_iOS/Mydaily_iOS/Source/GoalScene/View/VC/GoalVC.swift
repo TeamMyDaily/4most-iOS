@@ -37,6 +37,7 @@ class GoalVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         getGoal()
+        goalTableView.reloadData()
     }
     override func viewDidLoad() {
         super.viewDidLoad()

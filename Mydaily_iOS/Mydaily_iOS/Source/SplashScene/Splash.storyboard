@@ -21,7 +21,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Trw-VA-STJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="22" y="15"/>
+            <point key="canvasLocation" x="-368" y="15"/>
         </scene>
         <!--Start LottieVC-->
         <scene sceneID="0KZ-Nr-LCM">
