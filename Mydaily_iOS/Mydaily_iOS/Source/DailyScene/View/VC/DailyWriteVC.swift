@@ -74,7 +74,7 @@ class DailyWriteVC: UIViewController {
     }
     @IBAction func modifyButton(_ sender: Any) {
         modifyTask()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
             self.navigationController?.popViewController(animated: true)
               })
 //        self.navigationController?.popViewController(animated: true)

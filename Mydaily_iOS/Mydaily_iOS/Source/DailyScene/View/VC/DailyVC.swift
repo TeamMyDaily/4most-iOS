@@ -43,13 +43,6 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
         print(Int(Date().timeIntervalSince1970 * 1000))
         getDaily()
         setupNavigationBar(.clear, titlelabel: "")
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-            self.currentDate = Date()
-            
-            print("2\(self.currentDate)")
-            self.getDaily()
-        })
     }
     
     override func viewDidLoad() {
@@ -104,7 +97,7 @@ extension DailyVC {
     }
     
     func setEmpty(){
-        if dailyModel?.data?.result?.count == 0{
+        if dailyModel?.data?.keywordsExist == false{
             tableView.backgroundColor = .white
             tableView.separatorStyle = .none
             emptyImg.isHidden = false
@@ -267,7 +260,7 @@ extension DailyVC {
                         let data = try result.map(DailyModel.self)
                         self.dailyModel = data
                         self.tableView.reloadData()
-                        
+                        self.setEmpty()
                     } catch(let err) {
                         print(err.localizedDescription)
                     }
