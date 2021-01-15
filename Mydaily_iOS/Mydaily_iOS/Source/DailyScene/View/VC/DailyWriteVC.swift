@@ -69,10 +69,12 @@ class DailyWriteVC: UIViewController {
     }
     @IBAction func saveButton(_ sender: Any) {
         postingTask()
+        self.backToDetailRecordContent?()
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func modifyButton(_ sender: Any) {
         modifyTask()
+        self.backToDetailRecordContent?()
         self.navigationController?.popViewController(animated: true)
     }
 }
@@ -346,6 +348,7 @@ extension DailyWriteVC {
         }
         else{
             if textViewCount.text == "0" && labelCount.text == "0"{
+                self.backToDetailRecordContent?()
                 self.navigationController?.popViewController(animated: true)
             }
             cancelAlertaction()

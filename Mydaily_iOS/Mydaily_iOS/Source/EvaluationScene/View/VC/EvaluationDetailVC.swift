@@ -29,6 +29,10 @@ class EvaluationDetailVC: UIViewController {
     var end: Date?
     
     var task: [Tasks] = []
+    
+    override func viewWillAppear(_ animated: Bool) {
+        keywordDetailTableView.reloadData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,7 +109,9 @@ extension EvaluationDetailVC: UITableViewDelegate {
                 }
                 dvc.backToEvaluationDetail = {
                     self.navigationController?.isNavigationBarHidden = true
+                    self.keywordDetailTableView.reloadData()
                 }
+                
                 dvc.KeywordDate?.weekGoalID = weekGoalID
                 dvc.KeywordDate?.weekGoal = goal
                 dvc.KeywordDate?.name = keyword
@@ -157,6 +163,7 @@ extension EvaluationDetailVC: RecordToDailyDelegate {
         navigationItem.setHidesBackButton(true, animated: true)
         dvc.backToDetailRecordContent = {
             self.navigationController?.isNavigationBarHidden = true
+            self.keywordDetailTableView.reloadData()
         }
         UIApplication.topViewController()?.navigationController?.pushViewController(dvc, animated: true)
     }
