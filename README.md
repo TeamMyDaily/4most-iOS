@@ -77,46 +77,52 @@
 1. **핵심 기능 구현 방법**
 
     - 키워드 설정
-     ```swift
-      //tableviewcell 안에 버튼 클릭 delegate
-      protocol SelectKeywordDelegate {
-        func addSelectedKeyword(_ cell: KeywordSettingTVC, selectedText: String) -> Bool
+         ```swift
+          //KeywordSettingTVC - tableviewcell 안에 버튼 클릭 delegate
+              protocol SelectKeywordDelegate {
+                func addSelectedKeyword(_ cell: KeywordSettingTVC, selectedText: String) -> Bool
 
-        func cancelSelectedKeyword(_ cell: KeywordSettingTVC, selectedText: String)
-      }
-      
-      extension KeywordSettingVC: SelectKeywordDelegate{
-        func addSelectedKeyword(_ cell: KeywordSettingTVC, selectedText: String) -> Bool{
-            if selectedKeywordCount >= 8{
-                alertKeyword()
-                return false
-            }else{
-                if attitudeOfWork.contains(selectedText){
-                    selectedKeywordList[1].append(selectedText)
-                }else{
-                    selectedKeywordList[0].append(selectedText)
-                }
-                selectedKeywordCount += 1
-                setButtonActive()
-                return true
-            }
-        }
-    
-        func cancelSelectedKeyword(_ cell: KeywordSettingTVC, selectedText: String) {
-            var keywordIndex = -1
+                func cancelSelectedKeyword(_ cell: KeywordSettingTVC, selectedText: String)
+              }
 
-            for i in 0...2{
-                keywordIndex = selectedKeywordList[i].firstIndex(of: selectedText) ?? -1
-                if keywordIndex != -1{
-                    selectedKeywordList[i].remove(at: keywordIndex)
-                    selectedKeywordCount -= 1
-                    setButtonActive()
+              }
+
+          ///KeywordSettingVC
+              extension KeywordSettingVC: SelectKeywordDelegate{
+                func addSelectedKeyword(_ cell: KeywordSettingTVC, selectedText: String) -> Bool{
+                    if selectedKeywordCount >= 8{
+                        alertKeyword()
+                        return false
+                    }else{
+                        if attitudeOfWork.contains(selectedText){
+                            selectedKeywordList[1].append(selectedText)
+                        }else{
+                            selectedKeywordList[0].append(selectedText)
+                        }
+                        selectedKeywordCount += 1
+                        setButtonActive()
+                        return true
+                    }
+                }
+
+                func cancelSelectedKeyword(_ cell: KeywordSettingTVC, selectedText: String) {
+                    var keywordIndex = -1
+
+                    for i in 0...2{
+                        keywordIndex = selectedKeywordList[i].firstIndex(of: selectedText) ?? -1
+                        if keywordIndex != -1{
+                            selectedKeywordList[i].remove(at: keywordIndex)
+                            selectedKeywordCount -= 1
+                            setButtonActive()
+                        }
+                    }
                 }
             }
-        }
-    }
-    
-      ```
+
+         ```
+      tableview cell 안에 키워드 버튼들이 있습니다. 그 버튼을 눌렀을 때, 그 눌리 버튼의 이름이 무엇이었는지, 현재 눌린 버튼은 몇개인지를 알아야했다. 
+      다른 계층의 뷰 사이의 정보를 처음에는 어떻게 주고 받을지 몰라 static 변수로 눌린 갯수를 +,- 했다. 그 static 변수가 8개가 되었는지 검사할 수 있는 방법이 없었다. 
+      이 문제를 delegate를 이용하여 해결하였다. 하위 뷰에 cell에 delegate 함수를 사용하고 그 함수를 상위인 VC에서 구현하여 데이터를 주고 받았다.   
       
     - 기록
     
