@@ -48,6 +48,11 @@ class OnBoardPopUpVC: UIViewController{
         }else{
             helpLabel.isHidden = false
         }
+        print("Onboarding = \(GeneralAPI.isFirstConnect)")
+        if GeneralAPI.isFirstConnect == true{
+            GeneralAPI.isFirstConnect = false
+        }
+        print("Onboarding = \(GeneralAPI.isFirstConnect)")
     }
     
     func setDelegate(){
