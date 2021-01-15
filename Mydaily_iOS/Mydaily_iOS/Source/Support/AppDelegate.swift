@@ -49,12 +49,4 @@ extension AppDelegate: UserIdentifyInterface {
         }
     }
     
-    func setUserToken(token: String,name: String) {
-        //    UserDefaults.standard.removeObject(forKey: "accessToken")
-        //            LoginManager.shared.setLoginOut()
-        let accessToken = token
-        let userName = name
-        UserDefaults.standard.set(accessToken, forKey: "accessToken")
-        UserDefaults.standard.set(userName, forKey: "userName")
-    }
 }
