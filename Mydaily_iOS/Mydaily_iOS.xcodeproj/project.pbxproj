@@ -116,6 +116,8 @@
 		DEC98B8625A483C300CC522C /* KeywordPriorityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC98B8525A483C300CC522C /* KeywordPriorityVC.swift */; };
 		DEC98B8A25A486DC00CC522C /* KeywordPriorityTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC98B8825A486DC00CC522C /* KeywordPriorityTVC.swift */; };
 		DEC98B8B25A486DC00CC522C /* KeywordPriorityTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEC98B8925A486DC00CC522C /* KeywordPriorityTVC.xib */; };
+		ED01CF5025B1C85300DE01B1 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		ED01CF5425B1D49500DE01B1 /* RecordToDailyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED01CF5325B1D49500DE01B1 /* RecordToDailyDelegate.swift */; };
 		ED266029259EF02E00A376C0 /* EvaluationTabCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266028259EF02E00A376C0 /* EvaluationTabCVC.swift */; };
 		ED266030259EFAB200A376C0 /* RetrospectiveTabCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED26602F259EFAB200A376C0 /* RetrospectiveTabCVC.swift */; };
 		ED266033259F019B00A376C0 /* EvaluationHeaderTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED266032259F019B00A376C0 /* EvaluationHeaderTVC.swift */; };
@@ -261,6 +263,7 @@
 		DEC98B8525A483C300CC522C /* KeywordPriorityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordPriorityVC.swift; sourceTree = "<group>"; };
 		DEC98B8825A486DC00CC522C /* KeywordPriorityTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordPriorityTVC.swift; sourceTree = "<group>"; };
 		DEC98B8925A486DC00CC522C /* KeywordPriorityTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeywordPriorityTVC.xib; sourceTree = "<group>"; };
+		ED01CF5325B1D49500DE01B1 /* RecordToDailyDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordToDailyDelegate.swift; sourceTree = "<group>"; };
 		ED266028259EF02E00A376C0 /* EvaluationTabCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationTabCVC.swift; sourceTree = "<group>"; };
 		ED26602F259EFAB200A376C0 /* RetrospectiveTabCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrospectiveTabCVC.swift; sourceTree = "<group>"; };
 		ED266032259F019B00A376C0 /* EvaluationHeaderTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationHeaderTVC.swift; sourceTree = "<group>"; };
@@ -945,6 +948,7 @@
 			children = (
 				EDC1642C25A46C3800CD65B0 /* TableViewInsideCollectionViewDelegate.swift */,
 				EDDC038C25A9E025007162CD /* DetailRecordLayoutDelegate.swift */,
+				ED01CF5325B1D49500DE01B1 /* RecordToDailyDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1165,6 +1169,7 @@
 				EDDC038D25A9E025007162CD /* DetailRecordLayoutDelegate.swift in Sources */,
 				EDBF739325A1636300ECDEB9 /* DetailRecordTVC.swift in Sources */,
 				AE46FA4C25ACB2170051D667 /* DailyTaskModel.swift in Sources */,
+				ED01CF5025B1C85300DE01B1 /* (null) in Sources */,
 				3C7F9D4325AD993400F004E0 /* AddKeywordModel.swift in Sources */,
 				EDAAFA3425A8787100424BF9 /* MypageWithdrawalVC.swift in Sources */,
 				AED84DEF25A558B30050D861 /* Extensions+UIColor.swift in Sources */,
@@ -1233,6 +1238,7 @@
 				AE6A0E6C25B172B7009D4A93 /* UserData.swift in Sources */,
 				AED84DF225A558B30050D861 /* Extensions+Date.swift in Sources */,
 				EDBF739025A1634000ECDEB9 /* DetailGoalTVC.swift in Sources */,
+				ED01CF5425B1D49500DE01B1 /* RecordToDailyDelegate.swift in Sources */,
 				EDC1642D25A46C3800CD65B0 /* TableViewInsideCollectionViewDelegate.swift in Sources */,
 				AE46FA3425AC45E80051D667 /* SigninRequest.swift in Sources */,
 				EDCF4A1625ACB35700BE094C /* RegistRetrospectiveModel.swift in Sources */,
