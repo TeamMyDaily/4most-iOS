@@ -264,7 +264,7 @@ extension EvaluationVC {
             weekLabel.textColor = .mainOrange
         } else {
             currentWeekButton.isHidden = false
-            weekLabel.textColor = .lightGray
+            weekLabel.textColor = .mainBlack
         }
     }
 }
