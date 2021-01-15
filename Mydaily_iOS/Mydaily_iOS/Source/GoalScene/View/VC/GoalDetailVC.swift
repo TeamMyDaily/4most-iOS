@@ -30,11 +30,18 @@ class GoalDetailVC: UIViewController {
     }
     
     @IBAction func completeButton(_ sender: Any) {
+        
+        if completed == false{
+            goalButton.backgroundColor = .mainOrange
         let alert = self.storyboard?.instantiateViewController(withIdentifier: "customPopVC") as! customPopVC
         
-//        self.navigationController?.pushViewController(alert, animated: false)
         alert.modalPresentationStyle = .overCurrentContext
-        present(alert, animated: false, completion: nil)
+            present(alert, animated: false, completion: nil)
+        }
+        else{
+            goalButton.backgroundColor = .mainGray
+            self.navigationController?.popViewController(animated: true)
+        }
         completeGoal()
     }
 }
@@ -118,15 +125,6 @@ extension GoalDetailVC {
     
     func updateUI(){
         
-    }
-    
-    @objc func enabledButton() {
-        if goal == true {
-            goalButton.backgroundColor = .mainOrange
-        }
-        else{
-            goalButton.backgroundColor = .mainGray
-        }
     }
 }
 // MARK: - 통신

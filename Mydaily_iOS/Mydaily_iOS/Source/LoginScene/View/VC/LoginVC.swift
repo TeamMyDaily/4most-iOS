@@ -151,6 +151,7 @@ extension LoginVC {
             self.logoImg.frame.origin.y -= 80
         }
     }
+    
 }
 
 // MARK: - TextField,Button
@@ -190,6 +191,7 @@ extension LoginVC {
             loginButton.backgroundColor = .mainGray
         }
     }
+    
 }
 
 extension LoginVC {
@@ -222,11 +224,15 @@ extension LoginVC {
 
 extension LoginVC: UITextFieldDelegate{
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        animation()
+        if textField == idTextField {
+            animation()
+        }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-        downanimation()
+        if textField == pwTextField {
+            downanimation()
+        }
     }
     
   //리턴키

@@ -2,17 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>NotoSansKR-Light.otf</string>
-		<string>NotoSansKR-Bold.otf</string>
-		<string>NotoSansKR-Thin.otf</string>
-		<string>NotoSansKR-Black.otf</string>
-		<string>NotoSansKR-Medium.otf</string>
-		<string>NotoSansKR-Regular.otf</string>
-	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>ko_KR</string>
+	<key>CFBundleDisplayName</key>
+	<string>4most</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -27,8 +20,19 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>NotoSansKR-Light.otf</string>
+		<string>NotoSansKR-Bold.otf</string>
+		<string>NotoSansKR-Thin.otf</string>
+		<string>NotoSansKR-Black.otf</string>
+		<string>NotoSansKR-Medium.otf</string>
+		<string>NotoSansKR-Regular.otf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -54,8 +58,6 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Tabbar</string>
-	<key>LSApplicationCategoryType</key>
-	<string></string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

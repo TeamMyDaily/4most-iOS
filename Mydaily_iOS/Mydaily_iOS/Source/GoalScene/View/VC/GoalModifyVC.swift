@@ -80,9 +80,8 @@ extension GoalModifyVC {
                 message: "뒤로가기를 누르시면 작성 중인 내용이 삭제\n되고 이전 페이지로 돌아 갑니다.",
                 preferredStyle: UIAlertController.Style.alert
             )
-            let cancel = UIAlertAction(title: "작성취소", style: .destructive) {
-                _ in
-                self.dismiss(animated: true, completion: nil)
+            let cancel = UIAlertAction(title: "작성취소", style: .destructive) {_ in 
+                self.navigationController?.popViewController(animated: true)
             }
             let okAction = UIAlertAction(title: "닫기", style: .default)
             alert.addAction(cancel)
