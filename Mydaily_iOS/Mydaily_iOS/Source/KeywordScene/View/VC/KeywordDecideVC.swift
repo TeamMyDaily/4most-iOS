@@ -41,7 +41,6 @@ class KeywordDecideVC: UIViewController {
         for txt in keywordList{
             if keywordAndDefinition[i][txt] != ""{
                 keywordUIButtonList[i].setTitleColor(UIColor.mainBlack, for: .normal)
-                numberLabelList[i].setIm
                 numberLabelList[i].textColor = UIColor.mainLightOrange
                 count += 1
             }
