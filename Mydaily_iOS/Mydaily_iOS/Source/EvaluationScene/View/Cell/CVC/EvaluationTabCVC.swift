@@ -141,7 +141,7 @@ extension EvaluationTabCVC {
         notifyImage.bottomAnchor.constraint(equalTo: notifyLabel.topAnchor, constant: -24).isActive = true
         notifyImage.widthAnchor.constraint(equalToConstant: 184).isActive = true
         notifyImage.heightAnchor.constraint(equalToConstant: 132).isActive = true
-        notifyImage.backgroundColor = .mainOrange
+        notifyImage.image = UIImage(named: "imageRest")
     }
 }
 
@@ -177,6 +177,7 @@ extension EvaluationTabCVC {
 //MARK: Date
 extension EvaluationTabCVC {
     private func setDate() {
+        dateValue = 0
         start = Date().startOfWeek
         end = Date().endOfWeek
     }
@@ -193,7 +194,6 @@ extension EvaluationTabCVC {
     @objc func getReport() {
         setDate()
         getText()
-        collectionView?.reloadData()
     }
     
     @objc func sendBeforeWeek() {

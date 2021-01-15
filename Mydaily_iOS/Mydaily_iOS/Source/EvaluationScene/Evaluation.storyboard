@@ -72,7 +72,7 @@
                                             <constraint firstAttribute="height" constant="24" id="bQl-Tk-RpG"/>
                                         </constraints>
                                         <color key="tintColor" systemColor="labelColor"/>
-                                        <state key="normal" image="chevron.right" catalog="system">
+                                        <state key="normal" image="btn_chevron_right">
                                             <color key="titleColor" systemColor="labelColor"/>
                                         </state>
                                         <connections>
@@ -95,7 +95,7 @@
                                             <constraint firstAttribute="height" constant="24" id="x7g-TL-7As"/>
                                         </constraints>
                                         <color key="tintColor" systemColor="labelColor"/>
-                                        <state key="normal" image="chevron.left" catalog="system"/>
+                                        <state key="normal" image="btn_chevron_left"/>
                                         <connections>
                                             <action selector="touchUpLastWeek:" destination="fEQ-Kj-PIn" eventType="touchUpInside" id="0r1-8x-EtJ"/>
                                         </connections>
@@ -211,7 +211,7 @@
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="VVd-wl-C3c">
+                                                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="VVd-wl-C3c">
                                                                                 <rect key="frame" x="14" y="68" width="317" height="31"/>
                                                                             </slider>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fsh-e5-kdF">
@@ -474,13 +474,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDz-vw-7l6">
-                                        <rect key="frame" x="16" y="13" width="12" height="21"/>
+                                        <rect key="frame" x="16" y="-0.5" width="48" height="48"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="nTr-XU-DYZ"/>
-                                            <constraint firstAttribute="width" constant="12" id="rfx-i9-Kod"/>
+                                            <constraint firstAttribute="height" constant="48" id="nTr-XU-DYZ"/>
+                                            <constraint firstAttribute="width" constant="48" id="rfx-i9-Kod"/>
                                         </constraints>
                                         <color key="tintColor" red="0.76862745098039209" green="0.76862745098039209" blue="0.76862745098039209" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" image="chevron.backward" catalog="system"/>
+                                        <state key="normal" image="btnBack"/>
                                         <connections>
                                             <action selector="touchUpBack:" destination="ayr-3I-ANg" eventType="touchUpInside" id="i70-6e-ype"/>
                                         </connections>
@@ -788,13 +788,13 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bby-cv-ZzQ">
-                                                        <rect key="frame" x="16" y="16.5" width="24" height="24"/>
+                                                        <rect key="frame" x="16" y="4.5" width="48" height="48"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="24" id="TD6-qF-PRs"/>
-                                                            <constraint firstAttribute="height" constant="24" id="Vwx-Wo-dU1"/>
+                                                            <constraint firstAttribute="width" constant="48" id="TD6-qF-PRs"/>
+                                                            <constraint firstAttribute="height" constant="48" id="Vwx-Wo-dU1"/>
                                                         </constraints>
                                                         <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <state key="normal" image="chevron.backward" catalog="system"/>
+                                                        <state key="normal" image="btnBack"/>
                                                         <connections>
                                                             <action selector="touchUpCancel:" destination="1Vs-kb-Qfz" eventType="touchUpInside" id="Ays-8m-4s3"/>
                                                         </connections>
@@ -912,9 +912,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chevron.backward" catalog="system" width="96" height="128"/>
+        <image name="btnBack" width="48" height="48"/>
+        <image name="btn_chevron_left" width="24" height="24"/>
+        <image name="btn_chevron_right" width="24" height="24"/>
         <image name="chevron.forward" catalog="system" width="96" height="128"/>
-        <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

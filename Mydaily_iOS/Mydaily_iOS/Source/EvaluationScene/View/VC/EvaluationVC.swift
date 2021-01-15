@@ -25,13 +25,19 @@ class EvaluationVC: UIViewController {
         return currentWeekButton
     }()
     
-    var calendar = Calendar.current
+    lazy var currentWeekImage: UIImageView = {
+        let currentWeekImage = UIImageView()
+        currentWeekImage.translatesAutoresizingMaskIntoConstraints = false
+        return currentWeekImage
+    }()
+    
+    var date = Date()
     var dateFormatter = DateFormatter()
     var dateValue = 0
     var weekText: String?
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        setReportNotification()
     }
     
     override func viewDidLoad() {
@@ -108,20 +114,22 @@ extension EvaluationVC {
     }
     
     @IBAction func touchUpLastWeek(_ sender: Any) {
-        if dateValue <= 0 {
+        if dateValue <= 1 {
             nextWeekButton.isEnabled = true
         }
-        dateValue -= 7
+        dateValue -= 1
+        self.date = Calendar.current.date(byAdding: .day, value: -7, to: date)!
         calculateDate()
         NotificationCenter.default.post(name: Notification.Name("LastWeek"), object: nil)
     }
     
     @IBAction func touchUpNextWeek(_ sender: Any) {
-        if dateValue >= 0 {
+        if dateValue >= 1 {
             nextWeekButton.isEnabled = false
         } else {
             nextWeekButton.isEnabled = true
-            dateValue += 7
+            dateValue += 1
+            self.date = Calendar.current.date(byAdding: .day, value: 7, to: date)!
             calculateDate()
         }
         NotificationCenter.default.post(name: Notification.Name("NextWeek"), object: nil)
@@ -174,12 +182,23 @@ extension EvaluationVC {
         currentWeekButton.widthAnchor.constraint(equalToConstant: 81).isActive = true
         currentWeekButton.heightAnchor.constraint(equalToConstant: 32).isActive = true
         currentWeekButton.titleLabel?.font = .myMediumSystemFont(ofSize: 16)
-        currentWeekButton.setTitle("이번주 >", for: .normal)
+        currentWeekButton.setTitle("이번주   ", for: .normal)
         currentWeekButton.titleLabel?.textColor = .white
         currentWeekButton.titleLabel?.textAlignment = .left
         currentWeekButton.layer.cornerRadius = 15
         currentWeekButton.layer.masksToBounds = true
         currentWeekButton.isHidden = true
+        
+        setCurrentImage()
+    }
+    
+    private func setCurrentImage() {
+        currentWeekButton.addSubview(currentWeekImage)
+        currentWeekImage.image = UIImage(named: "btnChevronRightW")
+        currentWeekImage.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        currentWeekImage.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        currentWeekImage.centerYAnchor.constraint(equalTo: currentWeekButton.centerYAnchor).isActive = true
+        currentWeekImage.trailingAnchor.constraint(equalTo: currentWeekButton.trailingAnchor, constant: 0).isActive = true
     }
     
     private func setCollectionViewDelegate() {
@@ -226,21 +245,22 @@ extension EvaluationVC {
 extension EvaluationVC {
     private func setWeek() {
         dateValue = 0
-        guard let date = Date().containWeek else {return}
-        let todayDate = Calendar.current.date(byAdding: .day, value: dateValue, to: date)!
+        self.date = Date()
         dateFormatter.dateFormat = "yy년 MM월 W주"
-        weekText = dateFormatter.string(from: todayDate)
-        weekLabel.text = dateFormatter.string(from: todayDate)
+        weekText = dateFormatter.string(from: date.containWeek!)
+        weekLabel.text = dateFormatter.string(from: date.containWeek!)
         weekLabel.textColor = .mainOrange
         nextWeekButton.isEnabled = false
+        
+        print(date)
     }
     
     private func calculateDate() {
-        guard let date = Date().containWeek else {return}
-        let todayDate = Calendar.current.date(byAdding: .day, value: dateValue, to: date)!
         dateFormatter.dateFormat = "yy년 MM월 W주"
-        weekText = dateFormatter.string(from: todayDate)
-        weekLabel.text = dateFormatter.string(from: todayDate)
+        weekText = dateFormatter.string(from: date.containWeek!)
+        weekLabel.text = dateFormatter.string(from: date.containWeek!)
+        
+        print(date)
         
         if dateValue == 0 {
             nextWeekButton.isEnabled = false
@@ -248,7 +268,7 @@ extension EvaluationVC {
             weekLabel.textColor = .mainOrange
         } else {
             currentWeekButton.isHidden = false
-            weekLabel.textColor = .mainBlack
+            weekLabel.textColor = .lightGray
         }
     }
 }

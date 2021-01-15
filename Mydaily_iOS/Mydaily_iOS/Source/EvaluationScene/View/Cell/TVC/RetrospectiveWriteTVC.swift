@@ -238,7 +238,6 @@ extension RetrospectiveWriteTVC {
     @objc func getRetrospective() {
         setDate()
         getText()
-        collectionView?.reloadData()
         tableView?.reloadData()
     }
     
@@ -440,6 +439,7 @@ extension RetrospectiveWriteTVC {
 //MARK: Date
 extension RetrospectiveWriteTVC {
     private func setDate() {
+        dateValue = 0
         start = Date().startOfWeek
         end = Date().endOfWeek
     }

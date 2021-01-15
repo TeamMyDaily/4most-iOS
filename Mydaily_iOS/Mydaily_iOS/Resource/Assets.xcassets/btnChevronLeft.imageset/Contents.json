@@ -1,8 +1,8 @@
 {
   "images" : [
     {
-      "filename" : "btnChevronRight.pdf",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "filename" : "btnChevronLeft.pdf"
     }
   ],
   "info" : {
