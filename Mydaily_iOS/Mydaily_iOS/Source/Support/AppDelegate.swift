@@ -36,18 +36,18 @@ extension AppDelegate: UserIdentifyInterface {
     }
     
     func checkUserToken() {
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        
-        if Login.shared.isLogin() {
-            let storyboard = UIStoryboard(name: "Tabbar", bundle: nil)
-            let initialViewController = storyboard.instantiateViewController(identifier: "TabbarController")
-            self.window?.rootViewController = initialViewController
-            self.window?.makeKeyAndVisible()
-        } else {
-            let initialViewController = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()
-            self.window?.rootViewController = initialViewController
-            self.window?.makeKeyAndVisible()
-        }
+//        self.window = UIWindow(frame: UIScreen.main.bounds)
+//        
+//        if Login.shared.isLogin() {
+//            let storyboard = UIStoryboard(name: "Tabbar", bundle: nil)
+//            let initialViewController = storyboard.instantiateViewController(identifier: "TabbarController")
+//            self.window?.rootViewController = initialViewController
+//            self.window?.makeKeyAndVisible()
+//        } else {
+//            let initialViewController = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()
+//            self.window?.rootViewController = initialViewController
+//            self.window?.makeKeyAndVisible()
+//        }
     }
     
 }

@@ -21,7 +21,18 @@ class StartLottieVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { [self] in
-            goOnBoardPopUp()
+//            goOnBoardPopUp()
+            if Login.shared.isLogin() {
+                let storyboard = UIStoryboard(name: "Tabbar", bundle: nil)
+                let dvc = storyboard.instantiateViewController(identifier: "TabbarController")
+                dvc.modalPresentationStyle = .fullScreen
+                self.present(dvc, animated: true, completion: nil)
+            } else {
+                let storyboard = UIStoryboard(name: "Login", bundle: nil)
+                let dvc = storyboard.instantiateViewController(identifier: "LoginNaviController")
+                dvc.modalPresentationStyle = .fullScreen
+                self.present(dvc, animated: true, completion: nil)
+            }
         })
     }
     override func viewWillAppear(_ animated: Bool) {

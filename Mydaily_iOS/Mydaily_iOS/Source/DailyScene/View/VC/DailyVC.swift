@@ -39,12 +39,20 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
     }(UIButton(frame: .zero))
     
     override func viewWillAppear(_ animated: Bool) {
+        print(Int(Date().timeIntervalSince1970 * 1000))
         getDaily()
         setupNavigationBar(.clear, titlelabel: "")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            self.currentDate = Date()
+            
+            print("2\(self.currentDate)")
+            self.getDaily()
+        })
     }
     
     override func viewDidLoad() {
-        
+        print(Int(Date().timeIntervalSince1970 * 1000))
         super.viewDidLoad()
         setTableVC()
         floatingButton()
@@ -146,7 +154,7 @@ extension DailyVC {
     func DateInMilliSeconds()-> Int
     {
         if datePicker.date == Date(){
-            currentDate = Date()
+            return Int(Date().timeIntervalSince1970 * 1000)
         }
         else{
             currentDate = self.datePicker.date
@@ -231,11 +239,17 @@ extension DailyVC {
 
 extension DailyVC {
     func getDaily(){
-        let param = DailyRequest.init("\(String(describing: DateInMilliSeconds()))")
-        authProvider.request(.dailyinquiry(param: param)) { response in
+        var param: DailyRequest?
+        if datePicker.date == Date(){
+            param = DailyRequest.init("\(Int(Date().timeIntervalSince1970 * 1000))")
+        }else{
+            param = DailyRequest.init("\(DateInMilliSeconds())")
+        }
+        authProvider.request(.dailyinquiry(param: param!)) { response in
             switch response {
                 case .success(let result):
                     do {
+                        print("!!!!!!!!!!!\(self.currentDate)")
                         let data = try result.map(DailyModel.self)
                         self.dailyModel = data
                         self.tableView.reloadData()

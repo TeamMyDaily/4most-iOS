@@ -32,9 +32,17 @@ class GoalWriteVC: UIViewController {
         writeGoal()
         self.navigationController?.popViewController(animated: true)
     }
+    
+    var weakClosure: (() -> Void)?
+
+    func popViewController() {
+        self.navigationController?.popViewController(animated: true)
+            self.weakClosure!()
+        }
 }
 
 extension GoalWriteVC {
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
           self.view.endEditing(true)
     }

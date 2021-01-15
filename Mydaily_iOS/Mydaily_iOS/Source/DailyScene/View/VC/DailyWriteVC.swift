@@ -37,6 +37,7 @@ class DailyWriteVC: UIViewController {
         setupNavigationBar()
         setUI()
         getDailyTask()
+        
     }
     
     override func viewDidLoad() {
@@ -73,7 +74,10 @@ class DailyWriteVC: UIViewController {
     }
     @IBAction func modifyButton(_ sender: Any) {
         modifyTask()
-        self.navigationController?.popViewController(animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            self.navigationController?.popViewController(animated: true)
+              })
+//        self.navigationController?.popViewController(animated: true)
     }
 }
 

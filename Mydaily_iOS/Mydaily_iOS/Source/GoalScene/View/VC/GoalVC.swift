@@ -80,6 +80,18 @@ class GoalVC: UIViewController {
 }
 
 extension GoalVC {
+    func nextViewController() {
+            let vc = storyboard?.instantiateViewController(withIdentifier: "GoalWriteVC") as! GoalWriteVC
+            vc.weakClosure = { [weak self] in
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { [self] in
+                    self?.getGoal()
+                })
+                
+                print("2")
+            }
+        }
+    
     func DateInMilliSeconds(date: Date)-> Int
     {
         return Int(date.startOfWeek!.timeIntervalSince1970 * 1000)
@@ -240,6 +252,7 @@ extension GoalVC{
                         self.goalData = data
                         self.updateUI()
                         self.goalTableView.reloadData()
+                        print("리로드")
                     } catch(let err) {
                         print(err.localizedDescription)
                     }

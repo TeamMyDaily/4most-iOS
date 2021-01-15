@@ -85,9 +85,10 @@ extension DailyService: TargetType {
     var headers: [String: String]? {
         switch self {
         default:
+            let accessToken = UserDefaultStorage.accessToken
             return [
                 "Content-Type": "application/json",
-                "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwibmFtZSI6InFxIiwiZW1haWwiOiJxcUBxcS5xcSIsImlhdCI6MTYxMDMzMzQ0MywiZXhwIjoxNjEyOTI1NDQzLCJpc3MiOiJjeWoifQ.k3HAJg9K_NMVscJWafGBdCB4Odj6qua9VUL2N3_siYo"
+                "jwt": accessToken
             ]
         }
     }

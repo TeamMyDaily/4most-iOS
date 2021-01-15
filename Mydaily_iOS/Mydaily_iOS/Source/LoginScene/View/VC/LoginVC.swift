@@ -24,6 +24,7 @@ class LoginVC: UIViewController {
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var logoImg: UIImageView!
     var autoLogin = false
+    var count = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -213,9 +214,9 @@ extension LoginVC {
                     do {
                         self.user = try result.map(SigninModel.self)
                         if self.autoLogin == true{
-                            UserDefaults.standard.setValue(self.user?.data.accessToken, forKey: "userToken")
-                            UserDefaults.standard.setValue(self.user?.data.userName, forKey: "userName")
-                            Login.shared.setLogin(name: "\(String(describing: self.user?.data.userName))", token: "\(String(describing: self.user?.data.accessToken))")
+//                            UserDefaults.standard.setValue(self.user?.data.accessToken, forKey: "userToken")
+//                            UserDefaults.standard.setValue(self.user?.data.userName, forKey: "userName")
+                            Login.shared.setLogin(name: "\(String(describing: self.user?.data.userName))", token: "\(String(describing: self.user!.data.accessToken))")
                             if self.user?.data.keywordsExist == false{ //키워드 세팅으로
                                 let sb = UIStoryboard.init(name: "Keyword", bundle: nil)
                                 let vc = sb.instantiateViewController(withIdentifier: "KeywordSettingVCNavigation")
@@ -269,14 +270,20 @@ extension LoginVC: UITextFieldDelegate{
 //        if textField == idTextField {
 //            animation()
 //        }
-//        animation()
+        if count == 0{
+            animation()
+        }
+        count += 1
     }
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
 //        if textField == pwTextField {
 //            downanimation()
 //        }downanimation()
-//        downanimation()
+        
+        if count == 2 {
+            downanimation()
+        }
     }
     
   //리턴키
