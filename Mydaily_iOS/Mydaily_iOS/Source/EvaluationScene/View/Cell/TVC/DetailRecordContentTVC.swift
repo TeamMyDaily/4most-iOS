@@ -20,6 +20,7 @@ class DetailRecordContentTVC: UITableViewCell {
     }()
     
     var delegate: RecordToDailyDelegate?
+    var tableView: UITableView?
     
     var keywordId: Int? = nil
     var taskId: [Int] = []
@@ -29,6 +30,7 @@ class DetailRecordContentTVC: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        setNotification()
         hideViewIfListEmpty()
         setNoRecordView()
         setCollectionView()
@@ -104,6 +106,19 @@ extension DetailRecordContentTVC {
         notifyLabel.textColor = .mainGray
         notifyLabel.textAlignment = .center
         notifyLabel.numberOfLines = 0
+    }
+}
+
+//MARK: Notification
+extension DetailRecordContentTVC {
+    private func setNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadCollection), name: NSNotification.Name("reloadCollection"), object: nil)
+    }
+    
+    @objc func reloadCollection() {
+        hideViewIfListEmpty()
+        recordCollectionView.reloadData()
+        tableView?.reloadData()
     }
 }
 
