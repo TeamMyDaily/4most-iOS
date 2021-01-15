@@ -84,9 +84,7 @@ class AddUserKeywordVC: UIViewController {
 //                    }
                    
                 }
-               
             }
-            
         }
     }
 }
