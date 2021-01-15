@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "iamge_explain_03.png",
+      "filename" : "btn_question.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "iamge_explain_03@2x.png",
+      "filename" : "btn_question@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "iamge_explain_03@3x.png",
+      "filename" : "btn_question@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
