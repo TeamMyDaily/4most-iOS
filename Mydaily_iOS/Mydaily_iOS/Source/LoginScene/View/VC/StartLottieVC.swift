@@ -11,17 +11,24 @@ import Lottie
 class StartLottieVC: UIViewController {
     
     private var animationView: AnimationView?
-    
     override func viewDidLoad() {
-        setupLottieView()
         
-        guard let dvc = self.storyboard?.instantiateViewController(identifier: "LoginVC") as? LoginVC else {
-            return
-        }
-        self.navigationController?.pushViewController(dvc, animated: true)
+        print("로티 시작")
+        setupLottieView()
+        print("로티 끝남")
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { [self] in
+            goOnBoardPopUp()
+        })
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        print(viewWillAppear)
+       // goOnBoardPopUp()
+    }
+
     func setupLottieView() {
         view.backgroundColor = UIColor.white
         animationView = .init(name: "newios2_data")
@@ -38,9 +45,25 @@ class StartLottieVC: UIViewController {
             animationView!.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             animationView!.widthAnchor.constraint(equalToConstant: 600),
             animationView!.heightAnchor.constraint(equalToConstant: 600),
-
         ])
         animationView!.play()
+        print("애니메이션 끝남")
     }
     
+    
+    func goOnBoardPopUp(){
+        print("goOnBoardPopUp 시작")
+//        let keywordStoryboard = UIStoryboard(name: "Keyword", bundle: nil)
+//        print(keywordStoryboard)
+        let dvc = self.storyboard?.instantiateViewController(identifier: OnBoardPopUpVC.identifier) as! OnBoardPopUpVC
+        print(dvc)
+       
+        dvc.checkOnBoard(check: true)
+        
+        dvc.modalPresentationStyle = .fullScreen
+        self.present(dvc, animated: true, completion: nil)
+    }
+
+    
 }
+
