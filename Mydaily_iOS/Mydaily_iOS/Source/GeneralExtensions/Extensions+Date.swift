@@ -51,7 +51,7 @@ extension Date {
         if Calendar.current.component(.weekday, from: self) == 1{ //일요일일때
             return gregorian.date(byAdding: .day, value: 2, to: sunday)
         }else{
-            return gregorian.date(byAdding: .day, value: 9, to: sunday)
+            return gregorian.date(byAdding: .day, value: 7, to: sunday)
         }
     }
     
@@ -89,7 +89,7 @@ extension Date {
                     //문제
                     if Calendar.current.component(.weekOfMonth, from: self) == 6 && Calendar.current.component(.weekday, from: self) < 5{
                         print("5") //문제
-                        return gregorian.date(byAdding: .weekOfMonth, value: 0, to: nextStartOfMonth!)
+                        return gregorian.date(byAdding: .weekOfMonth, value: 1, to: nextStartOfMonth!)
                     }
                     else{
                         print("5-1")
