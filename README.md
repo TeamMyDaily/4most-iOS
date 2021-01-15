@@ -3,9 +3,7 @@
 <br/>
 <img height="250" src="https://user-images.githubusercontent.com/55099365/103762567-d8887680-505b-11eb-9a76-83b8da83104c.jpeg"></img>
 
-> *기록은 더 쉽게 <br/>
-회고는 더 깊게 <br/>
-**어제보다 나은 하루의 시작, 4most***
+> **이상이 일상이 되는 회고, 4most***
 
 <br/>
 
