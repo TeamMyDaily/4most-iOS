@@ -9,36 +9,34 @@ import UIKit
 import Lottie
 
 class StartLottieVC: UIViewController {
+    
     private var animationView: AnimationView?
-
+    
     override func viewDidLoad() {
-
-      super.viewDidLoad()
-      
-      // 2. Start AnimationView with animation name (without extension)
-      
-      animationView = .init(name: "ios_data")
-      
-      animationView!.frame = view.bounds
-      
-      // 3. Set animation content mode
-      
-      animationView!.contentMode = .scaleAspectFit
-      
-      // 4. Set animation loop mode
-      
-      animationView!.loopMode = .loop
-      
-      // 5. Adjust animation speed
-      
-      animationView!.animationSpeed = 0.5
-      
-      view.addSubview(animationView!)
-      
-      // 6. Play animation
-      
-      animationView!.play()
-      
+        setupLottieView()
+        print("dd")
     }
+    
+    func setupLottieView() {
+        view.backgroundColor = UIColor.white
+        animationView = .init(name: "lottie")
+        animationView!.frame = CGRect.zero
+        animationView!.contentMode = .scaleAspectFit
+        animationView!.loopMode = .loop
+        animationView!.animationSpeed = 1
+        animationView!.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(animationView!)
+        
+        NSLayoutConstraint.activate([
+            animationView!.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 75),
+            animationView!.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            animationView!.widthAnchor.constraint(equalToConstant: 600),
+            animationView!.heightAnchor.constraint(equalToConstant: 600),
 
+        ])
+        
+        animationView!.play()
+    }
+    
 }

@@ -47,6 +47,7 @@ class RetrospectiveWriteTVC: UITableViewCell {
 
     var delegate: TableViewInsideCollectionViewDelegate?
     var tableView: UITableView?
+    var collectionView: UICollectionView?
     
     var goodViewHeightConstraint: NSLayoutConstraint?
     var badViewHeightConstraint: NSLayoutConstraint?
@@ -55,16 +56,23 @@ class RetrospectiveWriteTVC: UITableViewCell {
     var badTextViewHeightConstraint: NSLayoutConstraint?
     var nextTextViewHeightConstraint: NSLayoutConstraint?
     
+    var start: Date?
+    var end: Date?
+    var dateValue = 0
+    let changeDateValue = 86400 * 7
+    
     let userDefault = UserDefaults.standard
     
+    var contentSaver: [String] = ["", "", ""]
     var cellTitles = ["이번주의 잘 한 점", "이번주 아쉬운 점", "다음주에 임하는 마음가짐"]
     var cellPlaceholders = ["이번주, 어떤 내 모습을 칭찬 해주고 싶나요?", "한 주에 아쉬움이 남은 점이 있을까요?", "다음주에는 어떻게 지내고 싶은가요?"]
     var counts: [Int] = [0, 0, 0]
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        getText()
         setNotification()
+        setDate()
+        getText()
         setLabel()
         setButtonViews()
         setTextViews()
@@ -81,6 +89,8 @@ extension RetrospectiveWriteTVC {
         guard let dvc =  UIStoryboard.init(name: "Evaluation", bundle: nil).instantiateViewController(identifier: "RetrospectiveWriteVC") as? RetrospectiveWriteVC else {
             return
         }
+        dvc.start = start
+        dvc.end = end
         dvc.saveContent = { text, textCount in
             if text == "" || text == self.cellPlaceholders[0] {
                 self.goodViewButton.layer.borderWidth = 0
@@ -105,14 +115,18 @@ extension RetrospectiveWriteTVC {
                     self.tableView?.endUpdates()
                 }
                 
-                self.cellPlaceholders[0] = text
+                self.contentSaver[0] = text
                 self.counts[0] = textCount
                 
                 self.tableView?.reloadData()
             }
         }
         userDefault.setValue(self.cellTitles[0], forKey: "title")
-        userDefault.setValue(self.cellPlaceholders[0], forKey: "content")
+        if contentSaver[0] != "" {
+            userDefault.setValue(self.contentSaver[0], forKey: "content")
+        } else {
+            userDefault.setValue(self.cellPlaceholders[0], forKey: "content")
+        }
         userDefault.setValue(self.counts[0], forKey: "count")
         userDefault.setValue(0, forKey: "cellNum")
         
@@ -123,6 +137,8 @@ extension RetrospectiveWriteTVC {
         guard let dvc =  UIStoryboard.init(name: "Evaluation", bundle: nil).instantiateViewController(identifier: "RetrospectiveWriteVC") as? RetrospectiveWriteVC else {
             return
         }
+        dvc.start = start
+        dvc.end = end
         dvc.saveContent = { text, textCount in
             if text == "" || text == self.cellPlaceholders[1] {
                 self.badViewButton.layer.borderWidth = 0
@@ -148,12 +164,16 @@ extension RetrospectiveWriteTVC {
                     self.tableView?.endUpdates()
                 }
                 
-                self.cellPlaceholders[1] = text
+                self.contentSaver[1] = text
                 self.counts[1] = textCount
             }
         }
         userDefault.setValue(self.cellTitles[1], forKey: "title")
-        userDefault.setValue(self.cellPlaceholders[1], forKey: "content")
+        if contentSaver[1] != "" {
+            userDefault.setValue(self.contentSaver[1], forKey: "content")
+        } else {
+            userDefault.setValue(self.cellPlaceholders[1], forKey: "content")
+        }
         userDefault.setValue(self.counts[1], forKey: "count")
         userDefault.setValue(1, forKey: "cellNum")
         
@@ -164,6 +184,8 @@ extension RetrospectiveWriteTVC {
         guard let dvc =  UIStoryboard.init(name: "Evaluation", bundle: nil).instantiateViewController(identifier: "RetrospectiveWriteVC") as? RetrospectiveWriteVC else {
             return
         }
+        dvc.start = start
+        dvc.end = end
         dvc.saveContent = { text, textCount in
             if text == "" || text == self.cellPlaceholders[2] {
                 self.nextViewButton.layer.borderWidth = 0
@@ -188,12 +210,16 @@ extension RetrospectiveWriteTVC {
                     self.tableView?.endUpdates()
                 }
                 
-                self.cellPlaceholders[2] = text
+                self.contentSaver[2] = text
                 self.counts[2] = textCount
             }
         }
         userDefault.setValue(self.cellTitles[2], forKey: "title")
-        userDefault.setValue(self.cellPlaceholders[2], forKey: "content")
+        if contentSaver[2] != "" {
+            userDefault.setValue(self.contentSaver[2], forKey: "content")
+        } else {
+            userDefault.setValue(self.cellPlaceholders[2], forKey: "content")
+        }
         userDefault.setValue(self.counts[2], forKey: "count")
         userDefault.setValue(2, forKey: "cellNum")
         
@@ -205,11 +231,28 @@ extension RetrospectiveWriteTVC {
 extension RetrospectiveWriteTVC {
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(getRetrospective), name: NSNotification.Name("reloadRetrospective"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(sendBeforeWeek), name: NSNotification.Name(rawValue: "LastWeek"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(sendAfterWeek), name: NSNotification.Name(rawValue: "NextWeek"), object: nil)
     }
     
     @objc func getRetrospective() {
+        setDate()
         getText()
         tableView?.reloadData()
+    }
+    
+    @objc func sendBeforeWeek() {
+        dateValue -= (1 * changeDateValue)
+        start = (Date().startOfWeek ?? Date()) + TimeInterval(dateValue)
+        end = (Date().endOfWeek ?? Date()) + TimeInterval(dateValue)
+        getText()
+    }
+    
+    @objc func sendAfterWeek() {
+        dateValue += (1 * changeDateValue)
+        start = (Date().startOfWeek ?? Date()) + TimeInterval(dateValue)
+        end = (Date().endOfWeek ?? Date()) + TimeInterval(dateValue)
+        getText()
     }
 }
 
@@ -393,49 +436,75 @@ extension RetrospectiveWriteTVC {
     }
 }
 
+//MARK: Date
+extension RetrospectiveWriteTVC {
+    private func setDate() {
+        dateValue = 0
+        start = Date().startOfWeek
+        end = Date().endOfWeek
+    }
+}
+
 //MARK: Network
 extension RetrospectiveWriteTVC {
     func getText(){
-        guard let start = Date().startOfWeek?.millisecondsSince1970 else {return}
-        guard let end = Date().endOfWeek?.millisecondsSince1970 else {return}
-        let startString = "\(start)"
-        let endString = "\(end)"
+        guard let startDate = start?.millisecondsSince1970 else {return}
+        guard let endDate = end?.millisecondsSince1970 else {return}
+        let startString = "\(startDate)"
+        let endString = "\(endDate)"
         let param = ViewRequest.init(startString, endString)
         authProvider.request(.viewRetrospective(param: param)) { response in
             switch response {
                 case .success(let result):
                     do {
                         print(param)
+                        self.contentSaver = ["", "", ""]
+                        
                         self.textData = try result.map(ViewRetrospectiveModel.self)
-                        print(self.textData)
-                        if self.textData?.data.isWritten == false {
-                            // 현재와 동일 있으면 써주기
-                        } else {
-                            if self.textData?.data.review.good != nil {
-                                self.goodTextView.text = self.textData?.data.review.good
-                                
-                                self.goodViewButton.layer.borderWidth = 1
-                                self.goodViewButton.layer.borderColor = UIColor.mainPaleOrange.cgColor
-                                self.goodViewButton.backgroundColor = .white
-                                
-                                self.goodTextView.isUserInteractionEnabled = true
-                                self.goodTextView.textColor = .mainBlack
-                                
-                                let textCount = self.goodTextView.text.count
-                                self.goodCounterLabel.text = "\(textCount)"
-                                
-                                if self.goodViewHeightConstraint?.constant != 328 {
-                                    self.goodViewHeightConstraint?.constant = 328
-                                    self.tableView?.rowHeight += 224
-                                    self.tableView?.beginUpdates()
-                                    self.tableView?.endUpdates()
-                                }
-                                
-                                self.cellPlaceholders[0] = self.goodTextView.text
-                                self.counts[0] = textCount
+                        
+                        if self.textData?.data.review?.good != nil && self.textData?.data.review?.good != "" {
+                            self.goodTextView.text = self.textData?.data.review?.good
+                            
+                            self.goodViewButton.layer.borderWidth = 1
+                            self.goodViewButton.layer.borderColor = UIColor.mainPaleOrange.cgColor
+                            self.goodViewButton.backgroundColor = .white
+                            
+                            self.goodTextView.isUserInteractionEnabled = true
+                            self.goodTextView.textColor = .mainBlack
+                            
+                            let textCount = self.goodTextView.text.count
+                            self.goodCounterLabel.text = "\(textCount)"
+                            
+                            if self.goodViewHeightConstraint?.constant != 328 {
+                                self.goodViewHeightConstraint?.constant = 328
+                                self.tableView?.rowHeight += 224
+                                self.tableView?.beginUpdates()
+                                self.tableView?.endUpdates()
                             }
-                            if self.textData?.data.review.bad != nil {
-                                self.badTextView.text = self.textData?.data.review.bad
+                            
+                            self.contentSaver[0] = self.goodTextView.text
+                            self.counts[0] = textCount
+                        } else {
+                            self.goodViewButton.layer.borderWidth = 0
+                            self.goodViewButton.backgroundColor = .mainLightGray
+                            
+                            self.goodTextView.textColor = .mainGray
+                            self.goodTextView.text = self.cellPlaceholders[0]
+                            self.goodTextView.isUserInteractionEnabled = false
+                            
+                            self.goodCounterLabel.text = "0"
+                            
+                            self.counts[0] = 0
+                            
+                            if self.goodViewHeightConstraint?.constant == 328 {
+                                self.goodViewHeightConstraint?.constant = 104
+                                self.tableView?.rowHeight -= 224
+                                self.tableView?.beginUpdates()
+                                self.tableView?.endUpdates()
+                            }
+                        }
+                            if self.textData?.data.review?.bad != nil {
+                                self.badTextView.text = self.textData?.data.review?.bad
                                 
                                 self.badViewButton.layer.borderWidth = 1
                                 self.badViewButton.layer.borderColor = UIColor.mainPaleOrange.cgColor
@@ -454,11 +523,30 @@ extension RetrospectiveWriteTVC {
                                     self.tableView?.endUpdates()
                                 }
                                 
-                                self.cellPlaceholders[1] = self.badTextView.text
+                                self.contentSaver[1] = self.badTextView.text
                                 self.counts[1] = textCount
+                            } else {
+                                self.badViewButton.layer.borderWidth = 0
+                                self.badViewButton.backgroundColor = .mainLightGray
+                                
+                                self.badTextView.textColor = .mainGray
+                                self.badTextView.text = self.cellPlaceholders[1]
+                                
+                                self.badTextView.isUserInteractionEnabled = false
+                                
+                                self.badCounterLabel.text = "0"
+                                
+                                self.counts[1] = 0
+                                
+                                if self.badViewHeightConstraint?.constant == 328 {
+                                    self.badViewHeightConstraint?.constant = 104
+                                    self.tableView?.rowHeight -= 224
+                                    self.tableView?.beginUpdates()
+                                    self.tableView?.endUpdates()
+                                }
                             }
-                            if self.textData?.data.review.next != nil {
-                                self.nextTextView.text = self.textData?.data.review.next
+                            if self.textData?.data.review?.next != nil {
+                                self.nextTextView.text = self.textData?.data.review?.next
                                 
                                 self.nextViewButton.layer.borderWidth = 1
                                 self.nextViewButton.layer.borderColor = UIColor.mainPaleOrange.cgColor
@@ -477,10 +565,30 @@ extension RetrospectiveWriteTVC {
                                     self.tableView?.endUpdates()
                                 }
                                 
-                                self.cellPlaceholders[2] = self.nextTextView.text
+                                self.contentSaver[2] = self.nextTextView.text
                                 self.counts[2] = textCount
+                            } else {
+                                self.nextViewButton.layer.borderWidth = 0
+                                self.nextViewButton.backgroundColor = .mainLightGray
+                                
+                                self.nextTextView.textColor = .mainGray
+                                self.nextTextView.text = self.cellPlaceholders[2]
+
+                                self.nextTextView.isUserInteractionEnabled = false
+                                
+                                self.nextCounterLabel.text = "0"
+                                
+                                self.counts[2] = 0
+                                
+                                if self.nextViewHeightConstraint?.constant == 328 {
+                                    self.nextViewHeightConstraint?.constant = 104
+                                    self.tableView?.rowHeight -= 224
+                                    self.tableView?.beginUpdates()
+                                    self.tableView?.endUpdates()
+                                }
                             }
-                        }
+
+
                     } catch(let err) {
                         print(err.localizedDescription)
                     }

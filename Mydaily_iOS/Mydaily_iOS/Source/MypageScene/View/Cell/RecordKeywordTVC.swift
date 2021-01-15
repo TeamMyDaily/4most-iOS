@@ -24,7 +24,6 @@ class RecordKeywordTVC: UITableViewCell {
     }
     
     func setContent(rank: Int, keyword: String){
-        
         rankingNumber.text = "\(rank)"
         keywordLabel.text = keyword
     }

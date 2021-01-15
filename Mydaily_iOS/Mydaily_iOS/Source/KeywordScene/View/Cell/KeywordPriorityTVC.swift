@@ -14,6 +14,7 @@ class KeywordPriorityTVC: UITableViewCell {
         // Initialization code
     }
     @IBOutlet weak var keywordLabel: UILabel!
+    @IBOutlet var botomView: UIView!
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -22,6 +23,7 @@ class KeywordPriorityTVC: UITableViewCell {
     
     func setKeywordLabel(text: String){
         keywordLabel.text = text
+        botomView.backgroundColor = UIColor.mainOrange
     }
     
 }

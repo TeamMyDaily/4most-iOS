@@ -22,9 +22,6 @@ class GoalVC: UIViewController {
     let dateButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.setImage(UIImage(named: "btn_week"), for: .normal)
-        $0.layer.cornerRadius = 20
-        $0.titleLabel?.font = .myMediumSystemFont(ofSize: 16)
-        $0.setTitleColor(.white, for: .normal)
         $0.addTarget(self, action: #selector(setWeek), for: .allTouchEvents)
         return $0
     }(UIButton(frame: .zero))

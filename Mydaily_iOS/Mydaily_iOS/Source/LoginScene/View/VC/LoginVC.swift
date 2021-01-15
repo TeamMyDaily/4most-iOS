@@ -11,7 +11,7 @@ import Moya
 class LoginVC: UIViewController {
 
     private let authProvider = MoyaProvider<LoginServices>(plugins: [NetworkLoggerPlugin(verbose: true)])
-    var token: SigninModel?
+    var user: SigninModel?
     
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var pwTextField: UITextField!
@@ -56,6 +56,12 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func loginButton(_ sender: Any) {
+        if autoLogin == true{
+            UserDefaults.standard.set(self.idTextField.text, forKey: "id")
+            UserDefaults.standard.set(self.pwTextField.text, forKey: "pwd")
+        }else{
+            
+        }
         signin()
     }
 }
@@ -201,10 +207,40 @@ extension LoginVC {
             switch response {
                 case .success(let result):
                     do {
-                        self.token = try result.map(SigninModel.self)
-                        UserDefaults.standard.setValue(self.token?.data.accessToken, forKey: "accessToken")
-                        if self.token?.status == 400{
-                            if self.token?.message == "존재하지 않는 이메일 입니다."{
+                        self.user = try result.map(SigninModel.self)
+                        if self.autoLogin == true{
+                            UserDefaults.standard.setValue(self.user?.data.accessToken, forKey: "userToken")
+                            UserDefaults.standard.setValue(self.user?.data.userName, forKey: "userName")
+                            Login.shared.setLogin(name: "\(String(describing: self.user?.data.userName))", token: "\(String(describing: self.user?.data.accessToken))")
+                            if self.user?.data.keywordsExist == false{ //키워드 세팅으로
+                                let sb = UIStoryboard.init(name: "Keyword", bundle: nil)
+                                let vc = sb.instantiateViewController(withIdentifier: "KeywordSettingVCNavigation")
+                                vc.modalPresentationStyle = .fullScreen
+                                self.present(vc, animated: true)
+                            }
+                            else{ //탭바로
+                                let sb = UIStoryboard.init(name: "Tabbar", bundle: nil)
+                                guard let vc = sb.instantiateViewController(withIdentifier: "TabbarController") as? TabbarController else { return }
+                                vc.modalPresentationStyle = .fullScreen
+                                self.present(vc, animated: true)
+                            }
+                        }else{ //자동로그인이 아니라묜
+                            if self.user?.data.keywordsExist == false{ //키워드 세팅으로
+                                let sb = UIStoryboard.init(name: "Keyword", bundle: nil)
+                                let vc = sb.instantiateViewController(withIdentifier: "KeywordSettingVCNavigation")
+                                vc.modalPresentationStyle = .fullScreen
+                                self.present(vc, animated: true)
+                            }
+                            else{ //탭바로
+                                let sb = UIStoryboard.init(name: "Tabbar", bundle: nil)
+                                guard let vc = sb.instantiateViewController(withIdentifier: "TabbarController") as? TabbarController else { return }
+                                vc.modalPresentationStyle = .fullScreen
+                                self.present(vc, animated: true)
+                            }
+                            
+                        }
+                        if self.user?.status == 400{
+                            if self.user?.message == "존재하지 않는 이메일 입니다."{
                                 
                             }else{
                                 
@@ -220,19 +256,23 @@ extension LoginVC {
             }
         }
     }
+    
+    
 }
 
 extension LoginVC: UITextFieldDelegate{
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == idTextField {
-            animation()
-        }
+//        if textField == idTextField {
+//            animation()
+//        }
+//        animation()
     }
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-        if textField == pwTextField {
-            downanimation()
-        }
+//        if textField == pwTextField {
+//            downanimation()
+//        }downanimation()
+//        downanimation()
     }
     
   //리턴키

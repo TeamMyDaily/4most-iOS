@@ -737,17 +737,18 @@
         <!--Start LottieVC-->
         <scene sceneID="wEt-BL-4vk">
             <objects>
-                <viewController id="G5C-za-ZHy" customClass="StartLottieVC" customModule="Mydaily_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StartLottieVC" id="G5C-za-ZHy" customClass="StartLottieVC" customModule="Mydaily_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ynk-Fk-8KQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="zIN-HP-UJu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="aSr-ja-sWJ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dku-pS-7La" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1305" y="-118"/>
+            <point key="canvasLocation" x="-1079" y="-318"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sOO-DK-gqA">
@@ -760,12 +761,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Kua-T3-ck5" kind="relationship" relationship="rootViewController" id="TUQ-rJ-rFa"/>
+                        <segue destination="Kua-T3-ck5" kind="relationship" relationship="rootViewController" id="Uad-S6-vCe"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ANn-rT-ZXL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-422" y="473"/>
+            <point key="canvasLocation" x="-546" y="473"/>
         </scene>
     </scenes>
     <resources>

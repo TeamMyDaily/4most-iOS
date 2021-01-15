@@ -17,8 +17,10 @@ struct ViewDetailReportModel: Codable {
 
 // MARK: - ViewDetailRetrospectiveResponse
 struct ViewDetailReportResponse: Codable {
-    let keywordName, goal: String
-    let isGoalCompleted: Bool
+    let keywordName: String
+    let goal: String?
+    let isGoalCompleted: Bool?
+    let goalExist: Bool
     let tasks: [Tasks]
 }
 

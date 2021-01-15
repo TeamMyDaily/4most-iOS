@@ -9,7 +9,7 @@
         <!--Tabbar Controller-->
         <scene sceneID="Ykb-aO-hV2">
             <objects>
-                <tabBarController id="GhM-ti-JX8" customClass="TabbarController" customModule="Mydaily_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabbarController" id="GhM-ti-JX8" customClass="TabbarController" customModule="Mydaily_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5rP-0h-83B">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
