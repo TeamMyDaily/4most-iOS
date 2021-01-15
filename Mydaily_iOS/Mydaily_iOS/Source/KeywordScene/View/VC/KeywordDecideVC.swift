@@ -76,10 +76,12 @@ class KeywordDecideVC: UIViewController {
         let txt = "MY > 나의 현재 키워드 > 키워드 정의에서 설정 할 수 있어요."
         let alert = UIAlertController(title: "키워드 정의를 건너뛰시겠어요?", message: txt, preferredStyle: UIAlertController.Style.alert)
         
-        
         //#goto_main 돌아감으로 됨
         let okAction = UIAlertAction(title: "확인", style: .default) { (action) in
-            self.dismiss(animated: true, completion: nil)
+            let storyboard = UIStoryboard(name: "Tabbar", bundle: nil)
+            let dvc = storyboard.instantiateViewController(identifier: "TabbarController")
+            dvc.modalPresentationStyle = .fullScreen
+            self.present(dvc, animated: true, completion: nil)
         }
         
         let cancelAction = UIAlertAction(title: "취소", style: .cancel){ (action) in}
@@ -92,7 +94,11 @@ class KeywordDecideVC: UIViewController {
     
     //#goto_main 돌아감으로 됨
     @IBAction func touchUpCompletedKeyword(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "Tabbar", bundle: nil)
+        let dvc = storyboard.instantiateViewController(identifier: "TabbarController")
+        dvc.modalPresentationStyle = .fullScreen
+        self.present(dvc, animated: true, completion: nil)
+
     }
     
     @IBAction func goToKeywordDefineView(_ sender: UIButton){

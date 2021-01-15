@@ -21,7 +21,10 @@ class StartLottieVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { [self] in
-            goOnBoardPopUp()
+            print("GeneralAPI.isFirstConnect \(GeneralAPI.isFirstConnect)")
+            if GeneralAPI.isFirstConnect == true{
+                goOnBoardPopUp()
+            }
         })
     }
     override func viewWillAppear(_ animated: Bool) {
