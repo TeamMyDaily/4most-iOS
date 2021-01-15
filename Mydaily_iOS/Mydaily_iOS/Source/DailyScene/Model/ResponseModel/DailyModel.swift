@@ -18,7 +18,7 @@ struct DailyModel: Codable {
 // MARK: - Keyword
 struct Keyword: Codable {
     let keywordsExist: Bool?
-    let result: [KeywordData?]
+    let result: [KeywordData?]?
 }
 
 // MARK: - KeywordData

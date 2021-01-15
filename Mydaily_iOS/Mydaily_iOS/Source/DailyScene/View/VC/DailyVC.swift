@@ -19,6 +19,8 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
     @IBOutlet weak var logoLabel: UILabel!
     @IBOutlet weak var userDaily: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var emptyImg: UIImageView!
+    @IBOutlet weak var emptyLabel: UILabel!
     
     var myArray = [String]()
     var currentDate = Date()
@@ -63,11 +65,10 @@ class DailyVC: UIViewController, ThreePartCellDelegate {
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yy년 MM월 W주"
-        
-        print(datePicker.date.startOfWeek ?? 0)
-        print(datePicker.date.endOfWeek ?? 0)
-//        getDaily()
+        getDaily()
+        setEmpty()
     }
+
 }
 
 //MARK: - UI
@@ -86,8 +87,27 @@ extension DailyVC {
         userDaily.textColor = UIColor.mainBlack
         
         dateLabel.font = .myMediumSystemFont(ofSize: 12)
+        setEmpty()
     }
     
+    func setEmpty(){
+        if dailyModel?.data?.result != nil{
+            tableView.backgroundColor = .white
+            tableView.separatorStyle = .none
+            emptyImg.isHidden = false
+            emptyImg.image = UIImage(named: "image_rest")
+            emptyLabel.text = "이 날에는 기록이 없어요.😢"
+            emptyLabel.font = .myRegularSystemFont(ofSize: 12)
+            emptyLabel.textColor = .lightGray
+        }else{
+            tableView.separatorStyle = .singleLine
+            tableView.separatorInset.right = 16
+            tableView.separatorInset.left = 16
+            emptyImg.image = UIImage(named: "image_rest")
+            emptyImg.isHidden = true
+            emptyLabel.text = ""
+        }
+    }
     func setDate(){
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yy년 MM월 dd일"
@@ -119,6 +139,7 @@ extension DailyVC {
     @objc func setToday(sender: UIButton!) {
         datePicker.date = Date()
         setDate()
+        setEmpty()
         getDaily()
     }
     
@@ -143,7 +164,7 @@ extension DailyVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.dailyModel?.data?.keywordsExist == true {
-            return (self.dailyModel?.data?.result.count)!
+            return (self.dailyModel?.data?.result?.count)!
         }else{
             return 0
         }
@@ -151,11 +172,11 @@ extension DailyVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let VC = self.storyboard?.instantiateViewController(identifier: "DailyWriteVC") as? DailyWriteVC else {return}
-        VC.keywordID = self.dailyModel?.data?.result[indexPath.row]?.totalKeywordID
-        VC.taskTitle = self.dailyModel?.data?.result[indexPath.row]?.name
+        VC.keywordID = self.dailyModel?.data?.result![indexPath.row]?.totalKeywordID
+        VC.taskTitle = self.dailyModel?.data?.result![indexPath.row]?.name
         
-        if self.dailyModel?.data?.result[indexPath.row]?.tasks.count != 0{
-            VC.taskID = self.dailyModel?.data?.result[indexPath.row]?.tasks[0]?.id
+        if self.dailyModel?.data?.result![indexPath.row]?.tasks.count != 0{
+            VC.taskID = self.dailyModel?.data?.result![indexPath.row]?.tasks[0]?.id
         }
         self.navigationController?.pushViewController(VC, animated: true)
     }
@@ -166,25 +187,25 @@ extension DailyVC: UITableViewDelegate, UITableViewDataSource {
         cell.selectionStyle = .none
         
         myArray = []
-        for outterIndex in 0...(self.dailyModel?.data?.result.count)! - 1 {
+        for outterIndex in 0...(self.dailyModel?.data?.result?.count)! - 1 {
             str = ""
-            for i in 0..<(dailyModel?.data?.result[outterIndex]?.tasks.count)! {
-                str += "\(String(describing: dailyModel?.data?.result[outterIndex]?.tasks[i]?.title ?? ""))\n"
+            for i in 0..<(dailyModel?.data?.result![outterIndex]?.tasks.count)! {
+                str += "\(String(describing: dailyModel?.data?.result![outterIndex]?.tasks[i]?.title ?? ""))\n"
             }
             
             myArray.append(str)
         }
         str = myArray[indexPath.row]
 
-        cell.taskID = dailyModel?.data?.result[indexPath.row]?.totalKeywordID
+        cell.taskID = dailyModel?.data?.result![indexPath.row]?.totalKeywordID
         cell.labelBody?.textColor = .white
         cell.numImg.image = UIImage(named: "image\(indexPath.row + 1)")
 //        cell.numImg.curre
-        cell.labelSubTitle.text = "\(dailyModel?.data?.result[indexPath.row]?.tasks.count ?? 0)개의 기록이 당신을 기다리고 있어요."
-        cell.myInit(theTitle: " \((dailyModel?.data?.result[indexPath.row]?.name) ?? "")", theBody: str)
+        cell.labelSubTitle.text = "\(dailyModel?.data?.result![indexPath.row]?.tasks.count ?? 0)개의 기록이 당신을 기다리고 있어요."
+        cell.myInit(theTitle: " \((dailyModel?.data?.result![indexPath.row]?.name) ?? "")", theBody: str)
        
         let attributedString = NSMutableAttributedString(string: cell.labelSubTitle.text ?? "")
-        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.mainOrange, range: (cell.labelSubTitle.text! as NSString).range(of:"\(dailyModel?.data?.result[indexPath.row]?.tasks.count ?? 0)개의 기록"))
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.mainOrange, range: (cell.labelSubTitle.text! as NSString).range(of:"\(dailyModel?.data?.result![indexPath.row]?.tasks.count ?? 0)개의 기록"))
         cell.labelSubTitle.attributedText = attributedString
         
         
