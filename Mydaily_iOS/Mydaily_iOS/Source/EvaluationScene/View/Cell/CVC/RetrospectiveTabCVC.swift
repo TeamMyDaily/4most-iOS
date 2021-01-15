@@ -13,6 +13,7 @@ class RetrospectiveTabCVC: UICollectionViewCell {
     @IBOutlet weak var retrospectiveTableView: UITableView!
     
     var delegate: TableViewInsideCollectionViewDelegate?
+    var collectionView: UICollectionView?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,6 +32,7 @@ extension RetrospectiveTabCVC: UITableViewDataSource {
         }
         cell.delegate = self.delegate
         cell.tableView = retrospectiveTableView
+        cell.collectionView = self.collectionView
         cell.selectionStyle = .none
         return cell
     }

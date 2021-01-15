@@ -17,7 +17,7 @@ struct ViewReportModel: Codable {
 // MARK: - DataClass
 struct DataClass: Codable {
     let keywordsExist: Bool
-    let result: [Results]
+    let result: [Results]?
 }
 
 // MARK: - Result

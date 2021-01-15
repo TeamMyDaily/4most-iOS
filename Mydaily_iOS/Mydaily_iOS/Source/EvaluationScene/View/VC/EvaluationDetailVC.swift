@@ -22,6 +22,9 @@ class EvaluationDetailVC: UIViewController {
     var listCount = 0
     var cellNum = 0
     var isGoalComplete = false
+    var isGoalExist = false
+    var start: Date?
+    var end: Date?
     
     var task: [Tasks] = []
 
@@ -48,8 +51,7 @@ extension EvaluationDetailVC: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailGoalTVC.identifier) as? DetailGoalTVC else {
                 return UITableViewCell()
             }
-            cell.setData(goal: goal, isGoalCompleted: isGoalComplete)
-            print("fogofo\(isGoalComplete)")
+            cell.setData(goal: goal, isGoalCompleted: isGoalComplete, isGoalExist: isGoalExist)
             cell.selectionStyle = .none
             return cell
         } else if indexPath.section == 1 {
@@ -64,6 +66,7 @@ extension EvaluationDetailVC: UITableViewDataSource {
             return UITableViewCell()
         }
         cell.setList(task: task)
+        print(task)
         cell.selectionStyle = .none
         return cell
     }
@@ -89,6 +92,14 @@ extension EvaluationDetailVC: UITableViewDelegate {
             calculateHeight = CGFloat(42 + (listCount / 2 + 1) * 185)
         }
         return calculateHeight
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            if isGoalExist {
+                // isGoalExist면 선택했을 때 이동
+            }
+        }
     }
 }
 
@@ -129,7 +140,11 @@ extension EvaluationDetailVC {
 extension EvaluationDetailVC {
     func getKeywordDetail() {
         let path = cellNum
-        let param = ViewDetailReportRequest.init(path, "1610290800000", "1610982000000")
+        guard let startDate = start?.millisecondsSince1970 else {return}
+        guard let endDate = end?.millisecondsSince1970 else {return}
+        let startString = "\(startDate)"
+        let endString = "\(endDate)"
+        let param = ViewDetailReportRequest.init(path, startString, endString)
         print(param)
         authProvider.request(.viewDetailReport(param: param)) { response in
             switch response {
@@ -140,6 +155,7 @@ extension EvaluationDetailVC {
                         self.keywordLabel.text = self.keywordData?.data.keywordName
                         // DetailGoalTVC
                         self.goal = self.keywordData?.data.goal ?? ""
+                        self.isGoalExist = self.keywordData?.data.goalExist ?? false
                         self.isGoalComplete = self.keywordData?.data.isGoalCompleted ?? false
                         //DetailRecordTVC, DetailRecordContent
                         self.task.removeAll()
