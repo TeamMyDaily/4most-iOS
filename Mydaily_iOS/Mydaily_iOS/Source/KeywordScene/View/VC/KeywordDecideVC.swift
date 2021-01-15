@@ -11,7 +11,7 @@ class KeywordDecideVC: UIViewController {
     static let identifier = "KeywordDecideVC"
     
     @IBOutlet var keywordUIButtonList: [UIButton]!
-    @IBOutlet var numberLabelList: [UILabel]!
+    @IBOutlet var numberLabelList: [UIButton]!
     @IBOutlet var barLineView: [UIView]!
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -23,7 +23,15 @@ class KeywordDecideVC: UIViewController {
     var keywordList: [String] = []
     var keywordAndDefinition: [[String:String]] = []
     
-    var numberImageList: [UIImage] = [UIImage(named: "image_one")!,UIImage(named: "image_two")!,UIImage(named: "image_three")!, UIImage(named: "image_four")!]
+    var numberImageList: [UIImage]! = [UIImage(named: "image_one")!,
+                                      UIImage(named: "image_two")!,
+                                      UIImage(named: "image_three")!,
+                                      UIImage(named: "image_four")!]
+    
+    var numberSelectedImageList: [UIImage]! = [UIImage(named: "image_one_selected")!,
+                                              UIImage(named: "image_two_selected")!,
+                                              UIImage(named: "image_three_selected")!,
+                                              UIImage(named: "image_four_selected")!]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +49,11 @@ class KeywordDecideVC: UIViewController {
         for txt in keywordList{
             if keywordAndDefinition[i][txt] != ""{
                 keywordUIButtonList[i].setTitleColor(UIColor.mainBlack, for: .normal)
-                numberLabelList[i].textColor = UIColor.mainLightOrange
+                numberLabelList[i].setImage(numberSelectedImageList[i], for: .normal)
                 count += 1
+            }else{
+                keywordUIButtonList[i].setTitleColor(UIColor.mainGray, for: .normal)
+                numberLabelList[i].setImage(numberImageList[i], for: .normal)
             }
             i += 1
         }
@@ -68,7 +79,6 @@ class KeywordDecideVC: UIViewController {
         
         //#goto_main 돌아감으로 됨
         let okAction = UIAlertAction(title: "확인", style: .default) { (action) in
-            //이부분으로
             self.dismiss(animated: true, completion: nil)
         }
         
@@ -148,14 +158,14 @@ extension KeywordDecideVC{
     }
     
     func setCompleteButton(){
-        completeButton.titleLabel?.font =  UIFont.myBoldSystemFont(ofSize: 18)
+        completeButton.titleLabel?.font =  UIFont.myMediumSystemFont(ofSize: 18)
         completeButton.layer.cornerRadius = 15
         completeButton.isEnabled = false
         completeButton.backgroundColor = UIColor.mainOrange
         completeButton.isHidden = true
         completeButton.setTitleColor(.white, for: .normal)
         
-        keywordCompleteButton.titleLabel?.font = UIFont.myBoldSystemFont(ofSize: 18)
+        keywordCompleteButton.titleLabel?.font = UIFont.myMediumSystemFont(ofSize: 18)
         keywordCompleteButton.layer.cornerRadius = 15
         keywordCompleteButton.isEnabled = false
         completeButton.backgroundColor = UIColor.mainOrange
@@ -164,6 +174,7 @@ extension KeywordDecideVC{
     
     func setSkipButton(){
         skipButton.layer.borderColor = UIColor.mainGray.cgColor
+        skipButton.titleLabel?.font = UIFont.myMediumSystemFont(ofSize: 18)
         skipButton.layer.borderWidth = 2
         skipButton.layer.cornerRadius = 15
 

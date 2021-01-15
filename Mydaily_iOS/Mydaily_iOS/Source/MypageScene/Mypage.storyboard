@@ -56,24 +56,24 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="200"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jTd-Yg-P7j">
-                                        <rect key="frame" x="17" y="8" width="57" height="28"/>
+                                        <rect key="frame" x="17" y="8" width="59" height="30"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Label">
                                                 <attributes>
                                                     <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <font key="NSFont" size="25" name=".SFNS-Bold"/>
+                                                    <font key="NSFont" metaFont="system" size="25"/>
                                                 </attributes>
                                             </fragment>
                                         </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDW-gO-zvn">
-                                        <rect key="frame" x="17" y="41" width="188" height="36"/>
+                                        <rect key="frame" x="17" y="43" width="188" height="37.5"/>
                                         <attributedString key="attributedText">
                                             <fragment content="목적지를">
                                                 <attributes>
                                                     <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <font key="NSFont" size="25" name=".AppleSDGothicNeoI-Bold"/>
+                                                    <font key="NSFont" metaFont="system" size="25"/>
                                                 </attributes>
                                             </fragment>
                                             <fragment content=" ">
@@ -85,7 +85,7 @@
                                             <fragment content="찾아봐요">
                                                 <attributes>
                                                     <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <font key="NSFont" size="25" name=".AppleSDGothicNeoI-Bold"/>
+                                                    <font key="NSFont" metaFont="system" size="25"/>
                                                 </attributes>
                                             </fragment>
                                             <fragment content="!">
@@ -293,20 +293,20 @@
                                                 </constraints>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingSecurityTVC" id="dpY-H5-LD8" customClass="SettingSecurityTVC" customModule="Mydaily_iOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="28" width="375" height="45.5"/>
+                                                        <rect key="frame" x="0.0" y="28" width="375" height="45"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dpY-H5-LD8" id="fsO-nf-TNi">
-                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="45.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lyt-jT-gjE">
-                                                                    <rect key="frame" x="16" y="12" width="42" height="21.5"/>
+                                                                    <rect key="frame" x="16" y="12" width="42" height="21"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6L7-iR-rJW">
-                                                                    <rect key="frame" x="346" y="12" width="13" height="22"/>
+                                                                    <rect key="frame" x="346" y="11.5" width="13" height="22"/>
                                                                     <color key="tintColor" red="0.76862745098039209" green="0.76862745098039209" blue="0.76862745098039209" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
                                                                     <state key="normal" image="chevron.right" catalog="system"/>
                                                                 </button>
@@ -324,7 +324,7 @@
                                                         </connections>
                                                     </tableViewCell>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingVersionTVC" id="PDS-mv-fuc" customClass="SettingVersionTVC" customModule="Mydaily_iOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="73.5" width="375" height="43.5"/>
+                                                        <rect key="frame" x="0.0" y="73" width="375" height="43.5"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PDS-mv-fuc" id="x6B-n7-hby">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>

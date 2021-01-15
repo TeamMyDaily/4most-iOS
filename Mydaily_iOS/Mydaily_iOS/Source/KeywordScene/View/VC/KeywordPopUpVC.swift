@@ -39,6 +39,7 @@ class KeywordPopUpVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        skipButton.titleLabel?.font = UIFont.myMediumSystemFont(ofSize: 18)
         helpLabel.font = UIFont.myRegularSystemFont(ofSize: 12)
         setDelegate()
         if isOnBoard{
@@ -117,12 +118,16 @@ extension KeywordPopUpVC{
         contentPageContol.currentPage = currentPage
         
         if(currentPage == 2){
-            skipButton.setTitle("알겠어요", for: .normal)
+            
+            if isOnBoard{
+                skipButton.setTitle("모포스트 시작하기", for: .normal)
+            }else{
+                skipButton.setTitle("돌아가기", for: .normal)
+            }
+            
             skipButton.setTitleColor(.white, for: .normal)
-            skipButton.titleLabel?.font =  UIFont(name: "System-Heavy", size: 18.0)
             skipButton.layer.cornerRadius = 15
             skipButton.backgroundColor = UIColor.mainOrange
-            
         }
     }
 }

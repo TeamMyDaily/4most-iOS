@@ -24,6 +24,8 @@ class AddUserKeywordVC: UIViewController {
     
     @IBOutlet weak var noticeLabel: UILabel!
     
+    @IBOutlet var explainLabel: UILabel!
+    
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var guideLabel: UILabel!
     let originButtonColor: UIColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1)
@@ -98,6 +100,11 @@ class AddUserKeywordVC: UIViewController {
 // MARK: - UITextFieldDelegate
 extension AddUserKeywordVC: UITextFieldDelegate{
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        explainLabel.isHidden = false
+        explainLabel.backgroundColor = .white
+        explainLabel.textColor = UIColor.mainOrange
+        keywordTextField.borderColor = UIColor.mainOrange
+        
         noticeLabel.text = ""
         if (string == " " || string == "\n" || string == "\t"  ) {
             noticeLabel.text = "잠깐! 공백은 입력할 수 없어요!"
@@ -134,7 +141,6 @@ extension AddUserKeywordVC: UITextFieldDelegate{
             }
             
             errorCheckButton.isHidden = true
-            
         }
         
         let currentText = textField.text ?? ""
@@ -189,7 +195,25 @@ extension AddUserKeywordVC{
         guideLabel.numberOfLines = 0
         guideLabel.text = "공백 없이 최대 5글자까지 가능해요.\n명사 형태를 추천해요."
         
+        noticeLabel.textColor = UIColor.mainOrange
         addButton.layer.cornerRadius = 15
+        addButton.titleLabel?.font = UIFont.myMediumSystemFont(ofSize: 18)
+        
+        
+        keywordTextField.font = UIFont.myRegularSystemFont(ofSize: 16)
+        keywordTextField.borderWidth = 1
+        keywordTextField.layer.cornerRadius = 15
+        keywordTextField.borderColor = UIColor.mainGray
+        keywordTextField.setLeftPaddingPoints(15)
+        keywordTextField.backgroundColor = .clear
+        
+        
+        explainLabel.textColor = UIColor.mainOrange
+        explainLabel.backgroundColor = .white
+        explainLabel.isHidden = true
+        
+        self.view.addSubview(explainLabel)
+       
     }
    
     func setNavigationBar(){
@@ -215,8 +239,6 @@ extension AddUserKeywordVC{
     }
     
 }
-
-
 
 // MARK: - Network
 extension AddUserKeywordVC {

@@ -57,7 +57,7 @@ class KeywordPriorityVC: UIViewController {
     }
     
     func setCompleteButton(){
-        completeButton.titleLabel?.font =  UIFont(name: "System-Bold", size: 18.0)
+        completeButton.titleLabel?.font = UIFont.myMediumSystemFont(ofSize: 18)
         completeButton.layer.cornerRadius = 15
         completeButton.backgroundColor = UIColor.mainOrange
     }
