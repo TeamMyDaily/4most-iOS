@@ -52,6 +52,11 @@ class AddUserKeywordVC: UIViewController {
         isFirst = check
     }
     
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     @IBAction func addUserKeyword(_ sender: UIButton) {
         userKeyword = keywordTextField.text ?? ""
         
@@ -165,6 +170,12 @@ extension AddUserKeywordVC: UITextFieldDelegate{
             return true
         }
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
 }
 
 
@@ -191,9 +202,11 @@ extension AddUserKeywordVC{
         self.navigationItem.title = "키워드 추가"
         
         let leftButton: UIBarButtonItem = {
-             let button = UIBarButtonItem(image: UIImage(named: "btn_arrow_left"), style: .plain, target: self, action: #selector(dismissVC))
+             let button = UIBarButtonItem(image: UIImage(named: "btnBack"), style: .plain, target: self, action: #selector(dismissVC))
+            button.tintColor = UIColor.mainBlack
              return button
            }()
+        
            navigationItem.leftBarButtonItem = leftButton
     }
 

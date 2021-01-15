@@ -18,6 +18,7 @@ class KeywordPriorityTVC: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        keywordLabel.font = UIFont.myRegularSystemFont(ofSize: 18)
         
     }
     

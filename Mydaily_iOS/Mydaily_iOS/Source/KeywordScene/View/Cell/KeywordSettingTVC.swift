@@ -21,6 +21,9 @@ class KeywordSettingTVC: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        for i in 0..<keywordButtonList.count{
+            keywordButtonList[i].titleLabel!.font = UIFont.myMediumSystemFont(ofSize: 16)
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

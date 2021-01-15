@@ -15,7 +15,9 @@ class RecordKeywordTVC: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        keywordLabel.font = UIFont.myMediumSystemFont(ofSize: 18)
+        rankingNumber.font = UIFont.myMediumSystemFont(ofSize: 18)
+        rankingNumber.textColor = UIColor.mainOrange
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -26,6 +28,7 @@ class RecordKeywordTVC: UITableViewCell {
     func setContent(rank: Int, keyword: String){
         rankingNumber.text = "\(rank)"
         keywordLabel.text = keyword
+        keywordLabel.font = UIFont.myMediumSystemFont(ofSize: 18)
     }
     
 }
