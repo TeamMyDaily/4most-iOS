@@ -231,8 +231,14 @@ extension RetrospectiveWriteTVC {
 extension RetrospectiveWriteTVC {
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(getRetrospective), name: NSNotification.Name("reloadRetrospective"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(getInitRetrospective), name: NSNotification.Name("reloadInitRetrospective"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(sendBeforeWeek), name: NSNotification.Name(rawValue: "LastWeek"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(sendAfterWeek), name: NSNotification.Name(rawValue: "NextWeek"), object: nil)
+    }
+    
+    @objc func getInitRetrospective() {
+        getText()
+        tableView?.reloadData()
     }
     
     @objc func getRetrospective() {

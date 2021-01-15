@@ -19,6 +19,7 @@ class DetailRecordContentTVC: UITableViewCell {
         return notifyLabel
     }()
     
+    var taskId: [Int] = []
     var taskTitle: [String] = []
     var taskDate: [String] = []
     var taskSatisfaction: [Int] = []
@@ -55,6 +56,13 @@ extension DetailRecordContentTVC: UICollectionViewDelegateFlowLayout {
     }
 }
 
+extension DetailRecordContentTVC: UICollectionViewDelegate {
+    //MARK: 유진아 여기야 여기야 -> taskId 배열에 taskId 넣어뒀어.
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
+}
+
 //MARK: UI
 extension DetailRecordContentTVC {
     func setList(task: [Tasks]) {
@@ -63,6 +71,7 @@ extension DetailRecordContentTVC {
             for i in 0...task.count-1 {
                 taskTitle.append(task[i].title)
                 taskSatisfaction.append(task[i].satisfaction)
+                taskId.append(task[i].taskId)
                 
                 let start = String.Index(encodedOffset: 0)
                 let end = String.Index(encodedOffset: 10)

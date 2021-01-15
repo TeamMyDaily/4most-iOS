@@ -94,10 +94,11 @@ extension EvaluationDetailVC: UITableViewDelegate {
         return calculateHeight
     }
     
+    //MARK: 유진아 여기야 여기야
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             if isGoalExist {
-                // isGoalExist면 선택했을 때 이동
+                // ### isGoalExist면 선택했을 때 이동
             }
         }
     }

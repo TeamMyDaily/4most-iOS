@@ -187,8 +187,13 @@ extension EvaluationTabCVC {
 extension EvaluationTabCVC {
     private func setNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(getReport), name: NSNotification.Name("reloadReport"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(getInitReport), name: NSNotification.Name("reloadInitReport"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(sendBeforeWeek), name: NSNotification.Name(rawValue: "LastWeek"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(sendAfterWeek), name: NSNotification.Name(rawValue: "NextWeek"), object: nil)
+    }
+    
+    @objc func getInitReport() {
+        getText()
     }
     
     @objc func getReport() {
