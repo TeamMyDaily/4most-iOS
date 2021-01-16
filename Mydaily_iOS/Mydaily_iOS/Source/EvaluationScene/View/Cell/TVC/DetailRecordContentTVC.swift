@@ -30,6 +30,7 @@ class DetailRecordContentTVC: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        taskTitle = []
         setNotification()
         hideViewIfListEmpty()
         setNoRecordView()
@@ -50,6 +51,7 @@ extension DetailRecordContentTVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailRecordCVC.identifier, for: indexPath as IndexPath) as! DetailRecordCVC
         cell.setLabelText(content: taskTitle[indexPath.item], date: taskDate[indexPath.item], satisfaction: taskSatisfaction[indexPath.item])
+        print("^^^^\(taskTitle)")
         return cell
     }
 }
@@ -71,6 +73,7 @@ extension DetailRecordContentTVC: UICollectionViewDelegate {
         dvc.taskTitle = taskTitle[indexPath.item]
         delegate?.cellTapedDaily(dvc: dvc)
     }
+    
 }
 
 //MARK: UI
@@ -89,6 +92,8 @@ extension DetailRecordContentTVC {
                 let dateString = substring.replacingOccurrences(of: "-", with: ".",
                                                options: NSString.CompareOptions.literal, range:nil)
                 taskDate.append(dateString)
+                recordCollectionView.reloadData()
+                print("ddd")
             }
         }
         

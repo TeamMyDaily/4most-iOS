@@ -33,8 +33,11 @@ class EvaluationDetailVC: UIViewController {
     var task: [Tasks] = []
     
     override func viewWillAppear(_ animated: Bool) {
-        getKeywordDetail()
-        setNotification()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: { [self] in
+            getKeywordDetail()
+            setNotification()
+            keywordDetailTableView.reloadData()
+        })
     }
 
     override func viewDidLoad() {
@@ -76,10 +79,14 @@ extension EvaluationDetailVC: UITableViewDataSource {
         }
         cell.recordCollectionView.reloadData()
         cell.delegate = self
-        cell.tableView = keywordDetailTableView
         cell.keywordId = keywordData?.data.totalKeywordId
+        cell.taskId = []
+        cell.taskTitle = []
+        cell.taskSatisfaction = []
+        cell.taskDate = []
         cell.setList(task: task)
         cell.selectionStyle = .none
+        cell.tableView?.reloadData()
         return cell
     }
 }
