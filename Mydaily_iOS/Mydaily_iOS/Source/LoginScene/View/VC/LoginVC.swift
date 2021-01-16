@@ -271,20 +271,24 @@ extension LoginVC: UITextFieldDelegate{
 //        if textField == idTextField {
 //            animation()
 //        }
-        if count == 0{
-            animation()
-        }
-        count += 1
+//        if count == 0{
+//            animation()
+//        }
+//        count += 1
+        
+        animation()
     }
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
 //        if textField == pwTextField {
 //            downanimation()
 //        }downanimation()
+//
+//        if count == 2 {
+//            downanimation()
+//        }
         
-        if count == 2 {
-            downanimation()
-        }
+        downanimation()
     }
     
   //리턴키
