@@ -13,7 +13,7 @@ class KeywordSettingVC: UIViewController {
     @IBOutlet var mainLabel: UILabel!
     
     @IBOutlet var completeButton: UIButton!
-    var attitudeOfLife: [String] = ["신뢰", "행복", "배려", "다양성", "감사", "인내","경험", "용서","정의","긍정", "건강","자유", "나눔","자신감","도전", "풍요로움", "양심", "부", "정직","변화"]
+    var attitudeOfLife: [String] = ["신뢰", "행복", "배려", "다양성", "감사", "인내", "경험", "용서", "정의", "긍정", "건강","자유", "나눔","자신감","도전", "풍요로움", "양심", "부", "정직","변화"]
     
     var attitudeOfWork: [String] = ["몰입", "열정", "배움", "결과", "과정", "소통", "효율성", "성취", "인정", "보람", "성장", "탁월함", "혁신", "협력", "성실", "책임", "본질", "완벽", "실천", "목적의식"]
     
@@ -78,7 +78,6 @@ class KeywordSettingVC: UIViewController {
         navigationBar.shadowImage = UIImage()
       
         navigationItem.title = "키워드 설정하기"
-        //let systemQuestionMark = UIImage(systemName: "questionmark.circle")
         let questionMark = UIImage(named: "btn_question" )
         let questionItem = UIBarButtonItem(image: questionMark, style: .plain, target: self, action: #selector(goKeywordPopUp))
         questionItem.tintColor = UIColor.mainOrange
@@ -146,7 +145,6 @@ class KeywordSettingVC: UIViewController {
     }
     
     
-    
     func setButtonActive(){
         if selectedKeywordCount == 8 {
             completeButton.backgroundColor = UIColor.mainOrange
@@ -187,8 +185,10 @@ extension KeywordSettingVC: UITableViewDataSource{
         background.backgroundColor = .clear
         cell.selectedBackgroundView = background
             
-        let startIndex = (indexPath.row)*4
-        let endIndex = (indexPath.row)*4 + 4
+        let startIndex = (indexPath.row)*5
+        let endIndex = (indexPath.row)*5 + 4
+        
+        print("\(startIndex), \(endIndex)")
         
         if indexPath.section == 0 {
             let subList: [String] = Array(attitudeOfLife[startIndex...endIndex])

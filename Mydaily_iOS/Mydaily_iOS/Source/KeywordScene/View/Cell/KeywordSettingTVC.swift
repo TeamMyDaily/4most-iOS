@@ -32,9 +32,6 @@ class KeywordSettingTVC: UITableViewCell {
     
     func setKeywordButton(text: [String]){
         for i in 0..<text.count{
-            if i == 4{
-                keywordButtonList[i].isHidden = false
-            }
             keywordButtonList[i].setTitle(text[i], for: .normal)
             keywordButtonList[i].layer.cornerRadius = 15
         }

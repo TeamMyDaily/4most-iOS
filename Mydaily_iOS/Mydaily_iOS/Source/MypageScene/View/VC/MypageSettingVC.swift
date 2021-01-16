@@ -126,7 +126,8 @@ extension MypageSettingVC: UITableViewDelegate {
 extension MypageSettingVC {
     private func setLabel() {
         nameLabel.font = .myBlackSystemFont(ofSize: 25)
-        nameLabel.text = "엄석준님"
+        let username = UserDefaultStorage.userName
+        nameLabel.text = username
         nameLabel.textColor = .mainBlack
         
         guideLabel.font = .myRegularSystemFont(ofSize: 12)
@@ -163,7 +164,7 @@ extension MypageSettingVC {
         
         let leftButton: UIBarButtonItem = {
              let button = UIBarButtonItem(image: UIImage(named: "btnBack"), style: .plain, target: self, action: #selector(dismissVC))
-            button.tintColor = UIColor.mainBlack
+            button.tintColor = UIColor.white
              return button
            }()
         
