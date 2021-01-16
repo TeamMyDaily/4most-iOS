@@ -32,6 +32,7 @@ class KeywordDefineVC: UIViewController{
     var definition = ""
     var totalKeywordId = -1
     var isFirt = false
+    var editBarItem = UIBarButtonItem()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,7 +90,7 @@ class KeywordDefineVC: UIViewController{
             contentTextView.backgroundColor = .white
             changedNumberLabel.isHidden = true
             numberLabel.isHidden = true
-            navigationItem.rightBarButtonItem?.title = "수정"
+            
             
         }else{
             dismissVC()
@@ -108,7 +109,6 @@ class KeywordDefineVC: UIViewController{
     }
 
 }
-
 
 extension KeywordDefineVC: UITextViewDelegate{
     
@@ -282,12 +282,13 @@ extension KeywordDefineVC{
            navigationItem.leftBarButtonItem = leftButton
         
         if modifiedMode{
-            let rightButton : UIBarButtonItem = {
+           let rightButton : UIBarButtonItem = {
                 let button = UIBarButtonItem(image: UIImage(named: "btn_edit"), style: .plain, target: self, action: #selector(modifyDefinition))
                button.tintColor = UIColor.mainOrange
                 return button
             }()
             navigationItem.rightBarButtonItem = rightButton
+            editBarItem = rightButton
         }
     }
     
@@ -352,8 +353,8 @@ extension KeywordDefineVC{
     
     @objc func modifyDefinition(_ sender: UIBarButtonItem){
       
-        if sender.title == "수정"{
-            sender.tintColor = UIColor.mainBlue
+        if sender.image == UIImage(named: "btn_edit"){
+            sender.tintColor = UIColor.white
             checkSaving = false
             textView.backgroundColor = UIColor.mainLightGray
             textView.borderWidth = 0
@@ -362,8 +363,8 @@ extension KeywordDefineVC{
             changedNumberLabel.isHidden = false
             contentTextView.isEditable = true
             contentTextView.backgroundColor = textView.backgroundColor
-            sender.title = ""
         }
+        
     }
    
 }
