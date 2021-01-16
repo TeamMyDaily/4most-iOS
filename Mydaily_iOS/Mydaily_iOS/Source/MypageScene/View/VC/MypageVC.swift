@@ -50,15 +50,23 @@ class MypageVC: UIViewController {
         setInitTableFooterView()
         
     }
+//    
+//    override func viewWillAppear(_ animated: Bool) {
+//        print("viewWillAppear")
+//        getRecordKeywords()
+//        getUserKeywords()
+//        setTitleLabel()
+//        registerPermission = checkRegisterPermission()
+//    }
     
-    override func viewWillAppear(_ animated: Bool) {
-        print("viewWillAppear")
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("viewDidAppear")
         getRecordKeywords()
         getUserKeywords()
         setTitleLabel()
         registerPermission = checkRegisterPermission()
     }
-    
     
     func checkRegisterPermission() -> Bool{
         var checkCount = 0
@@ -531,7 +539,6 @@ extension MypageVC{
                 print(err.localizedDescription)
             }
         }
-        
     }
     
     func postRegisterKeyword(keywordId: Int, keywordName: String){
