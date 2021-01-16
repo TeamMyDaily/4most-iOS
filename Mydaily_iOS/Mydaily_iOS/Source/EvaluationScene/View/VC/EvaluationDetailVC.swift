@@ -182,6 +182,8 @@ extension EvaluationDetailVC: RecordToDailyDelegate {
     func cellTapedDaily(dvc: DailyWriteVC) {
         navigationItem.setHidesBackButton(true, animated: true)
         dvc.backToDetailRecordContent = {
+            self.getKeywordDetail()
+            self.setNotification()
             self.navigationController?.isNavigationBarHidden = true
             self.keywordDetailTableView.reloadData()
         }
