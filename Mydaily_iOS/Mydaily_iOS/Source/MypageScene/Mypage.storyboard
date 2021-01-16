@@ -20,9 +20,6 @@
                                 <rect key="frame" x="178" y="285" width="75" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="gearshape" catalog="system"/>
-                                <connections>
-                                    <segue destination="riU-fO-AnY" kind="presentation" id="fzb-VN-4eO"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xRo-nc-k0s">
                                 <rect key="frame" x="104" y="174" width="168" height="22"/>
@@ -217,14 +214,14 @@
             <objects>
                 <viewController storyboardIdentifier="MypageSettingVC" id="riU-fO-AnY" customClass="MypageSettingVC" customModule="Mydaily_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pQO-IU-CbQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="780"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q68-1j-9Em">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="780"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Uz-lf-wnM">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="780"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BP4-8p-OTG">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="195"/>
@@ -287,7 +284,7 @@
                                                 </constraints>
                                             </view>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Dfi-8A-rrP">
-                                                <rect key="frame" x="0.0" y="195" width="375" height="515"/>
+                                                <rect key="frame" x="0.0" y="195" width="375" height="535"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="450" id="Flv-Nu-4Th"/>
@@ -359,7 +356,7 @@
                                                 </prototypes>
                                             </tableView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hoq-rE-gbz">
-                                                <rect key="frame" x="0.0" y="710" width="375" height="70"/>
+                                                <rect key="frame" x="0.0" y="730" width="375" height="70"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="copyrightⓒ4(for)most" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w5e-08-ZhV">
                                                         <rect key="frame" x="124" y="28.5" width="127" height="14.5"/>

@@ -21,8 +21,10 @@ class MypageSettingVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupStatusBar(UIColor.mainOrange)
         setLabel()
         setTableView()
+        setNavigationBar()
     }
 }
 
@@ -149,4 +151,27 @@ extension MypageSettingVC {
         settingTableView.dataSource = self
         settingTableView.separatorStyle = .none
     }
+    
+    func setNavigationBar(){
+        guard let navigationBar = self.navigationController?.navigationBar else { return }
+        navigationBar.isTranslucent = true
+        navigationBar.backgroundColor = UIColor.mainOrange
+        navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationBar.shadowImage = UIImage()
+      
+        self.navigationItem.title = "설정"
+        
+        let leftButton: UIBarButtonItem = {
+             let button = UIBarButtonItem(image: UIImage(named: "btnBack"), style: .plain, target: self, action: #selector(dismissVC))
+            button.tintColor = UIColor.mainBlack
+             return button
+           }()
+        
+           navigationItem.leftBarButtonItem = leftButton
+    }
+
+    @objc func dismissVC() {
+      self.navigationController?.popViewController(animated: true)
+    }
+
 }

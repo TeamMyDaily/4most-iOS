@@ -470,7 +470,8 @@ extension MypageVC{
         guard let dvc = self.storyboard?.instantiateViewController(identifier: "MypageSettingVC") as? MypageSettingVC else {
             return
         }
-        self.present(dvc, animated: true, completion: nil)
+        
+        navigationController?.pushViewController(dvc, animated: true)
     }
     
 }
