@@ -90,8 +90,7 @@ class KeywordDefineVC: UIViewController{
             contentTextView.backgroundColor = .white
             changedNumberLabel.isHidden = true
             numberLabel.isHidden = true
-            
-            
+            editBarItem.tintColor = .mainOrange
         }else{
             dismissVC()
         }
@@ -353,7 +352,7 @@ extension KeywordDefineVC{
     
     @objc func modifyDefinition(_ sender: UIBarButtonItem){
       
-        if sender.image == UIImage(named: "btn_edit"){
+        if sender.tintColor == UIColor.mainOrange {
             sender.tintColor = UIColor.white
             checkSaving = false
             textView.backgroundColor = UIColor.mainLightGray
