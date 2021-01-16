@@ -31,11 +31,6 @@ class EvaluationDetailVC: UIViewController {
     var end: Date?
     
     var task: [Tasks] = []
-    
-    override func viewWillAppear(_ animated: Bool) {
-        getKeywordDetail()
-        setNotification()
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -175,6 +170,8 @@ extension EvaluationDetailVC: RecordToDailyDelegate {
     func cellTapedDaily(dvc: DailyWriteVC) {
         navigationItem.setHidesBackButton(true, animated: true)
         dvc.backToDetailRecordContent = {
+            self.getKeywordDetail()
+            self.setNotification()
             self.navigationController?.isNavigationBarHidden = true
             self.keywordDetailTableView.reloadData()
         }

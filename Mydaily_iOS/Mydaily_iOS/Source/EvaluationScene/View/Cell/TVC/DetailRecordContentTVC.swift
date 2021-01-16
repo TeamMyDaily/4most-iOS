@@ -118,7 +118,6 @@ extension DetailRecordContentTVC {
     @objc func reloadCollection() {
         hideViewIfListEmpty()
         recordCollectionView.reloadData()
-        tableView?.reloadData()
     }
 }
 
