@@ -33,7 +33,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o2g-sx-GuM">
-                                <rect key="frame" x="31.5" y="345" width="312" height="40"/>
+                                <rect key="frame" x="31.5" y="293" width="312" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="312" id="NTP-hH-T5h"/>
                                     <constraint firstAttribute="height" constant="40" id="n7J-an-s3p"/>
@@ -47,7 +47,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nUG-gY-PY4">
-                                <rect key="frame" x="31.5" y="409" width="312" height="40"/>
+                                <rect key="frame" x="31.5" y="357" width="312" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="BkW-Hx-lQ1"/>
                                     <constraint firstAttribute="width" constant="312" id="R3y-Dc-HlQ"/>
@@ -67,7 +67,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QMm-eb-HA8">
-                                <rect key="frame" x="260" y="313" width="24" height="24"/>
+                                <rect key="frame" x="260" y="261" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="J9e-Yh-rYb"/>
                                     <constraint firstAttribute="width" constant="24" id="M53-KH-BIB"/>
@@ -85,13 +85,13 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="자동로그인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wCq-R2-96T">
-                                <rect key="frame" x="291.5" y="318" width="52" height="14.5"/>
+                                <rect key="frame" x="291.5" y="266" width="52" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1t9-9H-f9Y">
-                                <rect key="frame" x="66" y="465" width="243" height="30"/>
+                                <rect key="frame" x="66" y="413" width="243" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGl-Gj-2PA">
                                         <rect key="frame" x="0.0" y="0.0" width="52" height="30"/>
@@ -132,7 +132,7 @@
                             <constraint firstItem="wCq-R2-96T" firstAttribute="centerY" secondItem="QMm-eb-HA8" secondAttribute="centerY" id="IbX-Et-5ba"/>
                             <constraint firstItem="o2g-sx-GuM" firstAttribute="top" secondItem="QMm-eb-HA8" secondAttribute="bottom" constant="8" id="KNa-bn-D6m"/>
                             <constraint firstItem="wCq-R2-96T" firstAttribute="trailing" secondItem="o2g-sx-GuM" secondAttribute="trailing" id="Rbk-Dg-QQK"/>
-                            <constraint firstItem="8Au-70-ARX" firstAttribute="top" secondItem="1t9-9H-f9Y" secondAttribute="bottom" constant="68" id="Usx-4n-2WX"/>
+                            <constraint firstItem="8Au-70-ARX" firstAttribute="top" secondItem="1t9-9H-f9Y" secondAttribute="bottom" constant="120" id="Usx-4n-2WX"/>
                             <constraint firstItem="KKU-5M-KMu" firstAttribute="bottom" secondItem="8Au-70-ARX" secondAttribute="bottom" constant="56" id="bI6-77-nkq"/>
                             <constraint firstItem="o2g-sx-GuM" firstAttribute="top" secondItem="QMm-eb-HA8" secondAttribute="bottom" constant="8" id="bYU-fl-0i2"/>
                             <constraint firstItem="1t9-9H-f9Y" firstAttribute="centerX" secondItem="KKU-5M-KMu" secondAttribute="centerX" id="g2O-cQ-gfM"/>

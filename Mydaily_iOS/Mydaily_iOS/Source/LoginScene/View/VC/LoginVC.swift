@@ -141,9 +141,9 @@ extension LoginVC {
     }
     func downanimation(){
             UIView.animate(withDuration: 0.3, animations: {
-                self.autoLoginButton.frame.origin.y += 80
-                self.autoLoginLabel.frame.origin.y += 80
-                self.pwTextField.frame.origin.y += 80
+                self.autoLoginButton.frame.origin.y += 90
+                self.autoLoginLabel.frame.origin.y += 90
+                self.pwTextField.frame.origin.y += 100
                 self.idTextField.frame.origin.y += 80
                 self.stackView.frame.origin.y += 80
                 self.loginButton.frame.origin.y += 80
@@ -276,7 +276,7 @@ extension LoginVC: UITextFieldDelegate{
 //        }
 //        count += 1
         
-        animation()
+//        animation()
     }
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
@@ -288,7 +288,7 @@ extension LoginVC: UITextFieldDelegate{
 //            downanimation()
 //        }
         
-        downanimation()
+//        downanimation()
     }
     
   //리턴키
