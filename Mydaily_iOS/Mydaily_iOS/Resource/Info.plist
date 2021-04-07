@@ -36,9 +36,9 @@
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
-	<string>Splash</string>
+	<string>Tabbar</string>
 	<key>UIMainStoryboardFile</key>
-	<string>Splash</string>
+	<string>Tabbar</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

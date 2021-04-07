@@ -477,7 +477,7 @@ extension MypageVC{
 }
 
 
-//네트워크
+// MARK: - Network
 extension MypageVC{
     func getRecordKeywords(){
         print("getRecordKeywords")
